@@ -46,3 +46,10 @@ jobs:
           project: "scotland-yard-qa-99"
           entrypoint: "server.js"
           root: "."
+
+      # - name: Upload to Deno Deploy
+      #   uses: denoland/deployctl@v1
+      #   with:
+      #     project: "scotland-yard-production-99"
+      #     entrypoint: "server.js"
+      #     root: "."
