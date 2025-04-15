@@ -1,0 +1,6 @@
+#! /bin/bash
+
+set -e
+deno task format
+deno task lint
+deno task coverage
