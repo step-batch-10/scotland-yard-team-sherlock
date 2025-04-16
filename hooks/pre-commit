@@ -12,6 +12,9 @@ deno task lint
 echo "[2/3] Deno format"
 deno task format
 
+echo "[3/3] Deno coverage"
+deno task coverage
+
 echo "-----------------------------------------"
 echo "✅  Lint,Format and Test coverages OK  ✅"
 echo "-----------------------------------------"

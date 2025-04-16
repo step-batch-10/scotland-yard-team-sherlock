@@ -1,6 +1,20 @@
-#! /bin/bash
+#! /bin/sh
 
 set -e
-deno task format
+
+echo "-----------------------------------------"
+echo "              PRE-PUSH                   "
+echo "-----------------------------------------"
+
+echo "[1/3] Deno lint"
 deno task lint
+
+echo "[2/3] Deno format"
+deno task format
+
+echo "[3/3] Deno coverage"
 deno task coverage
+
+echo "-----------------------------------------"
+echo "✅  Lint,Format and Test coverages OK  ✅"
+echo "-----------------------------------------"
