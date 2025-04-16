@@ -44,7 +44,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "scotland-yard-qa-99"
-          entrypoint: "server.js"
+          entrypoint: "server.ts"
           root: "."
 
       # - name: Upload to Deno Deploy
