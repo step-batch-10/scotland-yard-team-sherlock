@@ -10,7 +10,7 @@
     "format": "deno fmt",
     "test-coverage": "deno test -A --coverage=coverage --clean",
     "coverage": {
-      "command": "deno coverage --html && deno run -A jsr:@ashishkujoy/deno-coverage-checker@0.0.7",
+      "command": "deno coverage --html && deno run -A jsr:@ashishkujoy/deno-coverage-checker@0.0.8",
       "dependencies": ["test-coverage"]
     }
   },
