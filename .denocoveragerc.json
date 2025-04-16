@@ -3,5 +3,5 @@
   "branches": 90,
   "functions": 90,
   "perFile": false,
-  "exclude": "./src/app.js"
+  "exclude": "**/*.ts"
 }

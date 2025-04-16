@@ -4,7 +4,7 @@
     "hono": "npm:hono@^4.7.6"
   },
   "tasks": {
-    "start": "deno run -A --watch server.js",
+    "start": "deno run -A --watch server.ts",
     "test": "deno test -A",
     "lint": "deno lint",
     "format": "deno fmt",
@@ -27,7 +27,7 @@
     "semiColons": true
   },
   "test": {
-    "include": ["**/*.js"],
-    "exclude": ["server.js"]
+    "include": ["**/*.ts"],
+    "exclude": ["server.ts"]
   }
 }
