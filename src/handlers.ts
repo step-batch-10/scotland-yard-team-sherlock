@@ -27,3 +27,7 @@ export const login = async (context: Context) => {
   setCookie(context, "playerSessionId", playerSessionId);
   return context.redirect("/");
 };
+
+export const handleGameJoin = (ctx: Context) => {
+  return ctx.redirect("/waiting.html");
+};
