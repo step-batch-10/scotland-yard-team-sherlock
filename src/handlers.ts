@@ -1,6 +1,7 @@
 import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { setCookie } from "hono/cookie";
+import { serveStatic } from "hono/deno";
 
 const generateId = (): string => {
   const time = Date.now();
@@ -14,6 +15,8 @@ export const serveIndex = async (context: Context) => {
 
   return context.html(page.replaceAll("##NAME##", playerName));
 };
+
+export const serveLoginPage = serveStatic({ path: "./public/login.html" });
 
 export const login = async (context: Context) => {
   const formData = await context.req.formData();

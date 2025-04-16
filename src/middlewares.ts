@@ -15,3 +15,14 @@ export const validatePlayerSession = async (context: Context, next: Next) => {
 
   return await next();
 };
+
+export const checkUserLogin = async (context: Context, next: Next) => {
+  const playerSessionId = getCookie(context, "playerSessionId");
+
+  const playerSessions: PlayerSessions = context.get("playerSessions");
+  const playerName = playerSessions.getPlayer(playerSessionId || "");
+
+  if (playerName) return context.redirect("/");
+
+  return await next();
+};

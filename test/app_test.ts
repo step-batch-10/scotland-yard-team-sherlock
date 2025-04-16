@@ -62,4 +62,37 @@ describe("Authentication", () => {
       assert(response.headers.has("set-cookie"));
     });
   });
+
+  describe("checkUserLogin", () => {
+    it("should redirect to root if user already logged in", async () => {
+      const playerSessions = new PlayerSessions();
+      playerSessions.add("1234", "PlayerName1");
+
+      const app = createApp(playerSessions);
+
+      const request = new Request("http://localhost:8000/login.html", {
+        headers: {
+          cookie: "playerSessionId=1234",
+        },
+      });
+
+      const response = await app.request(request);
+
+      assertEquals(response.status, 302);
+      assertEquals(response.headers.get("location"), "/");
+    });
+
+    it("should serve login page if user is not logged in", async () => {
+      const playerSessions = new PlayerSessions();
+      playerSessions.add("1234", "PlayerName1");
+
+      const app = createApp(playerSessions);
+
+      const request = new Request("http://localhost:8000/login.html");
+      const response = await app.request(request);
+      await response.text();
+
+      assertEquals(response.status, 200);
+    });
+  });
 });

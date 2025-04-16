@@ -1,7 +1,12 @@
 import { Context, Hono, Next } from "hono";
 import { serveStatic } from "hono/deno";
-import { handleGameJoin, login, serveIndex } from "./handlers.ts";
-import { validatePlayerSession } from "./middlewares.ts";
+import {
+  handleGameJoin,
+  login,
+  serveIndex,
+  serveLoginPage,
+} from "./handlers.ts";
+import { checkUserLogin, validatePlayerSession } from "./middlewares.ts";
 import { PlayerSessions } from "./models/playerSessions.ts";
 
 export const createApp = (playerSessions: PlayerSessions) => {
@@ -13,7 +18,9 @@ export const createApp = (playerSessions: PlayerSessions) => {
   });
 
   app.get("/", validatePlayerSession, serveIndex);
+
   app.post("/login", login);
+  app.get("/login.html", checkUserLogin, serveLoginPage);
 
   app.post("/game/join", handleGameJoin);
   app.use("*", serveStatic({ root: "./public" }));
