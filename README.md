@@ -1,6 +1,7 @@
 # 🕵️ Scotland Yard Game
+[![master](https://github.com/step-batch-10/scotland-yard-team-sherlock/actions/workflows/deno.yml/badge.svg)](https://github.com/step-batch-10/scotland-yard-team-sherlock/actions/workflows/deno.yml)
 
-## 1. 📝 Project Description
+## 1. 📝 Scotland Yard Description
 
 This is an online implementation of the classic **Scotland Yard** board game,
 developed as part of our software project. The game simulates a strategic chase
@@ -23,7 +24,7 @@ You can read the Scotland Yard game rules here:\
 ## 3. 🚀 Hosted Game
 
 Play the game here:\
-🔗 [Scotland Yard Online – Deno Deploy](https://your-game-link.deno.dev)
+🔗 [Scotland Yard Online – Deno Deploy](https://scotland-yard-qa-99.deno.dev)
 
 ## 4. 🧽 Game Flow Charts
 
@@ -37,7 +38,7 @@ Wiki:\
 Keep track of our project progress, tasks, and discussions here:\
 🔗 [Project Wall](https://github.com/orgs/step-batch-10/projects/6)
 
-## 6. 💃 Data Models
+## 6. 📉 Data Models
 
 We’ve detailed our data models and their relationships in the Wiki:\
 🔗
