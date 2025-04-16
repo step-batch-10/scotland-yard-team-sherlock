@@ -8,9 +8,9 @@
     "test": "deno test -A",
     "lint": "deno lint",
     "format": "deno fmt",
-    "test-coverage": "deno test -A --coverage=coverage",
+    "test-coverage": "deno test -A --coverage=coverage --clean",
     "coverage": {
-      "command": "deno coverage --html",
+      "command": "deno coverage --html && deno run -A jsr:@ashishkujoy/deno-coverage-checker@0.0.7",
       "dependencies": ["test-coverage"]
     }
   },
