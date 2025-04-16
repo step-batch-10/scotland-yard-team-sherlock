@@ -1,19 +1,19 @@
 export class PlayerSessions {
-  #sessions: Map<number, string>;
+  #sessions: Map<string, string>;
 
   constructor() {
     this.#sessions = new Map();
   }
 
-  add(sessionId: number, name: string) {
+  add(sessionId: string, name: string) {
     return this.#sessions.set(sessionId, name);
   }
 
-  getPlayer(sessionId: number) {
+  getPlayer(sessionId: string) {
     return this.#sessions.get(sessionId);
   }
 
-  delete(sessionId: number) {
-    return this.#sessions.delete(sessionId);
+  get sessions() {
+    return this.#sessions;
   }
 }

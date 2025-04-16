@@ -1,4 +1,5 @@
 # 🕵️ Scotland Yard Game
+
 [![master](https://github.com/step-batch-10/scotland-yard-team-sherlock/actions/workflows/deno.yml/badge.svg)](https://github.com/step-batch-10/scotland-yard-team-sherlock/actions/workflows/deno.yml)
 
 ## 1. 📝 Scotland Yard Description
