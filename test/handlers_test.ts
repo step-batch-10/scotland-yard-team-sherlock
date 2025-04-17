@@ -1,11 +1,11 @@
 import { assertEquals } from "assert";
-import { describe, test } from "testing/bdd";
+import { describe, it } from "testing/bdd";
 import { createApp } from "../src/app.ts";
 import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { Lobby } from "../src/models/lobby.ts";
 
 describe("Static page", () => {
-  test("Should return join.html static page", async () => {
+  it("Should return join.html static page", async () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
     const app = createApp(playerSessions, lobby);
@@ -19,7 +19,7 @@ describe("Static page", () => {
 });
 
 describe("Game Join", () => {
-  test("Should redirect to waiting page", async () => {
+  it("Should redirect to waiting page", async () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
     const app = createApp(playerSessions, lobby);
@@ -38,7 +38,7 @@ describe("Game Join", () => {
   });
 
   describe("Waiting Player Data", () => {
-    test("Should return waiting players and lobby status in json format", async () => {
+    it("Should return waiting players and lobby status in json format", async () => {
       const playerSessions = new PlayerSessions();
       const lobby = new Lobby();
       const app = createApp(playerSessions, lobby);
@@ -49,5 +49,37 @@ describe("Game Join", () => {
       assertEquals(res.status, 200);
       assertEquals(res.headers.get("content-type"), "application/json");
     });
+  });
+});
+
+describe("fetch players", () => {
+  it("it should return allPlayer names", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobby = new Lobby();
+    const app = createApp(playerSessions, lobby);
+    const players = ["A", "B", "C", "D", "E", "F"];
+    const isLobbyFull = true;
+    const req = new Request("http://localhost:8000/fetch-players");
+    const res = await app.request(req);
+    assertEquals(await res.json(), { players, isLobbyFull });
+    assertEquals(res.status, 200);
+  });
+  it("it should assign roles and colors", async () => {
+    const players = [
+      { name: "A", role: "Detective", color: "yellow" },
+      { name: "B", role: "Detective", color: "green" },
+      { name: "C", role: "Mr X", color: "black" },
+      { name: "D", role: "Detective", color: "red" },
+      { name: "E", role: "Detective", color: "blue" },
+      { name: "F", role: "Detective", color: "violet" },
+    ];
+    const playerSessions = new PlayerSessions();
+    const lobby = new Lobby();
+    const app = createApp(playerSessions, lobby);
+
+    const req = new Request("http://localhost:8000/assign-roles");
+    const res = await app.request(req);
+    assertEquals(await res.json(), players);
+    assertEquals(res.status, 200);
   });
 });
