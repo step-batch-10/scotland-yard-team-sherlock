@@ -1,15 +1,22 @@
 export class PlayerSessions {
-  #sessions: Map<string, string>;
+  #sessions: Map<number, string>;
+  #id: number;
 
   constructor() {
     this.#sessions = new Map();
+    this.#id = 0;
   }
 
-  add(sessionId: string, name: string) {
+  #add(sessionId: number, name: string) {
     return this.#sessions.set(sessionId, name);
   }
 
-  getPlayer(sessionId: string) {
+  createSession(name: string) {
+    this.#add(this.#id, name);
+    return "" + this.#id++;
+  }
+
+  getPlayer(sessionId: number) {
     return this.#sessions.get(sessionId);
   }
 

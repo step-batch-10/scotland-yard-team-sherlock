@@ -1,6 +1,6 @@
 import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
-import { setCookie } from "hono/cookie";
+import { getCookie, setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
 import { Lobby } from "./models/lobby.ts";
 
@@ -10,11 +10,12 @@ const addPlayerInfo = (
   playersInfo: info[],
   name: string,
   role: string,
-  color: string
+  color: string,
 ) => playersInfo.push({ name, role, color });
 
-export const assignRoles = (context: Context) => {
-  const players = ["A", "B", "C", "D", "E", "F"];
+export const assignRoles = (ctx: Context) => {
+  const lobby: Lobby = ctx.get("lobby");
+  const players: string[] = lobby.players;
   const colors = ["yellow", "green", "red", "blue", "violet"];
   const mrXIndex = 2;
   const playersInfo: info[] = [];
@@ -30,18 +31,15 @@ export const assignRoles = (context: Context) => {
     colorIndex++;
   });
 
-  return context.json(playersInfo);
+  return ctx.json(playersInfo);
 };
 
-export const fetchPlayers = (context: Context) => {
-  const players = ["A", "B", "C", "D", "E", "F"];
-  const isLobbyFull = true;
-  return context.json({ players, isLobbyFull });
-};
+export const fetchPlayers = (ctx: Context) => {
+  const lobby: Lobby = ctx.get("lobby");
+  const players: string[] = lobby.players;
+  const isLobbyFull: boolean = lobby.isLobbyFull();
 
-const generateId = (): string => {
-  const time = Date.now();
-  return (time + Math.floor(Math.random() * 1000)).toString();
+  return ctx.json({ players, isLobbyFull });
 };
 
 export const serveIndex = async (context: Context) => {
@@ -58,29 +56,19 @@ export const login = async (context: Context) => {
   const formData = await context.req.formData();
   const playerName = formData.get("player-name") as string;
 
-  const playerSessionId = generateId();
-
   const playerSessions: PlayerSessions = context.get("playerSessions");
-  playerSessions.add(playerSessionId, playerName);
+  const playerSessionId = playerSessions.createSession(playerName);
 
   setCookie(context, "playerSessionId", playerSessionId);
   return context.redirect("/");
 };
 
-export const handleGameJoin = async (ctx: Context) => {
-  const formData: FormData = await ctx.req.formData();
-  const name = formData.get("name");
-
+export const handleGameJoin = (ctx: Context) => {
+  const sessionId = getCookie(ctx, "playerSessionId");
+  const playerSessions: PlayerSessions = ctx.get("playerSessions");
+  const name = playerSessions.getPlayer(Number(sessionId));
   const lobby = ctx.get("lobby");
   lobby.add(name);
 
   return ctx.redirect("/waiting.html");
-};
-
-export const handleWaitingReq = (ctx: Context) => {
-  const lobby: Lobby = ctx.get("lobby");
-  const waitingPlayers: string[] = lobby.players;
-  const isLobbyFull: boolean = lobby.isLobbyFull();
-
-  return ctx.json({ waitingPlayers, isLobbyFull });
 };

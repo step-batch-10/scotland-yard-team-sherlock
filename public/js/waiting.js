@@ -17,13 +17,16 @@ const addToWaitingBoard = (playerContainer, { name, role, color }) => {
   const figure = document.createElement("figure");
   addBadge(figure, color);
   addCaption(figure, name, role);
-  playerContainer.append(figure);
+  playerContainer?.append(figure);
 };
 
 const renderPlayerRoles = (playersInfo) => {
-  playersInfo.forEach((playerInfo, index) => {
-    const playerContainer = document.querySelector(`#player-${index}`);
+  const waitingBoard = document.querySelector("#waiting-board");
+  waitingBoard.textContent = "";
+  playersInfo.forEach((playerInfo) => {
+    const playerContainer = document.createElement("div");
     addToWaitingBoard(playerContainer, playerInfo);
+    waitingBoard?.append(playerContainer);
   });
   setTimeout(() => {
     globalThis.location.href = "index.html";
@@ -37,27 +40,34 @@ const addName = (playerContainer, playerName) => {
 };
 
 const renderPlayerNames = (players) => {
-  players.forEach((playerName, index) => {
-    const playerContainer = document.querySelector(`#player-${index}`);
+  const waitingBoard = document.querySelector("#waiting-board");
+  waitingBoard.textContent = "";
+  players.forEach((playerName) => {
+    const playerContainer = document.createElement("div");
     const figure = document.createElement("figure");
     addBadge(figure, "white");
     addName(figure, playerName);
-    playerContainer.append(figure);
+    playerContainer?.append(figure);
+    waitingBoard?.append(playerContainer);
   });
 };
 
-const main = async () => {
-  const response = await fetch("/fetch-players");
-  const { players, isLobbyFull } = await response.json();
+const main = () => {
+  const intervalId = setInterval(async () => {
+    const response = await fetch("/fetch-players");
+    const { players, isLobbyFull } = await response.json();
 
-  if (isLobbyFull) {
-    const res = await fetch("/assign-roles");
-    const roles = await res.json();
-    renderPlayerRoles(roles);
+    if (isLobbyFull) {
+      const res = await fetch("/assign-roles");
+      const roles = await res.json();
+      renderPlayerNames(players);
+      renderPlayerRoles(roles);
+      clearInterval(intervalId);
+      return;
+    }
+    renderPlayerNames(players);
     return;
-  }
-  renderPlayerNames(players);
-  return;
+  }, 1000);
 };
 
 globalThis.onload = main;

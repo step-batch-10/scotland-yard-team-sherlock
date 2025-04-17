@@ -32,13 +32,13 @@ describe("Authentication", () => {
 
     it("should give home page if valid playerSessionId exists", async () => {
       const playerSessions = new PlayerSessions();
-      playerSessions.add("123456", "PlayerName1");
+      playerSessions.createSession("PlayerName1");
 
       const lobby = new Lobby();
       const app = createApp(playerSessions, lobby);
 
       const response = await app.request("/", {
-        headers: { cookie: "playerSessionId=123456" },
+        headers: { cookie: "playerSessionId=0" },
       });
 
       assertEquals(response.status, 200);
@@ -71,14 +71,14 @@ describe("Authentication", () => {
   describe("checkUserLogin", () => {
     it("should redirect to root if user already logged in", async () => {
       const playerSessions = new PlayerSessions();
-      playerSessions.add("1234", "PlayerName1");
+      playerSessions.createSession("PlayerName1");
 
       const lobby = new Lobby();
       const app = createApp(playerSessions, lobby);
 
       const request = new Request("http://localhost:8000/login.html", {
         headers: {
-          cookie: "playerSessionId=1234",
+          cookie: "playerSessionId=0",
         },
       });
 
@@ -90,7 +90,6 @@ describe("Authentication", () => {
 
     it("should serve login page if user is not logged in", async () => {
       const playerSessions = new PlayerSessions();
-      playerSessions.add("1234", "PlayerName1");
 
       const lobby = new Lobby();
       const app = createApp(playerSessions, lobby);

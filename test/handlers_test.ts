@@ -7,11 +7,11 @@ import { Lobby } from "../src/models/lobby.ts";
 describe("Static page", () => {
   it("Should return index page", async () => {
     const playerSessions = new PlayerSessions();
-    playerSessions.add("123", "detective1");
+    playerSessions.createSession("detective1");
     const lobby = new Lobby();
     const app = createApp(playerSessions, lobby);
 
-    const headers = { cookie: "playerSessionId=123" };
+    const headers = { cookie: "playerSessionId=0" };
 
     const res = await app.request("http://localhost:8000", { headers });
     res.text();
@@ -39,34 +39,40 @@ describe("Game Join", () => {
     assertEquals(res.headers.get("content-type"), null);
     assertEquals(res.headers.get("location"), "/waiting.html");
   });
-
-  describe("Waiting Player Data", () => {
-    it("Should return waiting players and lobby status in json format", async () => {
-      const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
-      const app = createApp(playerSessions, lobby);
-
-      const res = await app.request("http://localhost:8000/waiting-players");
-      await res.json();
-
-      assertEquals(res.status, 200);
-      assertEquals(res.headers.get("content-type"), "application/json");
-    });
-  });
 });
 
 describe("fetch players", () => {
-  it("it should return allPlayer names", async () => {
+  it("it should return allPlayer names and isLobbyFull as false", async () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
+    lobby.add("a");
     const app = createApp(playerSessions, lobby);
-    const players = ["A", "B", "C", "D", "E", "F"];
+    const players = ["a"];
+    const isLobbyFull = false;
+    const req = new Request("http://localhost:8000/fetch-players");
+    const res = await app.request(req);
+    assertEquals(await res.json(), { players, isLobbyFull });
+    assertEquals(res.status, 200);
+  });
+
+  it("it should return allPlayer names and isLobbyFull as true", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobby = new Lobby();
+    lobby.add("a");
+    lobby.add("b");
+    lobby.add("c");
+    lobby.add("d");
+    lobby.add("e");
+    lobby.add("f");
+    const app = createApp(playerSessions, lobby);
+    const players = ["a", "b", "c", "d", "e", "f"];
     const isLobbyFull = true;
     const req = new Request("http://localhost:8000/fetch-players");
     const res = await app.request(req);
     assertEquals(await res.json(), { players, isLobbyFull });
     assertEquals(res.status, 200);
   });
+
   it("it should assign roles and colors", async () => {
     const players = [
       { name: "A", role: "Detective", color: "yellow" },
@@ -78,6 +84,12 @@ describe("fetch players", () => {
     ];
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
+    lobby.add("A");
+    lobby.add("B");
+    lobby.add("C");
+    lobby.add("D");
+    lobby.add("E");
+    lobby.add("F");
     const app = createApp(playerSessions, lobby);
 
     const req = new Request("http://localhost:8000/assign-roles");
