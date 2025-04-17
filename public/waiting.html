@@ -3,31 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waiting page</title>
-    <script>
-      const fetchPlayers = async () => {
-        const res = await fetch("/waiting-players");
-        return await res.json();
-      };
-
-      const display = (players) => {
-        const p = document.createElement("p");
-        document.body.append(p);
-        console.log(players);
-
-        p.innerText = JSON.stringify(players);
-      };
-
-      const main = async () => {
-        const players = await fetchPlayers();
-
-        display(players);
-      };
-
-      globalThis.onload = main;
-    </script>
+    <title>Waiting Room</title>
+    <link rel="stylesheet" href="./css/waiting.css" />
+    <script src="./js/waiting.js"></script>
   </head>
   <body>
-    <h1>Welcome to Waiting Page</h1>
+    <header>
+      <h1>Waiting Room</h1>
+    </header>
+    <main>
+      <div id="waiting-board">
+        <div id="player-0"></div>
+        <div id="player-1"></div>
+        <div id="player-2"></div>
+        <div id="player-3"></div>
+        <div id="player-4"></div>
+        <div id="player-5"></div>
+      </div>
+    </main>
   </body>
 </html>

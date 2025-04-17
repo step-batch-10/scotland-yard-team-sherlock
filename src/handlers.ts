@@ -4,6 +4,41 @@ import { setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
 import { Lobby } from "./models/lobby.ts";
 
+type info = { name: string; role: string; color: string };
+
+const addPlayerInfo = (
+  playersInfo: info[],
+  name: string,
+  role: string,
+  color: string,
+) => playersInfo.push({ name, role, color });
+
+export const assignRoles = (context: Context) => {
+  const players = ["A", "B", "C", "D", "E", "F"];
+  const colors = ["yellow", "green", "red", "blue", "violet"];
+  const mrXIndex = 2;
+  const playersInfo: info[] = [];
+  let colorIndex = 0;
+
+  players.forEach((player, index) => {
+    const color = colors[colorIndex];
+    if (index === mrXIndex) {
+      addPlayerInfo(playersInfo, player, "Mr X", "black");
+      return;
+    }
+    addPlayerInfo(playersInfo, player, "Detective", color);
+    colorIndex++;
+  });
+
+  return context.json(playersInfo);
+};
+
+export const fetchPlayers = (context: Context) => {
+  const players = ["A", "B", "C", "D", "E", "F"];
+  const isLobbyFull = true;
+  return context.json({ players, isLobbyFull });
+};
+
 const generateId = (): string => {
   const time = Date.now();
   return (time + Math.floor(Math.random() * 1000)).toString();

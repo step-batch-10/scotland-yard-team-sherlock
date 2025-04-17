@@ -1,0 +1,47 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../assets/login-background.png");
+}
+
+header {
+  margin-top: 60px;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 36px;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#waiting-board {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: #ffffff33;
+  backdrop-filter: blur(5px);
+  padding: 30px;
+}
+
+figcaption {
+  color: white;
+  text-align: center;
+}
+
+main div img {
+  width: 140px;
+}

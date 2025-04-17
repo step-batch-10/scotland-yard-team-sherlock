@@ -1,6 +1,8 @@
 import { Context, Hono, Next } from "hono";
 import { serveStatic } from "hono/deno";
 import {
+  assignRoles,
+  fetchPlayers,
   handleGameJoin,
   handleWaitingReq,
   login,
@@ -28,6 +30,8 @@ export const createApp = (playerSessions: PlayerSessions, lobby: Lobby) => {
 
   app.post("/game/join", handleGameJoin);
   app.get("/waiting-players", handleWaitingReq);
+  app.get("/fetch-players", fetchPlayers);
+  app.get("/assign-roles", assignRoles);
   app.use("*", serveStatic({ root: "./public" }));
 
   return app;
