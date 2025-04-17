@@ -10,7 +10,7 @@ const addPlayerInfo = (
   playersInfo: info[],
   name: string,
   role: string,
-  color: string,
+  color: string
 ) => playersInfo.push({ name, role, color });
 
 export const assignRoles = (ctx: Context) => {
@@ -71,4 +71,23 @@ export const handleGameJoin = (ctx: Context) => {
   lobby.add(name);
 
   return ctx.redirect("/waiting.html");
+};
+
+export const handleWaitingReq = (ctx: Context) => {
+  const lobby: Lobby = ctx.get("lobby");
+  const waitingPlayers: string[] = lobby.players;
+  const isLobbyFull: boolean = lobby.isLobbyFull();
+
+  return ctx.json({ waitingPlayers, isLobbyFull });
+};
+
+export const handlePlayerPositions = (context: Context) => {
+  return context.json([
+    { position: 6, color: "red" },
+    { position: 12, color: "blue" },
+    { position: 15, color: "yellow" },
+    { position: 24, color: "green" },
+    { position: 30, color: "white" },
+    { position: 27, color: "purple" },
+  ]);
 };

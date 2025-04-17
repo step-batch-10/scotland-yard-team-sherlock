@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="790.25903" height="530.14783" version="1.1" id="svg2" sodipodi:docname="map.svg" inkscape:version="1.4 (e7c3feb1, 2024-10-09)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="1.0677591" inkscape:cx="433.15015" inkscape:cy="293.60556" inkscape:window-width="1920" inkscape:window-height="1172" inkscape:window-x="0" inkscape:window-y="28" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="0.69283895" inkscape:cx="423.61937" inkscape:cy="536.19964" inkscape:window-width="1792" inkscape:window-height="1120" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
+	<defs id="defs2" />
+	<namedview id="namedview2" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="2.3244602" inkscape:cx="184.77408" inkscape:cy="124.97525" inkscape:window-width="1792" inkscape:window-height="1092" inkscape:window-x="0" inkscape:window-y="28" inkscape:window-maximized="0" inkscape:current-layer="svg1" />
+	<g id="stations" transform="translate(748.49524,-11.604577)">
+		<!-- station 1 start -->
+		<g id="station-1" transform="translate(-692.12502,451.39193) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-1" />
+			<circle id="circle-1" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-1" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-1" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-1" />
+			<text x="18" y="25" id="station-number-1" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				1
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-1" />
+			<text x="16" y="62" id="player-name-1" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 1 end -->
+		<!-- station 2 start -->
+		<g id="station-2" transform="translate(-532.10121,445.07518) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-2" />
+			<circle id="circle-2" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-2" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-2" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-2" />
+			<text x="18" y="25" id="station-number-2" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				2
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-2" />
+			<text x="16" y="62" id="player-name-2" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 2 end -->
+		<!-- station 3 start -->
+		<g id="station-3" transform="translate(-623.13972,392.85099) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-3" />
+			<circle id="circle-3" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-3" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-3" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-3" />
+			<text x="18" y="25" id="station-number-3" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				3
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-3" />
+			<text x="16" y="62" id="player-name-3" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 3 end -->
+		<!-- station 4 start -->
+		<g id="station-4" transform="translate(-692.6368,319.62339) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-4" />
+			<circle id="circle-4" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-4" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-4" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-4" />
+			<text x="18" y="25" id="station-number-4" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				4
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-4" />
+			<text x="16" y="62" id="player-name-4" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 4 end -->
+		<!-- station 5 start -->
+		<g id="station-5" transform="translate(-548.03924,328.17477) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-5" />
+			<circle id="circle-5" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-5" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-5" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-5" />
+			<text x="18" y="25" id="station-number-5" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				5
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-5" />
+			<text x="16" y="62" id="player-name-5" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 5 end -->
+		<!-- station 6 start -->
+		<g id="station-6" transform="translate(-605.31792,253.19044) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-6" />
+			<circle id="circle-6" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-6" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-6" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-6" />
+			<text x="18" y="25" id="station-number-6" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				6
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-6" />
+			<text x="16" y="62" id="player-name-6" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 6 end -->
+		<!-- station 7 start -->
+		<g id="station-7" transform="translate(-692.56711,187.31282) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-7" />
+			<circle id="circle-7" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-7" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-7" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-7" />
+			<text x="18" y="25" id="station-number-7" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				7
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-7" />
+			<text x="16" y="62" id="player-name-7" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 7 end -->
+		<!-- station 8 start -->
+		<g id="station-8" transform="translate(-397.83827,229.15146) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-8" />
+			<circle id="circle-8" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-8" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-8" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-8" />
+			<text x="18" y="25" id="station-number-8" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				8
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-8" />
+			<text x="16" y="62" id="player-name-8" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 8 end -->
+		<!-- station 9 start -->
+		<g id="station-9" transform="translate(-484.79672,180.45405) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-9" />
+			<circle id="circle-9" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-9" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-9" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-9" />
+			<text x="18" y="25" id="station-number-9" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				9
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-9" />
+			<text x="16" y="62" id="player-name-9" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 9 end -->
+		<!-- station 10 start -->
+		<g id="station-10" transform="translate(-494.85259,272.35967) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-10" />
+			<circle id="circle-10" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-10" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-10" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-10" />
+			<text x="18" y="25" id="station-number-10" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				10
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-10" />
+			<text x="16" y="62" id="player-name-10" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 10 end -->
+		<!-- station 11 start -->
+		<g id="station-11" transform="translate(-347.74406,407.79656) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-11" />
+			<circle id="circle-11" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-11" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-11" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-11" />
+			<text x="18" y="25" id="station-number-11" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				11
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-11" />
+			<text x="16" y="62" id="player-name-11" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 11 end -->
+		<!-- station 12 start -->
+		<g id="station-12" transform="translate(-126.54662,254.39184) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-12" />
+			<circle id="circle-12" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-12" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-12" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-12" />
+			<text x="18" y="25" id="station-number-12" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				12
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-12" />
+			<text x="16" y="62" id="player-name-12" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 12 end -->
+		<!-- station 13 start -->
+		<g id="station-13" transform="translate(-118.05984,117.76686) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-13" />
+			<circle id="circle-13" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-13" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-13" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-13" />
+			<text x="18" y="25" id="station-number-13" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				13
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-13" />
+			<text x="16" y="62" id="player-name-13" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 13 end -->
+		<!-- station 14 start -->
+		<g id="station-14" transform="translate(-240.66189,118.0899) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-14" />
+			<circle id="circle-14" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-14" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-14" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-14" />
+			<text x="18" y="25" id="station-number-14" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				14
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-14" />
+			<text x="16" y="62" id="player-name-14" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 14 end -->
+		<!-- station 15 start -->
+		<g id="station-15" transform="translate(-398.97724,67.14456) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-15" />
+			<circle id="circle-15" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-15" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-15" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-15" />
+			<text x="18" y="25" id="station-number-15" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				15
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-15" />
+			<text x="16" y="62" id="player-name-15" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 15 end -->
+		<!-- station 16 start -->
+		<g id="station-16" transform="translate(-191.64895,52.858397) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-16" />
+			<circle id="circle-16" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-16" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-16" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-16" />
+			<text x="18" y="25" id="station-number-16" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				16
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-16" />
+			<text x="16" y="62" id="player-name-16" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 16 end -->
+		<!-- station 17 start -->
+		<g id="station-17" transform="translate(-456.47697,373.44945) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-17" />
+			<circle id="circle-17" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-17" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-17" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-17" />
+			<text x="18" y="25" id="station-number-17" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				17
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-17" />
+			<text x="16" y="62" id="player-name-17" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 17 end -->
+		<!-- station 18 start -->
+		<g id="station-18" transform="translate(-301.03301,50.610411) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-18" />
+			<circle id="circle-18" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-18" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-18" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-18" />
+			<text x="18" y="25" id="station-number-18" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				18
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-18" />
+			<text x="16" y="62" id="player-name-18" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 18 end -->
+		<!-- station 19 start -->
+		<g id="station-19" transform="translate(-182.46528,187.71329) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-19" />
+			<circle id="circle-19" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-19" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-19" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-19" />
+			<text x="18" y="25" id="station-number-19" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				19
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-19" />
+			<text x="16" y="62" id="player-name-19" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 19 end -->
+		<!-- station 20 start -->
+		<g id="station-20" transform="translate(-379.22594,314.92182) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-20" />
+			<circle id="circle-20" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-20" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-20" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-20" />
+			<text x="18" y="25" id="station-number-20" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				20
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-20" />
+			<text x="16" y="62" id="player-name-20" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 20 end -->
+		<!-- station 21 start -->
+		<g id="station-21" transform="translate(-204.15807,282.49962) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-21" />
+			<circle id="circle-21" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-21" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-21" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-21" />
+			<text x="18" y="25" id="station-number-21" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				21
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-21" />
+			<text x="16" y="62" id="player-name-21" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 21 end -->
+		<!-- station 22 start -->
+		<g id="station-22" transform="translate(-324.02811,146.02951) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-22" />
+			<circle id="circle-22" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-22" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-22" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-22" />
+			<text x="18" y="25" id="station-number-22" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				22
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-22" />
+			<text x="16" y="62" id="player-name-22" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 22 end -->
+		<!-- station 23 start -->
+		<g id="station-23" transform="translate(-293.48812,247.3649) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-23" />
+			<circle id="circle-23" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-23" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-23" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-23" />
+			<text x="18" y="25" id="station-number-23" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				23
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-23" />
+			<text x="16" y="62" id="player-name-23" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 23 end -->
+		<!-- station 24 start -->
+		<g id="station-24" transform="translate(-272.93431,347.49887) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-24" />
+			<circle id="circle-24" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-24" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-24" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-24" />
+			<text x="18" y="25" id="station-number-24" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				24
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-24" />
+			<text x="16" y="62" id="player-name-24" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 24 end -->
+		<!-- station 25 start -->
+		<g id="station-25" transform="translate(-159.88831,366.82298) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-25" />
+			<circle id="circle-25" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-25" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-25" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-25" />
+			<text x="18" y="25" id="station-number-25" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				25
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-25" />
+			<text x="16" y="62" id="player-name-25" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 25 end -->
+		<!-- station 26 start -->
+		<g id="station-26" transform="translate(-416.88071,456.18424) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-26" />
+			<circle id="circle-26" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-26" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-26" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-26" />
+			<text x="18" y="25" id="station-number-26" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				26
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-26" />
+			<text x="16" y="62" id="player-name-26" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 26 end -->
+		<!-- station 27 start -->
+		<g id="station-27" transform="translate(-45.040199,197.85324) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-27" />
+			<circle id="circle-27" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-27" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-27" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-27" />
+			<text x="18" y="25" id="station-number-27" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				27
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-27" />
+			<text x="16" y="62" id="player-name-27" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 27 end -->
+		<!-- station 28 start -->
+		<g id="station-28" transform="translate(-236.63955,444.36498) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-28" />
+			<circle id="circle-28" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-28" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-28" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-28" />
+			<text x="18" y="25" id="station-number-28" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				28
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-28" />
+			<text x="16" y="62" id="player-name-28" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 28 end -->
+		<!-- station 29 start -->
+		<g id="station-29" transform="translate(-95.703892,434.05686) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-29" />
+			<circle id="circle-29" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-29" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-29" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-29" />
+			<text x="18" y="25" id="station-number-29" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				29
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-29" />
+			<text x="16" y="62" id="player-name-29" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 29 end -->
+		<!-- station 30 start -->
+		<g id="station-30" transform="translate(-44.864268,341.35566) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-30" />
+			<circle id="circle-30" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-30" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-30" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-30" />
+			<text x="18" y="25" id="station-number-30" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				30
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-30" />
+			<text x="16" y="62" id="player-name-30" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 30 end -->
+		<!-- station 31 start -->
+		<g id="station-31" transform="translate(-44.815118,53.740823) ">
+			<path transform="translate(3.5, -40)" d="M 0 0 C 0 -7.2 7.2 -14.4 14.4 -14.4 S 28.8 -7.2 28.8 0 C 28.8 21.6 21.6 28.8 14.4 50.4 C 7.2 28.8 0 21.6 0 0 C 0 0 0 0 0 0" fill="none" id="pointer-31" />
+			<circle id="circle-31" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" />
+			<path d="M 3 15 A 15 15 0 0 1 33 15" fill="yellow" id="top-31" />
+			<path d="M 3 33 A 15 15 0 1 0 33 33" fill="green" id="bottom-31" />
+			<rect height="18" width="36" y="15" stroke="black" fill="yellow" id="middle-31" />
+			<text x="18" y="25" id="station-number-31" text-anchor="middle" dominant-baseline="middle" font-size="12" font-weight="900" font-family="sans-serif" fill="black">
+				31
+			</text>
+			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-31" />
+			<text x="16" y="62" id="player-name-31" text-anchor="middle" dominant-baseline="middle" font-size="8px" font-weight="900" font-family="sans-serif" fill="#000000" style="stroke-width:1">
+			</text>
+		</g>
+		<!-- station 31 end -->
+	</g>
+</svg>

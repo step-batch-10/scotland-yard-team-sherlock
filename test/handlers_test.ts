@@ -98,3 +98,24 @@ describe("fetch players", () => {
     assertEquals(res.status, 200);
   });
 });
+
+describe("Server player positions", () => {
+  it("should give users list with postion and color", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobby = new Lobby();
+
+    const app = createApp(playerSessions, lobby);
+
+    const resp = await app.request("/game/player-positions");
+
+    assertEquals(resp.status, 200);
+    assertEquals(await resp.json(), [
+      { position: 6, color: "red" },
+      { position: 12, color: "blue" },
+      { position: 15, color: "yellow" },
+      { position: 24, color: "green" },
+      { position: 30, color: "white" },
+      { position: 27, color: "purple" },
+    ]);
+  });
+});
