@@ -17,7 +17,7 @@ describe("Authentication", () => {
       assertEquals(response.headers.get("location"), "/login.html");
     });
 
-    it("should redirect to login page if playerSesionId doesn't exists in sessions", async () => {
+    it("should redirect to login page if playerSessionId doesn't exists in sessions", async () => {
       const playerSessions = new PlayerSessions();
       const lobby = new Lobby();
       const app = createApp(playerSessions, lobby);

@@ -10,7 +10,7 @@ const addPlayerInfo = (
   playersInfo: info[],
   name: string,
   role: string,
-  color: string,
+  color: string
 ) => playersInfo.push({ name, role, color });
 
 export const assignRoles = (context: Context) => {

@@ -5,16 +5,19 @@ import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { Lobby } from "../src/models/lobby.ts";
 
 describe("Static page", () => {
-  it("Should return join.html static page", async () => {
+  it("Should return index page", async () => {
     const playerSessions = new PlayerSessions();
+    playerSessions.add("123", "detective1");
     const lobby = new Lobby();
     const app = createApp(playerSessions, lobby);
 
-    const res = await app.request("http://localhost:8000/join.html");
+    const headers = { cookie: "playerSessionId=123" };
+
+    const res = await app.request("http://localhost:8000", { headers });
     res.text();
 
     assertEquals(res.status, 200);
-    assertEquals(res.headers.get("content-type"), "text/html; charset=utf-8");
+    assertEquals(res.headers.get("content-type"), "text/html; charset=UTF-8");
   });
 });
 
