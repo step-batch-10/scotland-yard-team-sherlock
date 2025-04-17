@@ -13,7 +13,9 @@
     "coverage": {
       "command": "deno coverage --html && deno run -A jsr:@ashishkujoy/deno-coverage-checker@0.0.8",
       "dependencies": ["test-coverage"]
-    }
+    },
+    "prod": "deployctl deploy --project=scotland-yard-production --entrypoint=server.ts --org='Team Sherlock'",
+    "qa": "deployctl deploy --project=scotland-yard-qa-16 --entrypoint=server.ts --org='Team Sherlock'"
   },
   "lint": {
     "rules": {

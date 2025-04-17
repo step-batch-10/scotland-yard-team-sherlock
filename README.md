@@ -25,9 +25,8 @@ You can read the Scotland Yard game rules here:\
 ## 3. 🚀 Hosted Game
 
 Play the game here:\
-🔗
-[Scotland Yard Online – Dev Deno Deploy](https://scotland-yard-qa-99.deno.dev)
-🔗 [Scotland Yard Online - QA Deno Deploy](https://warm-shrimp-94.deno.dev/)
+🔗 [Scotland Yard Online - QA Deno Deploy](https://scotland-yard-qa-16.deno.dev)
+🔗 [Scotland Yard Online - Production Deploy](https://scotland-yard-production.deno.dev)
 
 ## 4. 🧽 Game Flow Charts
 
