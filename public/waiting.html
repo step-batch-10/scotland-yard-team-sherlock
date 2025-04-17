@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waiting page</title>
+    <script>
+      const fetchPlayers = async () => {
+        const res = await fetch("/waiting-players");
+        return await res.json();
+      };
+
+      const display = (players) => {
+        const p = document.createElement("p");
+        document.body.append(p);
+        console.log(players);
+
+        p.innerText = JSON.stringify(players);
+      };
+
+      const main = async () => {
+        const players = await fetchPlayers();
+
+        display(players);
+      };
+
+      globalThis.onload = main;
+    </script>
+  </head>
+  <body>
+    <h1>Welcome to Waiting Page</h1>
+  </body>
+</html>

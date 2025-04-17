@@ -2,6 +2,7 @@ import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
+import { Lobby } from "./models/lobby.ts";
 
 const generateId = (): string => {
   const time = Date.now();
@@ -31,6 +32,20 @@ export const login = async (context: Context) => {
   return context.redirect("/");
 };
 
-export const handleGameJoin = (ctx: Context) => {
+export const handleGameJoin = async (ctx: Context) => {
+  const formData: FormData = await ctx.req.formData();
+  const name = formData.get("name");
+
+  const lobby = ctx.get("lobby");
+  lobby.add(name);
+
   return ctx.redirect("/waiting.html");
+};
+
+export const handleWaitingReq = (ctx: Context) => {
+  const lobby: Lobby = ctx.get("lobby");
+  const waitingPlayers: string[] = lobby.players;
+  const isLobbyFull: boolean = lobby.isLobbyFull();
+
+  return ctx.json({ waitingPlayers, isLobbyFull });
 };
