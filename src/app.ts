@@ -21,6 +21,7 @@ export const createApp = (playerSessions: PlayerSessions, lobby: Lobby) => {
   });
 
   app.get("/", validatePlayerSession, serveIndex);
+  app.get("/index.html", validatePlayerSession, serveIndex);
 
   app.post("/login", login);
   app.get("/login.html", checkUserLogin, serveLoginPage);
