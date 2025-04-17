@@ -1,5 +1,5 @@
 export class PlayerSessions {
-  #sessions: Map<number, string>;
+  #sessions: Map<string, string>;
   #id: number;
 
   constructor() {
@@ -7,16 +7,18 @@ export class PlayerSessions {
     this.#id = 0;
   }
 
-  #add(sessionId: number, name: string) {
+  #add(sessionId: string, name: string) {
     return this.#sessions.set(sessionId, name);
   }
 
   createSession(name: string) {
-    this.#add(this.#id, name);
-    return "" + this.#id++;
+    const id = this.#id.toString();
+    this.#add(id, name);
+    this.#id++;
+    return id;
   }
 
-  getPlayer(sessionId: number) {
+  getPlayer(sessionId: string) {
     return this.#sessions.get(sessionId);
   }
 

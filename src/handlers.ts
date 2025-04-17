@@ -10,7 +10,7 @@ const addPlayerInfo = (
   playersInfo: info[],
   name: string,
   role: string,
-  color: string
+  color: string,
 ) => playersInfo.push({ name, role, color });
 
 export const assignRoles = (ctx: Context) => {
@@ -65,20 +65,13 @@ export const login = async (context: Context) => {
 
 export const handleGameJoin = (ctx: Context) => {
   const sessionId = getCookie(ctx, "playerSessionId");
+
   const playerSessions: PlayerSessions = ctx.get("playerSessions");
-  const name = playerSessions.getPlayer(Number(sessionId));
+  const name = playerSessions.getPlayer(sessionId || "");
   const lobby = ctx.get("lobby");
   lobby.add(name);
 
   return ctx.redirect("/waiting.html");
-};
-
-export const handleWaitingReq = (ctx: Context) => {
-  const lobby: Lobby = ctx.get("lobby");
-  const waitingPlayers: string[] = lobby.players;
-  const isLobbyFull: boolean = lobby.isLobbyFull();
-
-  return ctx.json({ waitingPlayers, isLobbyFull });
 };
 
 export const handlePlayerPositions = (context: Context) => {
