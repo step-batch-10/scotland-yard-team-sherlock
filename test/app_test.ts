@@ -4,7 +4,7 @@ import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { createApp } from "../src/app.ts";
 import { Lobby, LobbyManager } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
-import { Game } from "../src/models/game.ts";
+import { Game, Player } from "../src/models/game.ts";
 
 describe("Authentication", () => {
   describe("validatePlayerSession", () => {
@@ -186,33 +186,16 @@ describe("Authentication", () => {
 
   describe("serveGameStatus", () => {
     it("should serve init data for all players positions with colors", async () => {
-      const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
       const players = [
-        { id: "0", color: "red", position: 1 },
-        { id: "1", color: "blue", position: 2 },
-        { id: "2", color: "green", position: 3 },
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const game = new Game(players);
+      const app = createAppWithPlayers(players);
 
-      const app = createApp(
-        playerSessions,
-        lobby,
-        lobbyManager,
-        gameManager,
-        game,
-      );
-
-      const request = new Request("http://localhost:8000/game/status", {
-        headers: {
-          cookie: "playerGameId=0",
-        },
+      const response = await app.request("/game/status", {
+        headers: { cookie: "playerGameId=0" },
       });
-
-      const response = await app.request(request);
 
       assertEquals(response.status, 200);
       assertEquals(await response.json(), {
@@ -221,15 +204,18 @@ describe("Authentication", () => {
           {
             color: "red",
             isCurrentPlayer: true,
+            name: "Asma",
             position: 1,
           },
           {
             color: "blue",
+            name: "Deepanshu",
             isCurrentPlayer: false,
             position: 2,
           },
           {
             color: "green",
+            name: "Sanika",
             isCurrentPlayer: false,
             position: 3,
           },
@@ -238,25 +224,12 @@ describe("Authentication", () => {
     });
 
     it("should return data with isYourTurn false", async () => {
-      const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
       const players = [
-        { id: "0", color: "red", position: 1 },
-        { id: "1", color: "blue", position: 2 },
-        { id: "2", color: "green", position: 3 },
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const game = new Game(players);
-
-      const app = createApp(
-        playerSessions,
-        lobby,
-        lobbyManager,
-        gameManager,
-        game,
-      );
+      const app = createAppWithPlayers(players);
 
       const request = new Request("http://localhost:8000/game/status", {
         headers: {
@@ -273,15 +246,18 @@ describe("Authentication", () => {
           {
             color: "red",
             isCurrentPlayer: true,
+            name: "Asma",
             position: 1,
           },
           {
             color: "blue",
+            name: "Deepanshu",
             isCurrentPlayer: false,
             position: 2,
           },
           {
             color: "green",
+            name: "Sanika",
             isCurrentPlayer: false,
             position: 3,
           },
@@ -296,9 +272,9 @@ describe("Authentication", () => {
       const gameManager = new GameManager();
 
       const players = [
-        { id: "0", color: "red", position: 1 },
-        { id: "1", color: "blue", position: 2 },
-        { id: "2", color: "green", position: 3 },
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
       const game = new Game(players);
       game.move("0", 12);
@@ -326,15 +302,18 @@ describe("Authentication", () => {
           {
             color: "red",
             isCurrentPlayer: false,
+            name: "Asma",
             position: 12,
           },
           {
             color: "blue",
+            name: "Deepanshu",
             isCurrentPlayer: true,
             position: 2,
           },
           {
             color: "green",
+            name: "Sanika",
             isCurrentPlayer: false,
             position: 3,
           },
@@ -345,19 +324,12 @@ describe("Authentication", () => {
 
   describe("serveGameStatus", () => {
     it("should redirect to home if no playerGameId exists", async () => {
-      const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-      const game = new Game([]);
-
-      const app = createApp(
-        playerSessions,
-        lobby,
-        lobbyManager,
-        gameManager,
-        game,
-      );
+      const players = [
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
+      ];
+      const app = createAppWithPlayers(players);
 
       const request = new Request("http://localhost:8000/game/status");
 
@@ -368,26 +340,12 @@ describe("Authentication", () => {
     });
 
     it("should make a move and return success status if player turn is valid", async () => {
-      const playerSessions = new PlayerSessions();
-
-      const lobby = new Lobby();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
       const players = [
-        { id: "0", color: "red", position: 1 },
-        { id: "1", color: "blue", position: 2 },
-        { id: "2", color: "green", position: 3 },
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const game = new Game(players);
-
-      const app = createApp(
-        playerSessions,
-        lobby,
-        lobbyManager,
-        gameManager,
-        game,
-      );
+      const app = createAppWithPlayers(players);
 
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
@@ -404,26 +362,12 @@ describe("Authentication", () => {
     });
 
     it("should return error message if its not players turn", async () => {
-      const playerSessions = new PlayerSessions();
-
-      const lobby = new Lobby();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
       const players = [
-        { id: "0", color: "red", position: 1 },
-        { id: "1", color: "blue", position: 2 },
-        { id: "2", color: "green", position: 3 },
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const game = new Game(players);
-
-      const app = createApp(
-        playerSessions,
-        lobby,
-        lobbyManager,
-        gameManager,
-        game,
-      );
+      const app = createAppWithPlayers(players);
 
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
@@ -440,27 +384,12 @@ describe("Authentication", () => {
     });
 
     it("should return error if station is already occupied and turn is valid", async () => {
-      const playerSessions = new PlayerSessions();
-
-      const lobby = new Lobby();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
       const players = [
-        { id: "0", color: "red", position: 1 },
-        { id: "1", color: "blue", position: 2 },
-        { id: "2", color: "green", position: 3 },
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const game = new Game(players);
-
-      const app = createApp(
-        playerSessions,
-        lobby,
-        lobbyManager,
-        gameManager,
-        game,
-      );
-
+      const app = createAppWithPlayers(players);
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
         body: JSON.stringify({ stationNumber: 1 }),
@@ -478,26 +407,12 @@ describe("Authentication", () => {
     });
 
     it("should return move error on occupied station click if move is invalid", async () => {
-      const playerSessions = new PlayerSessions();
-
-      const lobby = new Lobby();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
       const players = [
-        { id: "0", color: "red", position: 1 },
-        { id: "1", color: "blue", position: 2 },
-        { id: "2", color: "green", position: 3 },
+        { id: "0", color: "red", position: 1, name: "Asma" },
+        { id: "1", color: "blue", position: 2, name: "Deepanshu" },
+        { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const game = new Game(players);
-
-      const app = createApp(
-        playerSessions,
-        lobby,
-        lobbyManager,
-        gameManager,
-        game,
-      );
+      const app = createAppWithPlayers(players);
 
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
@@ -516,3 +431,21 @@ describe("Authentication", () => {
     });
   });
 });
+
+function createAppWithPlayers(players: Player[] = []) {
+  const playerSessions = new PlayerSessions();
+  const lobby = new Lobby();
+  const lobbyManager = new LobbyManager();
+  const gameManager = new GameManager();
+
+  const game = new Game(players);
+
+  const app = createApp(
+    playerSessions,
+    lobby,
+    lobbyManager,
+    gameManager,
+    game,
+  );
+  return app;
+}

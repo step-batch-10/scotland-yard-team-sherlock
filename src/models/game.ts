@@ -3,7 +3,8 @@ interface GameMoveResponse {
   message: string;
 }
 
-interface Player {
+export interface Player {
+  name: string;
   id: string;
   color: string;
   position: number;
@@ -28,10 +29,11 @@ export class Game {
   gameStatus(playerGameId: string) {
     return {
       isYourTurn: this.#players[this.#currentPlayerIndex].id === playerGameId,
-      playerPositions: this.#players.map(({ color, position, id }) => ({
+      playerPositions: this.#players.map(({ color, position, id, name }) => ({
         isCurrentPlayer: this.#players[this.#currentPlayerIndex].id === id,
         color,
         position,
+        name,
       })),
     };
   }

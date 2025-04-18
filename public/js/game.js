@@ -28,13 +28,25 @@ const resetCircles = (map) => {
   }
 };
 
+const renderCurrentPlayerInfo = (name, color) => {
+  const panel = document.getElementById("info-panel");
+  panel.textContent = "";
+  const playerName = document.createElement("h1");
+  playerName.textContent = `${name} -`;
+  const playerColor = document.createElement("div");
+  playerColor.id = "color-box";
+  playerColor.style.backgroundColor = color;
+  panel.append(playerName, playerColor);
+};
+
 const renderPlayerPositions = (map, playerPositions) => {
   resetPointers(map);
   resetCircles(map);
 
-  for (const { position, color, isCurrentPlayer } of playerPositions) {
+  for (const { position, color, isCurrentPlayer, name } of playerPositions) {
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
     if (isCurrentPlayer) {
+      renderCurrentPlayerInfo(name, color);
       map.getElementById(`circle-${position}`).setAttribute("stroke", "white");
     }
   }

@@ -10,9 +10,9 @@ const main = () => {
   const lobbyManager = new LobbyManager();
   const gameManager = new GameManager();
   const game = new Game([
-    { id: "0", position: 1, color: "red" },
-    { id: "1", position: 2, color: "aqua" },
-    { id: "2", position: 3, color: "purple" },
+    { id: "0", position: 1, color: "red", name: "Asma" },
+    { id: "1", position: 2, color: "aqua", name: "Deepanshu" },
+    { id: "2", position: 3, color: "purple", name: "Favas" },
   ]);
 
   const app = createApp(playerSessions, lobby, lobbyManager, gameManager, game);
