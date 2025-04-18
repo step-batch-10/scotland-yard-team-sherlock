@@ -10,6 +10,7 @@ type info = { name: string; role: string; color: string };
 
 export const leaveLobby = (ctx: Context) => {
   const sessionId = getCookie(ctx, "playerSessionId");
+  deleteCookie(ctx, "roomId");
   const lobby: Lobby = ctx.get("lobby");
   lobby.removePlayer(sessionId!);
   return ctx.text("/");
