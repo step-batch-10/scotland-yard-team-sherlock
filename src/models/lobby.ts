@@ -1,18 +1,27 @@
 export class Lobby {
-  #lobby: string[];
+  #players: Map<string, string>;
+
   constructor() {
-    this.#lobby = [];
+    this.#players = new Map();
   }
 
-  add(name: string) {
-    return this.#lobby.push(name);
+  addPlayer(sessionId: string, name: string) {
+    this.#players.set(sessionId, name);
+  }
+
+  removePlayer(sessionId: string) {
+    this.#players.delete(sessionId);
+  }
+
+  isLobbyFull(): boolean {
+    return this.#players.size === 6;
   }
 
   get players() {
-    return this.#lobby;
-  }
-
-  isLobbyFull() {
-    return this.#lobby.length === 6;
+    const playerNames = [];
+    for (const [_, name] of this.#players) {
+      playerNames.push(name);
+    }
+    return playerNames;
   }
 }

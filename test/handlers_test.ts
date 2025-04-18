@@ -45,7 +45,7 @@ describe("fetch players", () => {
   it("it should return allPlayer names and isLobbyFull as false", async () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
-    lobby.add("a");
+    lobby.addPlayer("1", "a");
     const app = createApp(playerSessions, lobby);
     const players = ["a"];
     const isLobbyFull = false;
@@ -58,14 +58,14 @@ describe("fetch players", () => {
   it("it should return allPlayer names and isLobbyFull as true", async () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
-    lobby.add("a");
-    lobby.add("b");
-    lobby.add("c");
-    lobby.add("d");
-    lobby.add("e");
-    lobby.add("f");
+    lobby.addPlayer("1", "Asma");
+    lobby.addPlayer("2", "Deepanshu");
+    lobby.addPlayer("3", "favas");
+    lobby.addPlayer("4", "anagh");
+    lobby.addPlayer("5", "sanika");
+    lobby.addPlayer("6", "bhanu");
     const app = createApp(playerSessions, lobby);
-    const players = ["a", "b", "c", "d", "e", "f"];
+    const players = ["Asma", "Deepanshu", "favas", "anagh", "sanika", "bhanu"];
     const isLobbyFull = true;
     const req = new Request("http://localhost:8000/fetch-players");
     const res = await app.request(req);
@@ -75,21 +75,21 @@ describe("fetch players", () => {
 
   it("it should assign roles and colors", async () => {
     const players = [
-      { name: "A", role: "Detective", color: "yellow" },
-      { name: "B", role: "Detective", color: "green" },
-      { name: "C", role: "Mr X", color: "black" },
-      { name: "D", role: "Detective", color: "red" },
-      { name: "E", role: "Detective", color: "blue" },
-      { name: "F", role: "Detective", color: "violet" },
+      { name: "Asma", role: "Detective", color: "yellow" },
+      { name: "Deepanshu", role: "Detective", color: "green" },
+      { name: "favas", role: "Mr X", color: "black" },
+      { name: "anagh", role: "Detective", color: "red" },
+      { name: "sanika", role: "Detective", color: "blue" },
+      { name: "bhanu", role: "Detective", color: "violet" },
     ];
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
-    lobby.add("A");
-    lobby.add("B");
-    lobby.add("C");
-    lobby.add("D");
-    lobby.add("E");
-    lobby.add("F");
+    lobby.addPlayer("1", "Asma");
+    lobby.addPlayer("2", "Deepanshu");
+    lobby.addPlayer("3", "favas");
+    lobby.addPlayer("4", "anagh");
+    lobby.addPlayer("5", "sanika");
+    lobby.addPlayer("6", "bhanu");
     const app = createApp(playerSessions, lobby);
 
     const req = new Request("http://localhost:8000/assign-roles");
@@ -135,5 +135,25 @@ describe("logout", () => {
 
     assertEquals(res.status, 302);
     assertEquals(res.headers.get("location"), "/login.html");
+  });
+});
+
+describe("leave lobby", () => {
+  it("should remove the player from lobby and redirect to home page", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobby = new Lobby();
+    lobby.addPlayer("1", "Asma");
+    lobby.addPlayer("2", "Deepanshu");
+    lobby.addPlayer("3", "favas");
+    const app = createApp(playerSessions, lobby);
+    const req = new Request("http://localhost:8000/leave-lobby", {
+      method: "POST",
+      headers: { cookie: "playerSessionId=1" },
+    });
+    const res = await app.request(req);
+    const expected = "/";
+    const actual = await res.text();
+    assertEquals(actual, expected);
+    assertEquals(lobby.players.length, 2);
   });
 });

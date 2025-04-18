@@ -6,6 +6,7 @@ import {
   fetchPlayers,
   handleGameJoin,
   handlePlayerPositions,
+  leaveLobby,
   login,
   logout,
   serveGamePage,
@@ -41,6 +42,7 @@ export const createApp = (
   app.get("/assign-roles", assignRoles);
 
   app.get("/game.html", serveGamePage);
+  app.post("/leave-lobby", leaveLobby);
   app.get("/game/player-positions", handlePlayerPositions);
 
   app.use("*", serveStatic({ root: "./public" }));

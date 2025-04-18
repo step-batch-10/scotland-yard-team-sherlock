@@ -6,6 +6,13 @@ import { Lobby } from "./models/lobby.ts";
 
 type info = { name: string; role: string; color: string };
 
+export const leaveLobby = (ctx: Context) => {
+  const sessionId = getCookie(ctx, "playerSessionId");
+  const lobby: Lobby = ctx.get("lobby");
+  lobby.removePlayer(sessionId!);
+  return ctx.text("/");
+};
+
 const addPlayerInfo = (
   playersInfo: info[],
   name: string,
@@ -70,7 +77,7 @@ export const handleGameJoin = (ctx: Context) => {
   const playerSessions: PlayerSessions = ctx.get("playerSessions");
   const name = playerSessions.getPlayer(sessionId || "");
   const lobby = ctx.get("lobby");
-  lobby.add(name);
+  lobby.addPlayer(sessionId, name);
 
   return ctx.redirect("/waiting.html");
 };

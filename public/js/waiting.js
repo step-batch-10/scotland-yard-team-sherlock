@@ -29,7 +29,7 @@ const renderPlayerRoles = (playersInfo) => {
     waitingBoard?.append(playerContainer);
   });
   setTimeout(() => {
-    globalThis.location.href = "index.html";
+    globalThis.location.href = "/game.html";
   }, 5000);
 };
 
@@ -52,22 +52,33 @@ const renderPlayerNames = (players) => {
   });
 };
 
+const renderPlayerInfo = async (players) => {
+  const res = await fetch("/assign-roles");
+  const roles = await res.json();
+  renderPlayerNames(players);
+  renderPlayerRoles(roles);
+};
+
+const leaveLobby = async () => {
+  const res = await fetch("/leave-lobby", { method: "POST" });
+  const path = await res.text();
+  globalThis.location.href = path;
+};
+
 const main = () => {
   const intervalId = setInterval(async () => {
     const response = await fetch("/fetch-players");
     const { players, isLobbyFull } = await response.json();
-
     if (isLobbyFull) {
-      const res = await fetch("/assign-roles");
-      const roles = await res.json();
-      renderPlayerNames(players);
-      renderPlayerRoles(roles);
+      renderPlayerInfo(players);
       clearInterval(intervalId);
       return;
     }
     renderPlayerNames(players);
     return;
   }, 1000);
+  const leaveBtn = document.querySelector("#leave-btn");
+  leaveBtn.addEventListener("click", leaveLobby);
 };
 
 globalThis.onload = main;
