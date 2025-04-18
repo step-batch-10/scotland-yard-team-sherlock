@@ -4,6 +4,7 @@ import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
 import { Lobby, LobbyManager } from "./models/lobby.ts";
 // import { GameManager } from "./models/gameManager.ts";
+import { Game } from "./models/game.ts";
 
 type info = { name: string; role: string; color: string };
 
@@ -96,17 +97,6 @@ export const handleGameJoin = (ctx: Context) => {
   return ctx.redirect("/waiting.html");
 };
 
-export const handlePlayerPositions = (context: Context) => {
-  return context.json([
-    { position: 6, color: "red" },
-    { position: 12, color: "blue" },
-    { position: 15, color: "yellow" },
-    { position: 24, color: "green" },
-    { position: 30, color: "white" },
-    { position: 27, color: "purple" },
-  ]);
-};
-
 export const logout = (context: Context) => {
   const playerSessionId = context.get("playerSessionId");
   const playerSessions: PlayerSessions = context.get("playerSessions");
@@ -114,4 +104,23 @@ export const logout = (context: Context) => {
 
   deleteCookie(context, "playerSessionId");
   return context.redirect("/login.html");
+};
+
+export const serveGameStatus = (context: Context) => {
+  const game: Game = context.get("game");
+  const playerGameId: string = context.get("playerGameId");
+  const status = game.gameStatus(playerGameId);
+  return context.json(status);
+};
+
+export const makeMove = async (context: Context) => {
+  const game: Game = context.get("game");
+  const playerGameId: string = context.get("playerGameId");
+
+  const { stationNumber } = await context.req.json();
+
+  const { status, message } = game.move(playerGameId, stationNumber);
+
+  context.status(status ? 200 : 403);
+  return context.json({ message });
 };

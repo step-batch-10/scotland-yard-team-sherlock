@@ -1,5 +1,5 @@
 import { Context, Next } from "hono";
-import { getCookie } from "hono/cookie";
+import { getCookie, setCookie } from "hono/cookie";
 import { PlayerSessions } from "./models/playerSessions.ts";
 
 export const validatePlayerSession = async (context: Context, next: Next) => {
@@ -22,6 +22,20 @@ export const checkUserLogin = async (context: Context, next: Next) => {
   const playerName = playerSessions.getPlayer(playerSessionId || "");
 
   if (playerName) return context.redirect("/");
+
+  return await next();
+};
+
+export const addPlayerToGame = async (context: Context, next: Next) => {
+  setCookie(context, "playerGameId", "0");
+  return await next();
+};
+
+export const validataGamePlayer = async (context: Context, next: Next) => {
+  const playerGameId = getCookie(context, "playerGameId");
+  if (!playerGameId) return context.redirect("/");
+
+  context.set("playerGameId", playerGameId);
 
   return await next();
 };
