@@ -3,7 +3,7 @@ import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
 import { Lobby, LobbyManager } from "./models/lobby.ts";
-import { GameManager } from "./models/gameManager.ts";
+// import { GameManager } from "./models/gameManager.ts";
 
 type info = { name: string; role: string; color: string };
 
