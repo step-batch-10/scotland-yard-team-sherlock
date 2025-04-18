@@ -2,14 +2,17 @@ import { assert, assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { createApp } from "../src/app.ts";
-import { Lobby } from "../src/models/lobby.ts";
+import { Lobby, LobbyManager } from "../src/models/lobby.ts";
+import { GameManager } from "../src/models/gameManager.ts";
 
 describe("Authentication", () => {
   describe("validatePlayerSession", () => {
     it("should redirect to login page if no playerSessionId provided", async () => {
       const playerSessions = new PlayerSessions();
       const lobby = new Lobby();
-      const app = createApp(playerSessions, lobby);
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+      const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
       const response = await app.request("/");
 
@@ -20,7 +23,9 @@ describe("Authentication", () => {
     it("should redirect to login page if playerSessionId doesn't exists in sessions", async () => {
       const playerSessions = new PlayerSessions();
       const lobby = new Lobby();
-      const app = createApp(playerSessions, lobby);
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+      const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
       const response = await app.request("/", {
         headers: { cookie: "playerSessionId=123456789" },
@@ -35,7 +40,9 @@ describe("Authentication", () => {
       playerSessions.createSession("PlayerName1");
 
       const lobby = new Lobby();
-      const app = createApp(playerSessions, lobby);
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+      const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
       const response = await app.request("/", {
         headers: { cookie: "playerSessionId=0" },
@@ -49,7 +56,9 @@ describe("Authentication", () => {
     it("should add new player to playerSessions and redirect to home", async () => {
       const playerSessions = new PlayerSessions();
       const lobby = new Lobby();
-      const app = createApp(playerSessions, lobby);
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+      const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
       const formData = new FormData();
       formData.set("player-name", "PlayerName1");
@@ -74,7 +83,9 @@ describe("Authentication", () => {
       playerSessions.createSession("PlayerName1");
 
       const lobby = new Lobby();
-      const app = createApp(playerSessions, lobby);
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+      const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
       const request = new Request("http://localhost:8000/login.html", {
         headers: {
@@ -92,7 +103,9 @@ describe("Authentication", () => {
       const playerSessions = new PlayerSessions();
 
       const lobby = new Lobby();
-      const app = createApp(playerSessions, lobby);
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+      const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
       const request = new Request("http://localhost:8000/login.html");
       const response = await app.request(request);

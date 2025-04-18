@@ -16,17 +16,22 @@ import {
 
 import { checkUserLogin, validatePlayerSession } from "./middlewares.ts";
 import { PlayerSessions } from "./models/playerSessions.ts";
-import { Lobby } from "./models/lobby.ts";
+import { Lobby, LobbyManager } from "./models/lobby.ts";
+import { GameManager } from "./models/gameManager.ts";
 
 export const createApp = (
   playerSessions: PlayerSessions,
   lobby: Lobby,
+  lobbyManager: LobbyManager,
+  gameManager: GameManager,
 ) => {
   const app = new Hono();
   app.use(logger());
   app.use(async (context: Context, next: Next) => {
     context.set("playerSessions", playerSessions);
     context.set("lobby", lobby);
+    context.set("lobbyManager", lobbyManager);
+    context.set("gameManager", gameManager);
     await next();
   });
 

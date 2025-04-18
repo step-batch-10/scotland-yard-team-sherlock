@@ -2,14 +2,17 @@ import { assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { createApp } from "../src/app.ts";
 import { PlayerSessions } from "../src/models/playerSessions.ts";
-import { Lobby } from "../src/models/lobby.ts";
+import { Lobby, LobbyManager } from "../src/models/lobby.ts";
+import { GameManager } from "../src/models/gameManager.ts";
 
 describe("Static page", () => {
   it("Should return index page", async () => {
     const playerSessions = new PlayerSessions();
     playerSessions.createSession("detective1");
     const lobby = new Lobby();
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
     const headers = { cookie: "playerSessionId=0" };
 
@@ -25,7 +28,9 @@ describe("Game Join", () => {
   it("Should redirect to waiting page", async () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
     const fd = new FormData();
     fd.set("name", "sherlocks");
@@ -46,7 +51,9 @@ describe("fetch players", () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
     lobby.addPlayer("1", "a");
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
     const players = ["a"];
     const isLobbyFull = false;
     const req = new Request("http://localhost:8000/fetch-players");
@@ -64,7 +71,9 @@ describe("fetch players", () => {
     lobby.addPlayer("4", "anagh");
     lobby.addPlayer("5", "sanika");
     lobby.addPlayer("6", "bhanu");
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
     const players = ["Asma", "Deepanshu", "favas", "anagh", "sanika", "bhanu"];
     const isLobbyFull = true;
     const req = new Request("http://localhost:8000/fetch-players");
@@ -90,7 +99,9 @@ describe("fetch players", () => {
     lobby.addPlayer("4", "anagh");
     lobby.addPlayer("5", "sanika");
     lobby.addPlayer("6", "bhanu");
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
     const req = new Request("http://localhost:8000/assign-roles");
     const res = await app.request(req);
@@ -104,7 +115,9 @@ describe("Server player positions", () => {
     const playerSessions = new PlayerSessions();
     const lobby = new Lobby();
 
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
     const resp = await app.request("/game/player-positions");
 
@@ -127,7 +140,9 @@ describe("logout", () => {
 
     const playerId = playerSessions.createSession("player1");
 
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
 
     const headers = { cookie: `playerSessionId=${playerId}` };
 
@@ -145,7 +160,9 @@ describe("leave lobby", () => {
     lobby.addPlayer("1", "Asma");
     lobby.addPlayer("2", "Deepanshu");
     lobby.addPlayer("3", "favas");
-    const app = createApp(playerSessions, lobby);
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const app = createApp(playerSessions, lobby, lobbyManager, gameManager);
     const req = new Request("http://localhost:8000/leave-lobby", {
       method: "POST",
       headers: { cookie: "playerSessionId=1" },

@@ -2,7 +2,8 @@ import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
-import { Lobby } from "./models/lobby.ts";
+import { Lobby, LobbyManager } from "./models/lobby.ts";
+import { GameManager } from "./models/gameManager.ts";
 
 type info = { name: string; role: string; color: string };
 
@@ -75,10 +76,23 @@ export const handleGameJoin = (ctx: Context) => {
   const sessionId = getCookie(ctx, "playerSessionId");
 
   const playerSessions: PlayerSessions = ctx.get("playerSessions");
+  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
+  // const gameManager: GameManager = ctx.get("gameManager");
+
   const name = playerSessions.getPlayer(sessionId || "");
   const lobby = ctx.get("lobby");
   lobby.addPlayer(sessionId, name);
 
+  const roomId: string = lobbyManager.addPlayer(sessionId!);
+  // const isLobbyFull = lobbyManager.isRoomFull(roomId);
+
+  // if (isLobbyFull) {
+  //   const players = lobbyManager.getRoomPlayers(roomId);
+  //   const gameId = lobbyManager.movePlayersToGame(roomId);
+  //   gameManager.createGame(gameId, players);
+  // }
+
+  setCookie(ctx, "roomId", roomId);
   return ctx.redirect("/waiting.html");
 };
 
