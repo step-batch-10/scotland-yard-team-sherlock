@@ -52,9 +52,15 @@ const renderPlayerNames = (players) => {
   });
 };
 
+const removeLeaveButton = () => {
+  const leave = document.getElementById("leave-btn");
+  leave.remove();
+};
+
 const renderPlayerInfo = async (players) => {
   const res = await fetch("/assign-roles");
   const roles = await res.json();
+  removeLeaveButton();
   renderPlayerNames(players);
   renderPlayerRoles(roles);
 };
@@ -74,6 +80,7 @@ const main = () => {
       clearInterval(intervalId);
       return;
     }
+
     renderPlayerNames(players);
     return;
   }, 1000);
