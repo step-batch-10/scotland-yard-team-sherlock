@@ -119,3 +119,21 @@ describe("Server player positions", () => {
     ]);
   });
 });
+
+describe("logout", () => {
+  it("Should redirect to the login page after deleting cookie", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobby = new Lobby();
+
+    const playerId = playerSessions.createSession("player1");
+
+    const app = createApp(playerSessions, lobby);
+
+    const headers = { cookie: `playerSessionId=${playerId}` };
+
+    const res = await app.request("/logout", { headers });
+
+    assertEquals(res.status, 302);
+    assertEquals(res.headers.get("location"), "/login.html");
+  });
+});

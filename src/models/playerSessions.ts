@@ -22,6 +22,10 @@ export class PlayerSessions {
     return this.#sessions.get(sessionId);
   }
 
+  delete(sessionId: string) {
+    return this.#sessions.delete(sessionId);
+  }
+
   get sessions() {
     return this.#sessions;
   }

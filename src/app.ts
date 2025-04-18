@@ -7,6 +7,8 @@ import {
   handleGameJoin,
   handlePlayerPositions,
   login,
+  logout,
+  serveGamePage,
   serveIndex,
   serveLoginPage,
 } from "./handlers.ts";
@@ -15,7 +17,10 @@ import { checkUserLogin, validatePlayerSession } from "./middlewares.ts";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { Lobby } from "./models/lobby.ts";
 
-export const createApp = (playerSessions: PlayerSessions, lobby: Lobby) => {
+export const createApp = (
+  playerSessions: PlayerSessions,
+  lobby: Lobby,
+) => {
   const app = new Hono();
   app.use(logger());
   app.use(async (context: Context, next: Next) => {
@@ -28,12 +33,14 @@ export const createApp = (playerSessions: PlayerSessions, lobby: Lobby) => {
   app.get("/index.html", validatePlayerSession, serveIndex);
 
   app.post("/login", login);
+  app.get("/logout", validatePlayerSession, logout);
   app.get("/login.html", checkUserLogin, serveLoginPage);
 
   app.post("/game/join", handleGameJoin);
   app.get("/fetch-players", fetchPlayers);
   app.get("/assign-roles", assignRoles);
 
+  app.get("/game.html", serveGamePage);
   app.get("/game/player-positions", handlePlayerPositions);
 
   app.use("*", serveStatic({ root: "./public" }));

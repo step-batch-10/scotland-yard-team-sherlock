@@ -1,6 +1,6 @@
 import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
-import { getCookie, setCookie } from "hono/cookie";
+import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
 import { Lobby } from "./models/lobby.ts";
 
@@ -51,6 +51,7 @@ export const serveIndex = async (context: Context) => {
 };
 
 export const serveLoginPage = serveStatic({ path: "./public/login.html" });
+export const serveGamePage = serveStatic({ path: "./public/game.html" });
 
 export const login = async (context: Context) => {
   const formData = await context.req.formData();
@@ -83,4 +84,13 @@ export const handlePlayerPositions = (context: Context) => {
     { position: 30, color: "white" },
     { position: 27, color: "purple" },
   ]);
+};
+
+export const logout = (context: Context) => {
+  const playerSessionId = context.get("playerSessionId");
+  const playerSessions: PlayerSessions = context.get("playerSessions");
+  playerSessions.delete(playerSessionId);
+
+  deleteCookie(context, "playerSessionId");
+  return context.redirect("/login.html");
 };
