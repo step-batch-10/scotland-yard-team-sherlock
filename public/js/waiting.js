@@ -58,7 +58,6 @@ const removeLeaveButton = () => {
 };
 
 const renderTimer = () => {
-  console.log("in renderTiming");
   const footer = document.querySelector("footer");
   const h1 = document.createElement("h1");
   let timeRemaining = 10;
