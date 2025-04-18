@@ -30,7 +30,7 @@ const renderPlayerRoles = (playersInfo) => {
   });
   setTimeout(() => {
     globalThis.location.href = "/game.html";
-  }, 5000);
+  }, 11000);
 };
 
 const addName = (playerContainer, playerName) => {
@@ -57,11 +57,28 @@ const removeLeaveButton = () => {
   leave.remove();
 };
 
+const renderTimer = () => {
+  console.log("in renderTiming");
+  const footer = document.querySelector("footer");
+  const h1 = document.createElement("h1");
+  let timeRemaining = 10;
+  const intervalId = setInterval(() => {
+    h1.textContent = "";
+    h1.textContent = `Game Starts in ... ${timeRemaining}`;
+    timeRemaining--;
+    if (timeRemaining === 0) {
+      clearInterval(intervalId);
+    }
+    footer.append(h1);
+  }, 1000);
+};
+
 const renderPlayerInfo = async (players) => {
   const res = await fetch("/assign-roles");
   const roles = await res.json();
   removeLeaveButton();
   renderPlayerNames(players);
+  renderTimer();
   renderPlayerRoles(roles);
 };
 
@@ -83,7 +100,7 @@ const main = () => {
 
     renderPlayerNames(players);
     return;
-  }, 1000);
+  }, 500);
   const leaveBtn = document.querySelector("#leave-btn");
   leaveBtn.addEventListener("click", leaveLobby);
 };
