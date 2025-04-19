@@ -175,7 +175,7 @@ describe("Authentication", () => {
         { id: "1", color: "blue", position: 2, name: "Deepanshu" },
         { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const app = createAppWithPlayers(players);
+      const app = createAppWithPlayers("Asma", players);
 
       const response = await app.request("/game/status", {
         headers: { cookie: "playerGameId=0" },
@@ -213,7 +213,7 @@ describe("Authentication", () => {
         { id: "1", color: "blue", position: 2, name: "Deepanshu" },
         { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const app = createAppWithPlayers(players);
+      const app = createAppWithPlayers("Asma", players);
 
       const request = new Request("http://localhost:8000/game/status", {
         headers: {
@@ -311,7 +311,7 @@ describe("Authentication", () => {
         { id: "1", color: "blue", position: 2, name: "Deepanshu" },
         { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const app = createAppWithPlayers(players);
+      const app = createAppWithPlayers("Asma", players);
 
       const request = new Request("http://localhost:8000/game/status");
 
@@ -327,7 +327,7 @@ describe("Authentication", () => {
         { id: "1", color: "blue", position: 2, name: "Deepanshu" },
         { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const app = createAppWithPlayers(players);
+      const app = createAppWithPlayers("Asma", players);
 
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
@@ -349,7 +349,7 @@ describe("Authentication", () => {
         { id: "1", color: "blue", position: 2, name: "Deepanshu" },
         { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const app = createAppWithPlayers(players);
+      const app = createAppWithPlayers("Asma", players);
 
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
@@ -371,7 +371,7 @@ describe("Authentication", () => {
         { id: "1", color: "blue", position: 2, name: "Deepanshu" },
         { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const app = createAppWithPlayers(players);
+      const app = createAppWithPlayers("Asma", players);
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
         body: JSON.stringify({ stationNumber: 1 }),
@@ -394,7 +394,7 @@ describe("Authentication", () => {
         { id: "1", color: "blue", position: 2, name: "Deepanshu" },
         { id: "2", color: "green", position: 3, name: "Sanika" },
       ];
-      const app = createAppWithPlayers(players);
+      const app = createAppWithPlayers("Asma", players);
 
       const request = new Request("http://localhost:8000/game/move", {
         method: "POST",
@@ -414,8 +414,12 @@ describe("Authentication", () => {
   });
 });
 
-function createAppWithPlayers(players: Player[] = []) {
+export const createAppWithPlayers = (
+  loggedInUser: string,
+  players: Player[],
+) => {
   const playerSessions = new PlayerSessions();
+  playerSessions.createSession(loggedInUser);
   const lobbyManager = new LobbyManager();
   const gameManager = new GameManager();
 
@@ -428,4 +432,4 @@ function createAppWithPlayers(players: Player[] = []) {
     game,
   );
   return app;
-}
+};
