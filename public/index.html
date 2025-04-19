@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joining Game</title>
-    <link rel="stylesheet" href="./css/join.css" />
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
+    <header>
+      Scotland Yard
+    </header>
     <main>
-      <h1>Scotland Yard</h1>
-
-      <form action="/game/join" method="post">
+      <div class="home-actions">
         <h1>Welcome ##NAME##</h1>
-        <button type="submit">Join</button>
-      </form>
-      <form action="/logout">
-        <button type="submit">Logout</button>
-      </form>
+        <form action="/game/join" method="post">
+          <button type="submit">Join Game</button>
+        </form>
+        <form action="/logout">
+          <button type="submit">Logout</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>
