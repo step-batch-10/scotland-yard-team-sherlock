@@ -1,6 +1,6 @@
 const addBadge = (figure, color) => {
   const img = document.createElement("img");
-  img.setAttribute("src", "./assets/badge.jpeg");
+  img.setAttribute("src", "./assets/badgeImg.png");
   img.alt = "badge";
   img.style.border = `6px solid ${color}`;
   figure?.append(img);
@@ -58,9 +58,8 @@ const removeLeaveButton = () => {
 const renderTimer = () => {
   const footer = document.querySelector("footer");
   const h1 = document.createElement("h1");
+  let timeRemaining = 5;
   footer.append(h1);
-  let timeRemaining = 10;
-
   const intervalId = setInterval(() => {
     h1.textContent = `Game Starts in ... ${timeRemaining}`;
     timeRemaining--;
@@ -75,8 +74,8 @@ const renderPlayerInfo = async () => {
   const res = await fetch("/assign-roles");
   const roles = await res.json();
   removeLeaveButton();
-  renderTimer();
   renderPlayerRoles(roles);
+  renderTimer();
 };
 
 const leaveLobby = async () => {
