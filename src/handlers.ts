@@ -2,54 +2,50 @@ import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { serveStatic } from "hono/deno";
-import { Lobby, LobbyManager } from "./models/lobby.ts";
-// import { GameManager } from "./models/gameManager.ts";
+import { LobbyManager } from "./models/lobby.ts";
 import { Game } from "./models/game.ts";
-
-type info = { name: string; role: string; color: string };
+import { GameManager } from "./models/gameManager.ts";
 
 export const leaveLobby = (ctx: Context) => {
   const sessionId = getCookie(ctx, "playerSessionId");
-  deleteCookie(ctx, "roomId");
-  const lobby: Lobby = ctx.get("lobby");
-  lobby.removePlayer(sessionId!);
+  const roomId = deleteCookie(ctx, "roomId");
+  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
+  lobbyManager.removePlayer(roomId!, sessionId!);
+
   return ctx.text("/");
 };
 
-const addPlayerInfo = (
-  playersInfo: info[],
-  name: string,
-  role: string,
-  color: string,
-) => playersInfo.push({ name, role, color });
-
 export const assignRoles = (ctx: Context) => {
-  const lobby: Lobby = ctx.get("lobby");
-  const players: string[] = lobby.players;
-  const colors = ["yellow", "green", "red", "blue", "violet"];
-  const mrXIndex = 2;
-  const playersInfo: info[] = [];
-  let colorIndex = 0;
+  const gameId = getCookie(ctx, "gameId");
+  const gameManager: GameManager = ctx.get("gameManager");
+  const players: Player[] = gameManager.getGameDetails(gameId!);
 
-  players.forEach((player, index) => {
-    const color = colors[colorIndex];
-    if (index === mrXIndex) {
-      addPlayerInfo(playersInfo, player, "Mr X", "black");
-      return;
-    }
-    addPlayerInfo(playersInfo, player, "Detective", color);
-    colorIndex++;
+  const playersWithRoles = players.map((pl) => {
+    return { ...pl, role: "Detective" };
   });
 
-  return ctx.json(playersInfo);
+  return ctx.json(playersWithRoles);
+};
+
+const playerName = (ctx: Context, id: string) => {
+  const playerSessions: PlayerSessions = ctx.get("playerSessions");
+  return playerSessions.getPlayer(id);
 };
 
 export const fetchPlayers = (ctx: Context) => {
-  const lobby: Lobby = ctx.get("lobby");
-  const players: string[] = lobby.players;
-  const isLobbyFull: boolean = lobby.isLobbyFull();
+  const { playerSessionId, roomId } = getCookie(ctx);
+  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
+  const gameId = lobbyManager.getGameId(playerSessionId!);
 
-  return ctx.json({ players, isLobbyFull });
+  if (!gameId) {
+    const playerIds = lobbyManager.getRoomPlayers(roomId);
+    const players = playerIds.map((id) => playerName(ctx, id));
+    return ctx.json({ players, isLobbyFull: false });
+  }
+
+  deleteCookie(ctx, "roomId");
+  setCookie(ctx, "gameId", gameId!);
+  return ctx.json({ isLobbyFull: true });
 };
 
 export const serveIndex = async (context: Context) => {
@@ -74,25 +70,37 @@ export const login = async (context: Context) => {
   return context.redirect("/");
 };
 
+const assign = (players: string[], ctx: Context): Player[] => {
+  const colors = ["yellow", "green", "red", "blue", "violet", "black"];
+  const playerSessions: PlayerSessions = ctx.get("playerSessions");
+
+  return players.map((playerId, index) => {
+    const color = colors[index];
+    const name: string = playerSessions.getPlayer(playerId) || "";
+    return { name, id: playerId, color, position: index + 1 };
+  });
+};
+
+export interface Player {
+  name: string;
+  id: string;
+  color: string;
+  position: number;
+}
+
 export const handleGameJoin = (ctx: Context) => {
   const sessionId = getCookie(ctx, "playerSessionId");
-
-  const playerSessions: PlayerSessions = ctx.get("playerSessions");
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
-  // const gameManager: GameManager = ctx.get("gameManager");
-
-  const name = playerSessions.getPlayer(sessionId || "");
-  const lobby = ctx.get("lobby");
-  lobby.addPlayer(sessionId, name);
+  const gameManager: GameManager = ctx.get("gameManager");
 
   const roomId: string = lobbyManager.addPlayer(sessionId!);
-  // const isLobbyFull = lobbyManager.isRoomFull(roomId);
+  const isLobbyFull = lobbyManager.isRoomFull(roomId);
 
-  // if (isLobbyFull) {
-  //   const players = lobbyManager.getRoomPlayers(roomId);
-  //   const gameId = lobbyManager.movePlayersToGame(roomId);
-  //   gameManager.createGame(gameId, players);
-  // }
+  if (isLobbyFull) {
+    const players = lobbyManager.getRoomPlayers(roomId);
+    const gameId = lobbyManager.movePlayersToGame(roomId);
+    gameManager.createGame(gameId, assign(players, ctx));
+  }
 
   setCookie(ctx, "roomId", roomId);
   return ctx.redirect("/waiting.html");

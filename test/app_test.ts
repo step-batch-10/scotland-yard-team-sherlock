@@ -2,7 +2,7 @@ import { assert, assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { createApp } from "../src/app.ts";
-import { Lobby, LobbyManager } from "../src/models/lobby.ts";
+import { LobbyManager } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
 import { Game, Player } from "../src/models/game.ts";
 
@@ -10,13 +10,12 @@ describe("Authentication", () => {
   describe("validatePlayerSession", () => {
     it("should redirect to login page if no playerSessionId provided", async () => {
       const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
+
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
       const game = new Game([]);
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -30,13 +29,11 @@ describe("Authentication", () => {
 
     it("should redirect to login page if playerSessionId doesn't exists in sessions", async () => {
       const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
       const game = new Game([]);
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -53,14 +50,11 @@ describe("Authentication", () => {
     it("should give home page if valid playerSessionId exists", async () => {
       const playerSessions = new PlayerSessions();
       playerSessions.createSession("PlayerName1");
-
-      const lobby = new Lobby();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
       const game = new Game([]);
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -77,13 +71,11 @@ describe("Authentication", () => {
   describe("login", () => {
     it("should add new player to playerSessions and redirect to home", async () => {
       const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
       const game = new Game([]);
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -110,14 +102,11 @@ describe("Authentication", () => {
     it("should redirect to root if user already logged in", async () => {
       const playerSessions = new PlayerSessions();
       playerSessions.createSession("PlayerName1");
-
-      const lobby = new Lobby();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
       const game = new Game([]);
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -137,14 +126,11 @@ describe("Authentication", () => {
 
     it("should serve login page if user is not logged in", async () => {
       const playerSessions = new PlayerSessions();
-
-      const lobby = new Lobby();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
       const game = new Game([]);
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -161,13 +147,11 @@ describe("Authentication", () => {
   describe("serveGamePage", () => {
     it("should set game id cookie and serve game page", async () => {
       const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
       const game = new Game([]);
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -267,7 +251,6 @@ describe("Authentication", () => {
 
     it("should give data with second player as current player after one move", async () => {
       const playerSessions = new PlayerSessions();
-      const lobby = new Lobby();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
@@ -281,7 +264,6 @@ describe("Authentication", () => {
 
       const app = createApp(
         playerSessions,
-        lobby,
         lobbyManager,
         gameManager,
         game,
@@ -434,7 +416,6 @@ describe("Authentication", () => {
 
 function createAppWithPlayers(players: Player[] = []) {
   const playerSessions = new PlayerSessions();
-  const lobby = new Lobby();
   const lobbyManager = new LobbyManager();
   const gameManager = new GameManager();
 
@@ -442,7 +423,6 @@ function createAppWithPlayers(players: Player[] = []) {
 
   const app = createApp(
     playerSessions,
-    lobby,
     lobbyManager,
     gameManager,
     game,

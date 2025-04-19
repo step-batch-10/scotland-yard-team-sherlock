@@ -23,14 +23,12 @@ const addToWaitingBoard = (playerContainer, { name, role, color }) => {
 const renderPlayerRoles = (playersInfo) => {
   const waitingBoard = document.querySelector("#waiting-board");
   waitingBoard.textContent = "";
+
   playersInfo.forEach((playerInfo) => {
     const playerContainer = document.createElement("div");
     addToWaitingBoard(playerContainer, playerInfo);
     waitingBoard?.append(playerContainer);
   });
-  setTimeout(() => {
-    globalThis.location.href = "/game.html";
-  }, 11000);
 };
 
 const addName = (playerContainer, playerName) => {
@@ -60,23 +58,23 @@ const removeLeaveButton = () => {
 const renderTimer = () => {
   const footer = document.querySelector("footer");
   const h1 = document.createElement("h1");
+  footer.append(h1);
   let timeRemaining = 10;
+
   const intervalId = setInterval(() => {
-    h1.textContent = "";
     h1.textContent = `Game Starts in ... ${timeRemaining}`;
     timeRemaining--;
     if (timeRemaining === 0) {
       clearInterval(intervalId);
+      globalThis.location.href = "/game.html";
     }
-    footer.append(h1);
   }, 1000);
 };
 
-const renderPlayerInfo = async (players) => {
+const renderPlayerInfo = async () => {
   const res = await fetch("/assign-roles");
   const roles = await res.json();
   removeLeaveButton();
-  renderPlayerNames(players);
   renderTimer();
   renderPlayerRoles(roles);
 };
@@ -87,19 +85,20 @@ const leaveLobby = async () => {
   globalThis.location.href = path;
 };
 
-const main = () => {
-  const intervalId = setInterval(async () => {
+const renderPlayers = () => {
+  setTimeout(async () => {
     const response = await fetch("/fetch-players");
     const { players, isLobbyFull } = await response.json();
-    if (isLobbyFull) {
-      renderPlayerInfo(players);
-      clearInterval(intervalId);
-      return;
-    }
+
+    if (isLobbyFull) return await renderPlayerInfo(players);
 
     renderPlayerNames(players);
-    return;
+    return renderPlayers();
   }, 500);
+};
+
+const main = () => {
+  renderPlayers();
   const leaveBtn = document.querySelector("#leave-btn");
   leaveBtn.addEventListener("click", leaveLobby);
 };

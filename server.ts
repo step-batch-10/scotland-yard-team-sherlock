@@ -1,12 +1,11 @@
 import { createApp } from "./src/app.ts";
 import { GameManager } from "./src/models/gameManager.ts";
 import { Game } from "./src/models/game.ts";
-import { Lobby, LobbyManager } from "./src/models/lobby.ts";
+import { LobbyManager } from "./src/models/lobby.ts";
 import { PlayerSessions } from "./src/models/playerSessions.ts";
 
 const main = () => {
   const playerSessions = new PlayerSessions();
-  const lobby = new Lobby();
   const lobbyManager = new LobbyManager();
   const gameManager = new GameManager();
   const game = new Game([
@@ -15,7 +14,7 @@ const main = () => {
     { id: "2", position: 3, color: "purple", name: "Favas" },
   ]);
 
-  const app = createApp(playerSessions, lobby, lobbyManager, gameManager, game);
+  const app = createApp(playerSessions, lobbyManager, gameManager, game);
 
   Deno.serve({ port: 8000 }, app.fetch);
 };

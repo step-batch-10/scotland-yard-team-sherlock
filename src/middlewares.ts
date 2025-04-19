@@ -39,3 +39,10 @@ export const validataGamePlayer = async (context: Context, next: Next) => {
 
   return await next();
 };
+
+export const validateJoin = async (ctx: Context, next: Next) => {
+  const roomId = getCookie(ctx, "roomId");
+
+  if (!roomId) return await next();
+  return ctx.redirect("/waiting.html");
+};

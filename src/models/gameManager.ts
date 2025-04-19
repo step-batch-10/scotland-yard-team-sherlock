@@ -1,13 +1,4 @@
-class Game {
-  private players: string[];
-  constructor(players: string[]) {
-    this.players = players;
-  }
-
-  getPlayers() {
-    return this.players;
-  }
-}
+import { Game, Player } from "./game.ts";
 
 export class GameManager {
   #games: Map<string, Game>;
@@ -16,7 +7,7 @@ export class GameManager {
     this.#games = new Map();
   }
 
-  createGame(gameId: string, players: string[]) {
+  createGame(gameId: string, players: Player[]) {
     const game = new Game(players);
     this.#games.set(gameId, game);
     return gameId;
@@ -32,5 +23,9 @@ export class GameManager {
 
   deleteGame(gameId: string): boolean {
     return this.#games.delete(gameId);
+  }
+
+  getGameDetails(gameId: string) {
+    return this.#games.get(gameId)!.getPlayers();
   }
 }

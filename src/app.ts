@@ -19,16 +19,16 @@ import {
   addPlayerToGame,
   checkUserLogin,
   validataGamePlayer,
+  validateJoin,
   validatePlayerSession,
 } from "./middlewares.ts";
 import { PlayerSessions } from "./models/playerSessions.ts";
-import { Lobby, LobbyManager } from "./models/lobby.ts";
+import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
 import { Game } from "./models/game.ts";
 
 export const createApp = (
   playerSessions: PlayerSessions,
-  lobby: Lobby,
   lobbyManager: LobbyManager,
   gameManager: GameManager,
   game: Game,
@@ -37,7 +37,6 @@ export const createApp = (
   app.use(logger());
   app.use(async (context: Context, next: Next) => {
     context.set("playerSessions", playerSessions);
-    context.set("lobby", lobby);
     context.set("lobbyManager", lobbyManager);
     context.set("gameManager", gameManager);
     context.set("game", game);
@@ -51,7 +50,7 @@ export const createApp = (
   app.get("/logout", validatePlayerSession, logout);
   app.get("/login.html", checkUserLogin, serveLoginPage);
 
-  app.post("/game/join", handleGameJoin);
+  app.post("/game/join", validateJoin, handleGameJoin);
   app.get("/fetch-players", fetchPlayers);
   app.get("/assign-roles", assignRoles);
 
