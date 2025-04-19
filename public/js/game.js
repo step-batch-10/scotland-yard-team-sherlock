@@ -73,11 +73,17 @@ const showToast = (message, color) => {
   }).showToast();
 };
 
-const makeMove = async (stationNumber) => {
-  const resp = await fetch("/game/move", {
+const sendMoveReq = async (stationNumber) => {
+  const response = await fetch("/game/move", {
     method: "POST",
     body: JSON.stringify({ stationNumber }),
   });
+
+  return response;
+};
+
+const makeMove = async (stationNumber) => {
+  const resp = await sendMoveReq(stationNumber);
 
   const { message } = await resp.json();
 

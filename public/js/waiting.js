@@ -55,9 +55,14 @@ const removeLeaveButton = () => {
   leave.remove();
 };
 
-const renderTimer = () => {
+const redirectTo = (path) => {
+  globalThis.location.href = path;
+};
+
+const showTimer = () => {
   const footer = document.querySelector("footer");
   const h1 = document.createElement("h1");
+
   let timeRemaining = 5;
   footer.append(h1);
   const intervalId = setInterval(() => {
@@ -65,28 +70,41 @@ const renderTimer = () => {
     timeRemaining--;
     if (timeRemaining === 0) {
       clearInterval(intervalId);
-      globalThis.location.href = "/game.html";
+      redirectTo("/game.html");
     }
   }, 1000);
 };
 
+const getPlayerWithRole = async () => {
+  return await fetch("/assign-roles");
+};
+
 const renderPlayerInfo = async () => {
-  const res = await fetch("/assign-roles");
+  const res = await getPlayerWithRole();
   const roles = await res.json();
+
   removeLeaveButton();
   renderPlayerRoles(roles);
-  renderTimer();
+  showTimer();
+};
+
+const sendLeaveLobbyReq = async () => {
+  return await fetch("/leave-lobby", { method: "POST" });
 };
 
 const leaveLobby = async () => {
-  const res = await fetch("/leave-lobby", { method: "POST" });
+  const res = await sendLeaveLobbyReq();
   const path = await res.text();
-  globalThis.location.href = path;
+  redirectTo(path);
+};
+
+const getAllPlayers = async () => {
+  return await fetch("/fetch-players");
 };
 
 const renderPlayers = () => {
   setTimeout(async () => {
-    const response = await fetch("/fetch-players");
+    const response = await getAllPlayers();
     const { players, isLobbyFull } = await response.json();
 
     if (isLobbyFull) return await renderPlayerInfo(players);
@@ -98,8 +116,8 @@ const renderPlayers = () => {
 
 const main = () => {
   renderPlayers();
-  const leaveBtn = document.querySelector("#leave-btn");
-  leaveBtn.addEventListener("click", leaveLobby);
+  document.querySelector("#leave-btn")
+    .addEventListener("click", leaveLobby);
 };
 
 globalThis.onload = main;
