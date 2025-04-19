@@ -28,25 +28,35 @@ const resetCircles = (map) => {
   }
 };
 
-const renderCurrentPlayerInfo = (name, color) => {
-  const panel = document.getElementById("info-panel");
-  panel.textContent = "";
+const createNameTemplate = (name, isYourTurn) => {
   const playerName = document.createElement("h1");
-  playerName.textContent = `${name} -`;
+  playerName.textContent = isYourTurn ? `You -` : `${name} -`;
+  return playerName;
+};
+
+const createColorTemplate = (color) => {
   const playerColor = document.createElement("div");
   playerColor.id = "color-box";
   playerColor.style.backgroundColor = color;
+  return playerColor;
+};
+
+const renderCurrentPlayerInfo = (name, color, isYourTurn) => {
+  const panel = document.getElementById("info-panel");
+  panel.textContent = "";
+  const playerName = createNameTemplate(name, isYourTurn);
+  const playerColor = createColorTemplate(color);
   panel.append(playerName, playerColor);
 };
 
-const renderPlayerPositions = (map, playerPositions) => {
+const renderPlayerPositions = (map, { playerPositions, isYourTurn }) => {
   resetPointers(map);
   resetCircles(map);
 
   for (const { position, color, isCurrentPlayer, name } of playerPositions) {
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
     if (isCurrentPlayer) {
-      renderCurrentPlayerInfo(name, color);
+      renderCurrentPlayerInfo(name, color, isYourTurn);
       map.getElementById(`circle-${position}`).setAttribute("stroke", "white");
     }
   }
@@ -96,7 +106,7 @@ globalThis.onload = async () => {
 
   while (poll.shouldPoll) {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
-    renderPlayerPositions(map, gameStatus.playerPositions);
+    renderPlayerPositions(map, gameStatus);
     await delay(500);
   }
 };
