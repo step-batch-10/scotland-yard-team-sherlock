@@ -18,7 +18,7 @@ import {
 import {
   addPlayerToGame,
   checkUserLogin,
-  validataGamePlayer,
+  validateGamePlayer,
   validateJoin,
   validatePlayerSession,
 } from "./middlewares.ts";
@@ -57,8 +57,8 @@ export const createApp = (
   app.get("/game.html", addPlayerToGame, serveGamePage);
   app.post("/leave-lobby", leaveLobby);
 
-  app.get("/game/status", validataGamePlayer, serveGameStatus);
-  app.post("/game/move", validataGamePlayer, makeMove);
+  app.get("/game/status", validateGamePlayer, serveGameStatus);
+  app.post("/game/move", validateGamePlayer, makeMove);
 
   app.use("*", serveStatic({ root: "./public" }));
 

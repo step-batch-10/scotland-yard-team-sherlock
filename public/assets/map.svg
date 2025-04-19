@@ -1,10 +1,97 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="790.25903" height="530.14783" version="1.1" id="svg2" sodipodi:docname="map.svg" inkscape:version="1.4 (e7c3feb1, 2024-10-09)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="1.4845461" inkscape:cx="391.0286" inkscape:cy="255.63368" inkscape:window-width="1920" inkscape:window-height="1200" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
-	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="1.0677591" inkscape:cx="433.15015" inkscape:cy="293.60556" inkscape:window-width="1920" inkscape:window-height="1172" inkscape:window-x="0" inkscape:window-y="28" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
-	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="0.69283895" inkscape:cx="423.61937" inkscape:cy="536.19964" inkscape:window-width="1792" inkscape:window-height="1120" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
+<svg width="790.25903" height="530.14783" version="1.1" id="svg2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+	<namedview id="namedview1" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" />
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
+	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
 	<defs id="defs2" />
-	<namedview id="namedview2" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" inkscape:zoom="2.3244602" inkscape:cx="184.77408" inkscape:cy="124.97525" inkscape:window-width="1792" inkscape:window-height="1092" inkscape:window-x="0" inkscape:window-y="28" inkscape:window-maximized="0" inkscape:current-layer="svg1" />
+	<namedview id="namedview2" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
+	<g id="paths">
+		<g id="underground">
+			<path id="underground-30-31" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:20.0001, 8.00004;stroke-dashoffset:0;stroke-opacity:1" d="M 726.89834,352.46238 669.00925,452.4975 m 55.02919,-389.030487 0.76028,296.491877" />
+			<path id="underground-03-29" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:20, 8.00002;stroke-dashoffset:0;stroke-opacity:1" d="m 531.2937,460.17152 148.25268,-13.63834 m -536.66527,-44.17573 96.33635,57.72001 m -0.22501,-0.49691 112.39051,10.38734 m -2.17172,-1.59347 178.1075,-9.81228" />
+			<path id="underground-15-31" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:20.00013351,8.0000267;stroke-dashoffset:0;stroke-opacity:1" d="M 363.7419,79.937386 469.96033,61.212115 m -3.02563,0.743789 256.3896,1.131963" />
+			<path id="underground-07-15" class="underground" style="fill:none;fill-rule:evenodd;stroke:#fe0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:20, 8;stroke-dashoffset:0;stroke-opacity:1" d="M 279.67263,191.50629 361.78131,77.544484 M 72.259572,194.40502 282.42342,188.32772" />
+			<path id="underground-03-07" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:20.0001, 8.00004;stroke-dashoffset:0;stroke-opacity:1" d="m 74.531712,331.6676 71.586508,71.03676 M 75.900269,196.35503 74.561636,332.46412" />
+			<path id="underground-15-24" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:19.99991608,7.99998347;stroke-dashoffset:0;stroke-opacity:1" d="m 473.51891,258.40158 21.0439,105.13581 m -50.91409,-206.80838 30.86832,104.2523 M 366.58255,76.99422 l 77.1428,79.61136" />
+			<path id="underground-03-24" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:19.9999, 7.99993;stroke-dashoffset:0;stroke-opacity:1" d="m 386.80823,327.14285 108.942,34.10819 m -186.07857,21.64649 78.8628,-56.61889 m -245.52515,75.06502 169.03353,-17.67677" />
+			<path id="underground-24-31" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:19.9998703,8.00003878;stroke-dashoffset:0;stroke-opacity:1" d="M 645.32134,131.21425 726.95352,59.315463 M 580.17253,203.22414 650.17561,124.92992 m -89.10026,170.91863 19.91554,-93.12245 m -88.83061,156.41789 69.83356,-64.84544" />
+			<path id="underground-24-29" class="underground" style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:19.99979769,7.99998651;stroke-dashoffset:0;stroke-opacity:1" d="m 607.77948,376.96683 65.42719,70.13906 m -181.83826,-89.56846 116.515,20.71956" />
+		</g>
+		<g id="layer3">
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 677.55089,447.65401 729.3242,355.47857 729.14492,207.13482" id="path3" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 728.23293,64.186025 0.45224,141.584565" id="path4" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 313.23852,386.9443 144.15305,406.51309" id="path4-5" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 348.02314,472.33224 300.81211,370.84631" id="path4-5-6" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 727.45801,211.79567 581.29027,200.4703" id="path4-5-6-21" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 576.80916,200.25222 64.06012,-71.0767 78.91175,-67.635162" id="path4-5-6-39" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 350.95752,465.48271 240.16712,455.33106 145.38185,399.3391" id="path4-5-6-36" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 308.97512,384.97128 -36.05698,-97.9321 98.64163,-42.08177 72.21652,-86.16979" id="path4-5-6-3" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 315.40995,382.50133 216.66718,334.01258 161.91739,265.87583 74.508311,199.27242" id="path4-5-6-7" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 490.72599,364.73418 442.60252,169.03125" id="path4-5-6-8" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 347.47325,471.89411 495.97199,359.71299" id="path4-5-6-20" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 349.16555,463.97694 674.78419,443.0891" id="path4-5-6-20-4" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 495.56549,363.23039 110.53363,19.70894 62.01843,64.90982" id="path4-5-6-20-4-5" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 280.72704,181.75854 360.16845,71.605293" id="path4-5-6-2" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 74.667403,189.64322 283.18865,184.16667" id="path4-5-6-2-0" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 79.847848,200.63638 -0.727043,129.41123 73.351555,72.93404" id="path4-5-6-2-0-1" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 574.24483,57.637957 148.00858,0.71158" id="path5" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 497.69593,359.62544 71.28029,-63.53298 73.45404,-29.20376 81.31595,-54.32437" id="path9" />
+		</g>
+		<g id="taxi">
+			<path style="display:inline;fill:#ecc00d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 72.991368,339.93828 74.273831,459.1366" id="path20" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 70.991368,223.45603 -0.453058,92.5291" id="path21" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 264.26929,192.6161 91.685263,198.77981" id="path21-6" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 361.02995,85.517992 287.66125,187.80867" id="path21-6-6" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 370.7176,83.143026 466.47217,65.48354" id="path21-6-6-6" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 479.605,66.727416 78.63932,0.704357" id="path21-6-6-6-1" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 585.01586,66.598541 140.66121,1.251023" id="path21-6-6-6-1-7" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 290.2061,188.12159 443.91981,154.60518" id="path21-6-6-7" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 539.53752,128.89735 h 94.38385" id="path21-6-6-7-0" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 443.2686,155.97191 465.72736,62.854604" id="path21-6-6-7-0-5" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 272.40654,281.81296 95.66823,-41.74225" id="path21-6-6-7-0-5-0" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 161.29547,264.63545 121.68308,19.3624" id="path21-6-6-7-0-5-0-1" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 369.55932,241.47531 105.30105,17.33907" id="path21-6-6-7-0-5-0-5" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 657.86951,143.68884 707.1745,193.6982" id="path21-6-6-7-0-1" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 719.46396,78.204641 V 194.00307" id="path21-6-6-7-0-1-42" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 720.55729,340.88782 719.46396,222.36656" id="path21-6-6-7-0-1-4" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 713.58732,365.41414 -43.49145,74.70394" id="path21-6-6-7-0-1-4-6" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 655.46206,128.32968 713.34552,77.563375" id="path21-6-6-7-0-6" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:3.17142;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 458.3782,152.78808 56.93643,-17.95492" id="path21-6-6-7-5" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" d="M 145.54767,276.92214 89.836253,317.9797" id="path21-8" />
+			<path style="display:inline;fill:#0e0000;fill-opacity:1;fill-rule:evenodd;stroke:#f1f000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill" d="M 236.81368,455.41337 73.85681,463.71933" id="path21-8-8" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 86.437146,332.3028 201.0464,338.06528" id="path20-9" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 149.10291,398.88689 68.52242,-57.3368" id="path20-9-0" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 285.84229,289.69461 83.21016,30.04811" id="path20-9-9" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 232.62965,346.61417 62.50881,31.77866" id="path20-9-4" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 322.59554,378.23975 52.12242,-38.03528" id="path20-9-4-1" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 311.1326,383.96259 352.98,471.15403" id="path20-9-4-1-8" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 320.48247,387.39639 81.70542,25.35686" id="path20-9-4-1-2" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 395.14432,346.54368 16.44078,54.39009" id="path20-9-4-1-2-3" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 232.33732,463.47843 119.79556,9.30981" id="path20-9-4-1-2-3-1" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 432.47525,424.02296 82.40977,27.46993" id="path20-9-4-1-2-4" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 364.85697,471.91924 148.61934,-8.45228" id="path20-9-4-1-2-4-23" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 499.38917,376.12668 23.24378,60.57471" id="path20-9-4-1-2-4-2" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 397.55963,318.97226 459.96724,270.433" id="path20-9-4-1-5" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 489.52817,265.54262 62.68778,23.94814" id="path20-9-4-1-5-2" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 571.93795,206.37662 482.4846,251.45548" id="path20-9-4-1-5-8" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 710.69629,339.50011 649.41722,275.40362" id="path20-9-4-1-5-8-29" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 705.76579,350.76982 574.05102,301.46483" id="path20-9-4-1-5-8-29-5" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 705.06143,357.81339 621.9473,376.12668" id="path20-9-4-1-5-8-29-5-1" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 674.95172,451.64706 534.093,464.2905" id="path20-9-4-1-5-8-29-5-1-7" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 624.17344,268.47312 -50.00935,19.722" id="path20-9-4-1-5-8-29-5-2" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 638.67456,263.94102 87.73446,-58.58397" id="path20-9-4-1-5-8-9-1" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 564.89438,197.92434 456.42339,166.22827" id="path20-9-4-1-5-8-2" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 641.23195,266.7224 586.33426,201.13302" id="path20-9-4-1-5-8-2-8" />
+			<path style="display:inline;fill:#eceb0d;fill-opacity:1;fill-rule:evenodd;stroke:#f0ea00;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 597.99916,187.35898 38.03528,-42.26142" id="path20-9-4-1-5-8-2-5" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 443.31416,154.4128 82.89915,-26.86269 49.45468,-63.507935" id="path6" />
+			<path style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 366.10776,75.07166 98.89266,-17.304159 109.0274,0.365028" id="path7" />
+			<path style="display:inline;fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 281.27847,195.86743 445.03649,159.2627" id="path8" />
+		</g>
+	</g>
 	<g id="stations" transform="translate(748.49524,-11.604577)">
 		<!-- station 1 start -->
 		<g id="station-1" transform="translate(-692.12502,451.39193)" class="station">
@@ -39,9 +126,9 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-3" class="pointer" />
 			<circle id="circle-3" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-3" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-3" stroke="#000000" />
-			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-3" x="0" />
-			<text x="18" y="25" id="station-number-3" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-3" stroke="#000000" />
+			<rect height="18" width="36" y="15" stroke="#000000" fill="red" id="middle-3" x="0" />
+			<text x="18" y="25" id="station-number-3" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#ffffff">
 				3
 			</text>
 			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-3" />
@@ -95,9 +182,9 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-7" class="pointer" />
 			<circle id="circle-7" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-7" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-7" stroke="#000000" />
-			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-7" x="0" />
-			<text x="18" y="25" id="station-number-7" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-7" stroke="#000000" />
+			<rect height="18" width="36" y="15" stroke="#000000" fill="red" id="middle-7" x="0" />
+			<text x="18" y="25" id="station-number-7" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#ffffff">
 				7
 			</text>
 			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-7" />
@@ -123,7 +210,7 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-9" class="pointer" />
 			<circle id="circle-9" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-9" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-9" stroke="#000000" />
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-9" stroke="#000000" />
 			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-9" x="0" />
 			<text x="18" y="25" id="station-number-9" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
 				9
@@ -207,9 +294,9 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-15" class="pointer" />
 			<circle id="circle-15" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-15" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-15" stroke="#000000" />
-			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-15" x="0" />
-			<text x="18" y="25" id="station-number-15" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-15" stroke="#000000" />
+			<rect height="18" width="36" y="15" stroke="#000000" fill="red" id="middle-15" x="0" />
+			<text x="18" y="25" id="station-number-15" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#ffffff">
 				15
 			</text>
 			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-15" />
@@ -221,7 +308,7 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-16" class="pointer" />
 			<circle id="circle-16" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-16" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-16" stroke="#000000" />
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-16" stroke="#000000" />
 			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-16" x="0" />
 			<text x="18" y="25" id="station-number-16" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
 				16
@@ -235,7 +322,7 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-17" class="pointer" />
 			<circle id="circle-17" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-17" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-17" stroke="#000000" />
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-17" stroke="#000000" />
 			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-17" x="0" />
 			<text x="18" y="25" id="station-number-17" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
 				17
@@ -263,7 +350,7 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-19" class="pointer" />
 			<circle id="circle-19" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-19" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-19" stroke="#000000" />
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-19" stroke="#000000" />
 			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-19" x="0" />
 			<text x="18" y="25" id="station-number-19" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
 				19
@@ -305,7 +392,7 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-22" class="pointer" />
 			<circle id="circle-22" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-22" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-22" stroke="#000000" />
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-22" stroke="#000000" />
 			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-22" x="0" />
 			<text x="18" y="25" id="station-number-22" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
 				22
@@ -333,9 +420,9 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-24" class="pointer" />
 			<circle id="circle-24" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-24" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-24" stroke="#000000" />
-			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-24" x="0" />
-			<text x="18" y="25" id="station-number-24" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-24" stroke="#000000" />
+			<rect height="18" width="36" y="15" stroke="#000000" fill="red" id="middle-24" x="0" />
+			<text x="18" y="25" id="station-number-24" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#ffffff">
 				24
 			</text>
 			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-24" />
@@ -361,7 +448,7 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-26" class="pointer" />
 			<circle id="circle-26" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-26" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-26" stroke="#000000" />
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-26" stroke="#000000" />
 			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-26" x="0" />
 			<text x="18" y="25" id="station-number-26" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
 				26
@@ -375,7 +462,7 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-27" class="pointer" />
 			<circle id="circle-27" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-27" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-27" stroke="#000000" />
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-27" stroke="#000000" />
 			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-27" x="0" />
 			<text x="18" y="25" id="station-number-27" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
 				27
@@ -403,9 +490,9 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-29" class="pointer" />
 			<circle id="circle-29" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-29" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-29" stroke="#000000" />
-			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-29" x="0" />
-			<text x="18" y="25" id="station-number-29" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-29" stroke="#000000" />
+			<rect height="18" width="36" y="15" stroke="#000000" fill="red" id="middle-29" x="0" />
+			<text x="18" y="25" id="station-number-29" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#ffffff">
 				29
 			</text>
 			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-29" />
@@ -431,9 +518,9 @@
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-31" class="pointer" />
 			<circle id="circle-31" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-31" stroke="#000000" />
-			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-31" stroke="#000000" />
-			<rect height="18" width="36" y="15" stroke="#000000" fill="#ffff00" id="middle-31" x="0" />
-			<text x="18" y="25" id="station-number-31" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#000000">
+			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="green" id="bottom-31" stroke="#000000" />
+			<rect height="18" width="36" y="15" stroke="#000000" fill="red" id="middle-31" x="0" />
+			<text x="18" y="25" id="station-number-31" text-anchor="middle" dominant-baseline="middle" font-size="12px" font-weight="900" font-family="sans-serif" fill="#ffffff">
 				31
 			</text>
 			<rect x="-12" y="55" height="12" width="60" fill="none" id="player-name-rect-31" />
