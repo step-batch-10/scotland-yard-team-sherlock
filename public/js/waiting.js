@@ -1,9 +1,18 @@
-const addBadge = (figure, color) => {
+const createImage = () => {
   const img = document.createElement("img");
   img.setAttribute("src", "./assets/badgeImg.png");
   img.alt = "badge";
+
+  return img;
+};
+
+const createBadge = (color) => {
+  const badge = document.createElement("figure");
+  const img = createImage();
   img.style.border = `6px solid ${color}`;
-  figure?.append(img);
+  badge?.append(img);
+
+  return badge;
 };
 
 const addCaption = (playerContainer, name, role) => {
@@ -13,11 +22,12 @@ const addCaption = (playerContainer, name, role) => {
   playerContainer?.append(figcaption);
 };
 
-const addToWaitingBoard = (playerContainer, { name, role, color }) => {
-  const figure = document.createElement("figure");
-  addBadge(figure, color);
-  addCaption(figure, name, role);
-  playerContainer?.append(figure);
+const addToWaitingBoard = ({ name, role, color }) => {
+  const playerContainer = document.createElement("div");
+  const badge = createBadge(color);
+  addCaption(badge, name, role);
+  playerContainer?.append(badge);
+  return playerContainer;
 };
 
 const renderPlayerRoles = (playersInfo) => {
@@ -25,8 +35,7 @@ const renderPlayerRoles = (playersInfo) => {
   waitingBoard.textContent = "";
 
   playersInfo.forEach((playerInfo) => {
-    const playerContainer = document.createElement("div");
-    addToWaitingBoard(playerContainer, playerInfo);
+    const playerContainer = addToWaitingBoard(playerInfo);
     waitingBoard?.append(playerContainer);
   });
 };
@@ -42,10 +51,9 @@ const renderPlayerNames = (players) => {
   waitingBoard.textContent = "";
   players.forEach((playerName) => {
     const playerContainer = document.createElement("div");
-    const figure = document.createElement("figure");
-    addBadge(figure, "white");
-    addName(figure, playerName);
-    playerContainer?.append(figure);
+    const badge = createBadge("white");
+    addName(badge, playerName);
+    playerContainer?.append(badge);
     waitingBoard?.append(playerContainer);
   });
 };
@@ -59,32 +67,22 @@ const redirectTo = (path) => {
   globalThis.location.href = path;
 };
 
-const startCountdown = (initialTime, updateDisplay) => {
-  const intervalId = setInterval(() => {
-    initialTime--;
-    updateDisplay(initialTime);
-    if (initialTime <= 0) clearInterval(intervalId);
-  }, 1000);
-};
-
 const formatTimerMessage = (timeRemaining) => {
-  return timeRemaining > 0
-    ? `Game Starts in ... ${timeRemaining}`
-    : "Game Starting!";
+  return `Game Starts in ... ${timeRemaining}`;
 };
 
 const showTimer = () => {
-  const footer = document.querySelector("footer");
-  const timerDisplay = document.createElement("h1");
-
-  footer.append(timerDisplay);
-
-  const updateDisplay = (timeRemaining) => {
-    timerDisplay.textContent = formatTimerMessage(timeRemaining);
-    if (timeRemaining === 0) redirectTo("/game.html");
-  };
-
-  startCountdown(5, updateDisplay);
+  const timer = document.querySelector("#timer");
+  let timeRemaining = 5;
+  const intervalId = setInterval(() => {
+    timer.textContent = formatTimerMessage(timeRemaining);
+    timeRemaining--;
+    if (timeRemaining === 0) {
+      clearInterval(intervalId);
+      redirectTo("/game.html");
+      return;
+    }
+  }, 1000);
 };
 
 const getPlayerWithRole = async () => {
@@ -128,8 +126,7 @@ const renderPlayers = () => {
 
 const main = () => {
   renderPlayers();
-  document.querySelector("#leave-btn")
-    .addEventListener("click", leaveLobby);
+  document.querySelector("#leave-btn").addEventListener("click", leaveLobby);
 };
 
 globalThis.onload = main;
