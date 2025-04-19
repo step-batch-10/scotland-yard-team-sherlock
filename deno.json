@@ -12,25 +12,45 @@
     "test-coverage": "deno test -A --coverage=coverage --clean",
     "coverage": {
       "command": "deno coverage --html && deno run -A jsr:@ashishkujoy/deno-coverage-checker@0.0.8",
-      "dependencies": ["test-coverage"]
+      "dependencies": [
+        "test-coverage"
+      ]
     },
-    "prod": "deployctl deploy --project=scotland-yard-production --entrypoint=server.ts --org='Team Sherlock'",
-    "qa": "deployctl deploy --project=scotland-yard-qa-16 --entrypoint=server.ts --org='Team Sherlock'"
+    "prod": "deployctl deploy --prod -p=scotland-yard-production server.ts ",
+    "qa": "deployctl deploy --prod -p=scotland-yard-qa-16 server.ts"
   },
   "lint": {
     "rules": {
-      "tags": ["recommended"],
-      "include": ["camelcase", "eqeqeq", "default-param-last", "no-console"],
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "camelcase",
+        "eqeqeq",
+        "default-param-last",
+        "no-console"
+      ],
       "exclude": []
     }
   },
-
   "fmt": {
     "indentWidth": 2,
     "semiColons": true
   },
   "test": {
-    "include": ["**/*.ts"],
-    "exclude": ["server.ts"]
+    "include": [
+      "**/*.ts"
+    ],
+    "exclude": [
+      "server.ts"
+    ]
+  },
+  "deploy": {
+    "project": "a29599de-c81e-4389-bb71-f9f915466884",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "server.ts"
   }
 }

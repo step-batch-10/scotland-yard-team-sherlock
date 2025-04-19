@@ -26,7 +26,7 @@ You can read the Scotland Yard game rules here:\
 
 Play the game here:\
 🔗
-[Scotland Yard Online - QA Deno Deploy](https://scotland-yard-qa-16-s9eq0xfmyzhz.deno.dev)
+[Scotland Yard Online - QA Deno Deploy](https://scotland-yard-qa-16.deno.dev)
 🔗
 [Scotland Yard Online - Production Deploy](https://scotland-yard-production.deno.dev)
 
