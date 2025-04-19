@@ -59,20 +59,32 @@ const redirectTo = (path) => {
   globalThis.location.href = path;
 };
 
+const startCountdown = (initialTime, updateDisplay) => {
+  const intervalId = setInterval(() => {
+    initialTime--;
+    updateDisplay(initialTime);
+    if (initialTime <= 0) clearInterval(intervalId);
+  }, 1000);
+};
+
+const formatTimerMessage = (timeRemaining) => {
+  return timeRemaining > 0
+    ? `Game Starts in ... ${timeRemaining}`
+    : "Game Starting!";
+};
+
 const showTimer = () => {
   const footer = document.querySelector("footer");
-  const h1 = document.createElement("h1");
+  const timerDisplay = document.createElement("h1");
 
-  let timeRemaining = 5;
-  footer.append(h1);
-  const intervalId = setInterval(() => {
-    h1.textContent = `Game Starts in ... ${timeRemaining}`;
-    timeRemaining--;
-    if (timeRemaining === 0) {
-      clearInterval(intervalId);
-      redirectTo("/game.html");
-    }
-  }, 1000);
+  footer.append(timerDisplay);
+
+  const updateDisplay = (timeRemaining) => {
+    timerDisplay.textContent = formatTimerMessage(timeRemaining);
+    if (timeRemaining === 0) redirectTo("/game.html");
+  };
+
+  startCountdown(5, updateDisplay);
 };
 
 const getPlayerWithRole = async () => {
