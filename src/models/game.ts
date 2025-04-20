@@ -18,17 +18,17 @@ export class Game {
     this.#players = players;
   }
 
-  #isPlayerTurn(playerGameId: string) {
-    return this.#players[this.#currentPlayerIndex].id === playerGameId;
+  #isPlayerTurn(playerId: string) {
+    return this.#players[this.#currentPlayerIndex].id === playerId;
   }
 
   #isPlaceOccupied(stationNumber: number) {
     return this.#players.some(({ position }) => stationNumber === position);
   }
 
-  gameStatus(playerGameId: string) {
+  gameStatus(playerId: string) {
     return {
-      isYourTurn: this.#players[this.#currentPlayerIndex].id === playerGameId,
+      isYourTurn: this.#players[this.#currentPlayerIndex].id === playerId,
       playerPositions: this.#players.map(({ color, position, id, name }) => ({
         isCurrentPlayer: this.#players[this.#currentPlayerIndex].id === id,
         color,
@@ -38,8 +38,8 @@ export class Game {
     };
   }
 
-  move(playerGameId: string, stationNumber: number): GameMoveResponse {
-    if (!this.#isPlayerTurn(playerGameId)) {
+  move(playerId: string, stationNumber: number): GameMoveResponse {
+    if (!this.#isPlayerTurn(playerId)) {
       return { status: false, message: "Not Your Move ..!" };
     }
 

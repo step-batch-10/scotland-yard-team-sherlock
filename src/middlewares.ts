@@ -32,10 +32,9 @@ export const addPlayerToGame = async (context: Context, next: Next) => {
 };
 
 export const validateGamePlayer = async (context: Context, next: Next) => {
-  const playerGameId = getCookie(context, "playerGameId");
-  if (!playerGameId) return context.redirect("/");
-
-  context.set("playerGameId", playerGameId);
+  const gameId = getCookie(context, "gameId");
+  if (!gameId) return context.redirect("/");
+  context.set("gameId", gameId);
 
   return await next();
 };

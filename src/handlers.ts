@@ -1,9 +1,7 @@
 import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
-import { serveStatic } from "hono/deno";
 import { LobbyManager } from "./models/lobby.ts";
-import { Game } from "./models/game.ts";
 import { GameManager } from "./models/gameManager.ts";
 
 export const leaveLobby = (ctx: Context) => {
@@ -39,6 +37,7 @@ export const fetchPlayers = (ctx: Context) => {
 
   if (!gameId) {
     const playerIds = lobbyManager.getRoomPlayers(roomId);
+
     const players = playerIds.map((id) => playerName(ctx, id));
     return ctx.json({ players, isLobbyFull: false });
   }
@@ -55,9 +54,6 @@ export const serveIndex = async (context: Context) => {
 
   return context.html(page.replaceAll("##NAME##", playerName));
 };
-
-export const serveLoginPage = serveStatic({ path: "./public/login.html" });
-export const serveGamePage = serveStatic({ path: "./public/game.html" });
 
 export const login = async (context: Context) => {
   const formData = await context.req.formData();
@@ -116,19 +112,22 @@ export const logout = (context: Context) => {
 };
 
 export const serveGameStatus = (context: Context) => {
-  const game: Game = context.get("game");
-  const playerGameId: string = context.get("playerGameId");
-  const status = game.gameStatus(playerGameId);
+  const gameManager: GameManager = context.get("gameManager");
+  const gameId: string = context.get("gameId");
+  const game = gameManager.getGame(gameId);
+
+  const status = game!.gameStatus(gameId);
   return context.json(status);
 };
 
 export const makeMove = async (context: Context) => {
-  const game: Game = context.get("game");
-  const playerGameId: string = context.get("playerGameId");
-
+  const gameManager: GameManager = context.get("gameManager");
+  const sessionId = getCookie(context, "playerSessionId");
+  const gameId: string = context.get("gameId");
+  const game = gameManager.getGame(gameId);
   const { stationNumber } = await context.req.json();
 
-  const { status, message } = game.move(playerGameId, stationNumber);
+  const { status, message } = game!.move(sessionId!, stationNumber);
 
   context.status(status ? 200 : 403);
   return context.json({ message });

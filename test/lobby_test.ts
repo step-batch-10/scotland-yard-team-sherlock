@@ -32,17 +32,17 @@ describe("Lobby Manager", () => {
     assertEquals(lobbyManager.getRoomPlayers(roomId), ["1"]);
   });
 
-  test("Should return game players in lobby", () => {
+  test("Should return game players in lobby and get gameId", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer("1");
     assertEquals(lobbyManager.getGameId("1"), null);
+
     lobbyManager.addPlayer("2");
     lobbyManager.addPlayer("3");
     lobbyManager.addPlayer("4");
     lobbyManager.addPlayer("5");
     lobbyManager.addPlayer("6");
     const gameId = lobbyManager.movePlayersToGame(roomId);
-
     assertEquals(lobbyManager.getGameId("1"), gameId);
   });
 });

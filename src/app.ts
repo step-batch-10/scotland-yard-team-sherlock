@@ -9,10 +9,8 @@ import {
   login,
   logout,
   makeMove,
-  serveGamePage,
   serveGameStatus,
   serveIndex,
-  serveLoginPage,
 } from "./handlers.ts";
 
 import {
@@ -25,13 +23,11 @@ import {
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
-import { Game } from "./models/game.ts";
 
 export const createApp = (
   playerSessions: PlayerSessions,
   lobbyManager: LobbyManager,
   gameManager: GameManager,
-  game: Game,
 ) => {
   const app = new Hono();
   app.use(logger());
@@ -39,7 +35,6 @@ export const createApp = (
     context.set("playerSessions", playerSessions);
     context.set("lobbyManager", lobbyManager);
     context.set("gameManager", gameManager);
-    context.set("game", game);
     await next();
   });
 
@@ -48,13 +43,13 @@ export const createApp = (
 
   app.post("/login", login);
   app.get("/logout", validatePlayerSession, logout);
-  app.get("/login.html", checkUserLogin, serveLoginPage);
+  app.get("/login.html", checkUserLogin);
 
   app.post("/game/join", validateJoin, handleGameJoin);
   app.get("/fetch-players", fetchPlayers);
   app.get("/assign-roles", assignRoles);
 
-  app.get("/game.html", addPlayerToGame, serveGamePage);
+  app.get("/game.html", addPlayerToGame);
   app.post("/leave-lobby", leaveLobby);
 
   app.get("/game/status", validateGamePlayer, serveGameStatus);

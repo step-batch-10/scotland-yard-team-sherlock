@@ -64,6 +64,7 @@ export class LobbyManager {
   movePlayersToGame(roomId: string): string {
     const players = this.getRoomPlayers(roomId);
     const gameId = generateId();
+
     players.forEach((player) => this.#playerToGame.set(player, gameId));
     this.#removeRoom(roomId);
 
