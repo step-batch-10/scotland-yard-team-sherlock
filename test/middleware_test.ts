@@ -35,7 +35,7 @@ describe("validations", () => {
       gameManager,
     );
 
-    const response = await app.request("/game/join", {
+    const response = await app.request("/lobby/join", {
       method: "POST",
       headers: { cookie: `roomId=${roomId}` },
     });

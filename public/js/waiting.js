@@ -99,7 +99,7 @@ const renderPlayerInfo = async () => {
 };
 
 const sendLeaveLobbyReq = async () => {
-  return await fetch("/leave-lobby", { method: "POST" });
+  return await fetch("/lobby/room/leave", { method: "POST" });
 };
 
 const leaveLobby = async () => {
@@ -108,13 +108,13 @@ const leaveLobby = async () => {
   redirectTo(path);
 };
 
-const getAllPlayers = async () => {
-  return await fetch("/fetch-players");
+const fetchRoomStatus = async () => {
+  return await fetch("/lobby/room/status");
 };
 
 const renderPlayers = () => {
   setTimeout(async () => {
-    const response = await getAllPlayers();
+    const response = await fetchRoomStatus();
     const { players, isLobbyFull } = await response.json();
 
     if (isLobbyFull) return await renderPlayerInfo(players);

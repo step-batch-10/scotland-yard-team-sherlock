@@ -46,7 +46,7 @@ describe("Game Join", () => {
 
     const fd = new FormData();
     fd.set("name", "sherlocks");
-    const res = await app.request("http://localhost:8000/game/join", {
+    const res = await app.request("http://localhost:8000/lobby/join", {
       method: "post",
       body: fd,
       headers: {
@@ -78,7 +78,7 @@ describe("Game Join", () => {
 
     const fd = new FormData();
     fd.set("name", "sherlocks");
-    const res = await app.request("http://localhost:8000/game/join", {
+    const res = await app.request("http://localhost:8000/lobby/join", {
       method: "post",
       body: fd,
     });
@@ -107,7 +107,9 @@ describe("fetch players", () => {
     const players = ["a"];
     const isLobbyFull = false;
     const headers = { cookie: `roomId=${roomId}` };
-    const req = new Request("http://localhost:8000/fetch-players", { headers });
+    const req = new Request("http://localhost:8000/lobby/room/status", {
+      headers,
+    });
     const res = await app.fetch(req);
     assertEquals(await res.json(), { players, isLobbyFull });
     assertEquals(res.status, 200);
@@ -133,7 +135,9 @@ describe("fetch players", () => {
 
     const isLobbyFull = true;
     const headers = { cookie: `roomId=${roomId};playerId=6` };
-    const req = new Request("http://localhost:8000/fetch-players", { headers });
+    const req = new Request("http://localhost:8000/lobby/room/status", {
+      headers,
+    });
     const res = await app.fetch(req);
     assertEquals(await res.json(), { isLobbyFull });
     assertEquals(res.status, 200);
@@ -180,7 +184,7 @@ describe("logout", () => {
       lobbyManager,
       gameManager,
     );
-    const req = await app.request("/logout", {
+    const req = await app.request("/auth/logout", {
       headers: { cookie: `playerId=${sessionId}` },
     });
 
@@ -204,7 +208,7 @@ describe("leave lobby", () => {
       lobbyManager,
       gameManager,
     );
-    const req = new Request("http://localhost:8000/leave-lobby", {
+    const req = new Request("http://localhost:8000/lobby/room/leave", {
       method: "POST",
       headers: {
         cookie: `playerId=${sessionId}; roomId=${roomId}`,

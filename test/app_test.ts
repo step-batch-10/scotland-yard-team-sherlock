@@ -54,7 +54,7 @@ describe("Authentication", () => {
       const formData = new FormData();
       formData.set("player-name", "PlayerName1");
 
-      const request = new Request("http://localhost:8000/login", {
+      const request = new Request("http://localhost:8000/auth/login", {
         body: formData,
         method: "POST",
       });

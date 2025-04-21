@@ -41,16 +41,15 @@ export const createApp = (
   app.get("/", validatePlayerSession, serveIndex);
   app.get("/index.html", validatePlayerSession, serveIndex);
 
-  app.post("/login", login);
-  app.get("/logout", validatePlayerSession, logout);
+  app.post("/auth/login", login);
+  app.get("/auth/logout", validatePlayerSession, logout);
   app.get("/login.html", checkUserLogin);
 
-  app.post("/game/join", validateJoin, handleGameJoin);
-  app.get("/fetch-players", fetchPlayers);
-  app.get("/assign-roles", assignRoles);
+  app.post("/lobby/join", validateJoin, handleGameJoin);
+  app.get("/lobby/room/status", fetchPlayers);
+  app.post("/lobby/room/leave", leaveLobby);
 
-  // app.get("/game.html", addPlayerToGame);
-  app.post("/leave-lobby", leaveLobby);
+  app.get("/assign-roles", assignRoles);
 
   app.get("/game/status", validateGamePlayer, serveGameStatus);
   app.post("/game/move", validateGamePlayer, makeMove);
