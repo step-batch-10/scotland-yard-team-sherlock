@@ -1,6 +1,6 @@
 const generateId = (): string => Date.now().toString();
 
-class Room {
+export class Room {
   #players: string[];
   #capacity: number;
 
@@ -81,5 +81,9 @@ export class LobbyManager {
 
   getRoomPlayers(roomNo: string): string[] {
     return this.#rooms.get(roomNo)!.players;
+  }
+
+  getRoom(roomId: string) {
+    return this.#rooms.get(roomId);
   }
 }

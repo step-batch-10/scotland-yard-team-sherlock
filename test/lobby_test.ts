@@ -1,17 +1,16 @@
-import { assertEquals, assertFalse } from "assert";
-
-import { describe, test } from "jsr:@std/testing/bdd";
-import { LobbyManager } from "../src/models/lobby.ts";
+import { assert, assertEquals, assertFalse } from "assert";
+import { describe, it } from "jsr:@std/testing/bdd";
+import { LobbyManager, Room } from "../src/models/lobby.ts";
 
 describe("Lobby Manager", () => {
-  test("Should add player and return roomId", () => {
+  it("Should add player and return roomId", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer("1");
     const players = lobbyManager.getRoomPlayers(roomId);
     assertEquals(players.length, 1);
   });
 
-  test("should empty the lobby ", () => {
+  it("should empty the lobby ", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer("1");
     const remainingPlayers = lobbyManager.removePlayer(roomId, "1");
@@ -19,20 +18,20 @@ describe("Lobby Manager", () => {
     assertEquals(remainingPlayers.length, 0);
   });
 
-  test("Should return true by game deletion", () => {
+  it("Should return true by game deletion", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer("1");
 
     assertFalse(lobbyManager.isRoomFull(roomId));
   });
 
-  test("Should return game players in lobby", () => {
+  it("Should return game players in lobby", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer("1");
     assertEquals(lobbyManager.getRoomPlayers(roomId), ["1"]);
   });
 
-  test("Should return game players in lobby and get gameId", () => {
+  it("Should return game players in lobby and get gameId", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer("1");
     assertEquals(lobbyManager.getGameId("1"), null);
@@ -44,5 +43,19 @@ describe("Lobby Manager", () => {
     lobbyManager.addPlayer("6");
     const gameId = lobbyManager.movePlayersToGame(roomId);
     assertEquals(lobbyManager.getGameId("1"), gameId);
+  });
+
+  it("should give game instance with one player", () => {
+    const lobbyManager = new LobbyManager();
+    const roomId = lobbyManager.addPlayer("1");
+
+    assert(lobbyManager.getRoom(roomId) instanceof Room);
+    assertEquals(lobbyManager.getRoom(roomId)!.players, ["1"]);
+  });
+
+  it("should return undefined if room doesn't exist", () => {
+    const lobbyManager = new LobbyManager();
+
+    assertEquals(lobbyManager.getRoom("123"), undefined);
   });
 });
