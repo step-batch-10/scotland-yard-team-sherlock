@@ -94,6 +94,9 @@ describe("Authentication", () => {
   describe("serveGameStatus", () => {
     it("should serve init data for all players positions with colors", async () => {
       const playerSessions = new PlayerSessions();
+
+      const playerId = playerSessions.createSession("Name");
+
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
@@ -112,7 +115,7 @@ describe("Authentication", () => {
       );
 
       const response = await app.request("/game/status", {
-        headers: { cookie: "gameId=1" },
+        headers: { cookie: `gameId=1; playerId=${playerId}` },
       });
 
       const playerPositions = [

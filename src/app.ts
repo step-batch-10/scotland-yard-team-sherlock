@@ -14,10 +14,12 @@ import {
 } from "./handlers.ts";
 
 import {
+  checkGameStart,
   checkRoomRejoin,
   handleLoginAccess,
   validateGameId,
   validatePlayerId,
+  validateRoomId,
 } from "./middlewares.ts";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { LobbyManager } from "./models/lobby.ts";
@@ -40,18 +42,26 @@ export const createApp = (
 
   app.get("/", validatePlayerId, serveIndex);
   app.get("/index.html", validatePlayerId, serveIndex);
+  app.get("/login.html", handleLoginAccess);
+  app.get("/waiting.html", validatePlayerId, validateRoomId);
+  app.get("/game.html", validatePlayerId, validateGameId);
 
   app.post("/auth/login", login);
-  app.get("/auth/logout", validatePlayerId, logout);
-  app.get("/login.html", handleLoginAccess);
+  app.get("/auth/logout", logout);
 
-  app.post("/lobby/join", checkRoomRejoin, handleGameJoin);
-  app.get("/lobby/room/status", fetchPlayers);
-  app.post("/lobby/room/leave", leaveLobby);
+  app.post("/lobby/join", validatePlayerId, checkRoomRejoin, handleGameJoin);
+  app.get(
+    "/lobby/room/status",
+    validatePlayerId,
+    checkGameStart,
+    validateRoomId,
+    fetchPlayers,
+  );
+  app.post("/lobby/room/leave", validatePlayerId, validateRoomId, leaveLobby);
 
-  app.get("/game/details", assignRoles);
-  app.get("/game/status", validateGameId, serveGameStatus);
-  app.post("/game/move", validateGameId, makeMove);
+  app.get("/game/details", validatePlayerId, validateGameId, assignRoles);
+  app.get("/game/status", validatePlayerId, validateGameId, serveGameStatus);
+  app.post("/game/move", validatePlayerId, validateGameId, makeMove);
 
   app.use("*", serveStatic({ root: "./public" }));
 

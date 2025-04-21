@@ -30,21 +30,14 @@ const playerName = (ctx: Context, id: string) => {
   return playerSessions.getPlayer(id);
 };
 
-export const fetchPlayers = (ctx: Context) => {
-  const { playerId, roomId } = getCookie(ctx);
-  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
-  const gameId = lobbyManager.getGameId(playerId!);
+export const fetchPlayers = (context: Context) => {
+  const roomId = context.get("roomId");
+  const lobbyManager: LobbyManager = context.get("lobbyManager");
 
-  if (!gameId) {
-    const playerIds = lobbyManager.getRoomPlayers(roomId);
+  const playerIds = lobbyManager.getRoomPlayers(roomId);
 
-    const players = playerIds.map((id) => playerName(ctx, id));
-    return ctx.json({ players, isLobbyFull: false });
-  }
-
-  deleteCookie(ctx, "roomId");
-  setCookie(ctx, "gameId", gameId!);
-  return ctx.json({ isLobbyFull: true });
+  const players = playerIds.map((id) => playerName(context, id));
+  return context.json({ players, isLobbyFull: false });
 };
 
 export const serveIndex = async (context: Context) => {
