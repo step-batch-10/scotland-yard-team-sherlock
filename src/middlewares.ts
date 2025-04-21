@@ -74,7 +74,6 @@ export const checkGameStart = async (context: Context, next: Next) => {
 
   const lobbyManager: LobbyManager = context.get("lobbyManager");
   const gameId = lobbyManager.getGameId(playerId!);
-
   if (!gameId) return await next();
 
   deleteCookie(context, "roomId");

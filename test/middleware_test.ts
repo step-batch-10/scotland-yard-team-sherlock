@@ -27,7 +27,7 @@ describe("validations", () => {
     const playerSessions = new PlayerSessions();
     const playerId = playerSessions.createSession("NAME");
     const lobbyManager = new LobbyManager();
-    const roomId = lobbyManager.addPlayer(playerId);
+    const roomId = lobbyManager.addPlayer({ id: playerId, name: "NAME" });
     const gameManager = new GameManager();
 
     const app = createApp(
@@ -69,12 +69,12 @@ describe("validations", () => {
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
 
-    lobbyManager.addPlayer("1");
-    lobbyManager.addPlayer("2");
-    lobbyManager.addPlayer("3");
-    lobbyManager.addPlayer("4");
-    lobbyManager.addPlayer("5");
-    lobbyManager.addPlayer("6");
+    lobbyManager.addPlayer({ id: "1", name: "Name" });
+    lobbyManager.addPlayer({ id: "2", name: "James2" });
+    lobbyManager.addPlayer({ id: "3", name: "James3" });
+    lobbyManager.addPlayer({ id: "4", name: "James4" });
+    lobbyManager.addPlayer({ id: "5", name: "James5" });
+    lobbyManager.addPlayer({ id: "6", name: "James6" });
 
     const app = createApp(
       playerSessions,
@@ -94,7 +94,7 @@ describe("validations", () => {
     const playerId = playerSessions.createSession("Name");
 
     const lobbyManager = new LobbyManager();
-    const roomId = lobbyManager.addPlayer(playerId);
+    const roomId = lobbyManager.addPlayer({ id: playerId, name: "Name" });
 
     const gameManager = new GameManager();
 
