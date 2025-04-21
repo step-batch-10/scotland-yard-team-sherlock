@@ -1,8 +1,9 @@
 import { Context, Next } from "hono";
 import { getCookie } from "hono/cookie";
 import { PlayerSessions } from "./models/playerSessions.ts";
+import { LobbyManager } from "./models/lobby.ts";
 
-export const validatePlayerSession = async (context: Context, next: Next) => {
+export const validatePlayerId = async (context: Context, next: Next) => {
   const playerId = getCookie(context, "playerId");
   if (!playerId) return context.redirect("/login.html");
 
@@ -15,7 +16,7 @@ export const validatePlayerSession = async (context: Context, next: Next) => {
   return await next();
 };
 
-export const checkUserLogin = async (context: Context, next: Next) => {
+export const handleLoginAccess = async (context: Context, next: Next) => {
   const playerId = getCookie(context, "playerId");
 
   const playerSessions: PlayerSessions = context.get("playerSessions");
@@ -26,7 +27,7 @@ export const checkUserLogin = async (context: Context, next: Next) => {
   return await next();
 };
 
-export const validateGamePlayer = async (context: Context, next: Next) => {
+export const validateGameId = async (context: Context, next: Next) => {
   const gameId = getCookie(context, "gameId");
   if (!gameId) return context.redirect("/");
   context.set("gameId", gameId);
@@ -34,9 +35,12 @@ export const validateGamePlayer = async (context: Context, next: Next) => {
   return await next();
 };
 
-export const validateJoin = async (ctx: Context, next: Next) => {
-  const roomId = getCookie(ctx, "roomId");
+export const checkRoomRejoin = async (context: Context, next: Next) => {
+  const roomId = getCookie(context, "roomId");
+  const lobbyManager: LobbyManager = context.get("lobbyManager");
 
-  if (!roomId) return await next();
-  return ctx.redirect("/waiting.html");
+  const room = lobbyManager.getRoom(roomId!);
+  if (!room) return await next();
+
+  return context.redirect("/waiting.html");
 };

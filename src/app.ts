@@ -14,10 +14,10 @@ import {
 } from "./handlers.ts";
 
 import {
-  checkUserLogin,
-  validateGamePlayer,
-  validateJoin,
-  validatePlayerSession,
+  checkRoomRejoin,
+  handleLoginAccess,
+  validateGameId,
+  validatePlayerId,
 } from "./middlewares.ts";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { LobbyManager } from "./models/lobby.ts";
@@ -30,6 +30,7 @@ export const createApp = (
 ) => {
   const app = new Hono();
   app.use(logger());
+
   app.use(async (context: Context, next: Next) => {
     context.set("playerSessions", playerSessions);
     context.set("lobbyManager", lobbyManager);
@@ -37,20 +38,20 @@ export const createApp = (
     await next();
   });
 
-  app.get("/", validatePlayerSession, serveIndex);
-  app.get("/index.html", validatePlayerSession, serveIndex);
+  app.get("/", validatePlayerId, serveIndex);
+  app.get("/index.html", validatePlayerId, serveIndex);
 
   app.post("/auth/login", login);
-  app.get("/auth/logout", validatePlayerSession, logout);
-  app.get("/login.html", checkUserLogin);
+  app.get("/auth/logout", validatePlayerId, logout);
+  app.get("/login.html", handleLoginAccess);
 
-  app.post("/lobby/join", validateJoin, handleGameJoin);
+  app.post("/lobby/join", checkRoomRejoin, handleGameJoin);
   app.get("/lobby/room/status", fetchPlayers);
   app.post("/lobby/room/leave", leaveLobby);
 
   app.get("/game/details", assignRoles);
-  app.get("/game/status", validateGamePlayer, serveGameStatus);
-  app.post("/game/move", validateGamePlayer, makeMove);
+  app.get("/game/status", validateGameId, serveGameStatus);
+  app.post("/game/move", validateGameId, makeMove);
 
   app.use("*", serveStatic({ root: "./public" }));
 
