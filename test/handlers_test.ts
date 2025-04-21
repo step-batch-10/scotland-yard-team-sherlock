@@ -166,7 +166,7 @@ describe("fetch players", () => {
     });
 
     const headers = { cookie: `gameId=1` };
-    const req = new Request("http://localhost:8000/assign-roles", { headers });
+    const req = new Request("http://localhost:8000/game/details", { headers });
     const res = await app.request(req);
     assertEquals(await res.json(), playersWithRoles);
     assertEquals(res.status, 200);

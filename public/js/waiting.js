@@ -86,7 +86,7 @@ const showTimer = () => {
 };
 
 const getPlayerWithRole = async () => {
-  return await fetch("/assign-roles");
+  return await fetch("/game/details");
 };
 
 const renderPlayerInfo = async () => {

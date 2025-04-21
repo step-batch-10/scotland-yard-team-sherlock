@@ -14,7 +14,6 @@ import {
 } from "./handlers.ts";
 
 import {
-  // addPlayerToGame,
   checkUserLogin,
   validateGamePlayer,
   validateJoin,
@@ -49,8 +48,7 @@ export const createApp = (
   app.get("/lobby/room/status", fetchPlayers);
   app.post("/lobby/room/leave", leaveLobby);
 
-  app.get("/assign-roles", assignRoles);
-
+  app.get("/game/details", assignRoles);
   app.get("/game/status", validateGamePlayer, serveGameStatus);
   app.post("/game/move", validateGamePlayer, makeMove);
 
