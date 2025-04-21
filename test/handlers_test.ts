@@ -20,7 +20,7 @@ describe("Static page", () => {
       gameManager,
     );
 
-    const headers = { cookie: "playerSessionId=0" };
+    const headers = { cookie: "playerId=0" };
 
     const res = await app.request("http://localhost:8000", { headers });
     res.text();
@@ -31,53 +31,63 @@ describe("Static page", () => {
 });
 
 describe("Game Join", () => {
-  //   it("Should redirect to waiting page", async () => {
-  //     const app = createAppWithPlayers("Asma", []);
+  it("Should redirect to waiting page", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+    const roomId: string = playerSessions.createSession("teja");
+    lobbyManager.addPlayer(roomId);
 
-  //     const fd = new FormData();
-  //     fd.set("name", "sherlocks");
-  //     const res = await app.request("http://localhost:8000/game/join", {
-  //       method: "post",
-  //       body: fd,
-  //       headers: {
-  //         cookie: "roomId=1",
-  //       },
-  //     });
-  //     res.text();
+    const app = createApp(
+      playerSessions,
+      lobbyManager,
+      gameManager,
+    );
 
-  //     assertEquals(res.status, 302);
-  //     assertEquals(res.headers.get("content-type"), null);
-  //     assertEquals(res.headers.get("location"), "/waiting.html");
-  //   });
+    const fd = new FormData();
+    fd.set("name", "sherlocks");
+    const res = await app.request("http://localhost:8000/game/join", {
+      method: "post",
+      body: fd,
+      headers: {
+        cookie: "roomId=1",
+      },
+    });
+    res.text();
 
-  //   it("Should redirect to waiting page even it is 6th player", async () => {
-  //     const playerSessions = new PlayerSessions();
-  //     const lobbyManager = new LobbyManager();
-  //     lobbyManager.addPlayer("1");
-  //     lobbyManager.addPlayer("2");
-  //     lobbyManager.addPlayer("3");
-  //     lobbyManager.addPlayer("4");
-  //     lobbyManager.addPlayer("5");
-  //     const gameManager = new GameManager();
+    assertEquals(res.status, 302);
+    assertEquals(res.headers.get("content-type"), null);
+    assertEquals(res.headers.get("location"), "/waiting.html");
+  });
 
-  //     const app = createApp(
-  //       playerSessions,
-  //       lobbyManager,
-  //       gameManager,
-  //     );
+  it("Should redirect to waiting page even it is 6th player", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobbyManager = new LobbyManager();
+    lobbyManager.addPlayer("1");
+    lobbyManager.addPlayer("2");
+    lobbyManager.addPlayer("3");
+    lobbyManager.addPlayer("4");
+    lobbyManager.addPlayer("5");
+    const gameManager = new GameManager();
 
-  //     const fd = new FormData();
-  //     fd.set("name", "sherlocks");
-  //     const res = await app.request("http://localhost:8000/game/join", {
-  //       method: "post",
-  //       body: fd,
-  //     });
-  //     res.text();
+    const app = createApp(
+      playerSessions,
+      lobbyManager,
+      gameManager,
+    );
 
-  //     assertEquals(res.status, 302);
-  //     assertEquals(res.headers.get("content-type"), null);
-  //     assertEquals(res.headers.get("location"), "/waiting.html");
-  //   });
+    const fd = new FormData();
+    fd.set("name", "sherlocks");
+    const res = await app.request("http://localhost:8000/game/join", {
+      method: "post",
+      body: fd,
+    });
+    res.text();
+
+    assertEquals(res.status, 302);
+    assertEquals(res.headers.get("content-type"), null);
+    assertEquals(res.headers.get("location"), "/waiting.html");
+  });
 });
 
 describe("fetch players", () => {
@@ -122,7 +132,7 @@ describe("fetch players", () => {
     );
 
     const isLobbyFull = true;
-    const headers = { cookie: `roomId=${roomId};playerSessionId=6` };
+    const headers = { cookie: `roomId=${roomId};playerId=6` };
     const req = new Request("http://localhost:8000/fetch-players", { headers });
     const res = await app.fetch(req);
     assertEquals(await res.json(), { isLobbyFull });
@@ -171,7 +181,7 @@ describe("logout", () => {
       gameManager,
     );
     const req = await app.request("/logout", {
-      headers: { cookie: `playerSessionId=${sessionId}` },
+      headers: { cookie: `playerId=${sessionId}` },
     });
 
     assertEquals(req.status, 302);
@@ -197,7 +207,7 @@ describe("leave lobby", () => {
     const req = new Request("http://localhost:8000/leave-lobby", {
       method: "POST",
       headers: {
-        cookie: `playerSessionId=${sessionId}; roomId=${roomId}`,
+        cookie: `playerId=${sessionId}; roomId=${roomId}`,
       },
     });
     const res = await app.request(req);
@@ -228,7 +238,7 @@ describe("Game Page", () => {
       gameManager,
     );
 
-    const headers = { cookie: `gameId=1;playerSessionId=${sessionId}` };
+    const headers = { cookie: `gameId=1;playerId=${sessionId}` };
     const data = { stationNumber: 7 };
 
     const res = await app.request("/game/move", {
@@ -263,7 +273,7 @@ describe("Game Page", () => {
       gameManager,
     );
 
-    const headers = { cookie: `gameId=1;playerSessionId=2` };
+    const headers = { cookie: `gameId=1;playerId=2` };
     const data = { stationNumber: 7 };
 
     const res = await app.request("/game/move", {

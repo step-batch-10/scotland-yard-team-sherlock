@@ -5,10 +5,10 @@ import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
 
 export const leaveLobby = (ctx: Context) => {
-  const sessionId = getCookie(ctx, "playerSessionId");
+  const playerId = getCookie(ctx, "playerId");
   const roomId = deleteCookie(ctx, "roomId");
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
-  lobbyManager.removePlayer(roomId!, sessionId!);
+  lobbyManager.removePlayer(roomId!, playerId!);
 
   return ctx.text("/");
 };
@@ -31,9 +31,9 @@ const playerName = (ctx: Context, id: string) => {
 };
 
 export const fetchPlayers = (ctx: Context) => {
-  const { playerSessionId, roomId } = getCookie(ctx);
+  const { playerId, roomId } = getCookie(ctx);
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
-  const gameId = lobbyManager.getGameId(playerSessionId!);
+  const gameId = lobbyManager.getGameId(playerId!);
 
   if (!gameId) {
     const playerIds = lobbyManager.getRoomPlayers(roomId);
@@ -60,9 +60,9 @@ export const login = async (context: Context) => {
   const playerName = formData.get("player-name") as string;
 
   const playerSessions: PlayerSessions = context.get("playerSessions");
-  const playerSessionId = playerSessions.createSession(playerName);
+  const playerId = playerSessions.createSession(playerName);
 
-  setCookie(context, "playerSessionId", playerSessionId);
+  setCookie(context, "playerId", playerId);
   return context.redirect("/");
 };
 
@@ -85,11 +85,11 @@ export interface Player {
 }
 
 export const handleGameJoin = (ctx: Context) => {
-  const sessionId = getCookie(ctx, "playerSessionId");
+  const playerId = getCookie(ctx, "playerId");
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
   const gameManager: GameManager = ctx.get("gameManager");
 
-  const roomId: string = lobbyManager.addPlayer(sessionId!);
+  const roomId: string = lobbyManager.addPlayer(playerId!);
   const isLobbyFull = lobbyManager.isRoomFull(roomId);
 
   if (isLobbyFull) {
@@ -103,11 +103,11 @@ export const handleGameJoin = (ctx: Context) => {
 };
 
 export const logout = (context: Context) => {
-  const playerSessionId = context.get("playerSessionId");
+  const playerId = context.get("playerId");
   const playerSessions: PlayerSessions = context.get("playerSessions");
-  playerSessions.delete(playerSessionId);
+  playerSessions.delete(playerId);
 
-  deleteCookie(context, "playerSessionId");
+  deleteCookie(context, "playerId");
   return context.redirect("/login.html");
 };
 
@@ -122,12 +122,12 @@ export const serveGameStatus = (context: Context) => {
 
 export const makeMove = async (context: Context) => {
   const gameManager: GameManager = context.get("gameManager");
-  const sessionId = getCookie(context, "playerSessionId");
+  const playerId = getCookie(context, "playerId");
   const gameId: string = context.get("gameId");
   const game = gameManager.getGame(gameId);
   const { stationNumber } = await context.req.json();
 
-  const { status, message } = game!.move(sessionId!, stationNumber);
+  const { status, message } = game!.move(playerId!, stationNumber);
 
   context.status(status ? 200 : 403);
   return context.json({ message });
