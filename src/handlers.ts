@@ -1,7 +1,7 @@
 import { Context } from "hono";
 import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
-import { LobbyManager } from "./models/lobby.ts";
+import { LobbyManager, User } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
 
 export const leaveLobby = (ctx: Context) => {
@@ -59,14 +59,12 @@ export const login = async (context: Context) => {
   return context.redirect("/");
 };
 
-const assign = (players: string[], ctx: Context): Player[] => {
+const assign = (players: User[]): Player[] => {
   const colors = ["yellow", "green", "red", "blue", "violet", "black"];
-  const playerSessions: PlayerSessions = ctx.get("playerSessions");
 
-  return players.map((playerId, index) => {
+  return players.map((player, index) => {
     const color = colors[index];
-    const name: string = playerSessions.getPlayer(playerId) || "";
-    return { name, id: playerId, color, position: index + 1 };
+    return { ...player, color, position: index + 1 };
   });
 };
 
@@ -81,14 +79,14 @@ export const handleGameJoin = (ctx: Context) => {
   const playerId = getCookie(ctx, "playerId");
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
   const gameManager: GameManager = ctx.get("gameManager");
-
-  const roomId: string = lobbyManager.addPlayer(playerId!);
+  const name: string = ctx.get<string>("playerName");
+  const roomId: string = lobbyManager.addPlayer({ id: playerId!, name });
   const isLobbyFull = lobbyManager.isRoomFull(roomId);
 
   if (isLobbyFull) {
     const players = lobbyManager.getRoomPlayers(roomId);
     const gameId = lobbyManager.movePlayersToGame(roomId);
-    gameManager.createGame(gameId, assign(players, ctx));
+    gameManager.createGame(gameId, assign(players));
   }
 
   setCookie(ctx, "roomId", roomId);

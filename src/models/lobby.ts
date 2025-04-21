@@ -1,7 +1,12 @@
 const generateId = (): string => Date.now().toString();
 
+export type User = {
+  id: string;
+  name: string;
+};
+
 export class Room {
-  #players: string[];
+  #players: User[];
   #capacity: number;
 
   constructor(capacity: number) {
@@ -9,13 +14,13 @@ export class Room {
     this.#capacity = capacity;
   }
 
-  add(playerId: string) {
-    this.#players.push(playerId);
+  add(user: User) {
+    this.#players.push(user);
   }
 
-  remove(playerId: string): string[] {
+  remove(playerId: string): User[] {
     return this.#players = this.#players.filter((player) =>
-      player !== playerId
+      player.id !== playerId
     );
   }
 
@@ -37,23 +42,23 @@ export class LobbyManager {
     this.#playerToGame = new Map();
   }
 
-  addPlayer(playerId: string): string {
+  addPlayer(player: { id: string; name: string }): string {
     for (const [roomId, room] of this.#rooms) {
       if (!room.isFull()) {
-        room.add(playerId);
+        room.add(player);
         return roomId;
       }
     }
 
     const newRoom = new Room(6);
-    newRoom.add(playerId);
+    newRoom.add(player);
 
     const roomId = generateId();
     this.#rooms.set(roomId, newRoom);
     return roomId;
   }
 
-  removePlayer(roomId: string, playerId: string): string[] {
+  removePlayer(roomId: string, playerId: string): User[] {
     return this.#rooms.get(roomId)!.remove(playerId);
   }
 
@@ -65,7 +70,7 @@ export class LobbyManager {
     const players = this.getRoomPlayers(roomId);
     const gameId = generateId();
 
-    players.forEach((player) => this.#playerToGame.set(player, gameId));
+    players.forEach((player) => this.#playerToGame.set(player.id, gameId));
     this.#removeRoom(roomId);
 
     return gameId;
@@ -79,7 +84,7 @@ export class LobbyManager {
     return this.#playerToGame.get(playerId) || null;
   }
 
-  getRoomPlayers(roomNo: string): string[] {
+  getRoomPlayers(roomNo: string): User[] {
     return this.#rooms.get(roomNo)!.players;
   }
 

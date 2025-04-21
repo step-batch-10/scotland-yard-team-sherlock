@@ -47,7 +47,7 @@ describe("validations", () => {
     const playerSessions = new PlayerSessions();
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
-    const roomId: string = lobbyManager.addPlayer("1");
+    const roomId: string = lobbyManager.addPlayer({ id: "1", name: "James" });
 
     const app = createApp(
       playerSessions,
