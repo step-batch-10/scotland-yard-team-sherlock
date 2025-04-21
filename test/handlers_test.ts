@@ -347,3 +347,80 @@ describe("Game Page", () => {
     assertEquals(result, { message: "Not Your Move ..!" });
   });
 });
+
+describe("mock game status", () => {
+  it("should return mock game data", async () => {
+    const playerSessions = new PlayerSessions();
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+
+    const app = createApp(playerSessions, lobbyManager, gameManager);
+
+    const res = await app.request("/game/mock-status");
+
+    const status = {
+      you: 1,
+      currentPlayer: 0,
+      players: [
+        {
+          name: "Mr. X",
+          color: "black",
+          inventory: {
+            tickets: { taxi: 4, bus: 4, underground: 3, black: 2 },
+            cards: { doubleMove: 2 },
+          },
+        },
+        {
+          name: "Red",
+          color: "red",
+          position: 13,
+          inventory: {
+            tickets: { taxi: 10, bus: 8, underground: 4, black: 0 },
+          },
+        },
+        {
+          name: "Blue",
+          color: "blue",
+          position: 25,
+          inventory: {
+            tickets: { taxi: 7, bus: 6, underground: 3, black: 0 },
+          },
+        },
+        {
+          name: "Green",
+          color: "green",
+          position: 30,
+          inventory: {
+            tickets: { taxi: 6, bus: 4, underground: 2, black: 0 },
+          },
+        },
+        {
+          name: "Yellow",
+          color: "yellow",
+          position: 19,
+          inventory: {
+            tickets: { taxi: 9, bus: 7, underground: 3, black: 0 },
+          },
+        },
+        {
+          name: "Purple",
+          color: "purple",
+          position: 34,
+          inventory: {
+            tickets: { taxi: 8, bus: 6, underground: 3, black: 0 },
+          },
+        },
+      ],
+      mrXMoves: [{ ticket: "taxi" }],
+      stations: {
+        taxi: [12, 14],
+        bus: [15],
+        underground: [],
+        black: [],
+      },
+    };
+
+    assertEquals(res.status, 200);
+    assertEquals(await res.json(), status);
+  });
+});

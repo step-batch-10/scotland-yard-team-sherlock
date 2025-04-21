@@ -3,6 +3,7 @@ import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { LobbyManager, User } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
+import { gameStates } from "./models/types/gameStatus.ts";
 
 export const leaveLobby = (ctx: Context) => {
   const playerId = getCookie(ctx, "playerId");
@@ -126,4 +127,9 @@ export const makeMove = async (context: Context) => {
 
   context.status(status ? 200 : 403);
   return context.json({ message });
+};
+
+export const serveMockGameStatus = (context: Context) => {
+  const mockStatus = gameStates[0];
+  return context.json(mockStatus);
 };
