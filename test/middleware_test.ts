@@ -45,9 +45,11 @@ describe("validations", () => {
 
   it("Should return to waiting page if roomId available.", async () => {
     const playerSessions = new PlayerSessions();
+    const playerId = playerSessions.createSession("abc");
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
-    const roomId: string = lobbyManager.addPlayer({ id: "1", name: "James" });
+    const roomId: string =
+      lobbyManager.addPlayer({ id: playerId, name: "James" }).roomId;
 
     const app = createApp(
       playerSessions,
@@ -57,9 +59,11 @@ describe("validations", () => {
 
     const response = await app.request("/lobby/join", {
       method: "POST",
-      headers: { cookie: `roomId=${roomId}` },
+      headers: { cookie: `roomId=${roomId} ;playerId=${playerId}` },
     });
+
     assertEquals(response.status, 302);
+    assertEquals(response.headers.get("location"), "/waiting.html");
   });
 
   it("should redirect to waiting page if invalid gameId present", async () => {

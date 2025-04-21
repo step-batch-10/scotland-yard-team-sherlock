@@ -42,11 +42,13 @@ export class LobbyManager {
     this.#playerToGame = new Map();
   }
 
-  addPlayer(player: { id: string; name: string }): string {
+  addPlayer(
+    player: { id: string; name: string },
+  ): { roomId: string; isLobbyFull: boolean } {
     for (const [roomId, room] of this.#rooms) {
       if (!room.isFull()) {
         room.add(player);
-        return roomId;
+        return { roomId, isLobbyFull: room.isFull() };
       }
     }
 
@@ -55,7 +57,7 @@ export class LobbyManager {
 
     const roomId = generateId();
     this.#rooms.set(roomId, newRoom);
-    return roomId;
+    return { roomId, isLobbyFull: newRoom.isFull() };
   }
 
   removePlayer(roomId: string, playerId: string): User[] {

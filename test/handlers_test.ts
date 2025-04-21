@@ -95,7 +95,7 @@ describe("fetch players", () => {
     const playerSessions = new PlayerSessions();
     const playerId = playerSessions.createSession("a");
     const lobbyManager = new LobbyManager();
-    const roomId = lobbyManager.addPlayer({ id: playerId, name: "a" });
+    const roomId = lobbyManager.addPlayer({ id: playerId, name: "a" }).roomId;
     const gameManager = new GameManager();
 
     const app = createApp(
@@ -203,7 +203,7 @@ describe("fetch players", () => {
     lobbyManager.addPlayer({ id: "3", name: "James3" });
     lobbyManager.addPlayer({ id: "4", name: "James4" });
     lobbyManager.addPlayer({ id: "5", name: "James5" });
-    const roomId = lobbyManager.addPlayer({ id: "6", name: "James6" });
+    const roomId = lobbyManager.addPlayer({ id: "6", name: "James6" }).roomId;
     lobbyManager.movePlayersToGame(roomId);
 
     const app = createApp(
@@ -250,7 +250,8 @@ describe("leave lobby", () => {
     const sessionId = playerSessions.createSession("abc");
     const lobbyManager = new LobbyManager();
 
-    const roomId = lobbyManager.addPlayer({ id: sessionId, name: "abc" });
+    const roomId =
+      lobbyManager.addPlayer({ id: sessionId, name: "abc" }).roomId;
     lobbyManager.addPlayer({ id: "2", name: "anc" });
     lobbyManager.addPlayer({ id: "3", name: "anc2" });
     const gameManager = new GameManager();

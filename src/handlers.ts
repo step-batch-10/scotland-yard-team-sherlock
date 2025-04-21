@@ -80,10 +80,14 @@ export const handleGameJoin = (ctx: Context) => {
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
   const gameManager: GameManager = ctx.get("gameManager");
   const name: string = ctx.get<string>("playerName");
-  const roomId: string = lobbyManager.addPlayer({ id: playerId!, name });
-  const isLobbyFull = lobbyManager.isRoomFull(roomId);
+  const { roomId, isLobbyFull }: { roomId: string; isLobbyFull: boolean } =
+    lobbyManager.addPlayer({
+      id: playerId!,
+      name,
+    });
 
   if (isLobbyFull) {
+    // gameManager.saveGame(lobbyManager.createGame(roomId))
     const players = lobbyManager.getRoomPlayers(roomId);
     const gameId = lobbyManager.movePlayersToGame(roomId);
     gameManager.createGame(gameId, assign(players));
