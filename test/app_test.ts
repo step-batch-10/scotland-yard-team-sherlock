@@ -8,17 +8,8 @@ import { Player } from "../src/handlers.ts";
 
 describe("Authentication", () => {
   describe("validatePlayerSession", () => {
-    it("should redirect to login page if no playerSessionId provided", async () => {
-      const playerSessions = new PlayerSessions();
-
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const app = createApp(
-        playerSessions,
-        lobbyManager,
-        gameManager,
-      );
+    it("should redirect to login page if no playerId provided", async () => {
+      const app = createAppWithPlayers("player1");
 
       const response = await app.request("/");
 
@@ -26,16 +17,8 @@ describe("Authentication", () => {
       assertEquals(response.headers.get("location"), "/login.html");
     });
 
-    it("should redirect to login page if playerSessionId doesn't exists in sessions", async () => {
-      const playerSessions = new PlayerSessions();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const app = createApp(
-        playerSessions,
-        lobbyManager,
-        gameManager,
-      );
+    it("should redirect to login page if playerId doesn't exists in sessions", async () => {
+      const app = createAppWithPlayers("player1");
 
       const response = await app.request("/", {
         headers: { cookie: "playerId=123456789" },
@@ -45,17 +28,8 @@ describe("Authentication", () => {
       assertEquals(response.headers.get("location"), "/login.html");
     });
 
-    it("should give home page if valid playerSessionId exists", async () => {
-      const playerSessions = new PlayerSessions();
-      playerSessions.createSession("PlayerName1");
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const app = createApp(
-        playerSessions,
-        lobbyManager,
-        gameManager,
-      );
+    it("should give home page if valid playerId exists", async () => {
+      const app = createAppWithPlayers("PlayerName1");
 
       const response = await app.request("/", {
         headers: { cookie: "playerId=0" },
@@ -96,17 +70,7 @@ describe("Authentication", () => {
 
   describe("checkUserLogin", () => {
     it("should redirect to root if user already logged in", async () => {
-      const playerSessions = new PlayerSessions();
-      playerSessions.createSession("PlayerName1");
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const app = createApp(
-        playerSessions,
-        lobbyManager,
-        gameManager,
-      );
-
+      const app = createAppWithPlayers("player1");
       const request = new Request("http://localhost:8000/login.html", {
         headers: { cookie: "playerId=0" },
       });
@@ -118,16 +82,7 @@ describe("Authentication", () => {
     });
 
     it("should serve login page if user is not logged in", async () => {
-      const playerSessions = new PlayerSessions();
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const app = createApp(
-        playerSessions,
-        lobbyManager,
-        gameManager,
-      );
-
+      const app = createAppWithPlayers("");
       const request = new Request("http://localhost:8000/login.html");
       const response = await app.request(request);
       await response.text();
@@ -172,3 +127,19 @@ describe("Authentication", () => {
     });
   });
 });
+
+export const createAppWithPlayers = (
+  loggedInUser: string,
+) => {
+  const playerSessions = new PlayerSessions();
+  playerSessions.createSession(loggedInUser);
+  const lobbyManager = new LobbyManager();
+  const gameManager = new GameManager();
+
+  const app = createApp(
+    playerSessions,
+    lobbyManager,
+    gameManager,
+  );
+  return app;
+};
