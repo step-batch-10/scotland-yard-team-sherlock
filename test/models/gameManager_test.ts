@@ -1,7 +1,7 @@
 import { assert, assertEquals } from "assert";
-import { GameManager } from "../src/models/gameManager.ts";
+import { GameManager } from "../../src/models/gameManager.ts";
 import { describe, test } from "jsr:@std/testing/bdd";
-import { Player } from "../src/handlers.ts";
+import { Player } from "../../src/handlers.ts";
 
 describe("Game Manager", () => {
   const gameManager = new GameManager();

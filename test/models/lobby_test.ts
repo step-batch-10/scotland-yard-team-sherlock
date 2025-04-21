@@ -1,6 +1,6 @@
 import { assert, assertEquals, assertFalse } from "assert";
 import { describe, it } from "jsr:@std/testing/bdd";
-import { LobbyManager, Room } from "../src/models/lobby.ts";
+import { LobbyManager, Room } from "../../src/models/lobby.ts";
 
 describe("Lobby Manager", () => {
   it("Should add player and return roomId", () => {

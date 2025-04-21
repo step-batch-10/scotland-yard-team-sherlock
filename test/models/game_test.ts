@@ -1,6 +1,6 @@
 import { assertEquals } from "assert/equals";
 import { describe, it } from "testing/bdd";
-import { Game, Player } from "../src/models/game.ts";
+import { Game, Player } from "../../src/models/game.ts";
 
 const getPlayers = () => [
   { name: "a", id: "1", color: "red", position: 1 },
