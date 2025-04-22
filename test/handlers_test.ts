@@ -47,7 +47,7 @@ describe("Game Join", () => {
 
     const fd = new FormData();
     fd.set("name", "sherlocks");
-    const res = await app.request("http://localhost:8000/lobby/join", {
+    const res = await app.request("http://localhost:8000/lobby/quick-play", {
       method: "post",
       body: fd,
       headers: {
@@ -79,7 +79,7 @@ describe("Game Join", () => {
       gameManager,
     );
 
-    const res = await app.request("http://localhost:8000/lobby/join", {
+    const res = await app.request("http://localhost:8000/lobby/quick-play", {
       headers: { "cookie": ` playerId=${playerId}` },
       method: "POST",
     });

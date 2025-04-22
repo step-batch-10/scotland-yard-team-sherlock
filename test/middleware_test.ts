@@ -57,7 +57,7 @@ describe("validations", () => {
       gameManager,
     );
 
-    const response = await app.request("/lobby/join", {
+    const response = await app.request("/lobby/quick-play", {
       method: "POST",
       headers: { cookie: `roomId=${roomId} ;playerId=${playerId}` },
     });
@@ -108,7 +108,7 @@ describe("validations", () => {
       gameManager,
     );
 
-    const response = await app.request("/lobby/join", {
+    const response = await app.request("/lobby/quick-play", {
       method: "POST",
       headers: { cookie: `roomId=${roomId}; playerId=${playerId}` },
     });

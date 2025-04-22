@@ -50,7 +50,12 @@ export const createApp = (
   app.post("/auth/login", login);
   app.get("/auth/logout", logout);
 
-  app.post("/lobby/join", validatePlayerId, checkRoomRejoin, handleGameJoin);
+  app.post(
+    "/lobby/quick-play",
+    validatePlayerId,
+    checkRoomRejoin,
+    handleGameJoin,
+  );
   app.get(
     "/lobby/room/status",
     validatePlayerId,
