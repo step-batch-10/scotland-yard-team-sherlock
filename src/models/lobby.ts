@@ -68,14 +68,12 @@ export class LobbyManager {
     return this.#rooms.delete(roomId);
   }
 
-  movePlayersToGame(roomId: string): string {
+  createGame(roomId: string): { gameId: string; players: User[] } {
     const players = this.getRoomPlayers(roomId);
-    const gameId = generateId();
-
-    players.forEach((player) => this.#playerToGame.set(player.id, gameId));
+    players.forEach((player) => this.#playerToGame.set(player.id, roomId));
     this.#removeRoom(roomId);
 
-    return gameId;
+    return { gameId: roomId, players };
   }
 
   isRoomFull(roomNo: string): boolean {

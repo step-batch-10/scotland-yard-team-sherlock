@@ -2,9 +2,8 @@ import { assert, assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { createApp } from "../src/app.ts";
-import { LobbyManager } from "../src/models/lobby.ts";
+import { LobbyManager, User } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
-import { Player } from "../src/handlers.ts";
 
 describe("Authentication", () => {
   describe("validatePlayerSession", () => {
@@ -100,13 +99,13 @@ describe("Authentication", () => {
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
-      const players: Player[] = [
-        { name: "a", id: "1", color: "red", position: 1 },
-        { name: "b", id: "2", color: "blue", position: 2 },
-        { name: "c", id: "3", color: "green", position: 3 },
+      const players: User[] = [
+        { name: "a", id: "1" },
+        { name: "b", id: "2" },
+        { name: "c", id: "3" },
       ];
 
-      gameManager.createGame("1", players);
+      gameManager.saveGame({ gameId: "1", players });
 
       const app = createApp(
         playerSessions,
@@ -119,9 +118,9 @@ describe("Authentication", () => {
       });
 
       const playerPositions = [
-        { color: "red", isCurrentPlayer: true, name: "a", position: 1 },
-        { color: "blue", isCurrentPlayer: false, name: "b", position: 2 },
-        { color: "green", name: "c", isCurrentPlayer: false, position: 3 },
+        { color: "yellow", isCurrentPlayer: true, name: "a", position: 1 },
+        { color: "green", isCurrentPlayer: false, name: "b", position: 2 },
+        { color: "red", name: "c", isCurrentPlayer: false, position: 3 },
       ];
 
       const expected = { isYourTurn: true, playerPositions };

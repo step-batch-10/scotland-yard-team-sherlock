@@ -42,7 +42,7 @@ export interface GameStatus {
   mrXMoves: MrXMove[];
   stations?: Stations;
 }
-
+// we can put MrX separately
 export const gameStates: GameStatus[] = [
   // Turn 1: Mr. X's turn
   {

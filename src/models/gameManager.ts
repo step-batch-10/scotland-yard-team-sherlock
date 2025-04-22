@@ -1,4 +1,5 @@
 import { Game, Player } from "./game.ts";
+import { User } from "./lobby.ts";
 
 export class GameManager {
   #games: Map<string, Game>;
@@ -7,9 +8,20 @@ export class GameManager {
     this.#games = new Map();
   }
 
-  createGame(gameId: string, players: Player[]) {
-    const game = new Game(players);
+  #gameSetup(players: User[]): Player[] {
+    const colors = ["yellow", "green", "red", "blue", "violet", "black"];
+
+    return players.map((player, index) => {
+      const color = colors[index];
+      const role = index === 0 ? "Mr.X" : "Detective";
+      return { ...player, color, position: index + 1, role };
+    });
+  }
+
+  saveGame({ gameId, players }: { gameId: string; players: User[] }): string {
+    const game = new Game(this.#gameSetup(players));
     this.#games.set(gameId, game);
+
     return gameId;
   }
 
