@@ -75,8 +75,10 @@ const setupInventoryHover = (pointer, container) => {
   pointer.addEventListener("mouseover", () => showInventory(container));
   pointer.addEventListener("mouseout", () => hideInventory(container));
 };
+
 const createContainer = (content) => {
   const container = document.createElement("p");
+  container.style.textAlign = "center";
   container.textContent = content;
   return container;
 };
@@ -92,14 +94,23 @@ const createTicketPanel = (ticket, count) => {
   return panel;
 };
 
-const addInventory = (container, { tickets }) => {
-  container.textContent = "";
+const renderInventoryPanel = (inventory, container) => {
+  const inventoryPanel = document.createElement("div");
+  inventoryPanel.id = "inventory-panel";
+  inventoryPanel.style.display = "flex";
 
-  for (const [ticket, count] of Object.entries(tickets)) {
+  for (const [ticket, count] of Object.entries(inventory)) {
     if (!count) continue;
     const panel = createTicketPanel(ticket, count);
-    container.append(panel);
+    inventoryPanel.append(panel);
   }
+  container.append(inventoryPanel);
+};
+
+const addInventory = (inventoryContainer, { tickets, cards }) => {
+  inventoryContainer.textContent = "";
+  renderInventoryPanel(tickets, inventoryContainer);
+  if (cards) renderInventoryPanel(cards, inventoryContainer);
 };
 
 const renderInventory = (position, inventory) => {
@@ -122,10 +133,10 @@ const inventory = () => {
       taxi: 10,
       bus: 8,
       underground: 4,
+      black: 2,
     },
     cards: {
-      double: 4,
-      black: 2,
+      double: 10,
     },
   };
 };
@@ -136,7 +147,9 @@ const renderPlayerPositions = (map, { playerPositions, isYourTurn }) => {
 
   for (const { position, color, isCurrentPlayer, name } of playerPositions) {
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
+
     renderInventory(position, inventory());
+
     if (isCurrentPlayer) {
       renderCurrentPlayerInfo(name, color, isYourTurn);
       map.getElementById(`circle-${position}`).setAttribute("stroke", "white");

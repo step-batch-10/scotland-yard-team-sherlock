@@ -38,11 +38,17 @@ body {
   position: absolute;
   display: none;
   gap: 8px;
-  background-color: azure;
+  background-color: rgb(10, 171, 171);
 }
 
 #ticket-panel {
   display: flex;
   gap: 4px;
   flex-direction: column;
+}
+
+#inventory-panel {
+  display: none;
+  gap: 6px;
+  border: 1px solid grey;
 }
