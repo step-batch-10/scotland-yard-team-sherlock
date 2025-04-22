@@ -37,5 +37,12 @@ body {
 #inventory-container {
   position: absolute;
   display: none;
+  gap: 8px;
   background-color: azure;
+}
+
+#ticket-panel {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
 }

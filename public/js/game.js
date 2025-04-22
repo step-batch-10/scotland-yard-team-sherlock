@@ -50,7 +50,7 @@ const renderCurrentPlayerInfo = (name, color, isYourTurn) => {
 };
 
 const showInventory = (div) => {
-  div.style.display = "block";
+  div.style.display = "flex";
 };
 
 const hideInventory = (div) => {
@@ -72,16 +72,34 @@ const positionInventoryContainer = (container, coord) => {
 };
 
 const setupInventoryHover = (pointer, container) => {
-  pointer.addEventListener("mouseenter", () => showInventory(container));
-  pointer.addEventListener("mouseleave", () => hideInventory(container));
+  pointer.addEventListener("mouseover", () => showInventory(container));
+  pointer.addEventListener("mouseout", () => hideInventory(container));
+};
+const createContainer = (content) => {
+  const container = document.createElement("p");
+  container.textContent = content;
+  return container;
+};
+
+const createTicketPanel = (ticket, count) => {
+  const panel = document.createElement("div");
+  panel.id = "ticket-panel";
+
+  const ticketContainer = createContainer(ticket);
+  const countContainer = createContainer(count);
+
+  panel.append(ticketContainer, countContainer);
+  return panel;
 };
 
 const addInventory = (container, { tickets }) => {
   container.textContent = "";
-  const taxi = document.createElement("p");
-  taxi.textContent =
-    `🚖:${tickets.taxi} | 🚌:${tickets.bus} | 🚇:${tickets.underground}`;
-  container.append(taxi);
+
+  for (const [ticket, count] of Object.entries(tickets)) {
+    if (!count) continue;
+    const panel = createTicketPanel(ticket, count);
+    container.append(panel);
+  }
 };
 
 const renderInventory = (position, inventory) => {
