@@ -15,17 +15,18 @@ const createBadge = (color) => {
   return badge;
 };
 
-const addCaption = (playerContainer, name, role) => {
+const addCaption = (playerContainer, name, isMrx) => {
+  const role = isMrx ? "Mr.X" : "Detective";
   const figcaption = document.createElement("figcaption");
   figcaption.textContent = `${name} : ${role}`;
 
   playerContainer?.append(figcaption);
 };
 
-const addToWaitingBoard = ({ name, role, color }) => {
+const addToWaitingBoard = ({ name, isMrx, color }) => {
   const playerContainer = document.createElement("div");
   const badge = createBadge(color);
-  addCaption(badge, name, role);
+  addCaption(badge, name, isMrx);
   playerContainer?.append(badge);
   return playerContainer;
 };
@@ -121,7 +122,7 @@ const renderPlayers = () => {
 
     renderPlayerNames(players);
     return renderPlayers();
-  }, 500);
+  }, 3000);
 };
 
 const main = () => {
