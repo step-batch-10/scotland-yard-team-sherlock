@@ -3,7 +3,7 @@ import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
-import { gameStates } from "./models/types/gameStatus.ts";
+import { mockStates } from "./models/types/gameStatus.ts";
 
 export const leaveLobby = (ctx: Context) => {
   const playerId = getCookie(ctx, "playerId");
@@ -111,6 +111,8 @@ export const makeMove = async (context: Context) => {
 };
 
 export const serveMockGameStatus = (context: Context) => {
-  const mockStatus = gameStates[0];
-  return context.json(mockStatus);
+  const role = context.req.query("role") as "mrx" | "detective";
+  const round = context.req.query("round") as "one" | "two";
+
+  return context.json(mockStates[role][round].data);
 };
