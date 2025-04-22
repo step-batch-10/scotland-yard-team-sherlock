@@ -25,7 +25,7 @@ describe("Game Manager", () => {
     const game = gameManager.getGame(gameId);
 
     const mrxInventory = {
-      tickets: { bus: 3, taxi: 2, underground: 2, black: 6 },
+      tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
       cards: { doubleMove: 2 },
     };
     const detectiveInventory = {

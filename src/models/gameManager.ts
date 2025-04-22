@@ -14,7 +14,7 @@ export type Players = [
 export class GameManager {
   #games: Map<string, Game>;
   #MrxInventory = {
-    tickets: { bus: 3, taxi: 2, underground: 2, black: 6 },
+    tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
     cards: { doubleMove: 2 },
   };
   #detectiveInventory = { tickets: { bus: 8, taxi: 10, underground: 4 } };
@@ -25,9 +25,7 @@ export class GameManager {
 
   #gameSetup(players: User[]): Players {
     const colors = ["yellow", "green", "red", "blue", "violet"];
-
     const [mrx, ...detectives] = players;
-
     const mr: MrX = {
       ...mrx,
       color: "black",
