@@ -1,3 +1,5 @@
+import { Players } from "./gameManager.ts";
+
 interface GameMoveResponse {
   status: boolean;
   message: string;
@@ -11,10 +13,10 @@ export interface Player {
 }
 
 export class Game {
-  #players: Player[];
+  #players: Players;
   #currentPlayerIndex: number = 0;
 
-  constructor(players: Player[]) {
+  constructor(players: Players) {
     this.#players = players;
   }
 

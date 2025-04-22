@@ -5,6 +5,7 @@ import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { LobbyManager, User } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
 import { mockStates } from "../src/models/types/gameStatus.ts";
+import { getPlayers } from "./models/game_test.ts";
 
 describe("Static page", () => {
   it("Should return index page", async () => {
@@ -168,7 +169,7 @@ describe("fetch players", () => {
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
     const players: User[] = [
-      { name: "a", id: playerId },
+      { name: "a", id: "1" },
       { name: "b", id: "2" },
       { name: "c", id: "3" },
       { name: "d", id: "4" },
@@ -182,14 +183,7 @@ describe("fetch players", () => {
       gameManager,
     );
 
-    const expected = [
-      { name: "a", id: playerId, color: "yellow", position: 1, role: "Mr.X" },
-      { name: "b", id: "2", color: "green", position: 2, role: "Detective" },
-      { name: "c", id: "3", color: "red", position: 3, role: "Detective" },
-      { name: "d", id: "4", color: "blue", position: 4, role: "Detective" },
-      { name: "e", id: "5", color: "violet", position: 5, role: "Detective" },
-      { name: "f", id: "6", color: "black", position: 6, role: "Detective" },
-    ];
+    const expected = getPlayers();
     const headers = { cookie: `gameId=1; playerId=${playerId}` };
     const req = new Request("http://localhost:8000/game/details", { headers });
     const res = await app.request(req);

@@ -118,9 +118,9 @@ describe("Authentication", () => {
       });
 
       const playerPositions = [
-        { color: "yellow", isCurrentPlayer: true, name: "a", position: 1 },
-        { color: "green", isCurrentPlayer: false, name: "b", position: 2 },
-        { color: "red", name: "c", isCurrentPlayer: false, position: 3 },
+        { color: "black", isCurrentPlayer: true, name: "a", position: 1 },
+        { color: "yellow", isCurrentPlayer: false, name: "b", position: 2 },
+        { color: "green", name: "c", isCurrentPlayer: false, position: 3 },
       ];
 
       const expected = { isYourTurn: true, playerPositions };

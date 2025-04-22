@@ -1,21 +1,49 @@
-import { Game, Player } from "./game.ts";
+import { Game } from "./game.ts";
 import { User } from "./lobby.ts";
+import { Detective, MrX } from "./types/setupModel.ts";
+
+export type Players = [
+  MrX,
+  Detective,
+  Detective,
+  Detective,
+  Detective,
+  Detective,
+];
 
 export class GameManager {
   #games: Map<string, Game>;
+  #MrxInventory = {
+    tickets: { bus: 3, taxi: 2, underground: 2, black: 6 },
+    cards: { doubleMove: 2 },
+  };
+  #detectiveInventory = { tickets: { bus: 8, taxi: 10, underground: 4 } };
 
   constructor() {
     this.#games = new Map();
   }
 
-  #gameSetup(players: User[]): Player[] {
-    const colors = ["yellow", "green", "red", "blue", "violet", "black"];
+  #gameSetup(players: User[]): Players {
+    const colors = ["yellow", "green", "red", "blue", "violet"];
 
-    return players.map((player, index) => {
+    const [mrx, ...detectives] = players;
+
+    const mr: MrX = {
+      ...mrx,
+      color: "black",
+      isMrx: true,
+      inventory: this.#MrxInventory,
+      position: 1,
+    };
+
+    const det = detectives.map(({ name, id }, index): Detective => {
       const color = colors[index];
-      const role = index === 0 ? "Mr.X" : "Detective";
-      return { ...player, color, position: index + 1, role };
+      const inventory = this.#detectiveInventory;
+
+      return { name, id, color, position: index + 2, isMrx: false, inventory };
     });
+
+    return [mr, ...det] as Players;
   }
 
   saveGame({ gameId, players }: { gameId: string; players: User[] }): string {
