@@ -28,6 +28,10 @@ export class Room {
     return this.#players.length >= this.#capacity;
   }
 
+  hasPlayer(playerId: string): boolean {
+    return this.players.some((player) => player.id === playerId);
+  }
+
   get players() {
     return this.#players;
   }
@@ -45,6 +49,12 @@ export class LobbyManager {
   addPlayer(
     player: { id: string; name: string },
   ): { roomId: string; isLobbyFull: boolean } {
+    for (const [roomId, room] of this.#rooms) {
+      if (room.hasPlayer(player.id)) {
+        return { roomId, isLobbyFull: room.isFull() };
+      }
+    }
+
     for (const [roomId, room] of this.#rooms) {
       if (!room.isFull()) {
         room.add(player);
