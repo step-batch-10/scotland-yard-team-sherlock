@@ -113,7 +113,7 @@ describe("fetch players", () => {
     });
     const res = await app.request(req);
 
-    assertEquals(await res.json(), { players, isLobbyFull });
+    assertEquals(await res.json(), { players, isLobbyFull, roomId });
     assertEquals(res.status, 200);
   });
 

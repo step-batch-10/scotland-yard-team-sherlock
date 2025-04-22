@@ -34,7 +34,7 @@ export const fetchPlayers = (context: Context) => {
   const playerIds = lobbyManager.getRoomPlayers(roomId);
 
   const players = playerIds.map(({ id }) => playerName(context, id));
-  return context.json({ players, isLobbyFull: false });
+  return context.json({ players, isLobbyFull: false, roomId });
 };
 
 export const serveIndex = async (context: Context) => {
