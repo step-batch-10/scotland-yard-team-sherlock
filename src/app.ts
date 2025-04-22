@@ -18,6 +18,7 @@ import {
   checkRoomRejoin,
   handleLoginAccess,
   validateGameId,
+  validateJoin,
   validatePlayerId,
   validateRoomId,
 } from "./middlewares.ts";
@@ -55,6 +56,7 @@ export const createApp = (
     checkRoomRejoin,
     handleGameJoin,
   );
+  app.post("/lobby/room/join", validatePlayerId, validateJoin);
   app.get(
     "/lobby/room/status",
     validatePlayerId,

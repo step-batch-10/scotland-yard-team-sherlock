@@ -115,4 +115,27 @@ describe("validations", () => {
     assertEquals(response.status, 302);
     assertEquals(response.headers.get("location"), "/waiting.html");
   });
+  it("should return invalid room id message if the room is invalid when joining", async () => {
+    const playerSessions = new PlayerSessions();
+    const playerId = playerSessions.createSession("Name");
+
+    const lobbyManager = new LobbyManager();
+
+    const gameManager = new GameManager();
+
+    const app = createApp(
+      playerSessions,
+      lobbyManager,
+      gameManager,
+    );
+
+    const fd = new FormData();
+    fd.set("room-id", "123");
+    const response = await app.request("/lobby/room/join", {
+      method: "POST",
+      body: fd,
+      headers: { cookie: `playerId=${playerId}` },
+    });
+    assertEquals(await response.text(), "invalid room id");
+  });
 });

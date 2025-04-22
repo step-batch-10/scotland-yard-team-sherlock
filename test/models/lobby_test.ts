@@ -60,9 +60,15 @@ describe("Lobby Manager", () => {
     );
   });
 
-  it("should return undefined if room doesn't exist", () => {
+  it("should return false if room doesn't exist", () => {
     const lobbyManager = new LobbyManager();
 
-    assertEquals(lobbyManager.getRoom("123"), undefined);
+    assertFalse(lobbyManager.hasRoom("123"));
+  });
+
+  it("should return true if the room is existed", () => {
+    const lobbyManager = new LobbyManager();
+    const roomId = lobbyManager.addPlayer({ id: "1", name: "James" }).roomId;
+    assert(lobbyManager.hasRoom(roomId));
   });
 });

@@ -99,4 +99,8 @@ export class LobbyManager {
   getRoom(roomId: string) {
     return this.#rooms.get(roomId);
   }
+
+  hasRoom(roomId: string): boolean {
+    return this.#rooms.has(roomId);
+  }
 }

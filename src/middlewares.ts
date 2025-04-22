@@ -4,6 +4,15 @@ import { PlayerSessions } from "./models/playerSessions.ts";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
 
+export const validateJoin = async (context: Context, next: Next) => {
+  const fd: FormData = await context.req.formData();
+  const roomId = fd.get("room-id");
+  const lobbyManager: LobbyManager = new LobbyManager();
+  if (lobbyManager.hasRoom(roomId as string)) await next();
+
+  return context.text("invalid room id");
+};
+
 export const validatePlayerId = async (context: Context, next: Next) => {
   const playerId = getCookie(context, "playerId");
 
