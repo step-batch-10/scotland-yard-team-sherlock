@@ -18,18 +18,16 @@ main {
   height: 100%;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  padding-left: 10%;
+  align-items: flex-end;
+  padding: 16vh 12vw;
 }
 
 .login-box {
-  position: absolute;
-  top: 35rem;
-  left: 16rem;
   background-color: rgba(4, 21, 29, 0.8);
   padding: 3rem;
-  border-radius: 0.2em;
-  width: 27%;
+  border-radius: 0.5em;
+  width: 100%;
+  max-width: 600px;
   backdrop-filter: blur(4px);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
