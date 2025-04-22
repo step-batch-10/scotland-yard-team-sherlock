@@ -22,9 +22,20 @@ const hidePopUp = () => {
   });
 };
 
+const showJoinForm = (_e) => {
+  const joinForm = document.getElementById("join-popup");
+  joinForm.style.display = "flex";
+};
+
+const handleJoinButton = () => {
+  const join = document.getElementById("join");
+  join.addEventListener("click", showJoinForm);
+};
+
 const main = () => {
   showPopUp();
   hidePopUp();
+  handleJoinButton();
 };
 
 globalThis.onload = main;
