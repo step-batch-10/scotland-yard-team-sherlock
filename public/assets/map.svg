@@ -193,7 +193,7 @@
 		<!-- station 7 end -->
 		<!-- station 8 start -->
 		<g id="station-8" transform="translate(-397.83827,229.15146)" class="station">
-			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-8" class="pointer" />
+			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="white" id="pointer-8" class="pointer" />
 			<circle id="circle-8" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
 			<path d="m 3,15 a 15,15 0 0 1 30,0" fill="#ffff00" id="top-8" stroke="#000000" />
 			<path d="m 3,33 a 15,15 0 1 0 30,0" fill="#ffff00" id="bottom-8" stroke="#000000" />
