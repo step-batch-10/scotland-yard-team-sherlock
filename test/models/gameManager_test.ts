@@ -1,6 +1,6 @@
 import { assert, assertEquals } from "assert";
 import { GameManager } from "../../src/models/gameManager.ts";
-import { describe, test } from "jsr:@std/testing/bdd";
+import { describe, test as it } from "jsr:@std/testing/bdd";
 import { Player } from "../../src/handlers.ts";
 
 describe("Game Manager", () => {
@@ -14,24 +14,24 @@ describe("Game Manager", () => {
     { name: "f", id: "6", color: "red", position: 1 },
   ];
 
-  test("Should create Game and return gameId", () => {
+  it("Should create Game and return gameId", () => {
     const gameId = gameManager.createGame("1", players);
 
     assertEquals(gameId, "1");
   });
 
-  test("Should return game", () => {
+  it("Should return game", () => {
     const gameId = gameManager.createGame("1", players);
     const game = gameManager.getGame(gameId);
 
     assertEquals(game!.getPlayers(), players);
   });
 
-  test("Should return true ", () => {
+  it("Should return true ", () => {
     assert(gameManager.hasGame("1"));
   });
 
-  test("Should return true by game deletion", () => {
+  it("Should return true by game deletion", () => {
     assert(gameManager.deleteGame("1"));
   });
 });
