@@ -4,6 +4,7 @@ import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { createApp } from "../src/app.ts";
 import { LobbyManager, User } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
+import { detectiveInventory, mrxInventory } from "./models/game_test.ts";
 
 describe("Authentication", () => {
   describe("validatePlayerSession", () => {
@@ -118,9 +119,27 @@ describe("Authentication", () => {
       });
 
       const playerPositions = [
-        { color: "black", isCurrentPlayer: true, name: "a", position: 1 },
-        { color: "yellow", isCurrentPlayer: false, name: "b", position: 2 },
-        { color: "green", name: "c", isCurrentPlayer: false, position: 3 },
+        {
+          color: "black",
+          isCurrentPlayer: true,
+          name: "a",
+          position: 1,
+          inventory: mrxInventory(),
+        },
+        {
+          color: "yellow",
+          isCurrentPlayer: false,
+          name: "b",
+          position: 2,
+          inventory: detectiveInventory(),
+        },
+        {
+          color: "green",
+          name: "c",
+          isCurrentPlayer: false,
+          position: 3,
+          inventory: detectiveInventory(),
+        },
       ];
 
       const expected = { isYourTurn: true, playerPositions };

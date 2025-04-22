@@ -31,11 +31,14 @@ export class Game {
   gameStatus(playerId: string) {
     return {
       isYourTurn: this.#players[this.#currentPlayerIndex].id === playerId,
-      playerPositions: this.#players.map(({ color, position, id, name }) => ({
+      playerPositions: this.#players.map((
+        { color, position, id, name, inventory },
+      ) => ({
         isCurrentPlayer: this.#players[this.#currentPlayerIndex].id === id,
         color,
         position,
         name,
+        inventory,
       })),
     };
   }

@@ -3,14 +3,19 @@ import { describe, it } from "testing/bdd";
 import { Game } from "../../src/models/game.ts";
 import { Players } from "../../src/models/gameManager.ts";
 
-export const getPlayers = (): Players => {
-  const mrxInventory = {
+export const mrxInventory = () => {
+  return {
     tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
     cards: { doubleMove: 2 },
   };
-  const detectiveInventory = {
+};
+
+export const detectiveInventory = () => {
+  return {
     tickets: { bus: 8, taxi: 10, underground: 4 },
   };
+};
+export const getPlayers = (): Players => {
   return [
     {
       name: "a",
@@ -18,7 +23,7 @@ export const getPlayers = (): Players => {
       color: "black",
       position: 1,
       isMrx: true,
-      inventory: mrxInventory,
+      inventory: mrxInventory(),
     },
     {
       name: "b",
@@ -26,7 +31,7 @@ export const getPlayers = (): Players => {
       color: "yellow",
       position: 2,
       isMrx: false,
-      inventory: detectiveInventory,
+      inventory: detectiveInventory(),
     },
     {
       name: "c",
@@ -34,7 +39,7 @@ export const getPlayers = (): Players => {
       color: "green",
       position: 3,
       isMrx: false,
-      inventory: detectiveInventory,
+      inventory: detectiveInventory(),
     },
     {
       name: "d",
@@ -42,7 +47,7 @@ export const getPlayers = (): Players => {
       color: "red",
       position: 4,
       isMrx: false,
-      inventory: detectiveInventory,
+      inventory: detectiveInventory(),
     },
     {
       name: "e",
@@ -50,7 +55,7 @@ export const getPlayers = (): Players => {
       color: "blue",
       position: 5,
       isMrx: false,
-      inventory: detectiveInventory,
+      inventory: detectiveInventory(),
     },
     {
       name: "f",
@@ -58,7 +63,7 @@ export const getPlayers = (): Players => {
       color: "violet",
       position: 6,
       isMrx: false,
-      inventory: detectiveInventory,
+      inventory: detectiveInventory(),
     },
   ];
 };
@@ -70,12 +75,48 @@ describe("Game class", () => {
     const expectedStatus = {
       isYourTurn: true,
       playerPositions: [
-        { isCurrentPlayer: true, color: "black", position: 1, name: "a" },
-        { isCurrentPlayer: false, color: "yellow", position: 2, name: "b" },
-        { isCurrentPlayer: false, color: "green", position: 3, name: "c" },
-        { isCurrentPlayer: false, color: "red", position: 4, name: "d" },
-        { isCurrentPlayer: false, color: "blue", position: 5, name: "e" },
-        { isCurrentPlayer: false, color: "violet", position: 6, name: "f" },
+        {
+          isCurrentPlayer: true,
+          color: "black",
+          position: 1,
+          name: "a",
+          inventory: mrxInventory(),
+        },
+        {
+          isCurrentPlayer: false,
+          color: "yellow",
+          position: 2,
+          name: "b",
+          inventory: detectiveInventory(),
+        },
+        {
+          isCurrentPlayer: false,
+          color: "green",
+          position: 3,
+          name: "c",
+          inventory: detectiveInventory(),
+        },
+        {
+          isCurrentPlayer: false,
+          color: "red",
+          position: 4,
+          name: "d",
+          inventory: detectiveInventory(),
+        },
+        {
+          isCurrentPlayer: false,
+          color: "blue",
+          position: 5,
+          name: "e",
+          inventory: detectiveInventory(),
+        },
+        {
+          isCurrentPlayer: false,
+          color: "violet",
+          position: 6,
+          name: "f",
+          inventory: detectiveInventory(),
+        },
       ],
     };
 

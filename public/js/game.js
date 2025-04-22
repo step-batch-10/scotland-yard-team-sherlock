@@ -127,28 +127,17 @@ const renderInventory = (position, inventory) => {
   setupInventoryHover(pointer, inventoryContainer);
 };
 
-const inventory = () => {
-  return {
-    tickets: {
-      taxi: 10,
-      bus: 8,
-      underground: 4,
-      black: 2,
-    },
-    cards: {
-      double: 10,
-    },
-  };
-};
-
 const renderPlayerPositions = (map, { playerPositions, isYourTurn }) => {
   resetPointers(map);
   resetCircles(map);
 
-  for (const { position, color, isCurrentPlayer, name } of playerPositions) {
+  for (
+    const { position, color, isCurrentPlayer, name, inventory }
+      of playerPositions
+  ) {
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
 
-    renderInventory(position, inventory());
+    renderInventory(position, inventory);
 
     if (isCurrentPlayer) {
       renderCurrentPlayerInfo(name, color, isYourTurn);
