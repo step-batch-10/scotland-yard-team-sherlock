@@ -1,46 +1,56 @@
-interface Tickets {
+export interface MrxTicketsStatus {
   bus: number;
   taxi: number;
   underground: number;
   black: number;
 }
+export interface DetectiveTicketsStatus {
+  bus: number;
+  taxi: number;
+  underground: number;
+}
 
-interface Cards {
+export interface Cards {
   doubleMove: number;
 }
 
-interface Detective {
+export interface MrxStatus {
+  id: string;
   name: string;
-  color: string;
-  position: number;
-  inventory: { tickets: Tickets };
-}
-
-interface MrX {
-  name: string;
-  color: string;
   position?: number;
-  inventory: { tickets: Tickets; cards: Cards };
+  color: string;
+  isMrx: true;
+  inventory: { tickets: MrxTicketsStatus; cards: Cards };
 }
 
-interface Stations {
-  bus: number[];
-  taxi: number[];
-  underground: number[];
-  black: number[];
+export interface DetectiveStatus {
+  id: string;
+  name: string;
+  position: number;
+  color: string;
+  isMrx: false;
+  inventory: { tickets: DetectiveTicketsStatus };
 }
-
-interface MrXMove {
+export interface MrXMoveStatus {
   ticket: string;
   position?: number;
 }
 
+export type GameStatusPlayers = [
+  MrxStatus,
+  DetectiveStatus,
+  DetectiveStatus,
+  DetectiveStatus,
+  DetectiveStatus,
+  DetectiveStatus,
+];
+
 export interface GameStatus {
   you: number;
   currentPlayer: number;
-  players: [MrX, Detective, Detective, Detective, Detective, Detective];
-  mrXMoves: MrXMove[];
-  stations: Stations;
+  mrXMoves: MrXMoveStatus[];
+  players: GameStatusPlayers;
+  isGameOver: boolean;
 }
 
 export const mockStates = {
@@ -104,12 +114,6 @@ export const mockStates = {
         mrXMoves: [
           { ticket: "taxi" },
         ],
-        stations: {
-          taxi: [73, 75],
-          bus: [],
-          underground: [105],
-          black: [],
-        },
       },
     },
     "two": {
@@ -172,12 +176,6 @@ export const mockStates = {
           { ticket: "taxi" },
           { ticket: "underground", position: 8 },
         ],
-        stations: {
-          taxi: [73, 75],
-          bus: [],
-          underground: [105],
-          black: [],
-        },
       },
     },
   },
@@ -241,12 +239,6 @@ export const mockStates = {
         mrXMoves: [
           { ticket: "taxi" },
         ],
-        stations: {
-          taxi: [73, 75],
-          bus: [],
-          underground: [105],
-          black: [],
-        },
       },
     },
     "two": {
@@ -309,12 +301,6 @@ export const mockStates = {
           { ticket: "taxi" },
           { ticket: "underground", position: 8 },
         ],
-        stations: {
-          taxi: [73, 75],
-          bus: [],
-          underground: [105],
-          black: [],
-        },
       },
     },
   },

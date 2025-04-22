@@ -3,7 +3,6 @@ import { PlayerSessions } from "./models/playerSessions.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
-import { mockStates } from "./models/types/gameStatus.ts";
 
 export const leaveLobby = (ctx: Context) => {
   const playerId = getCookie(ctx, "playerId");
@@ -91,9 +90,11 @@ export const logout = (context: Context) => {
 export const serveGameStatus = (context: Context) => {
   const gameManager: GameManager = context.get("gameManager");
   const gameId: string = context.get("gameId");
+  const playerId: string = context.get("playerId");
+
   const game = gameManager.getGame(gameId);
 
-  const status = game!.gameStatus(gameId);
+  const status = game!.gameStatus(playerId);
   return context.json(status);
 };
 
@@ -108,11 +109,4 @@ export const makeMove = async (context: Context) => {
 
   context.status(status ? 200 : 403);
   return context.json({ message });
-};
-
-export const serveMockGameStatus = (context: Context) => {
-  const role = context.req.query("role") as "mrx" | "detective";
-  const round = context.req.query("round") as "one" | "two";
-
-  return context.json(mockStates[role][round].data);
 };

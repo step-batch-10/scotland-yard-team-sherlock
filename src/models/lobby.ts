@@ -46,9 +46,7 @@ export class LobbyManager {
     this.#playerToGame = new Map();
   }
 
-  addPlayer(
-    player: { id: string; name: string },
-  ): { roomId: string; isLobbyFull: boolean } {
+  addPlayer(player: User): { roomId: string; isLobbyFull: boolean } {
     for (const [roomId, room] of this.#rooms) {
       if (room.hasPlayer(player.id)) {
         return { roomId, isLobbyFull: room.isFull() };
@@ -94,8 +92,8 @@ export class LobbyManager {
     return this.#playerToGame.get(playerId) || null;
   }
 
-  getRoomPlayers(roomNo: string): User[] {
-    return this.#rooms.get(roomNo)!.players;
+  getRoomPlayers(roomId: string): User[] {
+    return this.#rooms.get(roomId)!.players;
   }
 
   getRoom(roomId: string) {

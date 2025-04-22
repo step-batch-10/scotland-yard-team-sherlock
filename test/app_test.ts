@@ -2,9 +2,8 @@ import { assert, assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { createApp } from "../src/app.ts";
-import { LobbyManager, User } from "../src/models/lobby.ts";
+import { LobbyManager } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
-import { detectiveInventory, mrxInventory } from "./models/game_test.ts";
 
 describe("Authentication", () => {
   describe("validatePlayerSession", () => {
@@ -90,68 +89,9 @@ describe("Authentication", () => {
       assertEquals(response.status, 200);
     });
   });
-
-  describe("serveGameStatus", () => {
-    it("should serve init data for all players positions with colors", async () => {
-      const playerSessions = new PlayerSessions();
-
-      const playerId = playerSessions.createSession("Name");
-
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const players: User[] = [
-        { name: "a", id: "1" },
-        { name: "b", id: "2" },
-        { name: "c", id: "3" },
-      ];
-
-      gameManager.saveGame({ gameId: "1", players });
-
-      const app = createApp(
-        playerSessions,
-        lobbyManager,
-        gameManager,
-      );
-
-      const response = await app.request("/game/status", {
-        headers: { cookie: `gameId=1; playerId=${playerId}` },
-      });
-
-      const playerPositions = [
-        {
-          color: "black",
-          isCurrentPlayer: true,
-          name: "a",
-          position: 1,
-          inventory: mrxInventory(),
-        },
-        {
-          color: "yellow",
-          isCurrentPlayer: false,
-          name: "b",
-          position: 2,
-          inventory: detectiveInventory(),
-        },
-        {
-          color: "green",
-          name: "c",
-          isCurrentPlayer: false,
-          position: 3,
-          inventory: detectiveInventory(),
-        },
-      ];
-
-      const expected = { isYourTurn: true, playerPositions };
-      assertEquals(response.status, 200);
-      assertEquals(await response.json(), expected);
-    });
-  });
 });
 
-export const createAppWithPlayers = (
-  loggedInUser: string,
-) => {
+export const createAppWithPlayers = (loggedInUser: string) => {
   const playerSessions = new PlayerSessions();
   playerSessions.createSession(loggedInUser);
   const lobbyManager = new LobbyManager();

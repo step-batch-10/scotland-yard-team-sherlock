@@ -11,7 +11,6 @@ import {
   makeMove,
   serveGameStatus,
   serveIndex,
-  serveMockGameStatus,
 } from "./handlers.ts";
 
 import {
@@ -67,7 +66,6 @@ export const createApp = (
 
   app.get("/game/details", validatePlayerId, validateGameId, assignRoles);
   app.get("/game/status", validatePlayerId, validateGameId, serveGameStatus);
-  app.get("/game/mock-status", serveMockGameStatus);
   app.post("/game/move", validatePlayerId, validateGameId, makeMove);
 
   app.use("*", serveStatic({ root: "./public" }));

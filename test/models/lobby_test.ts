@@ -45,6 +45,7 @@ describe("Lobby Manager", () => {
     lobbyManager.addPlayer({ id: "5", name: "James5" });
     lobbyManager.addPlayer({ id: "6", name: "James6" });
     const { gameId } = lobbyManager.createGame(roomId);
+
     assertEquals(lobbyManager.getGameId("1"), gameId);
   });
 

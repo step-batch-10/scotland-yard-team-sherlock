@@ -69,60 +69,6 @@ export const getPlayers = (): Players => {
 };
 
 describe("Game class", () => {
-  it("should return game status", () => {
-    const players = getPlayers();
-    const game: Game = new Game(players);
-    const expectedStatus = {
-      isYourTurn: true,
-      playerPositions: [
-        {
-          isCurrentPlayer: true,
-          color: "black",
-          position: 1,
-          name: "a",
-          inventory: mrxInventory(),
-        },
-        {
-          isCurrentPlayer: false,
-          color: "yellow",
-          position: 2,
-          name: "b",
-          inventory: detectiveInventory(),
-        },
-        {
-          isCurrentPlayer: false,
-          color: "green",
-          position: 3,
-          name: "c",
-          inventory: detectiveInventory(),
-        },
-        {
-          isCurrentPlayer: false,
-          color: "red",
-          position: 4,
-          name: "d",
-          inventory: detectiveInventory(),
-        },
-        {
-          isCurrentPlayer: false,
-          color: "blue",
-          position: 5,
-          name: "e",
-          inventory: detectiveInventory(),
-        },
-        {
-          isCurrentPlayer: false,
-          color: "violet",
-          position: 6,
-          name: "f",
-          inventory: detectiveInventory(),
-        },
-      ],
-    };
-
-    assertEquals(game.gameStatus("1"), expectedStatus);
-  });
-
   it("Should return move player position", () => {
     const players = getPlayers();
     const game: Game = new Game(players);

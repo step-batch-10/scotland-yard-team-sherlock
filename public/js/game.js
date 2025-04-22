@@ -41,7 +41,7 @@ const createColorTemplate = (color) => {
   return playerColor;
 };
 
-const renderCurrentPlayerInfo = (name, color, isYourTurn) => {
+const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
   const panel = document.getElementById("info-panel");
   panel.textContent = "";
   const playerName = createNameTemplate(name, isYourTurn);
@@ -122,27 +122,39 @@ const renderInventory = (position, inventory) => {
   addInventory(inventoryContainer, inventory);
   positionInventoryContainer(inventoryContainer, coord);
 
-  document.querySelector(".map-container")
-    .append(inventoryContainer);
+  document.querySelector(".map-container").append(inventoryContainer);
   setupInventoryHover(pointer, inventoryContainer);
 };
 
-const renderPlayerPositions = (map, { playerPositions, isYourTurn }) => {
+const renderMrx = (map, { position, color, inventory }) => {
+  if (position) {
+    renderInventory(position, inventory);
+    map.getElementById(`pointer-${position}`).setAttribute("fill", color);
+  }
+};
+
+const renderDetectives = (map, detectives) => {
+  for (const { color, position, inventory } of detectives) {
+    renderInventory(position, inventory);
+    map.getElementById(`pointer-${position}`).setAttribute("fill", color);
+  }
+};
+
+const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
+  const [mrx, ...detectives] = players;
+
   resetPointers(map);
   resetCircles(map);
 
-  for (
-    const { position, color, isCurrentPlayer, name, inventory }
-      of playerPositions
-  ) {
-    map.getElementById(`pointer-${position}`).setAttribute("fill", color);
+  renderMrx(map, mrx);
+  renderDetectives(map, detectives);
 
-    renderInventory(position, inventory);
+  renderCurrentPlayerInfo(players[currentPlayer], you === currentPlayer);
 
-    if (isCurrentPlayer) {
-      renderCurrentPlayerInfo(name, color, isYourTurn);
-      map.getElementById(`circle-${position}`).setAttribute("stroke", "white");
-    }
+  const currentPlayerPosition = players[currentPlayer].position;
+  if (currentPlayerPosition) {
+    const circle = map.getElementById(`circle-${currentPlayerPosition}`);
+    circle.setAttribute("stroke", "black");
   }
 };
 
@@ -196,7 +208,8 @@ globalThis.onload = async () => {
 
   while (poll.shouldPoll) {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
+
     renderPlayerPositions(map, gameStatus);
-    await delay(500);
+    await delay(1000);
   }
 };
