@@ -4,10 +4,197 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joining Game</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=close"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arial:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/index.js"></script>
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
     <header>Scotland Yard</header>
+    <!-- <img src="assets/about.jpg" alt="about game" class="icons" /> -->
+
+    <button id="aboutBtn">About</button>
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span>
+          <button class="close material-symbols-outlined">close</button>
+        </span>
+        <h1 class="settingHeading">Scotland Yard</h1>
+
+        <div class="popup-body">
+          <h1 class="heading">Scotland Yard Online: Game Manual</h1>
+
+          <h2 class="heading">The Premise</h2>
+          <p>
+            Mr. X, a notorious criminal, is on the run through the city.
+            Scotland Yard's finest detectives are in pursuit! To evade capture,
+            Mr. X must move strategically and conceal his movements. The
+            detectives must work together, using their wits and available
+            information, to track him down. One player assumes the role of Mr.
+            X, while the others play as detectives. The chase unfolds across the
+            city, with players utilizing various modes of transportation: taxi,
+            bus, and underground.
+          </p>
+
+          <h2 class="heading">The Goal</h2>
+          <p class="game-objective">
+            If you are Mr. X: Your objective is to elude capture for as long as
+            possible. You win if the detectives run out of transportation
+            tickets.
+          </p>
+          <p class="game-objective">
+            If you are a Detective: Your goal is to apprehend Mr. X by landing
+            on the same location he occupies.
+          </p>
+
+          <h2 class="heading">Gameplay</h2>
+          <h3>Movement</h3>
+          <p>
+            All players travel between numbered locations within the city using
+            taxi, bus, or underground routes.
+          </p>
+          <ul>
+            <li>Each move requires a specific transportation ticket.</li>
+            <li>
+              Routes are color-coded: yellow for taxi, green for bus, and red
+              for the underground.
+            </li>
+            <li>
+              Locations indicate which transportation methods are available.
+            </li>
+            <li>
+              All locations allow taxi travel. Some locations also allow bus or
+              underground travel.
+            </li>
+            <li>Players must move on their turn.</li>
+            <li>
+              A player cannot move to a location already occupied by another
+              player.
+            </li>
+          </ul>
+
+          <h3>Turns</h3>
+          <ul>
+            <li>
+              Play proceeds in a clockwise direction, with Mr. X taking the
+              first turn.
+            </li>
+            <li>
+              Detectives move all their assigned pieces (if any) before the turn
+              passes.
+            </li>
+          </ul>
+          <h4>Detective's Turn:</h4>
+          <ul>
+            <li>Spend the appropriate transportation ticket.</li>
+            <li>Move your pawn.</li>
+            <li>Detectives are encouraged to communicate and strategize.</li>
+          </ul>
+          <h4>Mr. X's Turn:</h4>
+          <ul>
+            <li>Mr. X's movements are hidden from the detectives.</li>
+            <li>
+              Mr. X secretly selects his destination and the transportation
+              used.
+            </li>
+            <li>
+              Mr. X's transportation choices provide clues to the detectives.
+            </li>
+            <li>
+              Mr. X's starting location is not recorded. Subsequent moves are
+              recorded in sequence.
+            </li>
+            <li>Mr. X's record of moves must be visible to the detectives.</li>
+          </ul>
+
+          <h3>Mr. X's Special Abilities</h3>
+          <ul>
+            <li>
+              <strong>Surfacing:</strong> Mr. X must periodically reveal his
+              location to the detectives.
+              <ul>
+                <li>
+                  The first reveal is after his 3rd move, and then after moves
+                  8, 13, 18, and 24.
+                </li>
+                <li>Mr. X's location is revealed on the game board.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Double Moves:</strong> Mr. X can use a limited number of
+              special moves to travel to two locations in a single turn.
+              <ul>
+                <li>Both locations and transportation types are recorded.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Black Tickets:</strong> Mr. X has a limited number of
+              special tickets that can be used to conceal the mode of
+              transportation.
+            </li>
+            <ul>
+              <li>Black tickets can also be used for boat travel.</li>
+              <li>Mr. X can travel along the river using black tickets.</li>
+            </ul>
+          </ul>
+
+          <h2 class="heading">Game End</h2>
+          <p>The game concludes in one of the following ways:</p>
+          <ul>
+            <li>
+              A detective lands on Mr. X's location, capturing him. The
+              detectives win!
+            </li>
+            <li>
+              The detectives are unable to move due to a lack of fare tickets.
+              Mr. X wins!
+            </li>
+            <li>
+              Mr. X successfully makes 24 moves without being captured. Mr. X
+              wins!
+            </li>
+            <li>
+              The detectives are unable to move because they lack a particular
+              type of ticket needed to move. Mr. X wins!
+            </li>
+          </ul>
+
+          <h2 class="heading">Strategic Tips</h2>
+          <ul>
+            <li>
+              Detectives should start by positioning themselves to maximize
+              mobility.
+            </li>
+            <li>Mr. X should choose surfacing locations carefully.</li>
+            <li>
+              Mr. X should use black tickets wisely, especially when detectives
+              are closing in.
+            </li>
+            <li>
+              Players should pay close attention to the board layout and
+              transportation options.
+            </li>
+          </ul>
+          <h2 class="heading">Advanced Rules</h2>
+          <ul>
+            <li>
+              Mr. X can voluntarily surface at any time, receiving a ticket from
+              each detective when he does so.
+            </li>
+            <li>
+              An optional rule prevents Mr. X from moving through a location
+              occupied by a detective.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
     <main>
       <div class="home-actions">
         <h1>Welcome ##NAME##</h1>

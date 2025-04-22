@@ -24,8 +24,8 @@ main {
 
 .login-box {
   position: absolute;
-  top: 600px;
-  left: 230px;
+  top: 35rem;
+  left: 16rem;
   background-color: rgba(4, 21, 29, 0.8);
   padding: 3rem;
   border-radius: 0.2em;
