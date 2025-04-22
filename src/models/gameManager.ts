@@ -26,7 +26,7 @@ export class GameManager {
   #gameSetup(players: User[]): Players {
     const colors = ["yellow", "green", "red", "blue", "violet"];
     const [mrx, ...detectives] = players;
-    const mr: MrX = {
+    const mrXDetails: MrX = {
       ...mrx,
       color: "black",
       isMrx: true,
@@ -34,14 +34,23 @@ export class GameManager {
       position: 1,
     };
 
-    const det = detectives.map(({ name, id }, index): Detective => {
-      const color = colors[index];
-      const inventory = this.#detectiveInventory;
+    const detectivesDetails = detectives.map(
+      ({ name, id }, index): Detective => {
+        const color = colors[index];
+        const inventory = this.#detectiveInventory;
 
-      return { name, id, color, position: index + 2, isMrx: false, inventory };
-    });
+        return {
+          name,
+          id,
+          color,
+          position: index + 2,
+          isMrx: false,
+          inventory,
+        };
+      },
+    );
 
-    return [mr, ...det] as Players;
+    return [mrXDetails, ...detectivesDetails] as Players;
   }
 
   saveGame({ gameId, players }: { gameId: string; players: User[] }): string {
