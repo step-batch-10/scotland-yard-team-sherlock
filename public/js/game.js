@@ -49,53 +49,53 @@ const renderCurrentPlayerInfo = (name, color, isYourTurn) => {
   panel.append(playerName, playerColor);
 };
 
+const showInventory = (div) => {
+  div.style.display = "block";
+};
+
+const hideInventory = (div) => {
+  div.style.display = "none";
+};
+
 const createInventoryContainer = () => {
-  const container = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "text",
-  );
-  return container;
+  const div = document.createElement("div");
+  div.id = "inventory-container";
+  return div;
 };
 
-const createRect = () => {
-  const rectangle = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "rect",
-  );
-  rectangle.setAttribute("x", 16);
-  rectangle.setAttribute("y", -40);
-  rectangle.setAttribute("width", 80);
-  rectangle.setAttribute("height", 40);
-  rectangle.setAttribute("fill", "red");
-  return rectangle;
+const positionInventoryContainer = (container, coord) => {
+  container.style.padding = "10px";
+  container.style.borderRadius = "10px";
+  container.style.top = `${coord.top - 40}px`;
+  container.style.left = `${coord.left}px`;
+  container.style.backgroundColor = "white";
 };
 
-const addInventory = (container, { tickets }, station, rect) => {
-  container.innerHTML = "";
-  container.setAttribute("x", "30");
+const setupInventoryHover = (pointer, container) => {
+  pointer.addEventListener("mouseenter", () => showInventory(container));
+  pointer.addEventListener("mouseleave", () => hideInventory(container));
+};
 
-  container.setAttribute("y", "-30");
-  container.setAttribute("font-size", "14");
-  container.setAttribute("fill", "black");
-  container.textContent = `taxi: ${tickets.taxi}`;
-
-  station.appendChild(rect);
-  station.appendChild(container);
+const addInventory = (container, { tickets }) => {
+  container.textContent = "";
+  const taxi = document.createElement("p");
+  taxi.textContent =
+    `🚖:${tickets.taxi} | 🚌:${tickets.bus} | 🚇:${tickets.underground}`;
+  container.append(taxi);
 };
 
 const renderInventory = (position, inventory) => {
   const map = document.getElementById("map").contentDocument;
-  const station = map.getElementById(`station-${position}`);
-  const container = createInventoryContainer();
-  const rect = createRect();
-  station.addEventListener("mouseenter", () => {
-    addInventory(container, inventory, station, rect);
-  });
+  const pointer = map.getElementById(`pointer-${position}`);
+  const coord = pointer.getBoundingClientRect();
+  const inventoryContainer = createInventoryContainer();
 
-  station.addEventListener("mouseleave", () => {
-    if (station.contains(rect)) station.removeChild(rect);
-    if (station.contains(container)) station.removeChild(container);
-  });
+  addInventory(inventoryContainer, inventory);
+  positionInventoryContainer(inventoryContainer, coord);
+
+  document.querySelector(".map-container")
+    .append(inventoryContainer);
+  setupInventoryHover(pointer, inventoryContainer);
 };
 
 const inventory = () => {
@@ -118,9 +118,7 @@ const renderPlayerPositions = (map, { playerPositions, isYourTurn }) => {
 
   for (const { position, color, isCurrentPlayer, name } of playerPositions) {
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
-
     renderInventory(position, inventory());
-
     if (isCurrentPlayer) {
       renderCurrentPlayerInfo(name, color, isYourTurn);
       map.getElementById(`circle-${position}`).setAttribute("stroke", "white");
