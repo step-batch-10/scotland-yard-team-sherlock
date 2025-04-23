@@ -4,8 +4,23 @@ import { createApp } from "../src/app.ts";
 import { PlayerSessions } from "../src/models/playerSessions.ts";
 import { LobbyManager, User } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
-import { GameStatus } from "../src/models/types/gameStatus.ts";
+import { GameOverDetails, GameStatus } from "../src/models/types/gameStatus.ts";
 import { getPlayers } from "./models/game_test.ts";
+
+const gameEndingDetails = (
+  detective: string,
+  id: number,
+  color: string,
+): GameOverDetails => {
+  return {
+    isGameOver: true,
+    resultInfo: {
+      detective: detective,
+      color: color,
+      station: id,
+    },
+  };
+};
 
 describe("Static page", () => {
   it("Should return index page", async () => {
@@ -372,104 +387,68 @@ describe("Game Page", () => {
       const response = await app.request(request);
 
       const gameStatus: GameStatus = {
-        currentPlayer: 0,
-        isGameOver: false,
-        mrXMoves: [],
         players: [
           {
-            color: "black",
-            id: "0",
-            inventory: {
-              cards: {
-                doubleMove: 2,
-              },
-              tickets: {
-                black: 5,
-                bus: 3,
-                taxi: 4,
-                underground: 3,
-              },
-            },
-            isMrx: true,
             name: "mrxId",
+            id: "0",
+            color: "black",
+            isMrx: true,
+            inventory: {
+              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
+              cards: { doubleMove: 2 },
+            },
             position: 1,
           },
           {
-            color: "yellow",
-            id: "1",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
             name: "d1",
+            id: "1",
+            color: "yellow",
             position: 2,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            color: "green",
-            id: "2",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
             name: "d2",
+            id: "2",
+            color: "green",
             position: 3,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            color: "red",
-            id: "3",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
             name: "d3",
+            id: "3",
+            color: "red",
             position: 4,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            color: "blue",
-            id: "4",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
             name: "d4",
+            id: "4",
+            color: "blue",
             position: 5,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            color: "violet",
-            id: "5",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
             name: "d5",
+            id: "5",
+            color: "violet",
             position: 6,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
         ],
+        mrXMoves: [],
         you: 0,
+        currentPlayer: 0,
       };
 
+      const responseBody = await response.json();
+
       assertEquals(response.status, 200);
-      assertEquals(await response.json(), gameStatus);
+      assertEquals(responseBody, gameStatus);
     });
 
     it("should give init game status for detective", async () => {
@@ -498,7 +477,6 @@ describe("Game Page", () => {
 
       const gameStatus: GameStatus = {
         currentPlayer: 0,
-        isGameOver: false,
         mrXMoves: [],
         players: [
           {
@@ -642,7 +620,6 @@ describe("Game Page", () => {
 
       const gameStatus: GameStatus = {
         currentPlayer: 1,
-        isGameOver: false,
         mrXMoves: [
           { ticket: "taxi" },
           { ticket: "taxi" },
@@ -741,6 +718,302 @@ describe("Game Page", () => {
         you: 1,
       };
 
+      assertEquals(response.status, 200);
+      assertEquals(await response.json(), gameStatus);
+    });
+
+    it("should return gagameEndDetails undeifned when Detecatives are unable catch mr.X", async () => {
+      const playerSessions = new PlayerSessions();
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+
+      const detId = playerSessions.createSession("Det");
+
+      lobbyManager.addPlayer({ name: "mrxId", id: "1" });
+      lobbyManager.addPlayer({ name: "d1", id: detId });
+      lobbyManager.addPlayer({ name: "d2", id: `2` });
+      lobbyManager.addPlayer({ name: "d3", id: `3` });
+      lobbyManager.addPlayer({ name: "d4", id: `4` });
+
+      const { roomId } = lobbyManager.addPlayer({ name: "d5", id: `5` });
+
+      const { gameId, players } = lobbyManager.createGame(roomId);
+      gameManager.saveGame({ gameId, players });
+
+      const request = new Request("http://localhost:8000/game/status", {
+        headers: { "cookie": `playerId=${detId}; gameId=${gameId}` },
+      });
+
+      const app = createApp(playerSessions, lobbyManager, gameManager);
+
+      const game = gameManager.getGame(gameId)!;
+
+      game.move("1", 30);
+      game.move(detId, 29);
+      game.move("2", 28);
+      game.move("3", 27);
+      game.move("4", 26);
+      game.move("5", 30);
+
+      game.move("1", 24);
+      game.move(detId, 23);
+      game.move("2", 22);
+      game.move("3", 21);
+      game.move("4", 20);
+      game.move("5", 19);
+
+      game.move("1", 18);
+
+      const response = await app.request(request);
+
+      const gameStatus: GameStatus = {
+        currentPlayer: 1,
+        gameEndDetails: gameEndingDetails("d5", 30, "violet"),
+        mrXMoves: [
+          { ticket: "taxi" },
+          { ticket: "taxi" },
+          { ticket: "taxi", position: 18 },
+        ],
+        players: [
+          {
+            color: "black",
+            id: "1",
+            inventory: {
+              cards: {
+                doubleMove: 2,
+              },
+              tickets: {
+                black: 5,
+                bus: 3,
+                taxi: 4,
+                underground: 3,
+              },
+            },
+            position: 18,
+            isMrx: true,
+            name: "mrxId",
+          },
+          {
+            color: "yellow",
+            id: "0",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d1",
+            position: 23,
+          },
+          {
+            color: "green",
+            id: "2",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d2",
+            position: 22,
+          },
+          {
+            color: "red",
+            id: "3",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d3",
+            position: 21,
+          },
+          {
+            color: "blue",
+            id: "4",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d4",
+            position: 20,
+          },
+          {
+            color: "violet",
+            id: "5",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d5",
+            position: 19,
+          },
+        ],
+        you: 1,
+      };
+      assertEquals(response.status, 200);
+      assertEquals(await response.json(), gameStatus);
+    });
+
+    it("should return game status ", async () => {
+      const playerSessions = new PlayerSessions();
+      const lobbyManager = new LobbyManager();
+      const gameManager = new GameManager();
+
+      const detId = playerSessions.createSession("Det");
+
+      lobbyManager.addPlayer({ name: "mrxId", id: "1" });
+      lobbyManager.addPlayer({ name: "d1", id: detId });
+      lobbyManager.addPlayer({ name: "d2", id: `2` });
+      lobbyManager.addPlayer({ name: "d3", id: `3` });
+      lobbyManager.addPlayer({ name: "d4", id: `4` });
+
+      const { roomId } = lobbyManager.addPlayer({ name: "d5", id: `5` });
+
+      const { gameId, players } = lobbyManager.createGame(roomId);
+      gameManager.saveGame({ gameId, players });
+
+      const request = new Request("http://localhost:8000/game/status", {
+        headers: { "cookie": `playerId=${detId}; gameId=${gameId}` },
+      });
+
+      const app = createApp(playerSessions, lobbyManager, gameManager);
+
+      const game = gameManager.getGame(gameId)!;
+
+      game.move("1", 30);
+      game.move(detId, 29);
+      game.move("2", 28);
+      game.move("3", 27);
+      game.move("4", 26);
+      game.move("5", 25);
+
+      game.move("1", 24);
+      game.move(detId, 23);
+      game.move("2", 22);
+      game.move("3", 21);
+      game.move("4", 20);
+      game.move("5", 19);
+
+      game.move("1", 18);
+
+      const response = await app.request(request);
+
+      const gameStatus: GameStatus = {
+        currentPlayer: 1,
+
+        mrXMoves: [
+          { ticket: "taxi" },
+          { ticket: "taxi" },
+          { ticket: "taxi", position: 18 },
+        ],
+        players: [
+          {
+            color: "black",
+            id: "1",
+            inventory: {
+              cards: {
+                doubleMove: 2,
+              },
+              tickets: {
+                black: 5,
+                bus: 3,
+                taxi: 4,
+                underground: 3,
+              },
+            },
+            position: 18,
+            isMrx: true,
+            name: "mrxId",
+          },
+          {
+            color: "yellow",
+            id: "0",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d1",
+            position: 23,
+          },
+          {
+            color: "green",
+            id: "2",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d2",
+            position: 22,
+          },
+          {
+            color: "red",
+            id: "3",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d3",
+            position: 21,
+          },
+          {
+            color: "blue",
+            id: "4",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d4",
+            position: 20,
+          },
+          {
+            color: "violet",
+            id: "5",
+            inventory: {
+              tickets: {
+                bus: 8,
+                taxi: 10,
+                underground: 4,
+              },
+            },
+            isMrx: false,
+            name: "d5",
+            position: 19,
+          },
+        ],
+        you: 1,
+      };
       assertEquals(response.status, 200);
       assertEquals(await response.json(), gameStatus);
     });
