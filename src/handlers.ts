@@ -38,7 +38,6 @@ export const serveRoomStatus = (context: Context) => {
 
 export const serveIndex = async (context: Context) => {
   const page = await Deno.readTextFile("./public/index.html");
-
   const playerName = context.get("playerName");
 
   return context.html(page.replaceAll("##NAME##", playerName));

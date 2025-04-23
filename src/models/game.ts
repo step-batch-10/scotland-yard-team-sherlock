@@ -49,12 +49,14 @@ export class Game {
     return mrXPosition === stationNumber;
   }
 
+  #isRevealTurn(round: number) {
+    return this.#mrxRevealPositions.includes(round);
+  }
+
   gameStatus(playerId: string): GameStatus {
     const isMrx = this.#isMrX(playerId);
 
-    const isRevealTurn = this.#mrxRevealPositions.includes(
-      this.#mrxMoves.length,
-    );
+    const isRevealTurn = this.#isRevealTurn(this.#mrxMoves.length);
     const mrxStatus: MrxStatus = {
       ...this.#players[0],
       position: isMrx || isRevealTurn ? this.#players[0].position : undefined,
