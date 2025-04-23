@@ -13,6 +13,7 @@ const poller = () => {
 };
 
 const delay = (d) => new Promise((r) => setTimeout(r, d));
+const createElement = (tag) => document.createElement(tag);
 
 const resetPointers = (map) => {
   const pointers = map.querySelectorAll(".pointer");
@@ -29,13 +30,13 @@ const resetCircles = (map) => {
 };
 
 const createNameTemplate = (name, isYourTurn) => {
-  const playerName = document.createElement("h1");
+  const playerName = createElement("h1");
   playerName.textContent = isYourTurn ? `You -` : `${name} -`;
   return playerName;
 };
 
 const createColorTemplate = (color) => {
-  const playerColor = document.createElement("div");
+  const playerColor = createElement("div");
   playerColor.id = "color-box";
   playerColor.style.backgroundColor = color;
   return playerColor;
@@ -77,14 +78,14 @@ const setupInventoryHover = (pointer, container) => {
 };
 
 const createContainer = (content) => {
-  const container = document.createElement("p");
+  const container = createElement("p");
   container.style.textAlign = "center";
   container.textContent = content;
   return container;
 };
 
 const createTicketPanel = (ticket, count) => {
-  const panel = document.createElement("div");
+  const panel = createElement("div");
   panel.id = "ticket-panel";
 
   const ticketContainer = createContainer(ticket);
@@ -95,7 +96,7 @@ const createTicketPanel = (ticket, count) => {
 };
 
 const renderInventoryPanel = (inventory, container) => {
-  const inventoryPanel = document.createElement("div");
+  const inventoryPanel = createElement("div");
   inventoryPanel.id = "inventory-panel";
   inventoryPanel.style.display = "flex";
 
@@ -214,14 +215,14 @@ const hidePopUp = () => {
 };
 
 const createCaughtMessage = () => {
-  const caughtMsg = document.createElement("h3");
+  const caughtMsg = createElement("h3");
   caughtMsg.style.padding = "10px";
   caughtMsg.textContent = `Mr. X caught by:`;
   return caughtMsg;
 };
 
 const createDetectiveBadge = ({ color, detective }) => {
-  const badge = document.createElement("div");
+  const badge = createElement("div");
   badge.id = "detective-info";
   badge.style.backgroundColor = color;
   badge.textContent = detective;

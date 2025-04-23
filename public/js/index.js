@@ -1,8 +1,8 @@
 const showPopUp = () => {
-  const settingsBtn = document.getElementById("aboutBtn");
+  const aboutBtn = document.getElementById("aboutBtn");
   const popup = document.getElementById("popup");
 
-  settingsBtn.addEventListener("click", () => {
+  aboutBtn.addEventListener("click", () => {
     popup.style.display = "flex";
   });
 };
@@ -32,7 +32,7 @@ const closeJoinForm = () => {
   joinForm.style.display = "none";
 };
 
-const displayErrorRoomId = (error) => {
+const displayInvalidRoomId = (error) => {
   const form = document.getElementById("join-form");
   const ptag = document.createElement("p");
   ptag.textContent = error;
@@ -53,7 +53,7 @@ const joinPlayer = async (e) => {
   }
 
   const { error } = await res.json();
-  displayErrorRoomId(error);
+  displayInvalidRoomId(error);
 };
 
 const handleJoinButton = () => {
