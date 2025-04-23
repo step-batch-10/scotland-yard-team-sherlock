@@ -44,7 +44,7 @@ describe("Game Manager", () => {
       {
         name: "b",
         id: "2",
-        color: "yellow",
+        color: "#63a4ff",
         position: 2,
         isMrx: false,
         inventory: detectiveInventory,
@@ -52,7 +52,7 @@ describe("Game Manager", () => {
       {
         name: "c",
         id: "3",
-        color: "green",
+        color: "#ffb347",
         position: 3,
         isMrx: false,
         inventory: detectiveInventory,

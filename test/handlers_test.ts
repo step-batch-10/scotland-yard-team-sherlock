@@ -399,7 +399,7 @@ describe("Game Page", () => {
           {
             name: "d1",
             id: "1",
-            color: "yellow",
+            color: "#63a4ff",
             position: 2,
             isMrx: false,
             inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
@@ -407,7 +407,7 @@ describe("Game Page", () => {
           {
             name: "d2",
             id: "2",
-            color: "green",
+            color: "#ffb347",
             position: 3,
             isMrx: false,
             inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
@@ -494,7 +494,7 @@ describe("Game Page", () => {
             name: "mrxId",
           },
           {
-            color: "yellow",
+            color: "#63a4ff",
             id: "0",
             inventory: {
               tickets: {
@@ -508,7 +508,7 @@ describe("Game Page", () => {
             position: 2,
           },
           {
-            color: "green",
+            color: "#ffb347",
             id: "2",
             inventory: {
               tickets: {
@@ -642,7 +642,7 @@ describe("Game Page", () => {
             name: "mrxId",
           },
           {
-            color: "yellow",
+            color: "#63a4ff",
             id: "0",
             inventory: {
               tickets: {
@@ -656,7 +656,7 @@ describe("Game Page", () => {
             position: 23,
           },
           {
-            color: "green",
+            color: "#ffb347",
             id: "2",
             inventory: {
               tickets: {
@@ -791,7 +791,7 @@ describe("Game Page", () => {
             name: "mrxId",
           },
           {
-            color: "yellow",
+            color: "#63a4ff",
             id: "0",
             inventory: {
               tickets: {
@@ -805,7 +805,7 @@ describe("Game Page", () => {
             position: 23,
           },
           {
-            color: "green",
+            color: "#ffb347",
             id: "2",
             inventory: {
               tickets: {
@@ -939,7 +939,7 @@ describe("Game Page", () => {
             name: "mrxId",
           },
           {
-            color: "yellow",
+            color: "#63a4ff",
             id: "0",
             inventory: {
               tickets: {
@@ -953,7 +953,7 @@ describe("Game Page", () => {
             position: 23,
           },
           {
-            color: "green",
+            color: "#ffb347",
             id: "2",
             inventory: {
               tickets: {

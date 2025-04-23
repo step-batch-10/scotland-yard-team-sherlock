@@ -78,7 +78,7 @@ export const mockStates = {
           },
           {
             name: "Red",
-            color: "red",
+            color: "#ffb347",
             position: 22,
             inventory: {
               tickets: { taxi: 8, bus: 8, underground: 4, black: 0 },
@@ -102,7 +102,7 @@ export const mockStates = {
           },
           {
             name: "Yellow",
-            color: "yellow",
+            color: "#63a4ff",
             position: 19,
             inventory: {
               tickets: { taxi: 9, bus: 7, underground: 3, black: 0 },
@@ -139,7 +139,7 @@ export const mockStates = {
           },
           {
             name: "Red",
-            color: "red",
+            color: "#ffb347",
             position: 22,
             inventory: {
               tickets: { taxi: 8, bus: 8, underground: 4, black: 0 },
@@ -163,7 +163,7 @@ export const mockStates = {
           },
           {
             name: "Yellow",
-            color: "yellow",
+            color: "#63a4ff",
             position: 19,
             inventory: {
               tickets: { taxi: 9, bus: 7, underground: 3, black: 0 },
@@ -203,7 +203,7 @@ export const mockStates = {
           },
           {
             name: "Red",
-            color: "red",
+            color: "#ffb347",
             position: 22,
             inventory: {
               tickets: { taxi: 8, bus: 8, underground: 4, black: 0 },
@@ -227,7 +227,7 @@ export const mockStates = {
           },
           {
             name: "Yellow",
-            color: "yellow",
+            color: "#63a4ff",
             position: 19,
             inventory: {
               tickets: { taxi: 9, bus: 7, underground: 3, black: 0 },
@@ -264,7 +264,7 @@ export const mockStates = {
           },
           {
             name: "Red",
-            color: "red",
+            color: "#ffb347",
             position: 22,
             inventory: {
               tickets: { taxi: 8, bus: 8, underground: 4, black: 0 },
@@ -288,7 +288,7 @@ export const mockStates = {
           },
           {
             name: "Yellow",
-            color: "yellow",
+            color: "#63a4ff",
             position: 19,
             inventory: {
               tickets: { taxi: 9, bus: 7, underground: 3, black: 0 },
