@@ -200,16 +200,24 @@ const addStationClicks = (map) => {
   }
 };
 
-globalThis.onload = async () => {
+const main = async () => {
   const map = document.querySelector("object").contentDocument;
-  addStationClicks(map);
-
   const poll = poller();
+
+  addStationClicks(map);
 
   while (poll.shouldPoll) {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
+
+    if (gameStatus.gameEndDetails) {
+      alert("game Over");
+      document.getElementById("overlay").style.display = "block";
+      poll.stop();
+    }
 
     renderPlayerPositions(map, gameStatus);
     await delay(1000);
   }
 };
+
+globalThis.onload = main;

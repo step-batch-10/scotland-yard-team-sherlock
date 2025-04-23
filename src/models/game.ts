@@ -1,6 +1,7 @@
 import { Players } from "./gameManager.ts";
 import {
   DetectiveStatus,
+  GameOverDetails,
   GameStatus,
   GameStatusPlayers,
   MrxStatus,
@@ -24,6 +25,7 @@ export class Game {
   #mrxMoves: MrxMove[] = [];
   #mrxRevealPositions = [3, 8, 13, 18, 24];
   #currentPlayerIndex: number = 0;
+  #gameOverDetails?: GameOverDetails;
 
   constructor(players: Players) {
     this.#players = players;
@@ -41,6 +43,12 @@ export class Game {
     return this.#players[0].id === playerId;
   }
 
+  #isMrXCaught(stationNumber: number) {
+    const mrXPosition = this.#players[0].position;
+
+    return mrXPosition === stationNumber;
+  }
+
   gameStatus(playerId: string): GameStatus {
     const isMrx = this.#isMrX(playerId);
 
@@ -53,6 +61,7 @@ export class Game {
     };
 
     const detectives = this.#players.slice(1, 6) as DetectiveStatus[];
+
     return {
       players: [mrxStatus, ...detectives] as GameStatusPlayers,
       mrXMoves: this.#mrxMoves.map(
@@ -64,9 +73,10 @@ export class Game {
           };
         },
       ),
+
       you: this.#players.findIndex(({ id }) => id === playerId),
       currentPlayer: this.#currentPlayerIndex,
-      isGameOver: false,
+      gameEndDetails: this.#gameOverDetails,
     };
   }
 
@@ -77,7 +87,22 @@ export class Game {
       return { status: false, message: "Not Your Move ..!" };
     }
 
-    if (this.#isPlaceOccupied(stationNumber)) {
+    if (this.#isMrXCaught(stationNumber)) {
+      const playerInfo = this.#players.find(({ id }) => id === playerId);
+
+      this.#gameOverDetails = {
+        isGameOver: true,
+        resultInfo: {
+          detective: playerInfo!.name,
+          color: playerInfo!.color,
+          station: stationNumber,
+        },
+      };
+    }
+
+    if (
+      this.#isPlaceOccupied(stationNumber) && !this.#isMrXCaught(stationNumber)
+    ) {
       return { status: false, message: "Station already occupied ..!" };
     }
 

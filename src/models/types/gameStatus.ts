@@ -1,10 +1,7 @@
 export interface GameOverDetails {
-  isGameOver: boolean;
-  resultInfo: {
-    detective: string;
-    color: string;
-    station: number;
-  };
+  detective: string;
+  color: string;
+  station: number;
 }
 
 export interface MrxTicketsStatus {

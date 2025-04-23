@@ -52,3 +52,15 @@ body {
   gap: 6px;
   border: 1px solid grey;
 }
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(128, 128, 128, 0.7);
+  z-index: 1;
+  pointer-events: all;
+  display: none; /* hide by default */
+}
