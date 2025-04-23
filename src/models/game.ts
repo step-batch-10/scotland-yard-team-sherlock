@@ -52,8 +52,8 @@ export class Game {
   #isRevealTurn(round: number) {
     return this.#mrxRevealPositions.includes(round);
   }
-
-  gameStatus(playerId: string): GameStatus {
+  
+  #mrXStatus(playerId: string) {
     const isMrx = this.#isMrX(playerId);
 
     const isRevealTurn = this.#isRevealTurn(this.#mrxMoves.length);
@@ -61,22 +61,27 @@ export class Game {
       ...this.#players[0],
       position: isMrx || isRevealTurn ? this.#players[0].position : undefined,
     };
+    return mrxStatus;
+  }
 
+  #indexOf(playerId: string) {
+    return this.#players.findIndex(({ id }) => id === playerId);
+  }
+
+  gameStatus(playerId: string): GameStatus {
+    const mrxStatus = this.#mrXStatus(playerId);
     const detectives = this.#players.slice(1, 6) as DetectiveStatus[];
 
     return {
       players: [mrxStatus, ...detectives] as GameStatusPlayers,
       mrXMoves: this.#mrxMoves.map(
         ({ ticket, position }, index) => {
-          const isRevealTurn = this.#mrxRevealPositions.includes(index + 1);
-          return {
-            ticket,
-            position: isRevealTurn ? position : undefined,
-          };
+          const isRevealTurn = this.#isRevealTurn(index + 1);
+          return { ticket, position: isRevealTurn ? position : undefined };
         },
       ),
 
-      you: this.#players.findIndex(({ id }) => id === playerId),
+      you: this.#indexOf(playerId),
       currentPlayer: this.#currentPlayerIndex,
       gameEndDetails: this.#gameOverDetails,
     };
@@ -90,7 +95,7 @@ export class Game {
     }
 
     if (this.#isMrXCaught(stationNumber)) {
-      const playerInfo = this.#players.find(({ id }) => id === playerId);
+      const playerInfo = this.#players[this.#indexOf(playerId)];
 
       this.#gameOverDetails = {
         detective: playerInfo!.name,
