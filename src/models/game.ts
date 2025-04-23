@@ -91,12 +91,9 @@ export class Game {
       const playerInfo = this.#players.find(({ id }) => id === playerId);
 
       this.#gameOverDetails = {
-        isGameOver: true,
-        resultInfo: {
-          detective: playerInfo!.name,
-          color: playerInfo!.color,
-          station: stationNumber,
-        },
+        detective: playerInfo!.name,
+        color: playerInfo!.color,
+        station: stationNumber,
       };
     }
 
