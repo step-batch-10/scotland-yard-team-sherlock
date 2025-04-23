@@ -22,9 +22,14 @@ const hidePopUp = () => {
   });
 };
 
-const showJoinForm = (_e) => {
-  const joinForm = document.getElementById("join-popup");
+const showJoinForm = () => {
+  const joinForm = document.getElementById("join-popup-wrap");
   joinForm.style.display = "flex";
+};
+
+const closeJoinForm = () => {
+  const joinForm = document.getElementById("join-popup-wrap");
+  joinForm.style.display = "none";
 };
 
 const joinPlayer = async (e) => {
@@ -38,6 +43,9 @@ const handleJoinButton = () => {
   join.addEventListener("click", showJoinForm);
   const joinForm = document.getElementById("join-form");
   joinForm.addEventListener("submit", joinPlayer);
+
+  const closeButton = document.querySelector("#join-form-close-button");
+  closeButton.addEventListener("click", closeJoinForm);
 };
 
 const main = () => {
