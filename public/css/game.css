@@ -90,6 +90,8 @@ body {
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   justify-content: center;
   text-align: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .popup-body {
@@ -135,15 +137,22 @@ body {
   justify-content: center;
   text-align: center;
   color: whitesmoke;
+  justify-content: center;
+  text-align: center;
+  color: whitesmoke;
 }
 
 .gameEndHeading {
   text-align: center;
   color: whitesmoke;
   justify-content: center;
+  color: whitesmoke;
+  justify-content: center;
 }
 
 .station-info {
+  color: whitesmoke;
+  padding-right: 8px;
   color: whitesmoke;
   padding-right: 8px;
 }
