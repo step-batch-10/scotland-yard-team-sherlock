@@ -1,3 +1,12 @@
+export interface GameOverDetails {
+  isGameOver: boolean;
+  resultInfo: {
+    detective: string;
+    color: string;
+    station: number;
+  };
+}
+
 export interface MrxTicketsStatus {
   bus: number;
   taxi: number;
@@ -50,7 +59,7 @@ export interface GameStatus {
   currentPlayer: number;
   mrXMoves: MrXMoveStatus[];
   players: GameStatusPlayers;
-  isGameOver: boolean;
+  gameEndDetails?: GameOverDetails;
 }
 
 export const mockStates = {
