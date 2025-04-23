@@ -13,12 +13,9 @@ const gameEndingDetails = (
   color: string,
 ): GameOverDetails => {
   return {
-    isGameOver: true,
-    resultInfo: {
-      detective: detective,
-      color: color,
-      station: id,
-    },
+    detective: detective,
+    color: color,
+    station: id,
   };
 };
 
