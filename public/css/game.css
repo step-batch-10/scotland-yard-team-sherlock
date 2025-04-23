@@ -135,3 +135,7 @@ body {
 .gameEndHeading {
   text-align: center;
 }
+
+.station-info {
+  padding: 10px;
+}

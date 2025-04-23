@@ -255,7 +255,7 @@ const renderGameOverPopup = (gameResult) => {
 
   const stationInfo = document.createElement("h3");
   stationInfo.textContent = `At Station number - ${gameResult.station}`;
-  stationInfo.style.padding = "10px";
+  stationInfo.classList.add("station-info");
 
   gameOverContainer.append(resultSection, stationInfo);
   resultPanel.append(gameOverHeading, gameOverContainer);
