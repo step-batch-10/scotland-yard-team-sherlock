@@ -44,6 +44,24 @@ export const handleLoginAccess = async (context: Context, next: Next) => {
   return await next();
 };
 
+export const handleWaitingAccess = async (context: Context, next: Next) => {
+  const playerId = context.get("playerId");
+  const roomId = getCookie(context, "roomId");
+
+  if (!roomId) return context.redirect("/");
+
+  const lobbyManager: LobbyManager = context.get("lobbyManager");
+  const gameId = lobbyManager.getGameId(playerId!);
+
+  const room = lobbyManager.getRoom(roomId);
+
+  if (!room && !gameId) return context.redirect("/");
+
+  context.set("roomId", roomId);
+
+  return await next();
+};
+
 export const validateRoomId = async (context: Context, next: Next) => {
   const roomId = getCookie(context, "roomId");
 

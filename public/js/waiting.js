@@ -120,8 +120,8 @@ const renderPlayers = () => {
     if (isLobbyFull) return await renderPlayerInfo(players);
 
     renderPlayerNames(players);
-    // return renderPlayers();
-  }, 3000);
+    return renderPlayers();
+  }, 1000);
 };
 
 const main = () => {

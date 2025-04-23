@@ -19,6 +19,7 @@ import {
   checkGameStart,
   checkRoomRejoin,
   handleLoginAccess,
+  handleWaitingAccess,
   validateGameId,
   validateJoin,
   validatePlayerId,
@@ -46,7 +47,12 @@ export const createApp = (
   app.get("/", validatePlayerId, serveIndex);
   app.get("/index.html", validatePlayerId, serveIndex);
   app.get("/login.html", handleLoginAccess);
-  app.get("/waiting.html", validatePlayerId, validateRoomId, serveWaitingPage);
+  app.get(
+    "/waiting.html",
+    validatePlayerId,
+    handleWaitingAccess,
+    serveWaitingPage,
+  );
   app.get("/game.html", validatePlayerId, validateGameId);
 
   app.post("/auth/login", login);
