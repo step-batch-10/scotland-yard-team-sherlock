@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { PlayerSessions } from "./models/playerSessions.ts";
+import { PlayerManager } from "./models/playerManager.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
@@ -22,8 +22,8 @@ export const assignRoles = (ctx: Context) => {
 };
 
 const playerName = (ctx: Context, id: string) => {
-  const playerSessions: PlayerSessions = ctx.get("playerSessions");
-  return playerSessions.getPlayer(id);
+  const playerManager: PlayerManager = ctx.get("playerManager");
+  return playerManager.getPlayer(id);
 };
 
 export const serveRoomStatus = (context: Context) => {
@@ -55,8 +55,8 @@ export const login = async (context: Context) => {
   const formData = await context.req.formData();
   const playerName = formData.get("player-name") as string;
 
-  const playerSessions: PlayerSessions = context.get("playerSessions");
-  const playerId = playerSessions.createSession(playerName);
+  const playerManager: PlayerManager = context.get("playerManager");
+  const playerId = playerManager.createSession(playerName);
 
   setCookie(context, "playerId", playerId);
   return context.redirect("/");
@@ -105,8 +105,8 @@ export const handleGameJoin = (ctx: Context) => {
 
 export const logout = (context: Context) => {
   const playerId = context.get("playerId");
-  const playerSessions: PlayerSessions = context.get("playerSessions");
-  playerSessions.delete(playerId);
+  const playerManager: PlayerManager = context.get("playerManager");
+  playerManager.delete(playerId);
 
   deleteCookie(context, "playerId");
   return context.redirect("/login.html");

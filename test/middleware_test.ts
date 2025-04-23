@@ -1,18 +1,18 @@
 import { assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
-import { PlayerSessions } from "../src/models/playerSessions.ts";
+import { PlayerManager } from "../src/models/playerManager.ts";
 import { LobbyManager } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
 import { createApp } from "../src/app.ts";
 
 describe("validations", () => {
   it("Should return to login page. If gameId and playerId cookie is not available.", async () => {
-    const playerSessions = new PlayerSessions();
+    const playerManager = new PlayerManager();
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
 
     const app = createApp(
-      playerSessions,
+      playerManager,
       lobbyManager,
       gameManager,
     );
@@ -24,14 +24,14 @@ describe("validations", () => {
   });
 
   it("Should return to waiting page. If gameId cookie is not available.", async () => {
-    const playerSessions = new PlayerSessions();
-    const playerId = playerSessions.createSession("NAME");
+    const playerManager = new PlayerManager();
+    const playerId = playerManager.createSession("NAME");
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer({ id: playerId, name: "NAME" });
     const gameManager = new GameManager();
 
     const app = createApp(
-      playerSessions,
+      playerManager,
       lobbyManager,
       gameManager,
     );
@@ -44,15 +44,15 @@ describe("validations", () => {
   });
 
   it("Should return to waiting page if roomId available.", async () => {
-    const playerSessions = new PlayerSessions();
-    const playerId = playerSessions.createSession("abc");
+    const playerManager = new PlayerManager();
+    const playerId = playerManager.createSession("abc");
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
     const roomId: string =
       lobbyManager.addPlayer({ id: playerId, name: "James" }).roomId;
 
     const app = createApp(
-      playerSessions,
+      playerManager,
       lobbyManager,
       gameManager,
     );
@@ -67,8 +67,8 @@ describe("validations", () => {
   });
 
   it("should redirect to waiting page if invalid gameId present", async () => {
-    const playerSessions = new PlayerSessions();
-    const playerId = playerSessions.createSession("Name");
+    const playerManager = new PlayerManager();
+    const playerId = playerManager.createSession("Name");
 
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
@@ -81,7 +81,7 @@ describe("validations", () => {
     lobbyManager.addPlayer({ id: "6", name: "James6" });
 
     const app = createApp(
-      playerSessions,
+      playerManager,
       lobbyManager,
       gameManager,
     );
@@ -94,8 +94,8 @@ describe("validations", () => {
   });
 
   it("should redirect to waiting page room already exists", async () => {
-    const playerSessions = new PlayerSessions();
-    const playerId = playerSessions.createSession("Name");
+    const playerManager = new PlayerManager();
+    const playerId = playerManager.createSession("Name");
 
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer({ id: playerId, name: "Name" });
@@ -103,7 +103,7 @@ describe("validations", () => {
     const gameManager = new GameManager();
 
     const app = createApp(
-      playerSessions,
+      playerManager,
       lobbyManager,
       gameManager,
     );
@@ -117,15 +117,15 @@ describe("validations", () => {
   });
 
   it("should return invalid room id message if the room is invalid when joining", async () => {
-    const playerSessions = new PlayerSessions();
-    const playerId = playerSessions.createSession("Name");
+    const playerManager = new PlayerManager();
+    const playerId = playerManager.createSession("Name");
 
     const lobbyManager = new LobbyManager();
 
     const gameManager = new GameManager();
 
     const app = createApp(
-      playerSessions,
+      playerManager,
       lobbyManager,
       gameManager,
     );
@@ -144,15 +144,15 @@ describe("validations", () => {
 
   describe("handleWaitingAccess", () => {
     it("should redirect to home if no room id present in cookie", async () => {
-      const playerSessions = new PlayerSessions();
-      const playerId = playerSessions.createSession("Name");
+      const playerManager = new PlayerManager();
+      const playerId = playerManager.createSession("Name");
 
       const lobbyManager = new LobbyManager();
       lobbyManager.addPlayer({ name: "Name", id: playerId });
 
       const gameManager = new GameManager();
 
-      const app = createApp(playerSessions, lobbyManager, gameManager);
+      const app = createApp(playerManager, lobbyManager, gameManager);
 
       const response = await app.request("/waiting.html", {
         headers: { "cookie": `playerId=${playerId}` },
@@ -163,15 +163,15 @@ describe("validations", () => {
     });
 
     it("should redirect to home if both room and gameid is invalid", async () => {
-      const playerSessions = new PlayerSessions();
-      const playerId = playerSessions.createSession("Name");
+      const playerManager = new PlayerManager();
+      const playerId = playerManager.createSession("Name");
 
       const lobbyManager = new LobbyManager();
       lobbyManager.addPlayer({ name: "Name", id: playerId });
 
       const gameManager = new GameManager();
 
-      const app = createApp(playerSessions, lobbyManager, gameManager);
+      const app = createApp(playerManager, lobbyManager, gameManager);
 
       const response = await app.request("/waiting.html", {
         headers: { "cookie": `playerId=${playerId}; roomId=123` },
@@ -182,15 +182,15 @@ describe("validations", () => {
     });
 
     it("should return waiting page if roomId is valid", async () => {
-      const playerSessions = new PlayerSessions();
-      const playerId = playerSessions.createSession("Name");
+      const playerManager = new PlayerManager();
+      const playerId = playerManager.createSession("Name");
 
       const lobbyManager = new LobbyManager();
       const { roomId } = lobbyManager.addPlayer({ name: "Name", id: playerId });
 
       const gameManager = new GameManager();
 
-      const app = createApp(playerSessions, lobbyManager, gameManager);
+      const app = createApp(playerManager, lobbyManager, gameManager);
 
       const response = await app.request("/waiting.html", {
         headers: { "cookie": `playerId=${playerId}; roomId=${roomId}` },
@@ -200,8 +200,8 @@ describe("validations", () => {
     });
 
     it("should return waiting page if roomId is invalid but gameId is present", async () => {
-      const playerSessions = new PlayerSessions();
-      const playerId = playerSessions.createSession("Name");
+      const playerManager = new PlayerManager();
+      const playerId = playerManager.createSession("Name");
 
       const lobbyManager = new LobbyManager();
       lobbyManager.addPlayer({ name: "Name1", id: playerId });
@@ -213,7 +213,7 @@ describe("validations", () => {
 
       const gameManager = new GameManager();
 
-      const app = createApp(playerSessions, lobbyManager, gameManager);
+      const app = createApp(playerManager, lobbyManager, gameManager);
 
       const response = await app.request("/waiting.html", {
         headers: { "cookie": `playerId=${playerId}; roomId=112` },

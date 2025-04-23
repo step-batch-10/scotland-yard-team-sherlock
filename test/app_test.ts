@@ -1,6 +1,6 @@
 import { assert, assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
-import { PlayerSessions } from "../src/models/playerSessions.ts";
+import { PlayerManager } from "../src/models/playerManager.ts";
 import { createApp } from "../src/app.ts";
 import { LobbyManager } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
@@ -39,13 +39,13 @@ describe("Authentication", () => {
   });
 
   describe("login", () => {
-    it("should add new player to playerSessions and redirect to home", async () => {
-      const playerSessions = new PlayerSessions();
+    it("should add new player to playerManager and redirect to home", async () => {
+      const playerManager = new PlayerManager();
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
       const app = createApp(
-        playerSessions,
+        playerManager,
         lobbyManager,
         gameManager,
       );
@@ -62,7 +62,7 @@ describe("Authentication", () => {
 
       assertEquals(response.status, 302);
       assertEquals(response.headers.get("location"), "/");
-      assertEquals(playerSessions.sessions.size, 1);
+      assertEquals(playerManager.sessions.size, 1);
       assert(response.headers.has("set-cookie"));
     });
   });
@@ -92,13 +92,13 @@ describe("Authentication", () => {
 });
 
 export const createAppWithPlayers = (loggedInUser: string) => {
-  const playerSessions = new PlayerSessions();
-  playerSessions.createSession(loggedInUser);
+  const playerManager = new PlayerManager();
+  playerManager.createSession(loggedInUser);
   const lobbyManager = new LobbyManager();
   const gameManager = new GameManager();
 
   const app = createApp(
-    playerSessions,
+    playerManager,
     lobbyManager,
     gameManager,
   );

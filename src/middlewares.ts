@@ -1,8 +1,8 @@
 import { Context, Next } from "hono";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
-import { PlayerSessions } from "./models/playerSessions.ts";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
+import { PlayerManager } from "./models/playerManager.ts";
 
 export const validateJoin = async (context: Context, next: Next) => {
   const fd: FormData = await context.req.formData();
@@ -24,8 +24,8 @@ export const validatePlayerId = async (context: Context, next: Next) => {
 
   if (!playerId) return context.redirect("/login.html");
 
-  const playerSessions: PlayerSessions = context.get("playerSessions");
-  const playerName = playerSessions.getPlayer(playerId);
+  const playerManager: PlayerManager = context.get("playerManager");
+  const playerName = playerManager.getPlayer(playerId);
   if (!playerName) return context.redirect("/login.html");
 
   context.set("playerName", playerName);
@@ -36,8 +36,8 @@ export const validatePlayerId = async (context: Context, next: Next) => {
 export const handleLoginAccess = async (context: Context, next: Next) => {
   const playerId = getCookie(context, "playerId");
 
-  const playerSessions: PlayerSessions = context.get("playerSessions");
-  const playerName = playerSessions.getPlayer(playerId || "");
+  const playerManager: PlayerManager = context.get("playerManager");
+  const playerName = playerManager.getPlayer(playerId || "");
 
   if (playerName) return context.redirect("/");
 

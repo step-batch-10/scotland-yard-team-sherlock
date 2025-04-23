@@ -25,12 +25,12 @@ import {
   validatePlayerId,
   validateRoomId,
 } from "./middlewares.ts";
-import { PlayerSessions } from "./models/playerSessions.ts";
+import { PlayerManager } from "./models/playerManager.ts";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
 
 export const createApp = (
-  playerSessions: PlayerSessions,
+  playerManager: PlayerManager,
   lobbyManager: LobbyManager,
   gameManager: GameManager,
 ) => {
@@ -38,7 +38,7 @@ export const createApp = (
   app.use(logger());
 
   app.use(async (context: Context, next: Next) => {
-    context.set("playerSessions", playerSessions);
+    context.set("playerManager", playerManager);
     context.set("lobbyManager", lobbyManager);
     context.set("gameManager", gameManager);
     await next();

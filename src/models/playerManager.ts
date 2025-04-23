@@ -1,4 +1,4 @@
-export class PlayerSessions {
+export class PlayerManager {
   #sessions: Map<string, string>;
   #id: number;
 
