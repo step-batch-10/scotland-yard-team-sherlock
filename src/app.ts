@@ -3,7 +3,6 @@ import { serveStatic } from "hono/deno";
 import { logger } from "hono/logger";
 import {
   assignRoles,
-  fetchPlayers,
   handleGameJoin,
   leaveLobby,
   login,
@@ -11,6 +10,8 @@ import {
   makeMove,
   serveGameStatus,
   serveIndex,
+  serveRoomStatus,
+  serveWaitingPage,
 } from "./handlers.ts";
 
 import {
@@ -44,7 +45,7 @@ export const createApp = (
   app.get("/", validatePlayerId, serveIndex);
   app.get("/index.html", validatePlayerId, serveIndex);
   app.get("/login.html", handleLoginAccess);
-  app.get("/waiting.html", validatePlayerId, validateRoomId);
+  app.get("/waiting.html", validatePlayerId, validateRoomId, serveWaitingPage);
   app.get("/game.html", validatePlayerId, validateGameId);
 
   app.post("/auth/login", login);
@@ -62,7 +63,7 @@ export const createApp = (
     validatePlayerId,
     checkGameStart,
     validateRoomId,
-    fetchPlayers,
+    serveRoomStatus,
   );
   app.post("/lobby/room/leave", validatePlayerId, validateRoomId, leaveLobby);
 

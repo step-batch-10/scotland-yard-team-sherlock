@@ -76,4 +76,8 @@ figcaption {
 
 #room-id {
   color: white;
+  background-color: #2c2b2b85;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
 }

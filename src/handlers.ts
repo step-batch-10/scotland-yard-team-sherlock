@@ -26,14 +26,14 @@ const playerName = (ctx: Context, id: string) => {
   return playerSessions.getPlayer(id);
 };
 
-export const fetchPlayers = (context: Context) => {
+export const serveRoomStatus = (context: Context) => {
   const roomId = context.get("roomId");
   const lobbyManager: LobbyManager = context.get("lobbyManager");
 
   const playerIds = lobbyManager.getRoomPlayers(roomId);
 
   const players = playerIds.map(({ id }) => playerName(context, id));
-  return context.json({ players, isLobbyFull: false, roomId });
+  return context.json({ players, isLobbyFull: false });
 };
 
 export const serveIndex = async (context: Context) => {
@@ -42,6 +42,14 @@ export const serveIndex = async (context: Context) => {
   const playerName = context.get("playerName");
 
   return context.html(page.replaceAll("##NAME##", playerName));
+};
+
+export const serveWaitingPage = async (context: Context) => {
+  const page = await Deno.readTextFile("./public/waiting.html");
+
+  const roomId = context.get("roomId");
+
+  return context.html(page.replaceAll("##ROOM-ID##", `Room ID - ${roomId}`));
 };
 
 export const login = async (context: Context) => {

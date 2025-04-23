@@ -113,20 +113,14 @@ const fetchRoomStatus = async () => {
   return await fetch("/lobby/room/status");
 };
 
-const renderRoomId = (roomId) => {
-  const r = document.getElementById("room-id");
-  r.textContent = `Room Id : ${roomId}`;
-};
-
 const renderPlayers = () => {
   setTimeout(async () => {
     const response = await fetchRoomStatus();
-    const { players, isLobbyFull, roomId } = await response.json();
-    renderRoomId(roomId);
+    const { players, isLobbyFull } = await response.json();
     if (isLobbyFull) return await renderPlayerInfo(players);
 
     renderPlayerNames(players);
-    return renderPlayers();
+    // return renderPlayers();
   }, 3000);
 };
 
