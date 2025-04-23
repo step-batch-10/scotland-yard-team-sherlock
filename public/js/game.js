@@ -224,7 +224,7 @@ const createCaughtMessage = () => {
 
 const createGameOverHeading = () => {
   const heading = document.createElement("h1");
-  heading.textContent = "Game Over";
+  heading.textContent = "✽ Game Over ✽";
   heading.classList.add("gameEndHeading");
   return heading;
 };
