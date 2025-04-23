@@ -10,6 +10,7 @@ body {
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  background-color: rgba(30, 74, 95);
 }
 
 .map-container {
@@ -63,4 +64,74 @@ body {
   z-index: 1;
   pointer-events: all;
   display: none; /* hide by default */
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.popup-content {
+  background-color: beige;
+  position: relative;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+.popup-body {
+  overflow-y: scroll;
+  padding-right: 10px;
+  margin-top: 10px;
+  max-height: 60vh;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: white;
+  border: 0;
+  border-radius: 50%;
+  color: maroon;
+  padding: 7px;
+}
+
+.close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#detective-info {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-result {
+  display: flex;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+.gameEndHeading {
+  text-align: center;
 }

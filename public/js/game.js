@@ -200,6 +200,67 @@ const addStationClicks = (map) => {
   }
 };
 
+const hidePopUp = () => {
+  const popup = document.getElementById("popup");
+  const closeBtn = document.querySelector(".close");
+
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+  });
+
+  globalThis.addEventListener("click", (event) => {
+    if (event.target === popup) {
+      popup.style.display = "none";
+    }
+  });
+};
+
+const createCaughtMessage = () => {
+  const caughtMsg = document.createElement("h3");
+  caughtMsg.style.padding = "10px";
+  caughtMsg.textContent = `Mr. X caught by:`;
+  return caughtMsg;
+};
+
+const createGameOverHeading = () => {
+  const heading = document.createElement("h1");
+  heading.textContent = "Game Over";
+  heading.classList.add("gameEndHeading");
+  return heading;
+};
+
+const createDetectiveBadge = (gameResult) => {
+  const badge = document.createElement("div");
+  badge.id = "detective-info";
+  badge.style.backgroundColor = gameResult.color;
+  badge.textContent = gameResult.detective;
+  return badge;
+};
+
+const createGameResultSection = (gameResult) => {
+  const resultSection = document.createElement("div");
+  resultSection.id = "game-result";
+
+  const caughtMsg = createCaughtMessage();
+  const detectiveBadge = createDetectiveBadge(gameResult);
+
+  resultSection.append(caughtMsg, detectiveBadge);
+  return resultSection;
+};
+const renderGameOverPopup = (gameResult) => {
+  const resultPanel = document.getElementById("result-panel");
+  const gameOverContainer = document.createElement("div");
+  const gameOverHeading = createGameOverHeading();
+  const resultSection = createGameResultSection(gameResult);
+
+  const stationInfo = document.createElement("h3");
+  stationInfo.textContent = `At Station number - ${gameResult.station}`;
+  stationInfo.style.padding = "10px";
+
+  gameOverContainer.append(resultSection, stationInfo);
+  resultPanel.append(gameOverHeading, gameOverContainer);
+};
+
 const main = async () => {
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
@@ -210,7 +271,9 @@ const main = async () => {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
 
     if (gameStatus.gameEndDetails) {
-      alert("game Over");
+      const gameEndPopup = document.getElementById("popup");
+      gameEndPopup.style.display = "flex";
+      renderGameOverPopup(gameStatus.gameEndDetails);
       document.getElementById("overlay").style.display = "block";
       poll.stop();
     }
@@ -218,6 +281,8 @@ const main = async () => {
     renderPlayerPositions(map, gameStatus);
     await delay(1000);
   }
+
+  hidePopUp();
 };
 
 globalThis.onload = main;
