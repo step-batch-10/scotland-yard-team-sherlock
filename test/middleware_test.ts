@@ -115,6 +115,7 @@ describe("validations", () => {
     assertEquals(response.status, 302);
     assertEquals(response.headers.get("location"), "/waiting.html");
   });
+
   it("should return invalid room id message if the room is invalid when joining", async () => {
     const playerSessions = new PlayerSessions();
     const playerId = playerSessions.createSession("Name");
@@ -139,5 +140,86 @@ describe("validations", () => {
 
     assertEquals(response.status, 403);
     assertEquals(await response.json(), { error: "invalid room id" });
+  });
+
+  describe("handleWaitingAccess", () => {
+    it("should redirect to home if no room id present in cookie", async () => {
+      const playerSessions = new PlayerSessions();
+      const playerId = playerSessions.createSession("Name");
+
+      const lobbyManager = new LobbyManager();
+      lobbyManager.addPlayer({ name: "Name", id: playerId });
+
+      const gameManager = new GameManager();
+
+      const app = createApp(playerSessions, lobbyManager, gameManager);
+
+      const response = await app.request("/waiting.html", {
+        headers: { "cookie": `playerId=${playerId}` },
+      });
+
+      assertEquals(response.status, 302);
+      assertEquals(response.headers.get("location"), "/");
+    });
+
+    it("should redirect to home if both room and gameid is invalid", async () => {
+      const playerSessions = new PlayerSessions();
+      const playerId = playerSessions.createSession("Name");
+
+      const lobbyManager = new LobbyManager();
+      lobbyManager.addPlayer({ name: "Name", id: playerId });
+
+      const gameManager = new GameManager();
+
+      const app = createApp(playerSessions, lobbyManager, gameManager);
+
+      const response = await app.request("/waiting.html", {
+        headers: { "cookie": `playerId=${playerId}; roomId=123` },
+      });
+
+      assertEquals(response.status, 302);
+      assertEquals(response.headers.get("location"), "/");
+    });
+
+    it("should return waiting page if roomId is valid", async () => {
+      const playerSessions = new PlayerSessions();
+      const playerId = playerSessions.createSession("Name");
+
+      const lobbyManager = new LobbyManager();
+      const { roomId } = lobbyManager.addPlayer({ name: "Name", id: playerId });
+
+      const gameManager = new GameManager();
+
+      const app = createApp(playerSessions, lobbyManager, gameManager);
+
+      const response = await app.request("/waiting.html", {
+        headers: { "cookie": `playerId=${playerId}; roomId=${roomId}` },
+      });
+
+      assertEquals(response.status, 200);
+    });
+
+    it("should return waiting page if roomId is invalid but gameId is present", async () => {
+      const playerSessions = new PlayerSessions();
+      const playerId = playerSessions.createSession("Name");
+
+      const lobbyManager = new LobbyManager();
+      lobbyManager.addPlayer({ name: "Name1", id: playerId });
+      lobbyManager.addPlayer({ name: "Name2", id: "2" });
+      lobbyManager.addPlayer({ name: "Name3", id: "3" });
+      lobbyManager.addPlayer({ name: "Name4", id: "4" });
+      lobbyManager.addPlayer({ name: "Name5", id: "5" });
+      lobbyManager.addPlayer({ name: "Name6", id: "6" });
+
+      const gameManager = new GameManager();
+
+      const app = createApp(playerSessions, lobbyManager, gameManager);
+
+      const response = await app.request("/waiting.html", {
+        headers: { "cookie": `playerId=${playerId}; roomId=112` },
+      });
+
+      assertEquals(response.status, 302);
+    });
   });
 });

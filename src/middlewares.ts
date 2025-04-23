@@ -51,9 +51,8 @@ export const handleWaitingAccess = async (context: Context, next: Next) => {
   if (!roomId) return context.redirect("/");
 
   const lobbyManager: LobbyManager = context.get("lobbyManager");
-  const gameId = lobbyManager.getGameId(playerId!);
-
   const room = lobbyManager.getRoom(roomId);
+  const gameId = lobbyManager.getGameId(playerId!);
 
   if (!room && !gameId) return context.redirect("/");
 
@@ -70,9 +69,7 @@ export const validateRoomId = async (context: Context, next: Next) => {
   const lobbyManager: LobbyManager = context.get("lobbyManager");
   const room = lobbyManager.getRoom(roomId);
 
-  if (!room) {
-    return context.redirect("/");
-  }
+  if (!room) return context.redirect("/");
 
   context.set("roomId", roomId);
   context.set("room", room);
