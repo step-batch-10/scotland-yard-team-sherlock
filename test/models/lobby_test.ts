@@ -18,13 +18,6 @@ describe("Lobby Manager", () => {
     assertEquals(remainingPlayers.length, 0);
   });
 
-  it("Should return true by game deletion", () => {
-    const lobbyManager = new LobbyManager();
-    const roomId = lobbyManager.addPlayer({ id: "1", name: "James" }).roomId;
-
-    assertFalse(lobbyManager.isRoomFull(roomId));
-  });
-
   it("Should return game players in lobby", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer({ id: "1", name: "James" }).roomId;
@@ -70,5 +63,13 @@ describe("Lobby Manager", () => {
     const lobbyManager = new LobbyManager();
     const roomId = lobbyManager.addPlayer({ id: "1", name: "James" }).roomId;
     assert(lobbyManager.hasRoom(roomId));
+  });
+  it("should add the player into existing room ", () => {
+    const lobbyManager = new LobbyManager();
+    const roomId = lobbyManager.addPlayer({ id: "1", name: "James" }).roomId;
+    lobbyManager.addToExistingRoom(roomId, { id: "2", name: "jon" });
+
+    const room = lobbyManager.getRoom(roomId);
+    assertEquals(room?.players.length, 2);
   });
 });

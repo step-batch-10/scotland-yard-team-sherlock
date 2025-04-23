@@ -69,12 +69,30 @@ export interface Player {
   color: string;
   position: number;
 }
-
-export const handleGameJoin = (ctx: Context) => {
-  const playerId = getCookie(ctx, "playerId");
+export const joinUser = (ctx: Context) => {
+  const roomId = ctx.get("roomId");
+  const playerId = ctx.get("playerId");
+  const name = ctx.get("playerName");
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
   const gameManager: GameManager = ctx.get("gameManager");
-  const name: string = ctx.get<string>("playerName");
+  const { isLobbyFull } = lobbyManager.addToExistingRoom(roomId, {
+    id: playerId,
+    name,
+  });
+
+  if (isLobbyFull) {
+    gameManager.saveGame(lobbyManager.createGame(roomId));
+  }
+
+  ctx.status(302);
+  return ctx.json({ location: "/waiting.html" });
+};
+
+export const handleGameJoin = (ctx: Context) => {
+  const playerId = ctx.get("playerId");
+  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
+  const gameManager: GameManager = ctx.get("gameManager");
+  const name: string = ctx.get("playerName");
   const { roomId, isLobbyFull }: { roomId: string; isLobbyFull: boolean } =
     lobbyManager.addPlayer({ id: playerId!, name });
 

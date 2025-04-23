@@ -4,6 +4,7 @@ import { logger } from "hono/logger";
 import {
   assignRoles,
   handleGameJoin,
+  joinUser,
   leaveLobby,
   login,
   logout,
@@ -57,7 +58,7 @@ export const createApp = (
     checkRoomRejoin,
     handleGameJoin,
   );
-  app.post("/lobby/room/join", validatePlayerId, validateJoin);
+  app.post("/lobby/room/join", validatePlayerId, validateJoin, joinUser);
   app.get(
     "/lobby/room/status",
     validatePlayerId,

@@ -7,10 +7,16 @@ import { GameManager } from "./models/gameManager.ts";
 export const validateJoin = async (context: Context, next: Next) => {
   const fd: FormData = await context.req.formData();
   const roomId = fd.get("room-id");
-  const lobbyManager: LobbyManager = new LobbyManager();
-  if (lobbyManager.hasRoom(roomId as string)) await next();
+  context.set("roomId", roomId);
+  const lobbyManager: LobbyManager = context.get("lobbyManager");
 
-  return context.text("invalid room id");
+  if (lobbyManager.hasRoom(roomId as string)) {
+    setCookie(context, "roomId", roomId as string);
+    return await next();
+  }
+
+  context.status(403);
+  return context.json({ error: "invalid room id" });
 };
 
 export const validatePlayerId = async (context: Context, next: Next) => {
@@ -40,12 +46,15 @@ export const handleLoginAccess = async (context: Context, next: Next) => {
 
 export const validateRoomId = async (context: Context, next: Next) => {
   const roomId = getCookie(context, "roomId");
+
   if (!roomId) return context.redirect("/");
 
   const lobbyManager: LobbyManager = context.get("lobbyManager");
   const room = lobbyManager.getRoom(roomId);
 
-  if (!room) return context.redirect("/");
+  if (!room) {
+    return context.redirect("/");
+  }
 
   context.set("roomId", roomId);
   context.set("room", room);
@@ -83,6 +92,7 @@ export const checkGameStart = async (context: Context, next: Next) => {
 
   const lobbyManager: LobbyManager = context.get("lobbyManager");
   const gameId = lobbyManager.getGameId(playerId!);
+
   if (!gameId) return await next();
 
   deleteCookie(context, "roomId");

@@ -1016,3 +1016,64 @@ describe("Game Page", () => {
     });
   });
 });
+
+describe("Join user", () => {
+  it("should add the player to exiting room when valid room is given", async () => {
+    const playerSessions = new PlayerSessions();
+    const playerId1 = playerSessions.createSession("john");
+    const playerId2 = playerSessions.createSession("james");
+    const lobbyManager = new LobbyManager();
+    const roomId =
+      lobbyManager.addPlayer({ id: playerId1, name: "john" }).roomId;
+    const gameManager = new GameManager();
+
+    const app = createApp(
+      playerSessions,
+      lobbyManager,
+      gameManager,
+    );
+
+    const fd = new FormData();
+    fd.set("room-id", roomId);
+    const response = await app.request("/lobby/room/join", {
+      method: "POST",
+      body: fd,
+      headers: { cookie: `playerId=${playerId2}` },
+    });
+
+    assertEquals(response.status, 302);
+    assertEquals(await response.json(), { location: "/waiting.html" });
+  });
+
+  it("should add the player to exiting room when valid room is given and create game if room is full", async () => {
+    const playerSessions = new PlayerSessions();
+    const playerId1 = playerSessions.createSession("john");
+    const playerId2 = playerSessions.createSession("james");
+    const lobbyManager = new LobbyManager();
+    const roomId =
+      lobbyManager.addPlayer({ id: playerId1, name: "john" }).roomId;
+    lobbyManager.addPlayer({ name: "mrxId", id: "1" });
+    lobbyManager.addPlayer({ name: "d1", id: "5" });
+    lobbyManager.addPlayer({ name: "d2", id: "2" });
+    lobbyManager.addPlayer({ name: "d3", id: "3" });
+
+    const gameManager = new GameManager();
+
+    const app = createApp(
+      playerSessions,
+      lobbyManager,
+      gameManager,
+    );
+
+    const fd = new FormData();
+    fd.set("room-id", roomId);
+    const response = await app.request("/lobby/room/join", {
+      method: "POST",
+      body: fd,
+      headers: { cookie: `playerId=${playerId2}` },
+    });
+
+    assertEquals(response.status, 302);
+    assertEquals(await response.json(), { location: "/waiting.html" });
+  });
+});

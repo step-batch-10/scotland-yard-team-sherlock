@@ -84,10 +84,6 @@ export class LobbyManager {
     return { gameId: roomId, players };
   }
 
-  isRoomFull(roomNo: string): boolean {
-    return this.#rooms.get(roomNo)!.isFull();
-  }
-
   getGameId(playerId: string): string | null {
     return this.#playerToGame.get(playerId) || null;
   }
@@ -102,5 +98,11 @@ export class LobbyManager {
 
   hasRoom(roomId: string): boolean {
     return this.#rooms.has(roomId);
+  }
+
+  addToExistingRoom(roomId: string, player: User) {
+    const room = this.getRoom(roomId)!;
+    room.add(player);
+    return { roomId, isLobbyFull: room.isFull() };
   }
 }

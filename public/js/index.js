@@ -32,10 +32,28 @@ const closeJoinForm = () => {
   joinForm.style.display = "none";
 };
 
+const displayErrorRoomId = (error) => {
+  const form = document.getElementById("join-form");
+  const ptag = document.createElement("p");
+  ptag.textContent = error;
+  form.appendChild(ptag);
+  setTimeout(() => {
+    ptag.remove();
+  }, 3000);
+};
+
 const joinPlayer = async (e) => {
   e.preventDefault();
   const fd = new FormData(e.target);
-  const _res = await fetch("/lobby/room/join", { method: "POST", body: fd });
+  const res = await fetch("/lobby/room/join", { method: "POST", body: fd });
+
+  if (res.status === 302) {
+    const { location } = await res.json();
+    return (globalThis.location.href = location);
+  }
+
+  const { error } = await res.json();
+  displayErrorRoomId(error);
 };
 
 const handleJoinButton = () => {

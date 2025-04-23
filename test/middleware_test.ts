@@ -136,6 +136,8 @@ describe("validations", () => {
       body: fd,
       headers: { cookie: `playerId=${playerId}` },
     });
-    assertEquals(await response.text(), "invalid room id");
+
+    assertEquals(response.status, 403);
+    assertEquals(await response.json(), { error: "invalid room id" });
   });
 });
