@@ -52,7 +52,7 @@ export class Game {
   #isRevealTurn(round: number) {
     return this.#mrxRevealPositions.includes(round);
   }
-  
+
   #mrXStatus(playerId: string) {
     const isMrx = this.#isMrX(playerId);
 
