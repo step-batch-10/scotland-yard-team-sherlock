@@ -204,9 +204,7 @@ const hidePopUp = () => {
   const popup = document.getElementById("popup");
   const closeBtn = document.querySelector(".close");
 
-  closeBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-  });
+  closeBtn.addEventListener("click", () => popup.style.display = "none");
 
   globalThis.addEventListener("click", (event) => {
     if (event.target === popup) {
@@ -222,18 +220,12 @@ const createCaughtMessage = () => {
   return caughtMsg;
 };
 
-const createGameOverHeading = () => {
-  const heading = document.createElement("h1");
-  heading.textContent = "✽ Game Over ✽";
-  heading.classList.add("gameEndHeading");
-  return heading;
-};
-
-const createDetectiveBadge = (gameResult) => {
+const createDetectiveBadge = ({ color, detective }) => {
   const badge = document.createElement("div");
   badge.id = "detective-info";
-  badge.style.backgroundColor = gameResult.color;
-  badge.textContent = gameResult.detective;
+  badge.style.backgroundColor = color;
+  badge.textContent = detective;
+
   return badge;
 };
 
@@ -249,16 +241,12 @@ const createGameResultSection = (gameResult) => {
 };
 const renderGameOverPopup = (gameResult) => {
   const resultPanel = document.getElementById("result-panel");
-  const gameOverContainer = document.createElement("div");
-  const gameOverHeading = createGameOverHeading();
   const resultSection = createGameResultSection(gameResult);
-
   const stationInfo = document.createElement("h3");
+
   stationInfo.textContent = `At Station number - ${gameResult.station}`;
   stationInfo.classList.add("station-info");
-
-  gameOverContainer.append(resultSection, stationInfo);
-  resultPanel.append(gameOverHeading, gameOverContainer);
+  resultPanel.append(resultSection, stationInfo);
 };
 
 const main = async () => {
