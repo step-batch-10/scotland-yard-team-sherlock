@@ -5,13 +5,13 @@ import { GameManager } from "./models/gameManager.ts";
 import { PlayerManager } from "./models/playerManager.ts";
 
 export const validateJoin = async (context: Context, next: Next) => {
-  const fd: FormData = await context.req.formData();
-  const roomId = fd.get("room-id");
-  context.set("roomId", roomId);
+  const formData: FormData = await context.req.formData();
+  const roomId = formData.get("room-id");
+
   const lobbyManager: LobbyManager = context.get("lobbyManager");
 
-  if (lobbyManager.hasRoom(roomId as string)) {
-    setCookie(context, "roomId", roomId as string);
+  if (lobbyManager.getRoom(roomId as string)) {
+    context.set("roomId", roomId);
     return await next();
   }
 
