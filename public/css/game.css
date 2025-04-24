@@ -65,7 +65,7 @@ body {
   background: rgba(128, 128, 128, 0.7);
   z-index: 1;
   pointer-events: all;
-  display: none; /* hide by default */
+  display: none;
 }
 
 .popup {
@@ -155,4 +155,50 @@ body {
 .station-info {
   color: whitesmoke;
   padding-right: 10%;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  background-color: black;
+  width: 100vw;
+  height: 10vh;
+}
+
+.travel-log {
+  background-color: bisque;
+  width: 40%;
+  height: 90%;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.ticket-slot {
+  background-color: #222;
+  width: 100px;
+  height: 100%;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taxi {
+  background-color: yellow;
+}
+
+.bus {
+  background-color: green;
+}
+.reveal-station {
+  font-size: 1.2em;
+  font-weight: bold;
 }

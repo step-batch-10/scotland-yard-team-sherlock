@@ -240,6 +240,7 @@ const createGameResultSection = (gameResult) => {
   resultSection.append(caughtMsg, detectiveBadge);
   return resultSection;
 };
+
 const renderGameOverPopup = (gameResult) => {
   const resultPanel = document.getElementById("result-panel");
   const resultSection = createGameResultSection(gameResult);
@@ -250,10 +251,28 @@ const renderGameOverPopup = (gameResult) => {
   resultPanel.append(resultSection, stationInfo);
 };
 
+const displayMrXLog = () => {
+  const mrXLog = [
+    { ticket: "taxi" },
+    { ticket: "bus" },
+    { ticket: "taxi", station: 6 },
+  ];
+
+  mrXLog.forEach((entry, index) => {
+    const ticketDiv = document.getElementById(`${index + 1}`);
+    const p = document.createElement("p");
+    p.textContent = entry.station ? entry.station : entry.ticket;
+    p.classList.add("reveal-station");
+    ticketDiv.append(p);
+    ticketDiv.classList.add(entry.ticket);
+  });
+};
+
 const main = async () => {
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
 
+  displayMrXLog();
   addStationClicks(map);
 
   while (poll.shouldPoll) {
