@@ -48,7 +48,7 @@ export const serveWaitingPage = async (context: Context) => {
 
   const roomId = context.get("roomId");
 
-  return context.html(page.replaceAll("##ROOM-ID##", `Room ID - ${roomId}`));
+  return context.html(page.replaceAll("###", `${roomId}`));
 };
 
 export const handleLogin = async (context: Context) => {
