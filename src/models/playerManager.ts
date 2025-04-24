@@ -1,32 +1,37 @@
+export const getIdGenerator = (values: string[] = []) => {
+  let index = 0;
+
+  return (): string => {
+    return values[index++] || Date.now().toString();
+  };
+};
 export class PlayerManager {
-  #sessions: Map<string, string>;
-  #id: number;
+  #players: Map<string, string>;
+  #generateId: () => string;
 
-  constructor() {
-    this.#sessions = new Map();
-    this.#id = 0;
+  constructor(
+    generateId: () => string,
+    players: Map<string, string> = new Map(),
+  ) {
+    this.#players = players;
+    this.#generateId = generateId;
   }
 
-  #add(sessionId: string, name: string) {
-    return this.#sessions.set(sessionId, name);
+  add(playerName: string) {
+    const playerId = this.#generateId();
+    this.#players.set(playerId, playerName);
+    return playerId;
   }
 
-  createSession(name: string) {
-    const id = this.#id.toString();
-    this.#add(id, name);
-    this.#id++;
-    return id;
+  get(playerId: string) {
+    return this.#players.get(playerId);
   }
 
-  getPlayer(sessionId: string) {
-    return this.#sessions.get(sessionId);
+  delete(playerId: string) {
+    return this.#players.delete(playerId);
   }
 
-  delete(sessionId: string) {
-    return this.#sessions.delete(sessionId);
-  }
-
-  get sessions() {
-    return this.#sessions;
+  get players() {
+    return this.#players;
   }
 }

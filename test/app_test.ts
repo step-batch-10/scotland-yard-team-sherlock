@@ -1,7 +1,7 @@
 import { assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { createApp } from "../src/app.ts";
-import { PlayerManager } from "../src/models/playerManager.ts";
+import { getIdGenerator, PlayerManager } from "../src/models/playerManager.ts";
 import { LobbyManager, User } from "../src/models/lobby.ts";
 import { GameManager } from "../src/models/gameManager.ts";
 import { GameOverDetails, GameStatus } from "../src/models/types/gameStatus.ts";
@@ -21,50 +21,46 @@ const gameEndingDetails = (
 
 describe("Static page", () => {
   it("Should return index page", async () => {
-    const playerManager = new PlayerManager();
+    const playerManager = new PlayerManager(getIdGenerator());
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
-    const playerId: string = playerManager.createSession("teja");
+
+    const playerId: string = playerManager.add("teja");
     lobbyManager.addPlayer({ id: playerId, name: "teja" });
 
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const headers = { cookie: "playerId=0" };
+    const headers = { cookie: `playerId=${playerId}` };
 
     const res = await app.request("http://localhost:8000", { headers });
-    res.text();
+    await res.text();
 
     assertEquals(res.status, 200);
     assertEquals(res.headers.get("content-type"), "text/html; charset=UTF-8");
   });
 });
 
-describe("Game Join", () => {
-  it("Should redirect to waiting page", async () => {
-    const playerManager = new PlayerManager();
-    const lobbyManager = new LobbyManager();
-    const gameManager = new GameManager();
-    const playerId: string = playerManager.createSession("teja");
-    lobbyManager.addPlayer({ id: playerId, name: "teja" });
-
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
+describe("Quick Join", () => {
+  it("should return to waiting page if the player is logged in", async () => {
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([["123", "Asma"]]),
     );
 
-    const fd = new FormData();
-    fd.set("name", "sherlocks");
+    const lobbyManager = new LobbyManager();
+    const gameManager = new GameManager();
+
+    lobbyManager.addPlayer({ id: "123", name: "Asma" });
+
+    const app = createApp(playerManager, lobbyManager, gameManager);
+
+    const formData = new FormData();
+    formData.set("name", "sherlocks");
+
     const res = await app.request("http://localhost:8000/lobby/quick-play", {
       method: "post",
-      body: fd,
-      headers: {
-        cookie: `roomId=1; playerId=${playerId}`,
-      },
+      body: formData,
+      headers: { cookie: `playerId=123` },
     });
     res.text();
 
@@ -74,25 +70,30 @@ describe("Game Join", () => {
   });
 
   it("Should redirect to waiting page even it is 6th player", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("Name");
-
-    const lobbyManager = new LobbyManager();
-    lobbyManager.addPlayer({ id: "1", name: "James" });
-    lobbyManager.addPlayer({ id: "2", name: "James2" });
-    lobbyManager.addPlayer({ id: "3", name: "James3" });
-    lobbyManager.addPlayer({ id: "4", name: "James4" });
-    lobbyManager.addPlayer({ id: "5", name: "James5" });
-    const gameManager = new GameManager();
-
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([
+        ["111", "James1"],
+        ["222", "James2"],
+        ["333", "James3"],
+        ["444", "James4"],
+        ["555", "James5"],
+        ["666", "James6"],
+      ]),
     );
 
+    const lobbyManager = new LobbyManager();
+    lobbyManager.addPlayer({ id: "111", name: "Janes1" });
+    lobbyManager.addPlayer({ id: "222", name: "Janes2" });
+    lobbyManager.addPlayer({ id: "333", name: "Janes3" });
+    lobbyManager.addPlayer({ id: "444", name: "Janes4" });
+    lobbyManager.addPlayer({ id: "555", name: "Janes5" });
+    const gameManager = new GameManager();
+
+    const app = createApp(playerManager, lobbyManager, gameManager);
+
     const res = await app.request("http://localhost:8000/lobby/quick-play", {
-      headers: { "cookie": ` playerId=${playerId}` },
+      headers: { "cookie": ` playerId=666` },
       method: "POST",
     });
     res.text();
@@ -105,21 +106,19 @@ describe("Game Join", () => {
 
 describe("fetch players", () => {
   it("it should return all player names and isLobbyFull as false", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("a");
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([["111", "James"]]),
+    );
     const lobbyManager = new LobbyManager();
-    const roomId = lobbyManager.addPlayer({ id: playerId, name: "a" }).roomId;
+    const roomId = lobbyManager.addPlayer({ id: "111", name: "James" }).roomId;
     const gameManager = new GameManager();
 
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const players = ["a"];
+    const players = ["James"];
     const isLobbyFull = false;
-    const headers = { cookie: `roomId=${roomId}; playerId=${playerId}` };
+    const headers = { cookie: `roomId=${roomId}; playerId=111` };
     const req = new Request("http://localhost:8000/lobby/room/status", {
       headers,
     });
@@ -130,21 +129,18 @@ describe("fetch players", () => {
   });
 
   it("it should return to home page if roomId not present", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("Name");
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([["111", "James"]]),
+    );
 
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
 
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const headers = { cookie: `playerId=${playerId}` };
     const req = new Request("http://localhost:8000/lobby/room/status", {
-      headers,
+      headers: { cookie: `playerId=111` },
     });
     const res = await app.request(req);
 
@@ -152,31 +148,9 @@ describe("fetch players", () => {
     assertEquals(res.headers.get("location"), "/");
   });
 
-  it("it should return to home page if roomId is invalid", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("Name");
-
-    const lobbyManager = new LobbyManager();
-    const gameManager = new GameManager();
-
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
-    const headers = { cookie: `roomId=123; playerId=${playerId}` };
-    const req = new Request("http://localhost:8000/lobby/room/status", {
-      headers,
-    });
-    const res = await app.request(req);
-
-    assertEquals(res.status, 302);
-    assertEquals(res.headers.get("location"), "/");
-  });
-
-  it("it should assign roles and colors", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("Nm");
+  it("should give players with colors", async () => {
+    const playerManager = new PlayerManager(getIdGenerator(["123"]));
+    const playerId = playerManager.add("name");
 
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
@@ -188,24 +162,22 @@ describe("fetch players", () => {
       { name: "e", id: "5" },
       { name: "f", id: "6" },
     ];
+
     gameManager.saveGame({ gameId: "1", players });
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
     const expected = getPlayers();
     const headers = { cookie: `gameId=1; playerId=${playerId}` };
     const req = new Request("http://localhost:8000/game/details", { headers });
     const res = await app.request(req);
+
     assertEquals(await res.json(), expected);
     assertEquals(res.status, 200);
   });
 
   it("it should return isLobbyFull as true", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("Name");
+    const playerManager = new PlayerManager(getIdGenerator());
+    const playerId = playerManager.add("Name");
 
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
@@ -217,12 +189,7 @@ describe("fetch players", () => {
 
     const roomId = lobbyManager.addPlayer({ id: "6", name: "James6" }).roomId;
     lobbyManager.createGame(roomId);
-
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
     const isLobbyFull = true;
     const headers = { cookie: `roomId=${roomId}; playerId=${playerId}` };
@@ -238,15 +205,11 @@ describe("fetch players", () => {
 
 describe("logout", () => {
   it("Should redirect to the login page after deleting cookie", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("abc");
+    const playerManager = new PlayerManager(getIdGenerator());
+    const playerId = playerManager.add("abc");
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
     const req = await app.request("/auth/logout", {
       headers: { cookie: `playerId=${playerId}` },
     });
@@ -258,19 +221,15 @@ describe("logout", () => {
 
 describe("leave lobby", () => {
   it("should remove the player from lobby and redirect to home page", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("abc");
+    const playerManager = new PlayerManager(getIdGenerator());
+    const playerId = playerManager.add("abc");
     const lobbyManager = new LobbyManager();
 
     const roomId = lobbyManager.addPlayer({ id: playerId, name: "abc" }).roomId;
     lobbyManager.addPlayer({ id: "2", name: "anc" });
     lobbyManager.addPlayer({ id: "3", name: "anc2" });
     const gameManager = new GameManager();
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
     const req = new Request("http://localhost:8000/lobby/room/leave", {
       method: "POST",
       headers: {
@@ -286,8 +245,8 @@ describe("leave lobby", () => {
 
 describe("Game Page", () => {
   it("Should change position", async () => {
-    const playerManager = new PlayerManager();
-    const playerId = playerManager.createSession("a");
+    const playerManager = new PlayerManager(getIdGenerator());
+    const playerId = playerManager.add("a");
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
     const players: User[] = [
@@ -299,11 +258,7 @@ describe("Game Page", () => {
       { name: "f", id: "6" },
     ];
     gameManager.saveGame({ gameId: "1", players });
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
     const headers = { cookie: `gameId=1;playerId=${playerId}` };
     const data = { stationNumber: 7 };
@@ -321,10 +276,11 @@ describe("Game Page", () => {
   });
 
   it("Should say not your move", async () => {
-    const playerManager = new PlayerManager();
+    const playerManager = new PlayerManager(getIdGenerator(["111", "222"]));
 
-    const playerId = playerManager.createSession("a");
-    const playerId2 = playerManager.createSession("b");
+    const playerId = playerManager.add("a");
+    const playerId2 = playerManager.add("b");
+
     const lobbyManager = new LobbyManager();
     const gameManager = new GameManager();
 
@@ -337,34 +293,30 @@ describe("Game Page", () => {
       { name: "f", id: "6" },
     ];
     gameManager.saveGame({ gameId: "1", players });
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const headers = { cookie: `gameId=1; playerId=${playerId2}` };
     const data = { stationNumber: 7 };
 
     const res = await app.request("/game/move", {
       method: "POST",
-      headers,
+      headers: { cookie: `gameId=1; playerId=${playerId2}` },
       body: JSON.stringify(data),
     });
 
+    const result = await res.json();
+
     assertEquals(res.status, 403);
     assertEquals(res.headers.get("content-type"), "application/json");
-    const result = await res.json();
     assertEquals(result, { message: "Not Your Move ..!" });
   });
 
   describe("serveGameStatus", () => {
     it("should return game initial status for mrx", async () => {
-      const playerManager = new PlayerManager();
+      const playerManager = new PlayerManager(getIdGenerator());
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
-      const mrxId = playerManager.createSession("MrX");
+      const mrxId = playerManager.add("MrX");
 
       const { roomId } = lobbyManager.addPlayer({ name: "mrxId", id: mrxId });
       lobbyManager.addPlayer({ name: "d1", id: `1` });
@@ -387,7 +339,7 @@ describe("Game Page", () => {
         players: [
           {
             name: "mrxId",
-            id: "0",
+            id: mrxId,
             color: "black",
             isMrx: true,
             inventory: {
@@ -449,11 +401,11 @@ describe("Game Page", () => {
     });
 
     it("should give init game status for detective", async () => {
-      const playerManager = new PlayerManager();
+      const playerManager = new PlayerManager(getIdGenerator());
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
-      const detId = playerManager.createSession("Det");
+      const detId = playerManager.add("Det");
 
       lobbyManager.addPlayer({ name: "mrxId", id: "1" });
       lobbyManager.addPlayer({ name: "d1", id: detId });
@@ -495,7 +447,7 @@ describe("Game Page", () => {
           },
           {
             color: "#63a4ff",
-            id: "0",
+            id: detId,
             inventory: {
               tickets: {
                 bus: 8,
@@ -572,11 +524,11 @@ describe("Game Page", () => {
     });
 
     it("should give game status for detective on reveal turn", async () => {
-      const playerManager = new PlayerManager();
+      const playerManager = new PlayerManager(getIdGenerator());
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
-      const detId = playerManager.createSession("Det");
+      const detId = playerManager.add("Det");
 
       lobbyManager.addPlayer({ name: "mrxId", id: "1" });
       lobbyManager.addPlayer({ name: "d1", id: detId });
@@ -643,7 +595,7 @@ describe("Game Page", () => {
           },
           {
             color: "#63a4ff",
-            id: "0",
+            id: detId,
             inventory: {
               tickets: {
                 bus: 8,
@@ -720,11 +672,11 @@ describe("Game Page", () => {
     });
 
     it("should return gagameEndDetails undeifned when Detecatives are unable catch mr.X", async () => {
-      const playerManager = new PlayerManager();
+      const playerManager = new PlayerManager(getIdGenerator());
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
-      const detId = playerManager.createSession("Det");
+      const detId = playerManager.add("Det");
 
       lobbyManager.addPlayer({ name: "mrxId", id: "1" });
       lobbyManager.addPlayer({ name: "d1", id: detId });
@@ -792,7 +744,7 @@ describe("Game Page", () => {
           },
           {
             color: "#63a4ff",
-            id: "0",
+            id: detId,
             inventory: {
               tickets: {
                 bus: 8,
@@ -868,11 +820,11 @@ describe("Game Page", () => {
     });
 
     it("should return game status ", async () => {
-      const playerManager = new PlayerManager();
+      const playerManager = new PlayerManager(getIdGenerator());
       const lobbyManager = new LobbyManager();
       const gameManager = new GameManager();
 
-      const detId = playerManager.createSession("Det");
+      const detId = playerManager.add("Det");
 
       lobbyManager.addPlayer({ name: "mrxId", id: "1" });
       lobbyManager.addPlayer({ name: "d1", id: detId });
@@ -940,7 +892,7 @@ describe("Game Page", () => {
           },
           {
             color: "#63a4ff",
-            id: "0",
+            id: detId,
             inventory: {
               tickets: {
                 bus: 8,
@@ -1019,19 +971,14 @@ describe("Game Page", () => {
 
 describe("Join user", () => {
   it("should add the player to exiting room when valid room is given", async () => {
-    const playerManager = new PlayerManager();
-    const playerId1 = playerManager.createSession("john");
-    const playerId2 = playerManager.createSession("james");
+    const playerManager = new PlayerManager(getIdGenerator());
+    const playerId1 = playerManager.add("john");
+    const playerId2 = playerManager.add("james");
     const lobbyManager = new LobbyManager();
     const roomId =
       lobbyManager.addPlayer({ id: playerId1, name: "john" }).roomId;
     const gameManager = new GameManager();
-
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
     const fd = new FormData();
     fd.set("room-id", roomId);
@@ -1046,9 +993,9 @@ describe("Join user", () => {
   });
 
   it("should add the player to exiting room when valid room is given and create game if room is full", async () => {
-    const playerManager = new PlayerManager();
-    const playerId1 = playerManager.createSession("john");
-    const playerId2 = playerManager.createSession("james");
+    const playerManager = new PlayerManager(getIdGenerator());
+    const playerId1 = playerManager.add("john");
+    const playerId2 = playerManager.add("james");
     const lobbyManager = new LobbyManager();
     const roomId =
       lobbyManager.addPlayer({ id: playerId1, name: "john" }).roomId;
@@ -1058,12 +1005,7 @@ describe("Join user", () => {
     lobbyManager.addPlayer({ name: "d3", id: "3" });
 
     const gameManager = new GameManager();
-
-    const app = createApp(
-      playerManager,
-      lobbyManager,
-      gameManager,
-    );
+    const app = createApp(playerManager, lobbyManager, gameManager);
 
     const fd = new FormData();
     fd.set("room-id", roomId);

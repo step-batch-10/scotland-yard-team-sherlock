@@ -15,6 +15,7 @@ export const detectiveInventory = () => {
     tickets: { bus: 8, taxi: 10, underground: 4 },
   };
 };
+
 export const getPlayers = (): Players => {
   return [
     {

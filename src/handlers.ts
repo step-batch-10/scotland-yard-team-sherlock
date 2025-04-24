@@ -23,7 +23,7 @@ export const assignRoles = (ctx: Context) => {
 
 const playerName = (ctx: Context, id: string) => {
   const playerManager: PlayerManager = ctx.get("playerManager");
-  return playerManager.getPlayer(id);
+  return playerManager.get(id);
 };
 
 export const serveRoomStatus = (context: Context) => {
@@ -56,7 +56,7 @@ export const handleLogin = async (context: Context) => {
   const playerName = formData.get("player-name") as string;
 
   const playerManager: PlayerManager = context.get("playerManager");
-  const playerId = playerManager.createSession(playerName);
+  const playerId = playerManager.add(playerName);
 
   setCookie(context, "playerId", playerId);
   return context.redirect("/");

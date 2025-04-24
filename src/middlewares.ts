@@ -26,7 +26,7 @@ export const ensureValidPlayer = async (context: Context, next: Next) => {
   if (!playerId) return context.redirect("/login.html");
 
   const playerManager: PlayerManager = context.get("playerManager");
-  const playerName = playerManager.getPlayer(playerId);
+  const playerName = playerManager.get(playerId);
   if (!playerName) return context.redirect("/login.html");
 
   context.set("playerName", playerName);
@@ -38,7 +38,7 @@ export const ensureNotLoggedInPlayer = async (context: Context, next: Next) => {
   const playerId = getCookie(context, "playerId");
 
   const playerManager: PlayerManager = context.get("playerManager");
-  const playerName = playerManager.getPlayer(playerId || "");
+  const playerName = playerManager.get(playerId || "");
 
   if (playerName) return context.redirect("/");
 
