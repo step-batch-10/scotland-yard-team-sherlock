@@ -95,3 +95,13 @@ button {
 #room {
   display: flex;
 }
+
+.copy-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(100%);
+}
+
+.copy-icon:active {
+  filter: invert(50%);
+}
