@@ -58,6 +58,20 @@ const createGameRoutes = () => {
   return app;
 };
 
+const injectData = (
+  playerManager: PlayerManager,
+  lobbyManager: LobbyManager,
+  gameManager: GameManager,
+) => {
+  return async (context: Context, next: Next) => {
+    context.set("playerManager", playerManager);
+    context.set("lobbyManager", lobbyManager);
+    context.set("gameManager", gameManager);
+
+    await next();
+  };
+};
+
 export const createApp = (
   playerManager: PlayerManager,
   lobbyManager: LobbyManager,
@@ -69,12 +83,7 @@ export const createApp = (
   const lobbyRoutes = createLobbyRoutes();
   const gameRoutes = createGameRoutes();
 
-  app.use(async (context: Context, next: Next) => {
-    context.set("playerManager", playerManager);
-    context.set("lobbyManager", lobbyManager);
-    context.set("gameManager", gameManager);
-    await next();
-  });
+  app.use("*", injectData(playerManager, lobbyManager, gameManager));
 
   app.get("/", validatePlayerId, serveIndex);
   app.get("/index.html", validatePlayerId, serveIndex);
