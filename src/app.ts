@@ -26,7 +26,7 @@ import {
   redirectIfHasRoom,
 } from "./middlewares.ts";
 import { PlayerManager } from "./models/playerManager.ts";
-import { LobbyManager } from "./models/lobby.ts";
+import { LobbyManager } from "./models/lobbyManager.ts";
 import { GameManager } from "./models/gameManager.ts";
 
 const createLobbyRoutes = () => {

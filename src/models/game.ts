@@ -121,7 +121,7 @@ export class Game {
     return { status: true, message: `Moved to ${stationNumber}` };
   }
 
-  getPlayers() {
+  get players() {
     return this.#players;
   }
 }

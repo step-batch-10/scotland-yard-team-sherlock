@@ -1,6 +1,6 @@
 import { Context, Next } from "hono";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
-import { LobbyManager } from "./models/lobby.ts";
+import { LobbyManager } from "./models/lobbyManager.ts";
 import { GameManager } from "./models/gameManager.ts";
 import { PlayerManager } from "./models/playerManager.ts";
 
@@ -52,8 +52,10 @@ export const handleWaitingAccess = async (context: Context, next: Next) => {
   if (!roomId) return context.redirect("/");
 
   const lobbyManager: LobbyManager = context.get("lobbyManager");
+  const gameManager: GameManager = context.get("gameManager");
+
   const room = lobbyManager.getRoom(roomId);
-  const gameId = lobbyManager.getGameId(playerId!);
+  const gameId = gameManager.getGameId(playerId!);
 
   if (!room && !gameId) return context.redirect("/");
 
@@ -106,8 +108,8 @@ export const redirectIfHasRoom = async (context: Context, next: Next) => {
 export const ensureGameStart = async (context: Context, next: Next) => {
   const playerId = context.get("playerId");
 
-  const lobbyManager: LobbyManager = context.get("lobbyManager");
-  const gameId = lobbyManager.getGameId(playerId!);
+  const gameManager: GameManager = context.get("gameManager");
+  const gameId = gameManager.getGameId(playerId!);
 
   if (!gameId) return await next();
 

@@ -2,7 +2,7 @@ import { assert, assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { PlayerManager } from "../src/models/playerManager.ts";
 import { createApp } from "../src/app.ts";
-import { LobbyManager } from "../src/models/lobby.ts";
+import { LobbyManager } from "../src/models/lobbyManager.ts";
 import { GameManager } from "../src/models/gameManager.ts";
 import { getIdGenerator } from "../src/models/playerManager.ts";
 
@@ -11,7 +11,7 @@ export const createAppWithPlayers = (loggedInUser: string) => {
     getIdGenerator(),
     new Map([["111", loggedInUser]]),
   );
-  const lobbyManager = new LobbyManager();
+  const lobbyManager = new LobbyManager(getIdGenerator());
   const gameManager = new GameManager();
 
   const app = createApp(
@@ -59,7 +59,7 @@ describe("Authentication", () => {
 describe("login", () => {
   it("should add new player to playerManager and redirect to home", async () => {
     const playerManager = new PlayerManager(getIdGenerator());
-    const lobbyManager = new LobbyManager();
+    const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager();
 
     const app = createApp(

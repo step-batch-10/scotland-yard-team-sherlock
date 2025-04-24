@@ -1,16 +1,18 @@
 import { Context } from "hono";
 import { PlayerManager } from "./models/playerManager.ts";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
-import { LobbyManager } from "./models/lobby.ts";
+import { LobbyManager } from "./models/lobbyManager.ts";
 import { GameManager } from "./models/gameManager.ts";
+import { Room } from "./models/room.ts";
 
-export const handleLeaveLobby = (ctx: Context) => {
-  const playerId = getCookie(ctx, "playerId");
-  const roomId = deleteCookie(ctx, "roomId");
-  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
-  lobbyManager.removePlayer(roomId!, playerId!);
+export const handleLeaveLobby = (context: Context) => {
+  const playerId = context.get("playerId");
+  const room: Room = context.get("room");
 
-  return ctx.text("/");
+  room.remove(playerId);
+
+  deleteCookie(context, "roomId");
+  return context.text("/");
 };
 
 export const assignRoles = (ctx: Context) => {
@@ -21,18 +23,10 @@ export const assignRoles = (ctx: Context) => {
   return ctx.json(players);
 };
 
-const playerName = (ctx: Context, id: string) => {
-  const playerManager: PlayerManager = ctx.get("playerManager");
-  return playerManager.get(id);
-};
-
 export const serveRoomStatus = (context: Context) => {
-  const roomId = context.get("roomId");
-  const lobbyManager: LobbyManager = context.get("lobbyManager");
+  const room: Room = context.get("room");
+  const players = room.players.map(({ name }) => name);
 
-  const playerIds = lobbyManager.getRoomPlayers(roomId);
-
-  const players = playerIds.map(({ id }) => playerName(context, id));
   return context.json({ players, isLobbyFull: false });
 };
 
@@ -70,39 +64,39 @@ export interface Player {
 }
 export const handleRoomJoin = (context: Context) => {
   const roomId = context.get("roomId");
-  const playerId = context.get("playerId");
+  const id = context.get("playerId");
   const name = context.get("playerName");
 
   const lobbyManager: LobbyManager = context.get("lobbyManager");
+  const { room } = lobbyManager.addToRoom(roomId, { name, id });
 
-  const gameManager: GameManager = context.get("gameManager");
-  const { isLobbyFull } = lobbyManager.addToExistingRoom(roomId, {
-    id: playerId,
-    name,
-  });
-
-  if (isLobbyFull) {
-    gameManager.saveGame(lobbyManager.createGame(roomId));
+  if (room.isFull) {
+    const gameManager: GameManager = context.get("gameManager");
+    gameManager.createGame(roomId, room.players);
+    lobbyManager.deleteRoom(roomId);
   }
 
+  setCookie(context, "roomId", roomId);
   context.status(302);
   return context.json({ location: "/waiting.html" });
 };
 
-export const handleQuickJoin = (ctx: Context) => {
-  const playerId = ctx.get("playerId");
-  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
-  const gameManager: GameManager = ctx.get("gameManager");
-  const name: string = ctx.get("playerName");
-  const { roomId, isLobbyFull }: { roomId: string; isLobbyFull: boolean } =
-    lobbyManager.addPlayer({ id: playerId!, name });
+export const handleQuickJoin = (context: Context) => {
+  const id = context.get("playerId");
+  const name = context.get("playerName");
 
-  if (isLobbyFull) {
-    gameManager.saveGame(lobbyManager.createGame(roomId));
+  const lobbyManager: LobbyManager = context.get("lobbyManager");
+  const { room, roomId } = lobbyManager.assignRoom({ name, id });
+
+  if (room.isFull) {
+    const gameManager: GameManager = context.get("gameManager");
+    gameManager.createGame(roomId, room.players);
+    lobbyManager.deleteRoom(roomId);
   }
 
-  setCookie(ctx, "roomId", roomId);
-  return ctx.redirect("/waiting.html");
+  setCookie(context, "roomId", roomId);
+  context.status(302);
+  return context.redirect("/waiting.html");
 };
 
 export const handleLogout = (context: Context) => {

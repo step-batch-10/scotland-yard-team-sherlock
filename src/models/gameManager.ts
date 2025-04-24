@@ -1,5 +1,5 @@
 import { Game } from "./game.ts";
-import { User } from "./lobby.ts";
+import { Player } from "./lobbyManager.ts";
 import { Detective, MrX } from "./types/setupModel.ts";
 
 export type Players = [
@@ -13,17 +13,23 @@ export type Players = [
 
 export class GameManager {
   #games: Map<string, Game>;
+  #playerToGame: Map<string, string>;
+
   #MrxInventory = {
     tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
     cards: { doubleMove: 2 },
   };
   #detectiveInventory = { tickets: { bus: 8, taxi: 10, underground: 4 } };
 
-  constructor() {
-    this.#games = new Map();
+  constructor(
+    games: Map<string, Game> = new Map(),
+    playerToGame: Map<string, string> = new Map(),
+  ) {
+    this.#games = games;
+    this.#playerToGame = playerToGame;
   }
 
-  #gameSetup(players: User[]): Players {
+  #gameSetup(players: Player[]): Players {
     const colors = ["#63a4ff", "#ffb347", "red", "blue", "violet"];
     const [mrx, ...detectives] = players;
     const mrXDetails: MrX = {
@@ -53,7 +59,16 @@ export class GameManager {
     return [mrXDetails, ...detectivesDetails] as Players;
   }
 
-  saveGame({ gameId, players }: { gameId: string; players: User[] }): string {
+  getGameId(playerId: string) {
+    return this.#playerToGame.get(playerId);
+  }
+
+  #addPlayerToGame(gameId: string, players: Player[]) {
+    players.forEach(({ id }) => this.#playerToGame.set(id, gameId));
+  }
+
+  createGame(gameId: string, players: Player[]): string {
+    this.#addPlayerToGame(gameId, players);
     const game = new Game(this.#gameSetup(players));
     this.#games.set(gameId, game);
 
@@ -68,11 +83,7 @@ export class GameManager {
     return this.#games.has(gameId);
   }
 
-  deleteGame(gameId: string): boolean {
-    return this.#games.delete(gameId);
-  }
-
   getGameDetails(gameId: string) {
-    return this.#games.get(gameId)!.getPlayers();
+    return this.#games.get(gameId)!.players;
   }
 }

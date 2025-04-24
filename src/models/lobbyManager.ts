@@ -20,14 +20,14 @@ export class LobbyManager {
 
   addToRoom(roomId: string, player: Player): { roomId: string; room: Room } {
     const room = this.#rooms.get(roomId)!;
-    room.addPlayer(player);
+    room.add(player);
 
     return { room, roomId };
   }
 
   #roomOf(playerId: string): { room: Room; roomId: string } | undefined {
     for (const [roomId, room] of this.#rooms) {
-      if (room.hasPlayer(playerId)) {
+      if (room.has(playerId)) {
         return { roomId, room };
       }
     }
@@ -39,14 +39,14 @@ export class LobbyManager {
 
     this.#rooms.set(roomId, room);
 
-    room.addPlayer(player);
+    room.add(player);
     return { room, roomId };
   }
 
   #joinableRoom(player: Player): { room: Room; roomId: string } {
     for (const [roomId, room] of this.#rooms) {
       if (!room.isPrivate) {
-        room.addPlayer(player);
+        room.add(player);
         return { roomId, room };
       }
     }

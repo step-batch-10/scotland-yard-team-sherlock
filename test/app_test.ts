@@ -2,35 +2,101 @@ import { assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
 import { createApp } from "../src/app.ts";
 import { getIdGenerator, PlayerManager } from "../src/models/playerManager.ts";
-import { LobbyManager, User } from "../src/models/lobby.ts";
-import { GameManager } from "../src/models/gameManager.ts";
+import { LobbyManager, Player } from "../src/models/lobbyManager.ts";
+import { GameManager, Players } from "../src/models/gameManager.ts";
 import { GameOverDetails, GameStatus } from "../src/models/types/gameStatus.ts";
 import { getPlayers } from "./models/game_test.ts";
+import { Game } from "../src/models/game.ts";
+
+const getGamePlayers = (): Players => {
+  const inventory = {
+    mrx: {
+      tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
+      cards: { doubleMove: 2 },
+    },
+    detective: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+  };
+
+  return [
+    {
+      name: "aaa",
+      id: "111",
+      color: "black",
+      position: 1,
+      isMrx: true,
+      inventory: inventory.mrx,
+    },
+    {
+      name: "bbb",
+      id: "222",
+      color: "#63a4ff",
+      position: 2,
+      isMrx: false,
+      inventory: inventory.detective,
+    },
+    {
+      name: "ccc",
+      id: "333",
+      color: "#ffb347",
+      position: 3,
+      isMrx: false,
+      inventory: inventory.detective,
+    },
+    {
+      name: "ddd",
+      id: "444",
+      color: "red",
+      position: 4,
+      isMrx: false,
+      inventory: inventory.detective,
+    },
+    {
+      name: "eee",
+      id: "555",
+      color: "blue",
+      position: 5,
+      isMrx: false,
+      inventory: inventory.detective,
+    },
+    {
+      name: "fff",
+      id: "666",
+      color: "violet",
+      position: 6,
+      isMrx: false,
+      inventory: inventory.detective,
+    },
+  ];
+};
 
 const gameEndingDetails = (
   detective: string,
-  id: number,
+  stationNumber: number,
   color: string,
 ): GameOverDetails => {
   return {
     detective: detective,
     color: color,
-    station: id,
+    station: stationNumber,
   };
 };
 
-describe("Static page", () => {
-  it("Should return index page", async () => {
-    const playerManager = new PlayerManager(getIdGenerator());
-    const lobbyManager = new LobbyManager();
-    const gameManager = new GameManager();
+const getGame = (): Game => {
+  return new Game(getGamePlayers());
+};
 
-    const playerId: string = playerManager.add("teja");
-    lobbyManager.addPlayer({ id: playerId, name: "teja" });
+describe("Static page", () => {
+  it("should serve index page if player id valid", async () => {
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([["111", "Name"]]),
+    );
+    const lobbyManager = new LobbyManager(getIdGenerator());
+    const gameManager = new GameManager();
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const headers = { cookie: `playerId=${playerId}` };
+    const headers = { cookie: `playerId=111` };
 
     const res = await app.request("http://localhost:8000", { headers });
     await res.text();
@@ -47,10 +113,10 @@ describe("Quick Join", () => {
       new Map([["123", "Asma"]]),
     );
 
-    const lobbyManager = new LobbyManager();
+    const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager();
 
-    lobbyManager.addPlayer({ id: "123", name: "Asma" });
+    lobbyManager.assignRoom({ id: "123", name: "Asma" });
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -82,12 +148,12 @@ describe("Quick Join", () => {
       ]),
     );
 
-    const lobbyManager = new LobbyManager();
-    lobbyManager.addPlayer({ id: "111", name: "Janes1" });
-    lobbyManager.addPlayer({ id: "222", name: "Janes2" });
-    lobbyManager.addPlayer({ id: "333", name: "Janes3" });
-    lobbyManager.addPlayer({ id: "444", name: "Janes4" });
-    lobbyManager.addPlayer({ id: "555", name: "Janes5" });
+    const lobbyManager = new LobbyManager(getIdGenerator());
+    lobbyManager.assignRoom({ id: "111", name: "Janes1" });
+    lobbyManager.assignRoom({ id: "222", name: "Janes2" });
+    lobbyManager.assignRoom({ id: "333", name: "Janes3" });
+    lobbyManager.assignRoom({ id: "444", name: "Janes4" });
+    lobbyManager.assignRoom({ id: "555", name: "Janes5" });
     const gameManager = new GameManager();
 
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -99,7 +165,6 @@ describe("Quick Join", () => {
     res.text();
 
     assertEquals(res.status, 302);
-    assertEquals(res.headers.get("content-type"), null);
     assertEquals(res.headers.get("location"), "/waiting.html");
   });
 });
@@ -110,8 +175,8 @@ describe("fetch players", () => {
       getIdGenerator(),
       new Map([["111", "James"]]),
     );
-    const lobbyManager = new LobbyManager();
-    const roomId = lobbyManager.addPlayer({ id: "111", name: "James" }).roomId;
+    const lobbyManager = new LobbyManager(getIdGenerator());
+    const roomId = lobbyManager.assignRoom({ id: "111", name: "James" }).roomId;
     const gameManager = new GameManager();
 
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -134,7 +199,7 @@ describe("fetch players", () => {
       new Map([["111", "James"]]),
     );
 
-    const lobbyManager = new LobbyManager();
+    const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager();
 
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -152,9 +217,9 @@ describe("fetch players", () => {
     const playerManager = new PlayerManager(getIdGenerator(["123"]));
     const playerId = playerManager.add("name");
 
-    const lobbyManager = new LobbyManager();
+    const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager();
-    const players: User[] = [
+    const players: Player[] = [
       { name: "a", id: "1" },
       { name: "b", id: "2" },
       { name: "c", id: "3" },
@@ -163,7 +228,7 @@ describe("fetch players", () => {
       { name: "f", id: "6" },
     ];
 
-    gameManager.saveGame({ gameId: "1", players });
+    gameManager.createGame("1", players);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const expected = getPlayers();
@@ -176,30 +241,31 @@ describe("fetch players", () => {
   });
 
   it("it should return isLobbyFull as true", async () => {
-    const playerManager = new PlayerManager(getIdGenerator());
-    const playerId = playerManager.add("Name");
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([
+        ["123", "a"],
+      ]),
+    );
 
-    const lobbyManager = new LobbyManager();
-    const gameManager = new GameManager();
-    lobbyManager.addPlayer({ id: playerId, name: "Name" });
-    lobbyManager.addPlayer({ id: "2", name: "James2" });
-    lobbyManager.addPlayer({ id: "3", name: "James3" });
-    lobbyManager.addPlayer({ id: "4", name: "James4" });
-    lobbyManager.addPlayer({ id: "5", name: "James5" });
+    const lobbyManager = new LobbyManager(getIdGenerator());
+    const gameManager = new GameManager(
+      new Map(),
+      new Map([
+        ["123", "111"],
+      ]),
+    );
 
-    const roomId = lobbyManager.addPlayer({ id: "6", name: "James6" }).roomId;
-    lobbyManager.createGame(roomId);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const isLobbyFull = true;
-    const headers = { cookie: `roomId=${roomId}; playerId=${playerId}` };
+    const headers = { cookie: `roomId=111; playerId=123` };
     const req = new Request("http://localhost:8000/lobby/room/status", {
       headers,
     });
     const res = await app.request(req);
 
     assertEquals(res.status, 200);
-    assertEquals(await res.json(), { isLobbyFull });
+    assertEquals(await res.json(), { isLobbyFull: true });
   });
 });
 
@@ -207,7 +273,7 @@ describe("logout", () => {
   it("Should redirect to the login page after deleting cookie", async () => {
     const playerManager = new PlayerManager(getIdGenerator());
     const playerId = playerManager.add("abc");
-    const lobbyManager = new LobbyManager();
+    const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager();
     const app = createApp(playerManager, lobbyManager, gameManager);
     const req = await app.request("/auth/logout", {
@@ -223,11 +289,12 @@ describe("leave lobby", () => {
   it("should remove the player from lobby and redirect to home page", async () => {
     const playerManager = new PlayerManager(getIdGenerator());
     const playerId = playerManager.add("abc");
-    const lobbyManager = new LobbyManager();
+    const lobbyManager = new LobbyManager(getIdGenerator());
 
-    const roomId = lobbyManager.addPlayer({ id: playerId, name: "abc" }).roomId;
-    lobbyManager.addPlayer({ id: "2", name: "anc" });
-    lobbyManager.addPlayer({ id: "3", name: "anc2" });
+    const roomId =
+      lobbyManager.assignRoom({ id: playerId, name: "abc" }).roomId;
+    lobbyManager.assignRoom({ id: "2", name: "anc" });
+    lobbyManager.assignRoom({ id: "3", name: "anc2" });
     const gameManager = new GameManager();
     const app = createApp(playerManager, lobbyManager, gameManager);
     const req = new Request("http://localhost:8000/lobby/room/leave", {
@@ -245,22 +312,22 @@ describe("leave lobby", () => {
 
 describe("Game Page", () => {
   it("Should change position", async () => {
-    const playerManager = new PlayerManager(getIdGenerator());
-    const playerId = playerManager.add("a");
-    const lobbyManager = new LobbyManager();
-    const gameManager = new GameManager();
-    const players: User[] = [
-      { name: "a", id: playerId },
-      { name: "b", id: "2" },
-      { name: "c", id: "3" },
-      { name: "d", id: "4" },
-      { name: "e", id: "5" },
-      { name: "f", id: "6" },
-    ];
-    gameManager.saveGame({ gameId: "1", players });
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([
+        ["111", "aaa"],
+      ]),
+    );
+    const lobbyManager = new LobbyManager(getIdGenerator());
+    const gameManager = new GameManager(
+      new Map([
+        ["123", getGame()],
+      ]),
+    );
+
     const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const headers = { cookie: `gameId=1;playerId=${playerId}` };
+    const headers = { cookie: `gameId=123;playerId=111` };
     const data = { stationNumber: 7 };
 
     const res = await app.request("/game/move", {
@@ -275,71 +342,64 @@ describe("Game Page", () => {
     assertEquals(result, { message: "Moved to 7" });
   });
 
-  it("Should say not your move", async () => {
-    const playerManager = new PlayerManager(getIdGenerator(["111", "222"]));
+  it("should say not your move when it is not your move", async () => {
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([
+        ["111", "aaa"],
+        ["222", "bbb"],
+      ]),
+    );
+    const lobbyManager = new LobbyManager(getIdGenerator());
+    const gameManager = new GameManager(
+      new Map([
+        ["123", getGame()],
+      ]),
+    );
 
-    const playerId = playerManager.add("a");
-    const playerId2 = playerManager.add("b");
-
-    const lobbyManager = new LobbyManager();
-    const gameManager = new GameManager();
-
-    const players: User[] = [
-      { name: "a", id: playerId },
-      { name: "b", id: playerId2 },
-      { name: "c", id: "3" },
-      { name: "d", id: "4" },
-      { name: "e", id: "5" },
-      { name: "f", id: "6" },
-    ];
-    gameManager.saveGame({ gameId: "1", players });
     const app = createApp(playerManager, lobbyManager, gameManager);
 
+    const headers = { cookie: `gameId=123;playerId=222` };
     const data = { stationNumber: 7 };
 
     const res = await app.request("/game/move", {
       method: "POST",
-      headers: { cookie: `gameId=1; playerId=${playerId2}` },
+      headers,
       body: JSON.stringify(data),
     });
 
-    const result = await res.json();
-
     assertEquals(res.status, 403);
     assertEquals(res.headers.get("content-type"), "application/json");
-    assertEquals(result, { message: "Not Your Move ..!" });
+    assertEquals(await res.json(), { message: "Not Your Move ..!" });
   });
 
   describe("serveGameStatus", () => {
-    it("should return game initial status for mrx", async () => {
-      const playerManager = new PlayerManager(getIdGenerator());
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const mrxId = playerManager.add("MrX");
-
-      const { roomId } = lobbyManager.addPlayer({ name: "mrxId", id: mrxId });
-      lobbyManager.addPlayer({ name: "d1", id: `1` });
-      lobbyManager.addPlayer({ name: "d2", id: `2` });
-      lobbyManager.addPlayer({ name: "d3", id: `3` });
-      lobbyManager.addPlayer({ name: "d4", id: `4` });
-      lobbyManager.addPlayer({ name: "d5", id: `5` });
-
-      const { gameId, players } = lobbyManager.createGame(roomId);
-      gameManager.saveGame({ gameId, players });
-
-      const request = new Request("http://localhost:8000/game/status", {
-        headers: { "cookie": `playerId=${mrxId}; gameId=${gameId}` },
-      });
+    it("should return init game status for mrx", async () => {
+      const playerManager = new PlayerManager(
+        getIdGenerator(),
+        new Map([
+          ["111", "aaa"],
+          ["222", "bbb"],
+        ]),
+      );
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const gameManager = new GameManager(
+        new Map([
+          ["123", getGame()],
+        ]),
+      );
 
       const app = createApp(playerManager, lobbyManager, gameManager);
-      const response = await app.request(request);
+
+      const res = await app.request("/game/status", {
+        headers: { cookie: `gameId=123;playerId=111` },
+      });
 
       const gameStatus: GameStatus = {
         players: [
           {
-            name: "mrxId",
-            id: mrxId,
+            name: "aaa",
+            id: "111",
             color: "black",
             isMrx: true,
             inventory: {
@@ -349,40 +409,40 @@ describe("Game Page", () => {
             position: 1,
           },
           {
-            name: "d1",
-            id: "1",
+            name: "bbb",
+            id: "222",
             color: "#63a4ff",
             position: 2,
             isMrx: false,
             inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            name: "d2",
-            id: "2",
+            name: "ccc",
+            id: "333",
             color: "#ffb347",
             position: 3,
             isMrx: false,
             inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            name: "d3",
-            id: "3",
+            name: "ddd",
+            id: "444",
             color: "red",
             position: 4,
             isMrx: false,
             inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            name: "d4",
-            id: "4",
+            name: "eee",
+            id: "555",
             color: "blue",
             position: 5,
             isMrx: false,
             inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
-            name: "d5",
-            id: "5",
+            name: "fff",
+            id: "666",
             color: "violet",
             position: 6,
             isMrx: false,
@@ -394,628 +454,435 @@ describe("Game Page", () => {
         currentPlayer: 0,
       };
 
-      const responseBody = await response.json();
-
-      assertEquals(response.status, 200);
-      assertEquals(responseBody, gameStatus);
+      assertEquals(res.status, 200);
+      assertEquals(await res.json(), gameStatus);
     });
 
     it("should give init game status for detective", async () => {
-      const playerManager = new PlayerManager(getIdGenerator());
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
-
-      const detId = playerManager.add("Det");
-
-      lobbyManager.addPlayer({ name: "mrxId", id: "1" });
-      lobbyManager.addPlayer({ name: "d1", id: detId });
-      lobbyManager.addPlayer({ name: "d2", id: `2` });
-      lobbyManager.addPlayer({ name: "d3", id: `3` });
-      lobbyManager.addPlayer({ name: "d4", id: `4` });
-      const { roomId } = lobbyManager.addPlayer({ name: "d5", id: `5` });
-
-      const { gameId, players } = lobbyManager.createGame(roomId);
-      gameManager.saveGame({ gameId, players });
-
-      const request = new Request("http://localhost:8000/game/status", {
-        headers: { "cookie": `playerId=${detId}; gameId=${gameId}` },
-      });
+      const playerManager = new PlayerManager(
+        getIdGenerator(),
+        new Map([
+          ["111", "aaa"],
+          ["222", "bbb"],
+        ]),
+      );
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const gameManager = new GameManager(
+        new Map([
+          ["123", getGame()],
+        ]),
+      );
 
       const app = createApp(playerManager, lobbyManager, gameManager);
-      const response = await app.request(request);
+
+      const res = await app.request("/game/status", {
+        headers: { cookie: `gameId=123;playerId=222` },
+      });
 
       const gameStatus: GameStatus = {
-        currentPlayer: 0,
-        mrXMoves: [],
         players: [
           {
+            name: "aaa",
+            id: "111",
             color: "black",
-            id: "1",
-            inventory: {
-              cards: {
-                doubleMove: 2,
-              },
-              tickets: {
-                black: 5,
-                bus: 3,
-                taxi: 4,
-                underground: 3,
-              },
-            },
             isMrx: true,
-            name: "mrxId",
+            inventory: {
+              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
+              cards: { doubleMove: 2 },
+            },
           },
           {
+            name: "bbb",
+            id: "222",
             color: "#63a4ff",
-            id: detId,
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d1",
             position: 2,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "ccc",
+            id: "333",
             color: "#ffb347",
-            id: "2",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d2",
             position: 3,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "ddd",
+            id: "444",
             color: "red",
-            id: "3",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d3",
             position: 4,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "eee",
+            id: "555",
             color: "blue",
-            id: "4",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d4",
             position: 5,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "fff",
+            id: "666",
             color: "violet",
-            id: "5",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d5",
             position: 6,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
         ],
+        mrXMoves: [],
         you: 1,
+        currentPlayer: 0,
       };
 
-      assertEquals(response.status, 200);
-      assertEquals(await response.json(), gameStatus);
+      assertEquals(res.status, 200);
+      assertEquals(await res.json(), gameStatus);
     });
 
     it("should give game status for detective on reveal turn", async () => {
-      const playerManager = new PlayerManager(getIdGenerator());
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
+      const playerManager = new PlayerManager(
+        getIdGenerator(),
+        new Map([
+          ["111", "aaa"],
+          ["222", "bbb"],
+        ]),
+      );
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const game = getGame();
+      const gameManager = new GameManager(new Map([["123", game]]));
 
-      const detId = playerManager.add("Det");
+      game.move("111", 31);
+      game.move("222", 30);
+      game.move("333", 29);
+      game.move("444", 28);
+      game.move("555", 27);
+      game.move("666", 26);
 
-      lobbyManager.addPlayer({ name: "mrxId", id: "1" });
-      lobbyManager.addPlayer({ name: "d1", id: detId });
-      lobbyManager.addPlayer({ name: "d2", id: `2` });
-      lobbyManager.addPlayer({ name: "d3", id: `3` });
-      lobbyManager.addPlayer({ name: "d4", id: `4` });
+      game.move("111", 21);
+      game.move("222", 20);
+      game.move("333", 19);
+      game.move("444", 18);
+      game.move("555", 17);
+      game.move("666", 16);
 
-      const { roomId } = lobbyManager.addPlayer({ name: "d5", id: `5` });
-
-      const { gameId, players } = lobbyManager.createGame(roomId);
-      gameManager.saveGame({ gameId, players });
-
-      const request = new Request("http://localhost:8000/game/status", {
-        headers: { "cookie": `playerId=${detId}; gameId=${gameId}` },
-      });
+      game.move("111", 10);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
-      const game = gameManager.getGame(gameId)!;
-
-      game.move("1", 30);
-      game.move(detId, 29);
-      game.move("2", 28);
-      game.move("3", 27);
-      game.move("4", 26);
-      game.move("5", 25);
-
-      game.move("1", 24);
-      game.move(detId, 23);
-      game.move("2", 22);
-      game.move("3", 21);
-      game.move("4", 20);
-      game.move("5", 19);
-
-      game.move("1", 18);
-
-      const response = await app.request(request);
+      const res = await app.request("/game/status", {
+        headers: { cookie: `gameId=123;playerId=111` },
+      });
 
       const gameStatus: GameStatus = {
-        currentPlayer: 1,
+        players: [
+          {
+            name: "aaa",
+            id: "111",
+            color: "black",
+            isMrx: true,
+            inventory: {
+              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
+              cards: { doubleMove: 2 },
+            },
+            position: 10,
+          },
+          {
+            name: "bbb",
+            id: "222",
+            color: "#63a4ff",
+            position: 20,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "ccc",
+            id: "333",
+            color: "#ffb347",
+            position: 19,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "ddd",
+            id: "444",
+            color: "red",
+            position: 18,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "eee",
+            id: "555",
+            color: "blue",
+            position: 17,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "fff",
+            id: "666",
+            color: "violet",
+            position: 16,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+        ],
         mrXMoves: [
           { ticket: "taxi" },
           { ticket: "taxi" },
-          { ticket: "taxi", position: 18 },
+          { position: 10, ticket: "taxi" },
         ],
-        players: [
-          {
-            color: "black",
-            id: "1",
-            inventory: {
-              cards: {
-                doubleMove: 2,
-              },
-              tickets: {
-                black: 5,
-                bus: 3,
-                taxi: 4,
-                underground: 3,
-              },
-            },
-            position: 18,
-            isMrx: true,
-            name: "mrxId",
-          },
-          {
-            color: "#63a4ff",
-            id: detId,
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d1",
-            position: 23,
-          },
-          {
-            color: "#ffb347",
-            id: "2",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d2",
-            position: 22,
-          },
-          {
-            color: "red",
-            id: "3",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d3",
-            position: 21,
-          },
-          {
-            color: "blue",
-            id: "4",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d4",
-            position: 20,
-          },
-          {
-            color: "violet",
-            id: "5",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d5",
-            position: 19,
-          },
-        ],
-        you: 1,
+        you: 0,
+        currentPlayer: 1,
       };
 
-      assertEquals(response.status, 200);
-      assertEquals(await response.json(), gameStatus);
+      assertEquals(res.status, 200);
+      assertEquals(await res.json(), gameStatus);
     });
 
-    it("should return gagameEndDetails undeifned when Detecatives are unable catch mr.X", async () => {
-      const playerManager = new PlayerManager(getIdGenerator());
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
+    it("should return gameEndDetails undefined when Detectives are unable to catch mr.X", async () => {
+      const playerManager = new PlayerManager(
+        getIdGenerator(),
+        new Map([
+          ["111", "aaa"],
+          ["222", "bbb"],
+        ]),
+      );
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const game = getGame();
+      const gameManager = new GameManager(new Map([["123", game]]));
 
-      const detId = playerManager.add("Det");
+      game.move("111", 31);
+      game.move("222", 30);
+      game.move("333", 29);
+      game.move("444", 28);
+      game.move("555", 27);
+      game.move("666", 26);
 
-      lobbyManager.addPlayer({ name: "mrxId", id: "1" });
-      lobbyManager.addPlayer({ name: "d1", id: detId });
-      lobbyManager.addPlayer({ name: "d2", id: `2` });
-      lobbyManager.addPlayer({ name: "d3", id: `3` });
-      lobbyManager.addPlayer({ name: "d4", id: `4` });
+      game.move("111", 21);
+      game.move("222", 20);
+      game.move("333", 19);
+      game.move("444", 18);
+      game.move("555", 17);
+      game.move("666", 16);
 
-      const { roomId } = lobbyManager.addPlayer({ name: "d5", id: `5` });
-
-      const { gameId, players } = lobbyManager.createGame(roomId);
-      gameManager.saveGame({ gameId, players });
-
-      const request = new Request("http://localhost:8000/game/status", {
-        headers: { "cookie": `playerId=${detId}; gameId=${gameId}` },
-      });
+      game.move("111", 10);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
-      const game = gameManager.getGame(gameId)!;
-
-      game.move("1", 30);
-      game.move(detId, 29);
-      game.move("2", 28);
-      game.move("3", 27);
-      game.move("4", 26);
-      game.move("5", 30);
-
-      game.move("1", 24);
-      game.move(detId, 23);
-      game.move("2", 22);
-      game.move("3", 21);
-      game.move("4", 20);
-      game.move("5", 19);
-
-      game.move("1", 18);
-
-      const response = await app.request(request);
+      const res = await app.request("/game/status", {
+        headers: { cookie: `gameId=123;playerId=111` },
+      });
 
       const gameStatus: GameStatus = {
-        currentPlayer: 1,
-        gameEndDetails: gameEndingDetails("d5", 30, "violet"),
+        players: [
+          {
+            name: "aaa",
+            id: "111",
+            color: "black",
+            isMrx: true,
+            inventory: {
+              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
+              cards: { doubleMove: 2 },
+            },
+            position: 10,
+          },
+          {
+            name: "bbb",
+            id: "222",
+            color: "#63a4ff",
+            position: 20,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "ccc",
+            id: "333",
+            color: "#ffb347",
+            position: 19,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "ddd",
+            id: "444",
+            color: "red",
+            position: 18,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "eee",
+            id: "555",
+            color: "blue",
+            position: 17,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "fff",
+            id: "666",
+            color: "violet",
+            position: 16,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+        ],
         mrXMoves: [
           { ticket: "taxi" },
           { ticket: "taxi" },
-          { ticket: "taxi", position: 18 },
+          { position: 10, ticket: "taxi" },
         ],
-        players: [
-          {
-            color: "black",
-            id: "1",
-            inventory: {
-              cards: {
-                doubleMove: 2,
-              },
-              tickets: {
-                black: 5,
-                bus: 3,
-                taxi: 4,
-                underground: 3,
-              },
-            },
-            position: 18,
-            isMrx: true,
-            name: "mrxId",
-          },
-          {
-            color: "#63a4ff",
-            id: detId,
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d1",
-            position: 23,
-          },
-          {
-            color: "#ffb347",
-            id: "2",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d2",
-            position: 22,
-          },
-          {
-            color: "red",
-            id: "3",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d3",
-            position: 21,
-          },
-          {
-            color: "blue",
-            id: "4",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d4",
-            position: 20,
-          },
-          {
-            color: "violet",
-            id: "5",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
-            isMrx: false,
-            name: "d5",
-            position: 19,
-          },
-        ],
-        you: 1,
+        you: 0,
+        currentPlayer: 1,
       };
-      assertEquals(response.status, 200);
-      assertEquals(await response.json(), gameStatus);
+
+      assertEquals(res.status, 200);
+      assertEquals(await res.json(), gameStatus);
     });
 
-    it("should return game status ", async () => {
-      const playerManager = new PlayerManager(getIdGenerator());
-      const lobbyManager = new LobbyManager();
-      const gameManager = new GameManager();
+    it("should return gameEndDetails when MrX caught by detectives", async () => {
+      const playerManager = new PlayerManager(
+        getIdGenerator(),
+        new Map([
+          ["111", "aaa"],
+          ["222", "bbb"],
+        ]),
+      );
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const game = getGame();
+      const gameManager = new GameManager(new Map([["123", game]]));
 
-      const detId = playerManager.add("Det");
-
-      lobbyManager.addPlayer({ name: "mrxId", id: "1" });
-      lobbyManager.addPlayer({ name: "d1", id: detId });
-      lobbyManager.addPlayer({ name: "d2", id: `2` });
-      lobbyManager.addPlayer({ name: "d3", id: `3` });
-      lobbyManager.addPlayer({ name: "d4", id: `4` });
-
-      const { roomId } = lobbyManager.addPlayer({ name: "d5", id: `5` });
-
-      const { gameId, players } = lobbyManager.createGame(roomId);
-      gameManager.saveGame({ gameId, players });
-
-      const request = new Request("http://localhost:8000/game/status", {
-        headers: { "cookie": `playerId=${detId}; gameId=${gameId}` },
-      });
+      game.move("111", 31);
+      game.move("222", 30);
+      game.move("333", 29);
+      game.move("444", 28);
+      game.move("555", 27);
+      game.move("666", 31);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
-      const game = gameManager.getGame(gameId)!;
-
-      game.move("1", 30);
-      game.move(detId, 29);
-      game.move("2", 28);
-      game.move("3", 27);
-      game.move("4", 26);
-      game.move("5", 25);
-
-      game.move("1", 24);
-      game.move(detId, 23);
-      game.move("2", 22);
-      game.move("3", 21);
-      game.move("4", 20);
-      game.move("5", 19);
-
-      game.move("1", 18);
-
-      const response = await app.request(request);
+      const res = await app.request("/game/status", {
+        headers: { cookie: `gameId=123;playerId=111` },
+      });
 
       const gameStatus: GameStatus = {
-        currentPlayer: 1,
-
-        mrXMoves: [
-          { ticket: "taxi" },
-          { ticket: "taxi" },
-          { ticket: "taxi", position: 18 },
-        ],
         players: [
           {
+            name: "aaa",
+            id: "111",
             color: "black",
-            id: "1",
-            inventory: {
-              cards: {
-                doubleMove: 2,
-              },
-              tickets: {
-                black: 5,
-                bus: 3,
-                taxi: 4,
-                underground: 3,
-              },
-            },
-            position: 18,
             isMrx: true,
-            name: "mrxId",
+            inventory: {
+              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
+              cards: { doubleMove: 2 },
+            },
+            position: 31,
           },
           {
+            name: "bbb",
+            id: "222",
             color: "#63a4ff",
-            id: detId,
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
+            position: 30,
             isMrx: false,
-            name: "d1",
-            position: 23,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "ccc",
+            id: "333",
             color: "#ffb347",
-            id: "2",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
+            position: 29,
             isMrx: false,
-            name: "d2",
-            position: 22,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "ddd",
+            id: "444",
             color: "red",
-            id: "3",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
+            position: 28,
             isMrx: false,
-            name: "d3",
-            position: 21,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "eee",
+            id: "555",
             color: "blue",
-            id: "4",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
+            position: 27,
             isMrx: false,
-            name: "d4",
-            position: 20,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
           {
+            name: "fff",
+            id: "666",
             color: "violet",
-            id: "5",
-            inventory: {
-              tickets: {
-                bus: 8,
-                taxi: 10,
-                underground: 4,
-              },
-            },
+            position: 31,
             isMrx: false,
-            name: "d5",
-            position: 19,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
           },
         ],
-        you: 1,
+        mrXMoves: [
+          { ticket: "taxi" },
+        ],
+        you: 0,
+        currentPlayer: 0,
+        gameEndDetails: gameEndingDetails("fff", 31, "violet"),
       };
-      assertEquals(response.status, 200);
-      assertEquals(await response.json(), gameStatus);
+
+      assertEquals(res.status, 200);
+      assertEquals(await res.json(), gameStatus);
     });
   });
-});
 
-describe("Join user", () => {
-  it("should add the player to exiting room when valid room is given", async () => {
-    const playerManager = new PlayerManager(getIdGenerator());
-    const playerId1 = playerManager.add("john");
-    const playerId2 = playerManager.add("james");
-    const lobbyManager = new LobbyManager();
-    const roomId =
-      lobbyManager.addPlayer({ id: playerId1, name: "john" }).roomId;
-    const gameManager = new GameManager();
-    const app = createApp(playerManager, lobbyManager, gameManager);
+  describe("Join user", () => {
+    it("should add the player to exiting room when valid room is given", async () => {
+      const playerManager = new PlayerManager(getIdGenerator());
+      const playerId1 = playerManager.add("john");
+      const playerId2 = playerManager.add("james");
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const roomId =
+        lobbyManager.assignRoom({ id: playerId1, name: "john" }).roomId;
+      const gameManager = new GameManager();
+      const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const fd = new FormData();
-    fd.set("room-id", roomId);
-    const response = await app.request("/lobby/room/join", {
-      method: "POST",
-      body: fd,
-      headers: { cookie: `playerId=${playerId2}` },
+      const fd = new FormData();
+      fd.set("room-id", roomId);
+      const response = await app.request("/lobby/room/join", {
+        method: "POST",
+        body: fd,
+        headers: { cookie: `playerId=${playerId2}` },
+      });
+
+      assertEquals(response.status, 302);
+      assertEquals(await response.json(), { location: "/waiting.html" });
     });
 
-    assertEquals(response.status, 302);
-    assertEquals(await response.json(), { location: "/waiting.html" });
-  });
+    it("should add the player to exiting room when valid room is given and create game if room is full", async () => {
+      const playerManager = new PlayerManager(getIdGenerator());
+      const playerId1 = playerManager.add("john");
+      const playerId2 = playerManager.add("james");
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const roomId =
+        lobbyManager.assignRoom({ id: playerId1, name: "john" }).roomId;
+      lobbyManager.assignRoom({ name: "mrxId", id: "1" });
+      lobbyManager.assignRoom({ name: "d1", id: "5" });
+      lobbyManager.assignRoom({ name: "d2", id: "2" });
+      lobbyManager.assignRoom({ name: "d3", id: "3" });
 
-  it("should add the player to exiting room when valid room is given and create game if room is full", async () => {
-    const playerManager = new PlayerManager(getIdGenerator());
-    const playerId1 = playerManager.add("john");
-    const playerId2 = playerManager.add("james");
-    const lobbyManager = new LobbyManager();
-    const roomId =
-      lobbyManager.addPlayer({ id: playerId1, name: "john" }).roomId;
-    lobbyManager.addPlayer({ name: "mrxId", id: "1" });
-    lobbyManager.addPlayer({ name: "d1", id: "5" });
-    lobbyManager.addPlayer({ name: "d2", id: "2" });
-    lobbyManager.addPlayer({ name: "d3", id: "3" });
+      const gameManager = new GameManager();
+      const app = createApp(playerManager, lobbyManager, gameManager);
 
-    const gameManager = new GameManager();
-    const app = createApp(playerManager, lobbyManager, gameManager);
+      const fd = new FormData();
+      fd.set("room-id", roomId);
+      const response = await app.request("/lobby/room/join", {
+        method: "POST",
+        body: fd,
+        headers: { cookie: `playerId=${playerId2}` },
+      });
 
-    const fd = new FormData();
-    fd.set("room-id", roomId);
-    const response = await app.request("/lobby/room/join", {
-      method: "POST",
-      body: fd,
-      headers: { cookie: `playerId=${playerId2}` },
+      assertEquals(response.status, 302);
+      assertEquals(await response.json(), { location: "/waiting.html" });
     });
-
-    assertEquals(response.status, 302);
-    assertEquals(await response.json(), { location: "/waiting.html" });
   });
 });

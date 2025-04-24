@@ -14,7 +14,7 @@ export class Room {
     return this.#players;
   }
 
-  hasPlayer(playerId: string): boolean {
+  has(playerId: string): boolean {
     return this.#players.some(({ id }) => id === playerId);
   }
 
@@ -22,11 +22,11 @@ export class Room {
     return this.#players.length >= this.#capacity;
   }
 
-  addPlayer(player: Player) {
+  add(player: Player) {
     return this.#players.push(player);
   }
 
-  leave(playerId: string) {
+  remove(playerId: string) {
     this.#players = this.#players.filter(({ id }) => id !== playerId);
   }
 }
