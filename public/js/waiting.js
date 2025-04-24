@@ -124,9 +124,20 @@ const renderPlayers = () => {
   }, 1000);
 };
 
+const copyRoomId = () => {
+  const roomId = document.getElementById("room-id").innerText;
+  navigator.clipboard.writeText(roomId);
+};
+
+const addClickListner = (selector, handler) => {
+  const button = document.querySelector(selector);
+  button.addEventListener("click", handler);
+};
+
 const main = () => {
   renderPlayers();
-  document.querySelector("#leave-btn").addEventListener("click", leaveLobby);
+  addClickListner("#leave-btn", leaveLobby);
+  addClickListner("#copy-btn", copyRoomId);
 };
 
 globalThis.onload = main;

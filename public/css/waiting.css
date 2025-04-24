@@ -74,10 +74,24 @@ figcaption {
   text-align: center;
 }
 
-#room-id {
+#room-info {
   color: white;
   background-color: #2c2b2b85;
   margin: 10px;
   border-radius: 10px;
   padding: 10px;
+  font-size: 24px;
+}
+
+button {
+  color: white;
+  background-color: #2c2b2b85;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 0px;
+}
+
+#room {
+  display: flex;
 }

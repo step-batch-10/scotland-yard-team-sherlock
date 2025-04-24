@@ -39,9 +39,9 @@ body {
   position: absolute;
   display: none;
   gap: 8px;
-  background-color: rgb(10, 171, 171);
-  padding: 10px;
-  border-radius: 10px;
+  background-color: rgb(229, 217, 194);
+  padding: 8px;
+  border-radius: 8px;
 }
 
 #ticket-panel {

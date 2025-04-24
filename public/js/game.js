@@ -9,6 +9,7 @@ const poller = () => {
     stop() {
       isOver = true;
     },
+
     async delay() {
       await delay(1000);
     },
@@ -72,9 +73,9 @@ const positionInventoryContainer = (container, coord) => {
   container.style.left = `${coord.left}px`;
 };
 
-const setupInventoryHover = (pointer, container) => {
-  pointer.addEventListener("mouseover", () => showInventory(container));
-  pointer.addEventListener("mouseout", () => hideInventory(container));
+const addHoverListner = (triggerEl, targetEl) => {
+  triggerEl.addEventListener("mouseover", () => showInventory(targetEl));
+  triggerEl.addEventListener("mouseout", () => hideInventory(targetEl));
 };
 
 const createContainer = (content) => {
@@ -105,7 +106,9 @@ const renderInventoryPanel = (inventory, container) => {
     const panel = createTicketPanel(ticket, count);
     inventoryPanel.append(panel);
   }
+
   container.append(inventoryPanel);
+  addHoverListner(container, container);
 };
 
 const addInventory = (inventoryContainer, { tickets, cards }) => {
@@ -124,7 +127,7 @@ const renderInventory = (position, inventory) => {
   positionInventoryContainer(inventoryContainer, coord);
 
   document.querySelector(".map-container").append(inventoryContainer);
-  setupInventoryHover(pointer, inventoryContainer);
+  addHoverListner(pointer, inventoryContainer);
 };
 
 const renderMrx = (map, { position, color, inventory }) => {
@@ -287,7 +290,7 @@ const main = async () => {
     }
 
     renderPlayerPositions(map, gameStatus);
-    poll.delay();
+    await poll.delay();
   }
 
   hidePopUp();
