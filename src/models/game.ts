@@ -86,6 +86,10 @@ export class Game {
       gameEndDetails: this.#gameOverDetails,
     };
   }
+  #isStationBlockedForDetective(stationNumber: number) {
+    return this.#isPlaceOccupied(stationNumber) &&
+      !this.#isMrXCaught(stationNumber);
+  }
 
   move(playerId: string, stationNumber: number): GameMoveResponse {
     const isMrx = this.#isMrX(playerId);
@@ -104,9 +108,7 @@ export class Game {
       };
     }
 
-    if (
-      this.#isPlaceOccupied(stationNumber) && !this.#isMrXCaught(stationNumber)
-    ) {
+    if (this.#isStationBlockedForDetective(stationNumber)) {
       return { status: false, message: "Station already occupied ..!" };
     }
 

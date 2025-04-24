@@ -40,6 +40,8 @@ body {
   display: none;
   gap: 8px;
   background-color: rgb(10, 171, 171);
+  padding: 10px;
+  border-radius: 10px;
 }
 
 #ticket-panel {
@@ -152,7 +154,5 @@ body {
 
 .station-info {
   color: whitesmoke;
-  padding-right: 8px;
-  color: whitesmoke;
-  padding-right: 8px;
+  padding-right: 10%;
 }

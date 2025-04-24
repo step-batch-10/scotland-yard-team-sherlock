@@ -9,6 +9,9 @@ const poller = () => {
     stop() {
       isOver = true;
     },
+    async delay() {
+      await delay(1000);
+    },
   };
 };
 
@@ -65,11 +68,8 @@ const createInventoryContainer = () => {
 };
 
 const positionInventoryContainer = (container, coord) => {
-  container.style.padding = "10px";
-  container.style.borderRadius = "10px";
   container.style.top = `${coord.top - 40}px`;
   container.style.left = `${coord.left}px`;
-  container.style.backgroundColor = "white";
 };
 
 const setupInventoryHover = (pointer, container) => {
@@ -268,7 +268,7 @@ const main = async () => {
     }
 
     renderPlayerPositions(map, gameStatus);
-    await delay(1000);
+    poll.delay();
   }
 
   hidePopUp();
