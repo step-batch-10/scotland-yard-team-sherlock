@@ -82,4 +82,18 @@ describe("Lobby Manager", () => {
       id: "111",
     }]);
   });
+
+  it("should delete existing room", () => {
+    const lobbyManager = new LobbyManager(
+      () => "123",
+      new Map([[
+        "123",
+        new Room(6, [{ name: "Name1", id: "111" }]),
+      ]]),
+    );
+
+    lobbyManager.deleteRoom("123");
+
+    assertFalse(lobbyManager.getRoom("123"));
+  });
 });

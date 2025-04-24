@@ -1,11 +1,11 @@
-import { NewPlayer } from "./lobbyManager.ts";
+import { Player } from "./lobbyManager.ts";
 
 export class Room {
   isPrivate: boolean = false;
-  #players: NewPlayer[];
+  #players: Player[];
   #capacity: number;
 
-  constructor(capacity: number, players: NewPlayer[] = []) {
+  constructor(capacity: number, players: Player[] = []) {
     this.#players = players;
     this.#capacity = capacity;
   }
@@ -22,7 +22,7 @@ export class Room {
     return this.#players.length >= this.#capacity;
   }
 
-  addPlayer(player: NewPlayer) {
+  addPlayer(player: Player) {
     return this.#players.push(player);
   }
 

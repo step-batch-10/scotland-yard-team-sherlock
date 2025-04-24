@@ -1,6 +1,6 @@
 import { Room } from "./room.ts";
 
-export interface NewPlayer {
+export interface Player {
   id: string;
   name: string;
 }
@@ -14,7 +14,11 @@ export class LobbyManager {
     this.#rooms = rooms;
   }
 
-  addToRoom(roomId: string, player: NewPlayer): { roomId: string; room: Room } {
+  deleteRoom(roomId: string): boolean {
+    return this.#rooms.delete(roomId);
+  }
+
+  addToRoom(roomId: string, player: Player): { roomId: string; room: Room } {
     const room = this.#rooms.get(roomId)!;
     room.addPlayer(player);
 
@@ -29,7 +33,7 @@ export class LobbyManager {
     }
   }
 
-  #createRoom(player: NewPlayer): { room: Room; roomId: string } {
+  #createRoom(player: Player): { room: Room; roomId: string } {
     const roomId = this.#generateId();
     const room = new Room(6);
 
@@ -39,7 +43,7 @@ export class LobbyManager {
     return { room, roomId };
   }
 
-  #joinableRoom(player: NewPlayer): { room: Room; roomId: string } {
+  #joinableRoom(player: Player): { room: Room; roomId: string } {
     for (const [roomId, room] of this.#rooms) {
       if (!room.isPrivate) {
         room.addPlayer(player);
@@ -50,7 +54,7 @@ export class LobbyManager {
     return this.#createRoom(player);
   }
 
-  assignRoom(player: NewPlayer): { room: Room; roomId: string } {
+  assignRoom(player: Player): { room: Room; roomId: string } {
     return this.#roomOf(player.id) || this.#joinableRoom(player);
   }
 
