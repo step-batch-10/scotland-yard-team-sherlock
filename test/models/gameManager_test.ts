@@ -123,11 +123,4 @@ describe("Game Manager", () => {
 
     assert(gameManager.hasGame(gameId));
   });
-
-  it("should give the game detils for a game", () => {
-    const gameManager = new GameManager();
-    const gameId = gameManager.createGame("111", players);
-
-    assertEquals(gameManager.getGameDetails(gameId), playerDetails);
-  });
 });

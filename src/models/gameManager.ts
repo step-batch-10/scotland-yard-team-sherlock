@@ -82,8 +82,4 @@ export class GameManager {
   hasGame(gameId: string): boolean {
     return this.#games.has(gameId);
   }
-
-  getGameDetails(gameId: string) {
-    return this.#games.get(gameId)!.players;
-  }
 }

@@ -4,6 +4,7 @@ import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { LobbyManager } from "./models/lobbyManager.ts";
 import { GameManager } from "./models/gameManager.ts";
 import { Room } from "./models/room.ts";
+import { Game } from "./models/game.ts";
 
 export const handleLeaveLobby = (context: Context) => {
   const playerId = context.get("playerId");
@@ -15,12 +16,11 @@ export const handleLeaveLobby = (context: Context) => {
   return context.text("/");
 };
 
-export const assignRoles = (ctx: Context) => {
-  const gameId = getCookie(ctx, "gameId");
-  const gameManager: GameManager = ctx.get("gameManager");
-  const players: Player[] = gameManager.getGameDetails(gameId!);
+export const assignRoles = (context: Context) => {
+  const game: Game = context.get("game");
+  const players: Player[] = game.players;
 
-  return ctx.json(players);
+  return context.json(players);
 };
 
 export const serveRoomStatus = (context: Context) => {
