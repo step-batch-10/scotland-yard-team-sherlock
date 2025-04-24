@@ -46,20 +46,12 @@ const createColorTemplate = (color) => {
   return playerColor;
 };
 
-const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
+const renderCurrentPlayerInfo = ({name, color}, isYourTurn) => {
   const panel = document.getElementById("info-panel");
   panel.textContent = "";
   const playerName = createNameTemplate(name, isYourTurn);
   const playerColor = createColorTemplate(color);
   panel.append(playerName, playerColor);
-};
-
-const showInventory = (div) => {
-  div.style.display = "flex";
-};
-
-const hideInventory = (div) => {
-  div.style.display = "none";
 };
 
 const createInventoryContainer = () => {
@@ -73,9 +65,13 @@ const positionInventoryContainer = (container, coord) => {
   container.style.left = `${coord.left}px`;
 };
 
-const addHoverListner = (triggerEl, targetEl) => {
-  triggerEl.addEventListener("mouseover", () => showInventory(targetEl));
-  triggerEl.addEventListener("mouseout", () => hideInventory(targetEl));
+const toggleDisplay = (el, show) => {
+  el.style.display = show ? "flex" : "none";
+};
+
+const addHoverListener = (triggerEl, targetEl) => {
+  triggerEl.addEventListener("mouseover", () => toggleDisplay(targetEl, true));
+  triggerEl.addEventListener("mouseout", () => toggleDisplay(targetEl, false));
 };
 
 const createContainer = (content) => {
@@ -108,10 +104,10 @@ const renderInventoryPanel = (inventory, container) => {
   }
 
   container.append(inventoryPanel);
-  addHoverListner(container, container);
+  addHoverListener(container, container);
 };
 
-const addInventory = (inventoryContainer, { tickets, cards }) => {
+const addInventory = (inventoryContainer, {tickets, cards}) => {
   inventoryContainer.textContent = "";
   renderInventoryPanel(tickets, inventoryContainer);
   if (cards) renderInventoryPanel(cards, inventoryContainer);
@@ -127,10 +123,10 @@ const renderInventory = (position, inventory) => {
   positionInventoryContainer(inventoryContainer, coord);
 
   document.querySelector(".map-container").append(inventoryContainer);
-  addHoverListner(pointer, inventoryContainer);
+  addHoverListener(pointer, inventoryContainer);
 };
 
-const renderMrx = (map, { position, color, inventory }) => {
+const renderMrx = (map, {position, color, inventory}) => {
   if (position) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
@@ -138,13 +134,13 @@ const renderMrx = (map, { position, color, inventory }) => {
 };
 
 const renderDetectives = (map, detectives) => {
-  for (const { color, position, inventory } of detectives) {
+  for (const {color, position, inventory} of detectives) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
   }
 };
 
-const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
+const renderPlayerPositions = (map, {players, currentPlayer, you}) => {
   const [mrx, ...detectives] = players;
 
   resetPointers(map);
@@ -176,7 +172,7 @@ const showToast = (message, color) => {
 const sendMoveReq = async (stationNumber) => {
   const response = await fetch("/game/move", {
     method: "POST",
-    body: JSON.stringify({ stationNumber }),
+    body: JSON.stringify({stationNumber}),
   });
 
   return response;
@@ -185,7 +181,7 @@ const sendMoveReq = async (stationNumber) => {
 const makeMove = async (stationNumber) => {
   const resp = await sendMoveReq(stationNumber);
 
-  const { message } = await resp.json();
+  const {message} = await resp.json();
 
   if (resp.status === 403) {
     return showToast(message, "red");
@@ -224,7 +220,7 @@ const createCaughtMessage = () => {
   return caughtMsg;
 };
 
-const createDetectiveBadge = ({ color, detective }) => {
+const createDetectiveBadge = ({color, detective}) => {
   const badge = createElement("div");
   badge.id = "detective-info";
   badge.style.backgroundColor = color;

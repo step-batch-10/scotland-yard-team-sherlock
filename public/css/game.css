@@ -56,6 +56,13 @@ body {
   border: 1px solid grey;
 }
 
+.player-inventory {
+  padding: 10px;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  min-width: 120px;
+}
 #overlay {
   position: fixed;
   top: 0;

@@ -86,9 +86,14 @@ export class Game {
       gameEndDetails: this.#gameOverDetails,
     };
   }
+
   #isStationBlockedForDetective(stationNumber: number) {
     return this.#isPlaceOccupied(stationNumber) &&
       !this.#isMrXCaught(stationNumber);
+  }
+
+  #playerMovedToSameLocation(playerId: string, stationNumber: number) {
+    return this.#players[this.#indexOf(playerId)].position === stationNumber;
   }
 
   move(playerId: string, stationNumber: number): GameMoveResponse {
@@ -96,6 +101,13 @@ export class Game {
 
     if (!this.#isPlayerTurn(playerId)) {
       return { status: false, message: "Not Your Move ..!" };
+    }
+
+    if (this.#playerMovedToSameLocation(playerId, stationNumber)) {
+      return {
+        status: false,
+        message: "You should move to another station..!",
+      };
     }
 
     if (this.#isMrXCaught(stationNumber)) {

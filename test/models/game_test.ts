@@ -96,4 +96,16 @@ describe("Game class", () => {
 
     assertEquals(result, expected);
   });
+
+  it("Should Invalid move since player is trying to move to same station", () => {
+    const players = getPlayers();
+    const game: Game = new Game(players);
+    const result = game.move("1", 1);
+    const expected = {
+      status: false,
+      message: "You should move to another station..!",
+    };
+
+    assertEquals(result, expected);
+  });
 });
