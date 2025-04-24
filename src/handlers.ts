@@ -4,7 +4,7 @@ import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
 
-export const leaveLobby = (ctx: Context) => {
+export const handleLeaveLobby = (ctx: Context) => {
   const playerId = getCookie(ctx, "playerId");
   const roomId = deleteCookie(ctx, "roomId");
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
@@ -51,7 +51,7 @@ export const serveWaitingPage = async (context: Context) => {
   return context.html(page.replaceAll("##ROOM-ID##", `Room ID - ${roomId}`));
 };
 
-export const login = async (context: Context) => {
+export const handleLogin = async (context: Context) => {
   const formData = await context.req.formData();
   const playerName = formData.get("player-name") as string;
 
@@ -68,7 +68,7 @@ export interface Player {
   color: string;
   position: number;
 }
-export const joinUser = (ctx: Context) => {
+export const handleQuickJoin = (ctx: Context) => {
   const roomId = ctx.get("roomId");
   const playerId = ctx.get("playerId");
   const name = ctx.get("playerName");
@@ -103,7 +103,7 @@ export const handleGameJoin = (ctx: Context) => {
   return ctx.redirect("/waiting.html");
 };
 
-export const logout = (context: Context) => {
+export const handleLogout = (context: Context) => {
   const playerId = context.get("playerId");
   const playerManager: PlayerManager = context.get("playerManager");
   playerManager.delete(playerId);
@@ -123,7 +123,7 @@ export const serveGameStatus = (context: Context) => {
   return context.json(status);
 };
 
-export const makeMove = async (context: Context) => {
+export const handleMove = async (context: Context) => {
   const gameManager: GameManager = context.get("gameManager");
   const playerId = getCookie(context, "playerId");
   const gameId: string = context.get("gameId");

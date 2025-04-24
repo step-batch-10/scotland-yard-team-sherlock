@@ -4,7 +4,7 @@ import { LobbyManager } from "./models/lobby.ts";
 import { GameManager } from "./models/gameManager.ts";
 import { PlayerManager } from "./models/playerManager.ts";
 
-export const validateJoin = async (context: Context, next: Next) => {
+export const ensureValidJoin = async (context: Context, next: Next) => {
   const formData: FormData = await context.req.formData();
   const roomId = formData.get("room-id") as string;
 
@@ -20,7 +20,7 @@ export const validateJoin = async (context: Context, next: Next) => {
   return context.json({ error: "invalid room id" });
 };
 
-export const validatePlayerId = async (context: Context, next: Next) => {
+export const ensureValidPlayer = async (context: Context, next: Next) => {
   const playerId = getCookie(context, "playerId");
 
   if (!playerId) return context.redirect("/login.html");
@@ -34,7 +34,7 @@ export const validatePlayerId = async (context: Context, next: Next) => {
   return await next();
 };
 
-export const handleLoginAccess = async (context: Context, next: Next) => {
+export const ensureNotLoggedInPlayer = async (context: Context, next: Next) => {
   const playerId = getCookie(context, "playerId");
 
   const playerManager: PlayerManager = context.get("playerManager");
@@ -62,7 +62,7 @@ export const handleWaitingAccess = async (context: Context, next: Next) => {
   return await next();
 };
 
-export const validateRoomId = async (context: Context, next: Next) => {
+export const ensureValidRoomId = async (context: Context, next: Next) => {
   const roomId = getCookie(context, "roomId");
 
   if (!roomId) return context.redirect("/");
@@ -78,7 +78,7 @@ export const validateRoomId = async (context: Context, next: Next) => {
   return await next();
 };
 
-export const validateGameId = async (context: Context, next: Next) => {
+export const ensureValidGameId = async (context: Context, next: Next) => {
   const gameId = getCookie(context, "gameId");
   if (!gameId) return context.redirect("/waiting.html");
 
@@ -93,7 +93,7 @@ export const validateGameId = async (context: Context, next: Next) => {
   return await next();
 };
 
-export const checkRoomRejoin = async (context: Context, next: Next) => {
+export const redirectIfHasRoom = async (context: Context, next: Next) => {
   const roomId = getCookie(context, "roomId");
   const lobbyManager: LobbyManager = context.get("lobbyManager");
 
@@ -103,7 +103,7 @@ export const checkRoomRejoin = async (context: Context, next: Next) => {
   return context.redirect("/waiting.html");
 };
 
-export const checkGameStart = async (context: Context, next: Next) => {
+export const ensureGameStart = async (context: Context, next: Next) => {
   const playerId = context.get("playerId");
 
   const lobbyManager: LobbyManager = context.get("lobbyManager");

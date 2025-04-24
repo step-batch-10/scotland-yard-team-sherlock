@@ -4,11 +4,11 @@ import { logger } from "hono/logger";
 import {
   assignRoles,
   handleGameJoin,
-  joinUser,
-  leaveLobby,
-  login,
-  logout,
-  makeMove,
+  handleLeaveLobby,
+  handleLogin,
+  handleLogout,
+  handleMove,
+  handleQuickJoin,
   serveGameStatus,
   serveIndex,
   serveRoomStatus,
@@ -16,14 +16,14 @@ import {
 } from "./handlers.ts";
 
 import {
-  checkGameStart,
-  checkRoomRejoin,
-  handleLoginAccess,
+  ensureGameStart,
+  ensureNotLoggedInPlayer,
+  ensureValidGameId,
+  ensureValidJoin,
+  ensureValidPlayer,
+  ensureValidRoomId,
   handleWaitingAccess,
-  validateGameId,
-  validateJoin,
-  validatePlayerId,
-  validateRoomId,
+  redirectIfHasRoom,
 } from "./middlewares.ts";
 import { PlayerManager } from "./models/playerManager.ts";
 import { LobbyManager } from "./models/lobby.ts";
@@ -32,16 +32,16 @@ import { GameManager } from "./models/gameManager.ts";
 const createLobbyRoutes = () => {
   const app = new Hono();
 
-  app.use(validatePlayerId);
+  app.use(ensureValidPlayer);
 
-  app.post("/quick-play", checkRoomRejoin, handleGameJoin);
-  app.post("/room/join", validateJoin, joinUser);
+  app.post("/quick-play", redirectIfHasRoom, handleGameJoin);
+  app.post("/room/join", ensureValidJoin, handleQuickJoin);
 
-  app.use("/room/status", checkGameStart);
-  app.use(validateRoomId);
+  app.use("/room/status", ensureGameStart);
+  app.use(ensureValidRoomId);
 
   app.get("/room/status", serveRoomStatus);
-  app.post("/room/leave", leaveLobby);
+  app.post("/room/leave", handleLeaveLobby);
 
   return app;
 };
@@ -49,10 +49,10 @@ const createLobbyRoutes = () => {
 const createGameRoutes = () => {
   const app = new Hono();
 
-  app.use(validatePlayerId, validateGameId);
+  app.use(ensureValidPlayer, ensureValidGameId);
 
   app.get("/details", assignRoles);
-  app.post("/move", makeMove);
+  app.post("/move", handleMove);
   app.get("/status", serveGameStatus);
 
   return app;
@@ -85,19 +85,21 @@ export const createApp = (
 
   app.use("*", injectData(playerManager, lobbyManager, gameManager));
 
-  app.get("/", validatePlayerId, serveIndex);
-  app.get("/index.html", validatePlayerId, serveIndex);
-  app.get("/login.html", handleLoginAccess);
-  app.get(
-    "/waiting.html",
-    validatePlayerId,
-    handleWaitingAccess,
-    serveWaitingPage,
-  );
-  app.use("/game.html", validatePlayerId, validateGameId);
+  app.get("/", ensureValidPlayer, serveIndex);
+  app.get("/index.html", ensureValidPlayer, serveIndex);
+  app.use("/login.html", ensureNotLoggedInPlayer);
+  app
+    .get(
+      "/waiting.html",
+      ensureValidPlayer,
+      handleWaitingAccess,
+      serveWaitingPage,
+    );
 
-  app.post("/auth/login", login);
-  app.get("/auth/logout", logout);
+  app.use("/game.html", ensureValidPlayer, ensureValidGameId);
+
+  app.post("/auth/login", handleLogin);
+  app.get("/auth/logout", handleLogout);
 
   app.route("/lobby", lobbyRoutes);
   app.route("/game", gameRoutes);
