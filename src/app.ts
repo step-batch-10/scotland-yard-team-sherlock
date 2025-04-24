@@ -33,10 +33,13 @@ const createLobbyRoutes = () => {
   const app = new Hono();
 
   app.use(validatePlayerId);
+
   app.post("/quick-play", checkRoomRejoin, handleGameJoin);
   app.post("/room/join", validateJoin, joinUser);
+
   app.use("/room/status", checkGameStart);
   app.use(validateRoomId);
+
   app.get("/room/status", serveRoomStatus);
   app.post("/room/leave", leaveLobby);
 
@@ -47,6 +50,7 @@ const createGameRoutes = () => {
   const app = new Hono();
 
   app.use(validatePlayerId, validateGameId);
+
   app.get("/details", assignRoles);
   app.post("/move", makeMove);
   app.get("/status", serveGameStatus);
@@ -75,14 +79,12 @@ export const createApp = (
   app.get("/", validatePlayerId, serveIndex);
   app.get("/index.html", validatePlayerId, serveIndex);
   app.get("/login.html", handleLoginAccess);
-  app
-    .get(
-      "/waiting.html",
-      validatePlayerId,
-      handleWaitingAccess,
-      serveWaitingPage,
-    );
-
+  app.get(
+    "/waiting.html",
+    validatePlayerId,
+    handleWaitingAccess,
+    serveWaitingPage,
+  );
   app.use("/game.html", validatePlayerId, validateGameId);
 
   app.post("/auth/login", login);
