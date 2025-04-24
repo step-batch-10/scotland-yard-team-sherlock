@@ -46,7 +46,7 @@ const createColorTemplate = (color) => {
   return playerColor;
 };
 
-const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
+const renderCurrentPlayerInfo = ({name, color}, isYourTurn) => {
   const panel = document.getElementById("info-panel");
   panel.textContent = "";
   const playerName = createNameTemplate(name, isYourTurn);
@@ -111,7 +111,7 @@ const renderInventoryPanel = (inventory, container) => {
   addHoverListner(container, container);
 };
 
-const addInventory = (inventoryContainer, { tickets, cards }) => {
+const addInventory = (inventoryContainer, {tickets, cards}) => {
   inventoryContainer.textContent = "";
   renderInventoryPanel(tickets, inventoryContainer);
   if (cards) renderInventoryPanel(cards, inventoryContainer);
@@ -130,7 +130,7 @@ const renderInventory = (position, inventory) => {
   addHoverListner(pointer, inventoryContainer);
 };
 
-const renderMrx = (map, { position, color, inventory }) => {
+const renderMrx = (map, {position, color, inventory}) => {
   if (position) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
@@ -138,13 +138,13 @@ const renderMrx = (map, { position, color, inventory }) => {
 };
 
 const renderDetectives = (map, detectives) => {
-  for (const { color, position, inventory } of detectives) {
+  for (const {color, position, inventory} of detectives) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
   }
 };
 
-const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
+const renderPlayerPositions = (map, {players, currentPlayer, you}) => {
   const [mrx, ...detectives] = players;
 
   resetPointers(map);
@@ -176,7 +176,7 @@ const showToast = (message, color) => {
 const sendMoveReq = async (stationNumber) => {
   const response = await fetch("/game/move", {
     method: "POST",
-    body: JSON.stringify({ stationNumber }),
+    body: JSON.stringify({stationNumber}),
   });
 
   return response;
@@ -185,7 +185,7 @@ const sendMoveReq = async (stationNumber) => {
 const makeMove = async (stationNumber) => {
   const resp = await sendMoveReq(stationNumber);
 
-  const { message } = await resp.json();
+  const {message} = await resp.json();
 
   if (resp.status === 403) {
     return showToast(message, "red");
@@ -224,7 +224,7 @@ const createCaughtMessage = () => {
   return caughtMsg;
 };
 
-const createDetectiveBadge = ({ color, detective }) => {
+const createDetectiveBadge = ({color, detective}) => {
   const badge = createElement("div");
   badge.id = "detective-info";
   badge.style.backgroundColor = color;
@@ -254,19 +254,14 @@ const renderGameOverPopup = (gameResult) => {
   resultPanel.append(resultSection, stationInfo);
 };
 
-const displayMrXLog = () => {
-  const mrXLog = [
-    { ticket: "taxi" },
-    { ticket: "bus" },
-    { ticket: "taxi", station: 6 },
-  ];
-
-  mrXLog.forEach((entry, index) => {
+const displayMrXLog = (mrXMoves) => {
+  mrXMoves.forEach((entry, index) => {
     const ticketDiv = document.getElementById(`${index + 1}`);
-    const p = document.createElement("p");
-    p.textContent = entry.station ? entry.station : entry.ticket;
-    p.classList.add("reveal-station");
-    ticketDiv.append(p);
+    const ptag = ticketDiv.querySelector("p");
+    ptag.textContent = entry.station ? entry.station : entry.ticket;
+
+    ptag.classList.add("reveal-station");
+
     ticketDiv.classList.add(entry.ticket);
   });
 };
@@ -275,12 +270,12 @@ const main = async () => {
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
 
-  displayMrXLog();
   addStationClicks(map);
 
   while (poll.shouldPoll) {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
 
+    displayMrXLog(gameStatus.mrXMoves);
     if (gameStatus.gameEndDetails) {
       const gameEndPopup = document.getElementById("popup");
       gameEndPopup.style.display = "flex";
