@@ -68,12 +68,14 @@ export interface Player {
   color: string;
   position: number;
 }
-export const handleQuickJoin = (ctx: Context) => {
-  const roomId = ctx.get("roomId");
-  const playerId = ctx.get("playerId");
-  const name = ctx.get("playerName");
-  const lobbyManager: LobbyManager = ctx.get("lobbyManager");
-  const gameManager: GameManager = ctx.get("gameManager");
+export const handleRoomJoin = (context: Context) => {
+  const roomId = context.get("roomId");
+  const playerId = context.get("playerId");
+  const name = context.get("playerName");
+
+  const lobbyManager: LobbyManager = context.get("lobbyManager");
+
+  const gameManager: GameManager = context.get("gameManager");
   const { isLobbyFull } = lobbyManager.addToExistingRoom(roomId, {
     id: playerId,
     name,
@@ -83,11 +85,11 @@ export const handleQuickJoin = (ctx: Context) => {
     gameManager.saveGame(lobbyManager.createGame(roomId));
   }
 
-  ctx.status(302);
-  return ctx.json({ location: "/waiting.html" });
+  context.status(302);
+  return context.json({ location: "/waiting.html" });
 };
 
-export const handleGameJoin = (ctx: Context) => {
+export const handleQuickJoin = (ctx: Context) => {
   const playerId = ctx.get("playerId");
   const lobbyManager: LobbyManager = ctx.get("lobbyManager");
   const gameManager: GameManager = ctx.get("gameManager");
