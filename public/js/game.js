@@ -62,7 +62,7 @@ const hideInventory = (div) => {
 };
 
 const createInventoryContainer = () => {
-  const div = document.createElement("div");
+  const div = createElement("div");
   div.id = "inventory-container";
   return div;
 };
@@ -205,7 +205,7 @@ const hidePopUp = () => {
   const popup = document.getElementById("popup");
   const closeBtn = document.querySelector(".close");
 
-  closeBtn.addEventListener("click", () => popup.style.display = "none");
+  closeBtn.addEventListener("click", () => (popup.style.display = "none"));
 
   globalThis.addEventListener("click", (event) => {
     if (event.target === popup) {
@@ -231,7 +231,7 @@ const createDetectiveBadge = ({ color, detective }) => {
 };
 
 const createGameResultSection = (gameResult) => {
-  const resultSection = document.createElement("div");
+  const resultSection = createElement("div");
   resultSection.id = "game-result";
 
   const caughtMsg = createCaughtMessage();
@@ -243,7 +243,7 @@ const createGameResultSection = (gameResult) => {
 const renderGameOverPopup = (gameResult) => {
   const resultPanel = document.getElementById("result-panel");
   const resultSection = createGameResultSection(gameResult);
-  const stationInfo = document.createElement("h3");
+  const stationInfo = createElement("h3");
 
   stationInfo.textContent = `At Station number - ${gameResult.station}`;
   stationInfo.classList.add("station-info");
