@@ -1,4 +1,4 @@
-import { Room, RoomStatus } from "./room.ts";
+import { Room } from "./room.ts";
 
 export interface NewPlayer {
   id: string;
@@ -7,78 +7,51 @@ export interface NewPlayer {
 
 export class LobbyManager {
   #rooms: Map<string, Room>;
-  #playerToGame: Map<string, string>;
   #generateId;
 
-  constructor(
-    generateId: () => string,
-    rooms: Map<string, Room> = new Map(),
-    playerToGame: Map<string, string> = new Map(),
-  ) {
+  constructor(generateId: () => string, rooms: Map<string, Room> = new Map()) {
     this.#generateId = generateId;
     this.#rooms = rooms;
-    this.#playerToGame = playerToGame;
   }
 
-  addToRoom(roomId: string, player: NewPlayer): NewPlayer[] | undefined {
+  addToRoom(roomId: string, player: NewPlayer): { roomId: string; room: Room } {
     const room = this.#rooms.get(roomId)!;
-    const players = room.addPlayer(player);
+    room.addPlayer(player);
 
-    if (players) {
-      this.#addPlayerToGame(roomId, players);
-      this.#rooms.delete(roomId);
-    }
-
-    return players;
+    return { room, roomId };
   }
 
-  getGameId(playerId: string) {
-    return this.#playerToGame.get(playerId);
-  }
-
-  #roomOf(playerId: string): { roomId: string } | undefined {
+  #roomOf(playerId: string): { room: Room; roomId: string } | undefined {
     for (const [roomId, room] of this.#rooms) {
       if (room.hasPlayer(playerId)) {
-        return { roomId };
+        return { roomId, room };
       }
     }
   }
 
-  #joinableRoom(player: NewPlayer): RoomStatus {
-    for (const [roomId, room] of this.#rooms) {
-      if (!room.isPrivate) {
-        const players = room.addPlayer(player);
-        return { roomId, players };
-      }
-    }
-
+  #createRoom(player: NewPlayer): { room: Room; roomId: string } {
     const roomId = this.#generateId();
     const room = new Room(6);
 
     this.#rooms.set(roomId, room);
 
-    const players = room.addPlayer(player);
-    return { players, roomId };
+    room.addPlayer(player);
+    return { room, roomId };
   }
 
-  #roomFor(player: NewPlayer): RoomStatus {
-    const alreadyExistingRoom = this.#roomOf(player.id);
-    return alreadyExistingRoom || this.#joinableRoom(player);
-  }
-
-  #addPlayerToGame(roomId: string, players: NewPlayer[]) {
-    players.forEach(({ id }) => this.#playerToGame.set(id, roomId));
-  }
-
-  assignRoom(player: NewPlayer): { players?: NewPlayer[]; roomId: string } {
-    const { players, roomId } = this.#roomFor(player);
-
-    if (players) {
-      this.#addPlayerToGame(roomId, players);
-      this.#rooms.delete(roomId);
+  #joinableRoom(player: NewPlayer): { room: Room; roomId: string } {
+    for (const [roomId, room] of this.#rooms) {
+      if (!room.isPrivate) {
+        room.addPlayer(player);
+        return { roomId, room };
+      }
     }
 
-    return { roomId, players };
+    return this.#createRoom(player);
+  }
+
+  assignRoom(player: NewPlayer): { room: Room; roomId: string } {
+    return this.#roomOf(player.id) || this.#joinableRoom(player);
   }
 
   getRoom(roomId: string) {

@@ -13,27 +13,29 @@ describe("Room", () => {
     assert(room.hasPlayer("111"));
   });
 
-  it("shoudl add new player and should not return players", () => {
-    const room = new Room(6);
-    const players = room.addPlayer({ name: "Name", id: "111" });
-    assertFalse(players);
-  });
-
-  it("should return players if players count reached capacity", () => {
-    const room = new Room(2, [{ name: "Name1", id: "111" }]);
-    const players = room.addPlayer({ name: "Name2", id: "222" });
-
-    assertEquals(players, [{ name: "Name1", id: "111" }, {
-      name: "Name2",
-      id: "222",
-    }]);
-  });
-
   it("should remove the player", () => {
     const room = new Room(2, [{ name: "Name1", id: "111" }]);
     const players = room.leave("111");
 
     assertFalse(players);
     assertEquals(room.players, []);
+  });
+
+  it("should return true if room is full", () => {
+    const room = new Room(2, [
+      { name: "Name1", id: "111" },
+      { name: "Name", id: "123" },
+    ]);
+
+    assert(room.isFull);
+  });
+
+  it("should return false if room is not full", () => {
+    const room = new Room(4, [
+      { name: "Name1", id: "111" },
+      { name: "Name", id: "123" },
+    ]);
+
+    assertFalse(room.isFull);
   });
 });
