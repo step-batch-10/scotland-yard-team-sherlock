@@ -45,6 +45,7 @@ body {
   background-color: rgb(229, 217, 194);
   padding: 8px;
   border-radius: 8px;
+  pointer-events: all;
 }
 
 #ticket-panel {

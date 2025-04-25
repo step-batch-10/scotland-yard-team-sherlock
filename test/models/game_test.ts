@@ -283,4 +283,24 @@ describe("Game Test", () => {
 
     assertEquals(win, expected);
   });
+
+  it("should not change the current player if the isDoubleUsed is true", () => {
+    const game = new Game(initGameSetup(1));
+    game.move("111", { to: 8, ticket: "taxi", isDoubleUsed: true });
+    assertEquals(game.currentPlayer, 0);
+  });
+
+  it("should give the message as You can't use double move card again if Mrx uses double card while one double card round running", () => {
+    const game = new Game(initGameSetup(1));
+    game.move("111", { to: 8, ticket: "taxi", isDoubleUsed: true });
+    const move = game.move("111", {
+      to: 18,
+      ticket: "taxi",
+      isDoubleUsed: true,
+    });
+
+    assertEquals(game.currentPlayer, 0);
+    assertEquals(move.status, false);
+    assertEquals(move.message, "You can't use double move card again");
+  });
 });

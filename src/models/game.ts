@@ -25,6 +25,7 @@ export interface Player {
 interface MoveData {
   to: number;
   ticket: Ticket;
+  isDoubleUsed?: boolean;
 }
 
 export class Game {
@@ -33,6 +34,7 @@ export class Game {
   #mrxRevealPositions = [3, 8, 13, 18, 24];
   #currentPlayerIndex: number = 0;
   #win?: WinDetails;
+  #wasDoubleUsed: boolean = false;
 
   constructor(players: Players) {
     this.#players = players;
@@ -40,6 +42,9 @@ export class Game {
 
   get mrXMoves() {
     return this.#mrxMoves;
+  }
+  get currentPlayer() {
+    return this.#currentPlayerIndex;
   }
 
   #isPlayerTurn(playerId: string) {
@@ -107,9 +112,11 @@ export class Game {
     return this.#mrxMoves.length === 24;
   }
 
-  #updateCurrentPlayerIndex() {
-    this.#currentPlayerIndex = (this.#currentPlayerIndex + 1) %
-      this.#players.length;
+  #updateCurrentPlayerIndex(isDoubleUsed: boolean | undefined) {
+    if (!isDoubleUsed) {
+      this.#currentPlayerIndex = (this.#currentPlayerIndex + 1) %
+        this.#players.length;
+    }
   }
 
   #updateTo(station: number) {
@@ -120,11 +127,21 @@ export class Game {
     return stations[from][ticket].includes(to);
   }
 
+  #isValidDoubleMove({ isDoubleUsed }: MoveData) {
+    if (isDoubleUsed && this.#wasDoubleUsed) return false;
+    if (isDoubleUsed && !this.#wasDoubleUsed) {
+      this.#wasDoubleUsed = true;
+      return true;
+    }
+    return true;
+  }
+
   #isValidMove(from: number, { to, ticket }: MoveData): boolean {
     const { tickets } = this.#players[this.#currentPlayerIndex].inventory;
     const isValidTicket = (ticket in tickets) && tickets[ticket]! > 0;
 
-    return isValidTicket && this.#isStationReachable(ticket, from, to);
+    return isValidTicket &&
+      this.#isStationReachable(ticket, from, to);
   }
 
   move(playerId: string, moveData: MoveData): GameMoveResponse {
@@ -133,7 +150,12 @@ export class Game {
     if (!this.#isPlayerTurn(playerId)) {
       return { status: false, message: "Not Your Move ..!" };
     }
-
+    if (!this.#isValidDoubleMove(moveData)) {
+      return {
+        status: false,
+        message: "You can't use double move card again",
+      };
+    }
     if (!this.#isValidMove(playerPosition, moveData)) {
       return { status: false, message: "Invalid move" };
     }
@@ -180,7 +202,10 @@ export class Game {
     return this.#isArraySame(mrXPossibleStations, allDetectiveLocations);
   }
 
-  #move(playerId: string, { to, ticket }: MoveData): GameMoveResponse {
+  #move(
+    playerId: string,
+    { to, ticket, isDoubleUsed }: MoveData,
+  ): GameMoveResponse {
     const isMrx = this.#isMrX(playerId);
 
     if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: to });
@@ -197,7 +222,7 @@ export class Game {
     }
     this.#updateTickets(playerId, ticket);
     this.#updateTo(to);
-    this.#updateCurrentPlayerIndex();
+    this.#updateCurrentPlayerIndex(isDoubleUsed);
 
     if (this.#isTurnFinished()) {
       this.#win = {
