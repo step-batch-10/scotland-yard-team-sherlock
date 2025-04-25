@@ -160,8 +160,24 @@ export class Game {
     return;
   }
 
+  #isArraySame(array1: number[], array2: number[]) {
+    const setA = new Set(array1);
+    const setB = new Set(array2);
+
+    for (const value of setA) {
+      if (!setB.has(value)) return false;
+    }
+    return true;
+  }
+
   #isMrXBlocked(): boolean {
-    return false;
+    const [mrXLocation, ...allDetectiveLocations] = this.#players.map((
+      { position },
+    ) => position);
+    const mrXPossLoc = stations[mrXLocation];
+    const mrXPossibleStations = Object.values(mrXPossLoc).flat();
+
+    return this.#isArraySame(mrXPossibleStations, allDetectiveLocations);
   }
 
   #move(playerId: string, { to, ticket }: MoveData): GameMoveResponse {
@@ -198,7 +214,6 @@ export class Game {
         message: "Mr.X got blocked by Detectives",
       };
     }
-
     return { status: true, message: `Moved to ${to}` };
   }
 

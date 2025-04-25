@@ -1,5 +1,5 @@
 import { describe, it } from "testing/bdd";
-import { assertEquals } from "assert";
+import { assert, assertEquals } from "assert";
 import { Game } from "../../src/models/game.ts";
 import { Players } from "../../src/models/gameManager.ts";
 
@@ -117,6 +117,62 @@ const initGameSetup = (index: number): Players => {
         },
       ],
     },
+    {
+      desc: "mrX will block setup",
+      data: [
+        {
+          name: "aaa",
+          id: "111",
+          color: "black",
+          isMrx: true,
+          position: 10,
+          inventory: {
+            tickets: { bus: 0, taxi: 4, underground: 3, black: 5 },
+            cards: { doubleMove: 2 },
+          },
+        },
+        {
+          name: "bbb",
+          id: "222",
+          color: "#63a4ff",
+          position: 11,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "ccc",
+          id: "333",
+          color: "#ffb347",
+          position: 20,
+          isMrx: false,
+          inventory: { tickets: { bus: 10, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "ddd",
+          id: "444",
+          color: "red",
+          position: 3,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "eee",
+          id: "555",
+          color: "blue",
+          position: 4,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "fff",
+          id: "666",
+          color: "violet",
+          position: 5,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+      ],
+    },
   ];
 
   return states[index].data as Players;
@@ -208,5 +264,23 @@ describe("Game Test", () => {
 
     assertEquals(m11.status, true);
     assertEquals(m22.status, true);
+  });
+
+  it("Should game over details when mr.X blocked", () => {
+    const game = new Game(initGameSetup(2));
+    const m1 = game.move("111", { ticket: "taxi", to: 2 });
+    const m2 = game.move("222", { ticket: "taxi", to: 10 });
+
+    assert(m1.status);
+    assert(m2.status);
+
+    const gameStatus = game.gameStatus("111");
+    const win = gameStatus.win;
+    const expected = {
+      winner: "Detective",
+      message: "Mr.X got blocked by Detectives",
+    };
+
+    assertEquals(win, expected);
   });
 });
