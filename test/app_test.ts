@@ -4,7 +4,11 @@ import { createApp } from "../src/app.ts";
 import { getIdGenerator, PlayerManager } from "../src/models/playerManager.ts";
 import { LobbyManager, Player } from "../src/models/lobbyManager.ts";
 import { GameManager, Players } from "../src/models/gameManager.ts";
-import { GameOverDetails, GameStatus } from "../src/models/types/gameStatus.ts";
+import {
+  DetectiveWin,
+  GameStatus,
+  MrXMoveStatus,
+} from "../src/models/types/gameStatus.ts";
 import { getPlayers } from "./models/game_test.ts";
 import { Game } from "../src/models/game.ts";
 
@@ -69,15 +73,19 @@ const getGamePlayers = (): Players => {
   ];
 };
 
-const gameEndingDetails = (
-  detective: string,
-  stationNumber: number,
+const detectiveWinDetails = (
+  winner: "Detective",
   color: string,
-): GameOverDetails => {
+  stationNumber: number,
+  name: string,
+  message: string,
+): DetectiveWin => {
   return {
-    detective: detective,
-    color: color,
-    station: stationNumber,
+    winner,
+    color,
+    stationNumber,
+    name,
+    message,
   };
 };
 
@@ -827,11 +835,133 @@ describe("Game Page", () => {
         ],
         you: 0,
         currentPlayer: 0,
-        gameEndDetails: gameEndingDetails("fff", 31, "violet"),
+        win: detectiveWinDetails(
+          "Detective",
+          "violet",
+          31,
+          "fff",
+          "detective won",
+        ),
       };
 
       assertEquals(res.status, 200);
       assertEquals(await res.json(), gameStatus);
+    });
+
+    it("should return gameEndDetails when MrX completes 24 moves", async () => {
+      const playerManager = new PlayerManager(
+        getIdGenerator(),
+        new Map([
+          ["111", "aaa"],
+          ["222", "bbb"],
+          ["333", "ccc"],
+          ["444", "ddd"],
+          ["555", "eee"],
+          ["666", "fff"],
+        ]),
+      );
+
+      const lobbyManager = new LobbyManager(getIdGenerator());
+      const game = getGame();
+      const gameManager = new GameManager(new Map([["123", game]]));
+
+      for (let i = 0; i < 24; i++) {
+        game.move("111", 10 + i);
+        game.move("222", 20 + i);
+        game.move("333", 30 + i);
+        game.move("444", 40 + i);
+        game.move("555", 50 + i);
+        game.move("666", 60 + i);
+      }
+
+      const app = createApp(playerManager, lobbyManager, gameManager);
+
+      const res = await app.request("/game/status", {
+        headers: { cookie: `gameId=123;playerId=111` },
+      });
+
+      const expectedMrXMoves: MrXMoveStatus[] = Array.from(
+        { length: 24 },
+        () => ({
+          ticket: "taxi",
+        }),
+      );
+
+      expectedMrXMoves[2].position = 12;
+      expectedMrXMoves[7].position = 17;
+      expectedMrXMoves[12].position = 22;
+      expectedMrXMoves[17].position = 27;
+      expectedMrXMoves[23].position = 33;
+
+      const gameStatus: GameStatus = {
+        players: [
+          {
+            name: "aaa",
+            id: "111",
+            color: "black",
+            isMrx: true,
+            inventory: {
+              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
+              cards: { doubleMove: 2 },
+            },
+            position: 33,
+          },
+          {
+            name: "bbb",
+            id: "222",
+            color: "#63a4ff",
+            position: 43,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "ccc",
+            id: "333",
+            color: "#ffb347",
+            position: 53,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "ddd",
+            id: "444",
+            color: "red",
+            position: 63,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "eee",
+            id: "555",
+            color: "blue",
+            position: 73,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+          {
+            name: "fff",
+            id: "666",
+            color: "violet",
+            position: 83,
+            isMrx: false,
+            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
+          },
+        ],
+        mrXMoves: expectedMrXMoves,
+        you: 0,
+        currentPlayer: 0,
+        win: {
+          winner: "Mrx",
+          name: "aaa",
+          message: "Mr. X has evaded capture for 24 moves!",
+          mrxMoves: game.mrXMoves,
+        },
+      };
+      const data = await res.json();
+
+      assertEquals(expectedMrXMoves, data.mrXMoves);
+      assertEquals(res.status, 200);
+      assertEquals(data, gameStatus);
     });
   });
 

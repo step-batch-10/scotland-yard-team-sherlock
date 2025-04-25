@@ -1,3 +1,12 @@
+import { MrxMove } from "./setupModel.ts";
+
+export interface MrXWon {
+  winner: "Mrx";
+  name: string;
+  message: string;
+  mrxMoves: MrxMove[];
+}
+
 export interface Player {
   name: string;
   id: string;
@@ -5,11 +14,15 @@ export interface Player {
   position: number;
 }
 
-export interface GameOverDetails {
-  detective: string;
+export interface DetectiveWin {
+  winner: "Detective";
   color: string;
-  station: number;
+  stationNumber: number;
+  name: string;
+  message: string;
 }
+
+export type WinDetails = MrXWon | DetectiveWin;
 
 export interface MrxTicketsStatus {
   bus: number;
@@ -35,7 +48,6 @@ export interface MrxStatus {
   isMrx: true;
   inventory: { tickets: MrxTicketsStatus; cards: Cards };
 }
-
 export interface DetectiveStatus {
   id: string;
   name: string;
@@ -63,7 +75,7 @@ export interface GameStatus {
   currentPlayer: number;
   mrXMoves: MrXMoveStatus[];
   players: GameStatusPlayers;
-  gameEndDetails?: GameOverDetails;
+  win?: WinDetails;
 }
 
 export const mockStates = {

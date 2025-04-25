@@ -115,6 +115,11 @@ body {
   font-size: 0.95rem;
 }
 
+.winner-data {
+  color: white;
+  margin: 10px;
+}
+
 .close {
   position: absolute;
   top: 8px;

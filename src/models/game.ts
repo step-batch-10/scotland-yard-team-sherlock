@@ -1,16 +1,16 @@
 import { Players } from "./gameManager.ts";
 import {
   DetectiveStatus,
-  GameOverDetails,
   GameStatus,
   GameStatusPlayers,
   MrxStatus,
+  WinDetails,
 } from "./types/gameStatus.ts";
 import { MrxMove } from "./types/setupModel.ts";
 
 interface GameMoveResponse {
   status: boolean;
-  message: string;
+  message?: string;
 }
 
 export interface Player {
@@ -25,10 +25,14 @@ export class Game {
   #mrxMoves: MrxMove[] = [];
   #mrxRevealPositions = [3, 8, 13, 18, 24];
   #currentPlayerIndex: number = 0;
-  #gameOverDetails?: GameOverDetails;
+  #win?: WinDetails;
 
   constructor(players: Players) {
     this.#players = players;
+  }
+
+  get mrXMoves() {
+    return this.#mrxMoves;
   }
 
   #isPlayerTurn(playerId: string) {
@@ -83,7 +87,7 @@ export class Game {
 
       you: this.#indexOf(playerId),
       currentPlayer: this.#currentPlayerIndex,
-      gameEndDetails: this.#gameOverDetails,
+      win: this.#win,
     };
   }
 
@@ -97,10 +101,7 @@ export class Game {
   }
 
   #isTurnFinished() {
-    // we need a mechanism to save all the stations of mr. X so that we can display it when mr.x wins.
-    // there can be multiple conditions of mr.X winning when we need whole log.
-
-    return false;
+    return this.#mrxMoves.length === 4;
   }
 
   move(playerId: string, stationNumber: number): GameMoveResponse {
@@ -108,6 +109,19 @@ export class Game {
 
     if (!this.#isPlayerTurn(playerId)) {
       return { status: false, message: "Not Your Move ..!" };
+    }
+
+    if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: stationNumber });
+
+    if (this.#isTurnFinished()) {
+      this.#win = {
+        winner: "Mrx",
+        name: this.#players[0].name,
+        message: "Mr. X has evaded capture for 24 moves!",
+        mrxMoves: this.#mrxMoves,
+      };
+
+      return { status: true, message: "Game Ended" };
     }
 
     if (this.#playerMovedToSameLocation(playerId, stationNumber)) {
@@ -120,16 +134,13 @@ export class Game {
     if (this.#isMrXCaught(stationNumber)) {
       const playerInfo = this.#players[this.#indexOf(playerId)];
 
-      this.#gameOverDetails = {
-        detective: playerInfo!.name,
-        color: playerInfo!.color,
-        station: stationNumber,
+      this.#win = {
+        winner: "Detective",
+        color: playerInfo.color,
+        stationNumber,
+        name: playerInfo.name,
+        message: "detective won",
       };
-    }
-
-    // here we'll check if the this.#isRevealTurn(this.#mrxMoves.length) === 24 if yes then return Mr. X finished 24 rounds and win!!
-    if (this.#isTurnFinished()) {
-      return { status: false, message: "game over" };
     }
 
     if (this.#isStationBlockedForDetective(stationNumber)) {
@@ -139,8 +150,6 @@ export class Game {
     this.#players[this.#currentPlayerIndex].position = stationNumber;
     this.#currentPlayerIndex = (this.#currentPlayerIndex + 1) %
       this.#players.length;
-
-    if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: stationNumber });
 
     return { status: true, message: `Moved to ${stationNumber}` };
   }
