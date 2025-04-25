@@ -3,6 +3,7 @@ import { serveStatic } from "hono/deno";
 import { logger } from "hono/logger";
 import {
   assignRoles,
+  handleHostGame,
   handleLeaveLobby,
   handleLogin,
   handleLogout,
@@ -36,6 +37,7 @@ const createLobbyRoutes = () => {
 
   app.post("/quick-play", redirectIfHasRoom, handleQuickJoin);
   app.post("/room/join", ensureValidJoin, handleRoomJoin);
+  app.post("/room/host", handleHostGame);
 
   app.use("/room/status", ensureGameStart);
   app.use(ensureValidRoomId);

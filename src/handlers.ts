@@ -126,3 +126,13 @@ export const handleMove = async (context: Context) => {
   context.status(status ? 200 : 403);
   return context.json({ message });
 };
+
+export const handleHostGame = (context: Context) => {
+  const playerId = getCookie(context, "playerId")!;
+  const lobbyManager: LobbyManager = context.get("lobbyManager");
+  const playerName = context.get("playerName");
+  const { roomId } = lobbyManager.hostRoom({ id: playerId, name: playerName });
+
+  setCookie(context, "roomId", roomId);
+  return context.redirect("/waiting.html");
+};

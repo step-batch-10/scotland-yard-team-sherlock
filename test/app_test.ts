@@ -886,3 +886,27 @@ describe("Game Page", () => {
     });
   });
 });
+
+describe("Host Game", () => {
+  it("Should redirect to waiting page when player host a game", async () => {
+    const playerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([["111", "James1"]]),
+    );
+
+    const lobbyManager = new LobbyManager(getIdGenerator());
+    const gameManager = new GameManager();
+
+    const app = createApp(playerManager, lobbyManager, gameManager);
+
+    const headers = { cookie: `playerId=111` };
+
+    const response = await app.request("/lobby/room/host", {
+      method: "POST",
+      headers,
+    });
+
+    assertEquals(response.status, 302);
+    assertEquals(response.headers.get("location"), "/waiting.html");
+  });
+});
