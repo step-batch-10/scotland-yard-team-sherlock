@@ -96,6 +96,13 @@ export class Game {
     return this.#players[this.#indexOf(playerId)].position === stationNumber;
   }
 
+  #isTurnFinished() {
+    // we need a mechanism to save all the stations of mr. X so that we can display it when mr.x wins.
+    // there can be multiple conditions of mr.X winning when we need whole log.
+
+    return false;
+  }
+
   move(playerId: string, stationNumber: number): GameMoveResponse {
     const isMrx = this.#isMrX(playerId);
 
@@ -118,6 +125,11 @@ export class Game {
         color: playerInfo!.color,
         station: stationNumber,
       };
+    }
+
+    // here we'll check if the this.#isRevealTurn(this.#mrxMoves.length) === 24 if yes then return Mr. X finished 24 rounds and win!!
+    if (this.#isTurnFinished()) {
+      return { status: false, message: "game over" };
     }
 
     if (this.#isStationBlockedForDetective(stationNumber)) {

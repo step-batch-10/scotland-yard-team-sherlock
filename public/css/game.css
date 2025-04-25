@@ -27,12 +27,15 @@ body {
 }
 
 #info-panel {
-  padding: 10px 20px;
+  padding: 22px 20px;
+  margin: 10px;
   border: 1px solid gray;
   border-radius: 5px;
   display: flex;
   gap: 10px;
-  background-color: aliceblue;
+  height: 90%;
+  align-items: center;
+  background-color: bisque;
 }
 
 #inventory-container {
@@ -170,7 +173,7 @@ body {
   justify-content: center;
   position: fixed;
   bottom: 0;
-  background-color: black;
+  background-color: #031520;
   width: 100vw;
   height: 10vh;
 }
@@ -185,6 +188,7 @@ body {
   gap: 1%;
   padding: 10px;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .ticket-slot {
@@ -195,15 +199,23 @@ body {
   border-radius: 8px;
   display: flex;
   align-items: center;
+  box-shadow: 1px 1px 1px 1px;
   justify-content: center;
 }
 
 .taxi {
-  background-color: yellow;
+  /* background-image: url("/assets/taxi.png"); */
+  background-color: rgba(212, 212, 37, 0.8);
 }
 
 .bus {
-  background-color: green;
+  /* background-image: url("/assets/bus.png"); */
+  background-color: rgba(51, 122, 51, 0.6);
+}
+
+.underground {
+  /* background-image: url("/assets/metro.png"); */
+  background-color: rgba(238, 182, 192, 0.6);
 }
 .reveal-station {
   font-size: 1.2em;
