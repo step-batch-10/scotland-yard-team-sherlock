@@ -42,7 +42,6 @@ export const serveWaitingPage = async (context: Context) => {
   const page = await Deno.readTextFile("./public/waiting.html");
 
   const roomId = context.get("roomId");
-
   return context.html(page.replaceAll("###", `${roomId}`));
 };
 
@@ -128,7 +127,7 @@ export const handleMove = async (context: Context) => {
 };
 
 export const handleHostGame = (context: Context) => {
-  const playerId = getCookie(context, "playerId")!;
+  const playerId = context.get("playerId");
   const lobbyManager: LobbyManager = context.get("lobbyManager");
   const playerName = context.get("playerName");
   const { roomId } = lobbyManager.hostRoom({ id: playerId, name: playerName });

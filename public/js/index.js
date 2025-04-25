@@ -58,11 +58,11 @@ const joinPlayer = async (e) => {
 
 const handleJoinButton = () => {
   const join = document.getElementById("join");
-  join.addEventListener("click", showJoinForm);
   const joinForm = document.getElementById("join-form");
-  joinForm.addEventListener("submit", joinPlayer);
-
   const closeButton = document.querySelector("#join-form-close-button");
+
+  join.addEventListener("click", showJoinForm);
+  joinForm.addEventListener("submit", joinPlayer);
   closeButton.addEventListener("click", closeJoinForm);
 };
 

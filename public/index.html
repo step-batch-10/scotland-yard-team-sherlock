@@ -222,7 +222,11 @@
         <form action="/lobby/quick-play" method="post">
           <button type="submit">Quick Play</button>
         </form>
-        <button id="host-room">Host</button>
+
+        <form action="/lobby/room/host" method="post">
+          <button id="host-room" type="submit">Host</button>
+        </form>
+
         <button id="join">Join a Room</button>
         <form action="/auth/logout">
           <button type="submit">Logout</button>
