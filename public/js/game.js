@@ -30,8 +30,8 @@ const resetPointers = (map) => {
   }
 };
 
-const resetCircles = (map) => {
-  const circles = map.querySelectorAll(".circle");
+const resetCurrentPlayerPointer = (map) => {
+  const circles = map.querySelectorAll(".pointer");
   for (const circle of circles) {
     circle.setAttribute("stroke", "none");
   }
@@ -148,7 +148,7 @@ const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
   const [mrx, ...detectives] = players;
 
   resetPointers(map);
-  resetCircles(map);
+  resetCurrentPlayerPointer(map);
   document.querySelectorAll(".inventory-container").forEach((e) => e.remove());
   renderMrx(map, mrx);
   renderDetectives(map, detectives);
@@ -263,10 +263,21 @@ const renderDetectiveWin = (winDetails) => {
   result.append(h2, name, stationInfo);
 };
 
+const setMapZoomable = (map) => {
+  const svg = map.querySelector("svg");
+  svgPanZoom(svg, {
+    zoomEnabled: true,
+    controlIconsEnabled: true,
+    fit: true,
+    center: true,
+  });
+};
+
 const main = async () => {
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
 
+  setMapZoomable(map);
   addStationClicks(map);
 
   while (poll.shouldPoll) {
