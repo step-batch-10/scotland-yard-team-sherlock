@@ -96,4 +96,16 @@ describe("Lobby Manager", () => {
 
     assertFalse(lobbyManager.getRoom("123"));
   });
+
+  it("Should host a private room and return room and room id ", () => {
+    const lobbyManager = new LobbyManager(() => "123");
+
+    const { room, roomId } = lobbyManager.hostRoom({
+      id: "1",
+      name: "player1",
+    });
+
+    assertEquals(roomId, "123");
+    assert(room.isPrivate);
+  });
 });

@@ -61,4 +61,12 @@ export class LobbyManager {
   getRoom(roomId: string) {
     return this.#rooms.get(roomId);
   }
+
+  hostRoom(player: Player): { room: Room; roomId: string } {
+    const room = new Room(6, true);
+    room.add(player);
+    const roomId = this.#generateId();
+
+    return { room, roomId };
+  }
 }
