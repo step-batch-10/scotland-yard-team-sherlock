@@ -112,7 +112,7 @@ export class Game {
       this.#players.length;
   }
 
-  #updateto(station: number) {
+  #updateTo(station: number) {
     this.#players[this.#currentPlayerIndex].position = station;
   }
 
@@ -139,16 +139,16 @@ export class Game {
 
   #updateTickets(playerId: string, ticket: Ticket) {
     const isMrX = this.#isMrX(playerId);
-    const mrXtickets = this.#players[0].inventory.tickets;
+    const mrXTickets = this.#players[0].inventory.tickets;
 
     if (!isMrX) {
       const { tickets } = this.#players[this.#indexOf(playerId)].inventory;
       tickets[ticket] = tickets[ticket]! - 1;
-      mrXtickets[ticket] = mrXtickets[ticket]! + 1;
+      mrXTickets[ticket] = mrXTickets[ticket]! + 1;
       return;
     }
 
-    mrXtickets[ticket] = mrXtickets[ticket]! - 1;
+    mrXTickets[ticket] = mrXTickets[ticket]! - 1;
     return;
   }
 
@@ -187,10 +187,8 @@ export class Game {
     }
 
     this.#updateTickets(playerId, ticket);
-    this.#updateto(to);
+    this.#updateTo(to);
     this.#updateCurrentPlayerIndex();
-
-    if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: to });
 
     return { status: true, message: `Moved to ${to}` };
   }
