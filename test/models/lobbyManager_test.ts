@@ -21,7 +21,7 @@ describe("Lobby Manager", () => {
       new Map([
         [
           "123",
-          new Room(6, [
+          new Room(6, false, [
             { id: "1", name: "James1" },
             { id: "2", name: "James2" },
             { id: "3", name: "James3" },
@@ -44,7 +44,7 @@ describe("Lobby Manager", () => {
   it("should add player to existing room and return the roomId", () => {
     const lobbyManager = new LobbyManager(
       () => "123",
-      new Map([["123", new Room(6, [{ name: "Name", id: "111" }])]]),
+      new Map([["123", new Room(6, false, [{ name: "Name", id: "111" }])]]),
     );
 
     const { room, roomId } = lobbyManager.addToRoom("123", {
@@ -71,7 +71,7 @@ describe("Lobby Manager", () => {
       () => "123",
       new Map([[
         "123",
-        new Room(6, [{ name: "Name1", id: "111" }]),
+        new Room(6, false, [{ name: "Name1", id: "111" }]),
       ]]),
     );
 
@@ -88,7 +88,7 @@ describe("Lobby Manager", () => {
       () => "123",
       new Map([[
         "123",
-        new Room(6, [{ name: "Name1", id: "111" }]),
+        new Room(6, false, [{ name: "Name1", id: "111" }]),
       ]]),
     );
 

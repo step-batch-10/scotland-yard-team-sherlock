@@ -1,13 +1,18 @@
 import { Player } from "./lobbyManager.ts";
 
 export class Room {
-  isPrivate: boolean = false;
+  isPrivate: boolean;
   #players: Player[];
   #capacity: number;
 
-  constructor(capacity: number, players: Player[] = []) {
+  constructor(
+    capacity: number,
+    isPrivate: boolean = false,
+    players: Player[] = [],
+  ) {
     this.#players = players;
     this.#capacity = capacity;
+    this.isPrivate = isPrivate;
   }
 
   get players() {
