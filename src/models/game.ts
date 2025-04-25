@@ -216,7 +216,8 @@ export class Game {
   ): GameMoveResponse {
     const isMrx = this.#isMrX(playerId);
 
-    if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: to });
+    if (isMrx) this.#mrxMoves.push({ ticket, position: to });
+
     if (this.#isMrXCaught(to)) {
       const playerInfo = this.#players[this.#indexOf(playerId)];
 
@@ -228,6 +229,7 @@ export class Game {
         message: "detective won",
       };
     }
+
     this.#updateTickets(playerId, ticket);
     this.#updateTo(to);
     this.#updateCurrentPlayerIndex(isDoubleUsed);

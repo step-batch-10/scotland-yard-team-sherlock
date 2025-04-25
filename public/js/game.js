@@ -17,11 +17,6 @@ const poller = () => {
 };
 
 const delay = (d) => new Promise((r) => setTimeout(r, d));
-const createElement = (tag, className) => {
-  const ele = document.createElement(tag);
-  ele.classList.add(className);
-  return ele;
-};
 
 const resetPointers = (map) => {
   const pointers = map.querySelectorAll(".pointer");
@@ -38,19 +33,19 @@ const resetCurrentPlayerPointer = (map) => {
 };
 
 const createNameTemplate = (name, isYourTurn) => {
-  const playerName = createElement("h1");
+  const playerName = document.createElement("h1");
   playerName.textContent = isYourTurn ? `You -` : `${name} -`;
   return playerName;
 };
 
 const createColorTemplate = (color) => {
-  const playerColor = createElement("div");
+  const playerColor = document.createElement("div");
   playerColor.id = "color-box";
   playerColor.style.backgroundColor = color;
   return playerColor;
 };
 
-const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
+const renderCurrentPlayerInfo = ({name, color}, isYourTurn) => {
   const panel = document.getElementById("info-panel");
   panel.textContent = "";
   const playerName = createNameTemplate(name, isYourTurn);
@@ -59,7 +54,7 @@ const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
 };
 
 const createInventoryContainer = () => {
-  const div = createElement("div");
+  const div = document.createElement("div");
   div.className = "inventory-container";
   return div;
 };
@@ -79,14 +74,14 @@ const addHoverListener = (triggerEl, targetEl) => {
 };
 
 const createContainer = (content) => {
-  const container = createElement("p");
+  const container = document.createElement("p");
   container.style.textAlign = "center";
   container.textContent = content;
   return container;
 };
 
 const createTicketPanel = (ticket, count) => {
-  const panel = createElement("div");
+  const panel = document.createElement("div");
   panel.id = "ticket-panel";
 
   const ticketContainer = createContainer(ticket);
@@ -97,7 +92,7 @@ const createTicketPanel = (ticket, count) => {
 };
 
 const renderInventoryPanel = (inventory, container) => {
-  const inventoryPanel = createElement("div");
+  const inventoryPanel = document.createElement("div");
   inventoryPanel.id = "inventory-panel";
   inventoryPanel.style.display = "flex";
 
@@ -111,7 +106,7 @@ const renderInventoryPanel = (inventory, container) => {
   addHoverListener(container, container);
 };
 
-const addInventory = (inventoryContainer, { tickets, cards }) => {
+const addInventory = (inventoryContainer, {tickets, cards}) => {
   inventoryContainer.textContent = "";
   renderInventoryPanel(tickets, inventoryContainer);
   if (cards) renderInventoryPanel(cards, inventoryContainer);
@@ -130,7 +125,7 @@ const renderInventory = (position, inventory) => {
   addHoverListener(pointer, inventoryContainer);
 };
 
-const renderMrx = (map, { position, color, inventory }) => {
+const renderMrx = (map, {position, color, inventory}) => {
   if (position) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
@@ -138,13 +133,13 @@ const renderMrx = (map, { position, color, inventory }) => {
 };
 
 const renderDetectives = (map, detectives) => {
-  for (const { color, position, inventory } of detectives) {
+  for (const {color, position, inventory} of detectives) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
   }
 };
 
-const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
+const renderPlayerPositions = (map, {players, currentPlayer, you}) => {
   const [mrx, ...detectives] = players;
 
   resetPointers(map);
@@ -224,16 +219,17 @@ const displayMrXLog = (mrXMoves) => {
     pTag.textContent = entry.position ? entry.position : entry.ticket;
 
     pTag.classList.add("reveal-station");
-
     ticketDiv.classList.add(entry.ticket);
   });
 };
 
 const renderMrXWin = (winDetails) => {
   const result = document.getElementById("result-panel");
-  const h2 = createElement("h2", "winner-data");
+  const h2 = document.createElement("h2");
+  h2.className = "winner-data";
   h2.textContent = `Winner : ${winDetails.winner}!!🥳`;
-  const name = createElement("span", "player-name");
+  const name = document.createElement("span");
+  name.className = "player-name";
   name.textContent = `Name : ${winDetails.name}`;
 
   // const logContainer = createElement("div", "win-log");
@@ -252,12 +248,14 @@ const renderMrXWin = (winDetails) => {
 
 const renderDetectiveWin = (winDetails) => {
   const result = document.getElementById("result-panel");
-  const h2 = createElement("h2", "winner-data");
+  const h2 = document.createElement("h2");
+  h2.className = "winner-data";
   h2.textContent = `Winner : ${winDetails.winner}!!🥳`;
-  const name = createElement("span", "player-name");
+  const name = document.createElement("span");
+  name.classList.add("player-name");
   name.textContent = `Caught By : ${winDetails.name}`;
   name.style.backgroundColor = winDetails.color;
-  const stationInfo = createElement("h3");
+  const stationInfo = document.createElement("h3");
   stationInfo.textContent = `At Station number - ${winDetails.stationNumber}`;
   stationInfo.classList.add("station-info");
   result.append(h2, name, stationInfo);
@@ -289,7 +287,7 @@ const main = async () => {
     myState.updateState(
       gameStatus.you,
       gameStatus.currentPlayer,
-      gameStatus.stations,
+      gameStatus.stations
     );
 
     if (gameStatus.win) {
@@ -334,7 +332,7 @@ class StationState {
         }
         return availableModes;
       },
-      [],
+      []
     );
   }
 
@@ -352,7 +350,7 @@ class StationState {
   async #sendMoveReq(to, ticket) {
     const response = await fetch("/game/move", {
       method: "POST",
-      body: JSON.stringify({ to, ticket }),
+      body: JSON.stringify({to, ticket}),
     });
 
     return response;
@@ -361,7 +359,7 @@ class StationState {
   async #makeMove(to, ticket) {
     const resp = await this.#sendMoveReq(to, ticket);
 
-    const { message } = await resp.json();
+    const {message} = await resp.json();
 
     if (resp.status === 403) {
       return this.#showToast(message, "red");
@@ -372,7 +370,7 @@ class StationState {
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`,
+      `#ticket-info-container-${station}`
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -412,7 +410,7 @@ class StationState {
     });
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station),
+      this.#ticketInfoContainerCloseButton(station)
     );
 
     return ticketInfoContainer;
@@ -423,7 +421,7 @@ class StationState {
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
-      isYourTurn,
+      isYourTurn
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);

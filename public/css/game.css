@@ -36,8 +36,26 @@ body {
   height: 90%;
   align-items: center;
   background-color: bisque;
+  animation: blink 1s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
+#info-panel:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#color-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  transition: transform 0.3s;
+}
+
+#info-panel:hover #color-box {
+  transform: rotate(10deg) scale(1.1);
+}
 .inventory-container {
   position: absolute;
   display: none;
@@ -231,18 +249,24 @@ body {
 
 .taxi {
   /* background-image: url("/assets/taxi.png"); */
-  background-color: rgba(212, 212, 37, 0.8);
+  background-color: rgba(237, 237, 69, 0.8);
 }
 
 .bus {
   /* background-image: url("/assets/bus.png"); */
-  background-color: rgba(51, 122, 51, 0.6);
+  background-color: rgba(18, 179, 18, 0.6);
 }
 
 .underground {
   /* background-image: url("/assets/metro.png"); */
-  background-color: rgba(238, 182, 192, 0.6);
+  font-size: 0.9em;
+  background-color: rgba(197, 85, 106, 0.6);
 }
+
+.black {
+  background-color: #486577;
+}
+
 .reveal-station {
   font-size: 1.2em;
   font-weight: bold;
