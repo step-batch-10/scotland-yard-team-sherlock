@@ -1,0 +1,15 @@
+.ticket-info-container {
+  position: absolute;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: aqua;
+  gap: 10px;
+  display: flex;
+}
+
+.ticket-info-container .ticket-info-element {
+  background-color: violet;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
