@@ -280,17 +280,17 @@ const main = async () => {
   setMapZoomable(map);
   // addStationClicks(map);
 
-  const myState = new MyOwn();
+  const myState = new StationState();
 
   while (poll.shouldPoll) {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
 
     displayMrXLog(gameStatus.mrXMoves);
-    myState.updateState(1, 1, {
-      taxi: [1, 2, 3, 4],
-      bus: [5, 4, 7, 8],
-      underground: [9, 10],
-    });
+    myState.updateState(
+      gameStatus.you,
+      gameStatus.currentPlayer,
+      gameStatus.stations,
+    );
 
     if (gameStatus.win) {
       const gameEndPopup = document.getElementById("popup");
@@ -312,59 +312,7 @@ const main = async () => {
 
 globalThis.onload = main;
 
-// class StationsState {
-//   #map = document.getElementById("map").contentDocument;
-//   #you;
-//   #currentTransport;
-//   #playerStations;
-
-//   updateState(playerStations, players, you) {
-//     this.#playerStations = playerStations;
-//     this.#you = you;
-
-//     this.#addPlayerPointers(players);
-//   }
-
-//   #resetPlayerPointers() {
-//     const pointers = this.#map.querySelectorAll(".pointer");
-//     for (const pointer of pointers) {
-//       pointer.onclick = () => {};
-//     }
-//   }
-
-//   #getTicketButtons(tickets) {
-//   }
-
-//   #createTicketContainer({ tickets }) {
-//     const container = document.createElement("div");
-//     container.classList.add("tickets-container");
-//     container.innerHTML = "<h1>Hi ...</h1>";
-
-//     return container;
-//   }
-
-//   #addTicketDetails(pointer, position, inventory) {
-//     const container = this.#createTicketContainer(inventory);
-//     const coord = pointer.getBoundingClientRect();
-
-//     container.style.top = `${coord.top - 50}px`;
-//     container.style.left = `${coord.left - 180}px`;
-
-//     document.body.appendChild(container);
-//   }
-
-//   #addPlayerPointers(players) {
-//     this.#resetPlayerPointers();
-
-//     for (const { position, inventory } of players) {
-//       const pointer = this.#map.querySelector(`#pointer-${position}`);
-//       pointer.onclick = () =>
-//         this.#addTicketDetails(pointer, position, inventory);
-//     }
-//   }
-// }
-
-class MyOwn {
+class StationState {
   #map = document.getElementById("map").contentDocument;
   #stations;
 
@@ -452,6 +400,7 @@ class MyOwn {
       transportElement.onclick = () => {
         if (!isYourTurn) {
           this.#showToast("It's not your turn", "red");
+          this.#closeTicketInfoContainer(station);
           return;
         }
 

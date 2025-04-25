@@ -459,6 +459,12 @@ describe("Game Page", () => {
         ],
         you: 0,
         currentPlayer: 1,
+        stations: {
+          taxi: [8, 9],
+          bus: [46, 58],
+          underground: [46],
+          black: [8, 9, 46, 58, 46],
+        },
       };
 
       stub(game, "gameStatus", () => gameStatus);

@@ -72,12 +72,20 @@ export type GameStatusPlayers = [
   DetectiveStatus,
 ];
 
+export interface PossibleStations {
+  taxi?: number[];
+  bus?: number[];
+  underground?: number[];
+  black?: number[];
+}
+
 export interface GameStatus {
   you: number;
   currentPlayer: number;
   mrXMoves: MrXMoveStatus[];
   players: GameStatusPlayers;
   win?: WinDetails;
+  stations: PossibleStations;
 }
 
 export const mockStates = {

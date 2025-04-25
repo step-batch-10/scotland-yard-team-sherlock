@@ -84,6 +84,11 @@ export class Game {
     return this.#players.findIndex(({ id }) => id === playerId);
   }
 
+  #getPossibleStations(position: number) {
+    // filter out things before giving
+    return stations[position];
+  }
+
   gameStatus(playerId: string): GameStatus {
     const mrxStatus = this.#mrXStatus(playerId);
     const detectives = this.#players.slice(1, 6) as DetectiveStatus[];
@@ -100,6 +105,9 @@ export class Game {
       you: this.#indexOf(playerId),
       currentPlayer: this.#currentPlayerIndex,
       win: this.#win,
+      stations: this.#getPossibleStations(
+        this.#players[this.#indexOf(playerId)].position,
+      ),
     };
   }
 
