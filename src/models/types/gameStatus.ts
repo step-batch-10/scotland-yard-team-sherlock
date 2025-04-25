@@ -16,9 +16,9 @@ export interface Player {
 
 export interface DetectiveWin {
   winner: "Detective";
-  color: string;
-  stationNumber: number;
-  name: string;
+  color?: string;
+  stationNumber?: number;
+  name?: string;
   message: string;
 }
 

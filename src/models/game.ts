@@ -152,6 +152,10 @@ export class Game {
     return;
   }
 
+  #isMrXBlocked(): boolean {
+    return false;
+  }
+
   #move(playerId: string, { to, ticket }: MoveData): GameMoveResponse {
     const isMrx = this.#isMrX(playerId);
 
@@ -179,6 +183,13 @@ export class Game {
         stationNumber: to,
         name: playerInfo.name,
         message: "detective won",
+      };
+    }
+
+    if (this.#isMrXBlocked()) {
+      this.#win = {
+        winner: "Detective",
+        message: "Mr.X got blocked by Detectives",
       };
     }
 
