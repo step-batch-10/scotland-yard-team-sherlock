@@ -130,8 +130,16 @@ export class Game {
   move(playerId: string, moveData: MoveData): GameMoveResponse {
     const playerPosition = this.#players[this.#indexOf(playerId)].position;
 
+    if (!this.#isPlayerTurn(playerId)) {
+      return { status: false, message: "Not Your Move ..!" };
+    }
+
     if (!this.#isValidMove(playerPosition, moveData)) {
       return { status: false, message: "Invalid move" };
+    }
+
+    if (this.#isStationBlockedForDetective(moveData.to)) {
+      return { status: false, message: "Station already occupied ..!" };
     }
 
     return this.#move(playerId, moveData);
@@ -159,11 +167,11 @@ export class Game {
   #move(playerId: string, { to, ticket }: MoveData): GameMoveResponse {
     const isMrx = this.#isMrX(playerId);
 
-    if (!this.#isPlayerTurn(playerId)) {
-      return { status: false, message: "Not Your Move ..!" };
-    }
-
     if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: to });
+
+    this.#updateTickets(playerId, ticket);
+    this.#updateTo(to);
+    this.#updateCurrentPlayerIndex();
 
     if (this.#isTurnFinished()) {
       this.#win = {
@@ -192,14 +200,6 @@ export class Game {
         message: "Mr.X got blocked by Detectives",
       };
     }
-
-    if (this.#isStationBlockedForDetective(to)) {
-      return { status: false, message: "Station already occupied ..!" };
-    }
-
-    this.#updateTickets(playerId, ticket);
-    this.#updateTo(to);
-    this.#updateCurrentPlayerIndex();
 
     return { status: true, message: `Moved to ${to}` };
   }
