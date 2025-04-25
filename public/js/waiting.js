@@ -25,9 +25,11 @@ const addCaption = (playerContainer, name, isMrx) => {
 
 const addToWaitingBoard = ({ name, isMrx, color }) => {
   const playerContainer = document.createElement("div");
+  playerContainer.classList.add("player-container");
   const badge = createBadge(color);
   addCaption(badge, name, isMrx);
   playerContainer?.append(badge);
+
   return playerContainer;
 };
 
@@ -127,6 +129,12 @@ const renderPlayers = () => {
 const copyRoomId = () => {
   const roomId = document.getElementById("room-id").innerText;
   navigator.clipboard.writeText(roomId);
+
+  const tooltip = document.getElementById("copy-tooltip");
+  tooltip.style.display = "inline";
+  setTimeout(() => {
+    tooltip.style.display = "none";
+  }, 1500);
 };
 
 const addClickListner = (selector, handler) => {
