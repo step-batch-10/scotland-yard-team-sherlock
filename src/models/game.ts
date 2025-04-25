@@ -168,7 +168,17 @@ export class Game {
     const isMrx = this.#isMrX(playerId);
 
     if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: to });
+    if (this.#isMrXCaught(to)) {
+      const playerInfo = this.#players[this.#indexOf(playerId)];
 
+      this.#win = {
+        winner: "Detective",
+        color: playerInfo.color,
+        stationNumber: to,
+        name: playerInfo.name,
+        message: "detective won",
+      };
+    }
     this.#updateTickets(playerId, ticket);
     this.#updateTo(to);
     this.#updateCurrentPlayerIndex();
@@ -179,18 +189,6 @@ export class Game {
         name: this.#players[0].name,
         message: "Mr. X has evaded capture for 24 moves!",
         mrxMoves: this.#mrxMoves,
-      };
-    }
-
-    if (this.#isMrXCaught(to)) {
-      const playerInfo = this.#players[this.#indexOf(playerId)];
-
-      this.#win = {
-        winner: "Detective",
-        color: playerInfo.color,
-        stationNumber: to,
-        name: playerInfo.name,
-        message: "detective won",
       };
     }
 
