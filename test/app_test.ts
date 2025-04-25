@@ -951,7 +951,7 @@ describe("Game Page", () => {
         you: 0,
         currentPlayer: 0,
         win: {
-          winner: "Mrx",
+          winner: "Mr.X",
           name: "aaa",
           message: "Mr. X has evaded capture for 24 moves!",
           mrxMoves: game.mrXMoves,

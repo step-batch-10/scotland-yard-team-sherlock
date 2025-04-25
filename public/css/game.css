@@ -117,9 +117,20 @@ body {
 
 .winner-data {
   color: white;
-  margin: 10px;
+  margin-top: 20px;
 }
-
+#result-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-direction: column;
+  gap: 1em;
+}
+.player-name {
+  font-size: 1.4em;
+  padding: 8px;
+}
 .close {
   position: absolute;
   top: 8px;
@@ -146,7 +157,16 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+.win-log {
+  display: flex;
+  width: 30vh;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+.log-entries {
+  /* background-color: rgb(27, 27, 24); */
+  border: 1px solid black;
+}
 #game-result {
   display: flex;
   padding: 10px;

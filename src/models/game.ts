@@ -101,7 +101,7 @@ export class Game {
   }
 
   #isTurnFinished() {
-    return this.#mrxMoves.length === 4;
+    return this.#mrxMoves.length === 24;
   }
 
   move(playerId: string, stationNumber: number): GameMoveResponse {
@@ -115,13 +115,11 @@ export class Game {
 
     if (this.#isTurnFinished()) {
       this.#win = {
-        winner: "Mrx",
+        winner: "Mr.X",
         name: this.#players[0].name,
         message: "Mr. X has evaded capture for 24 moves!",
         mrxMoves: this.#mrxMoves,
       };
-
-      return { status: true, message: "Game Ended" };
     }
 
     if (this.#playerMovedToSameLocation(playerId, stationNumber)) {

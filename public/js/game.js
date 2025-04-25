@@ -17,7 +17,11 @@ const poller = () => {
 };
 
 const delay = (d) => new Promise((r) => setTimeout(r, d));
-const createElement = (tag) => document.createElement(tag);
+const createElement = (tag, className) => {
+  const ele = document.createElement(tag);
+  ele.classList.add(className);
+  return ele;
+};
 
 const resetPointers = (map) => {
   const pointers = map.querySelectorAll(".pointer");
@@ -213,45 +217,6 @@ const hidePopUp = () => {
   });
 };
 
-const createCaughtMessage = () => {
-  const caughtMsg = createElement("h3");
-  caughtMsg.style.padding = "10px";
-  caughtMsg.textContent = `Mr. X caught by:`;
-  return caughtMsg;
-};
-
-const createDetectiveBadge = ({ color, name }) => {
-  const badge = createElement("div");
-  badge.id = "detective-info";
-  badge.style.backgroundColor = color;
-  badge.textContent = name;
-
-  return badge;
-};
-
-const createGameResultSection = (gameResult) => {
-  const resultSection = createElement("div");
-  resultSection.id = "game-result";
-
-  const caughtMsg = createCaughtMessage();
-  const detectiveBadge = createDetectiveBadge(gameResult);
-
-  resultSection.append(caughtMsg, detectiveBadge);
-  return resultSection;
-};
-
-const renderGameOverPopup = (gameResult) => {
-  const resultPanel = document.getElementById("result-panel");
-  const resultSection = createGameResultSection(gameResult);
-  const stationInfo = createElement("h3");
-  const winner = createElement("h2");
-  winner.textContent = `Winner is ${gameResult.winner}🥳`;
-  winner.classList.add("winner-data");
-  stationInfo.textContent = `At Station number - ${gameResult.stationNumber}`;
-  stationInfo.classList.add("station-info");
-  resultPanel.append(winner, resultSection, stationInfo);
-};
-
 const displayMrXLog = (mrXMoves) => {
   mrXMoves.forEach((entry, index) => {
     const ticketDiv = document.getElementById(`${index + 1}`);
@@ -262,6 +227,40 @@ const displayMrXLog = (mrXMoves) => {
 
     ticketDiv.classList.add(entry.ticket);
   });
+};
+
+const renderMrXWin = (winDetails) => {
+  const result = document.getElementById("result-panel");
+  const h2 = createElement("h2", "winner-data");
+  h2.textContent = `Winner : ${winDetails.winner}!!🥳`;
+  const name = createElement("span", "player-name");
+  name.textContent = `Name : ${winDetails.name}`;
+
+  // const logContainer = createElement("div", "win-log");
+  // for (let i = 1; i <= 24; i++) {
+  //   const ticketDiv = createElement("div", "log-entries");
+  //   ticketDiv.id = i.toString();
+  //   const pTag = document.createElement("p");
+  //   pTag.textContent = "33";
+  //   ticketDiv.appendChild(pTag);
+
+  //   logContainer.appendChild(ticketDiv);
+  // }
+
+  result.append(h2, name);
+};
+
+const renderDetectiveWin = (winDetails) => {
+  const result = document.getElementById("result-panel");
+  const h2 = createElement("h2", "winner-data");
+  h2.textContent = `Winner : ${winDetails.winner}!!🥳`;
+  const name = createElement("span", "player-name");
+  name.textContent = `Caught By : ${winDetails.name}`;
+  name.style.backgroundColor = winDetails.color;
+  const stationInfo = createElement("h3");
+  stationInfo.textContent = `At Station number - ${winDetails.stationNumber}`;
+  stationInfo.classList.add("station-info");
+  result.append(h2, name, stationInfo);
 };
 
 const main = async () => {
@@ -278,7 +277,10 @@ const main = async () => {
     if (gameStatus.win) {
       const gameEndPopup = document.getElementById("popup");
       gameEndPopup.style.display = "flex";
-      renderGameOverPopup(gameStatus.win);
+      gameStatus.win.winner === "Mr.X"
+        ? renderMrXWin(gameStatus.win)
+        : renderDetectiveWin(gameStatus.win);
+
       document.getElementById("overlay").style.display = "block";
       poll.stop();
     }

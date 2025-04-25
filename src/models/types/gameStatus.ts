@@ -1,7 +1,7 @@
 import { MrxMove } from "./setupModel.ts";
 
 export interface MrXWon {
-  winner: "Mrx";
+  winner: "Mr.X";
   name: string;
   message: string;
   mrxMoves: MrxMove[];
