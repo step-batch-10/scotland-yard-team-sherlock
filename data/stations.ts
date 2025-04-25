@@ -10,91 +10,78 @@ export const stations: {
     taxi: [8, 9],
     bus: [46, 58],
     underground: [46],
-
     black: [8, 9, 46, 58, 46],
   },
   2: {
     taxi: [10, 20],
     bus: [],
     underground: [],
-
     black: [10, 20],
   },
   3: {
     taxi: [11, 4, 12],
     bus: [22, 23],
     underground: [],
-
     black: [11, 4, 12, 22, 23],
   },
   4: {
     taxi: [3, 13],
     bus: [],
     underground: [],
-
     black: [3, 13],
   },
   5: {
     taxi: [15, 16],
     bus: [],
     underground: [],
-
     black: [15, 16],
   },
   6: {
     taxi: [7, 29],
     bus: [],
     underground: [],
-
     black: [7, 29],
   },
   7: {
     taxi: [6, 17],
     bus: [42],
     underground: [],
-
     black: [6, 17, 42],
   },
   8: {
     taxi: [18, 1, 19],
     bus: [],
     underground: [],
-
     black: [18, 1, 19],
   },
   9: {
     taxi: [1, 20, 19],
     bus: [],
     underground: [],
-
     black: [1, 20, 19],
   },
   10: {
     taxi: [2, 11, 21, 34],
     bus: [],
     underground: [],
-
     black: [2, 11, 21, 34],
   },
   11: {
     taxi: [3, 10, 22],
     bus: [],
     underground: [],
-
     black: [3, 10, 22],
   },
   12: {
     taxi: [23, 3],
     bus: [],
     underground: [],
-
     black: [23, 3],
   },
   13: {
     taxi: [4, 23, 24],
     bus: [14, 23, 52],
     underground: [46, 67, 89],
-
     black: [
       4,
       23,
@@ -111,14 +98,12 @@ export const stations: {
     taxi: [25, 15],
     bus: [13, 15],
     underground: [],
-
     black: [25, 15, 13, 15],
   },
   15: {
     taxi: [14, 26, 28, 16, 5],
     bus: [14, 29, 41],
     underground: [],
-
     black: [
       14,
       26,
@@ -134,49 +119,42 @@ export const stations: {
     taxi: [15, 5, 28, 29],
     bus: [],
     underground: [],
-
     black: [15, 5, 28, 29],
   },
   17: {
     taxi: [7, 30, 29],
     bus: [],
     underground: [],
-
     black: [7, 30, 29],
   },
   18: {
     taxi: [8, 31, 43],
     bus: [],
     underground: [],
-
     black: [8, 31, 43],
   },
   19: {
     taxi: [8, 9, 32],
     bus: [],
     underground: [],
-
     black: [8, 9, 32],
   },
   20: {
     taxi: [2, 9, 33],
     bus: [],
     underground: [],
-
     black: [2, 9, 33],
   },
   21: {
     taxi: [10, 33],
     bus: [],
     underground: [],
-
     black: [10, 33],
   },
   22: {
     taxi: [11, 23, 34, 35],
     bus: [3, 23, 34, 65],
     underground: [],
-
     black: [
       11,
       23,
@@ -192,7 +170,6 @@ export const stations: {
     taxi: [12, 13, 22, 37],
     bus: [3, 22, 13, 67],
     underground: [],
-
     black: [
       12,
       13,
@@ -208,42 +185,36 @@ export const stations: {
     taxi: [13, 37, 38],
     bus: [],
     underground: [],
-
     black: [13, 37, 38],
   },
   25: {
     taxi: [14, 39],
     bus: [],
     underground: [],
-
     black: [14, 39],
   },
   26: {
     taxi: [15, 27, 39],
     bus: [],
     underground: [],
-
     black: [15, 27, 39],
   },
   27: {
     taxi: [26, 28, 40],
     bus: [],
     underground: [],
-
     black: [26, 28, 40],
   },
   28: {
     taxi: [15, 16, 27, 41],
     bus: [],
     underground: [],
-
     black: [15, 16, 27, 41],
   },
   29: {
     taxi: [6, 16, 17, 41, 42],
     bus: [15, 41, 42, 55],
     underground: [],
-
     black: [
       6,
       16,
@@ -260,35 +231,30 @@ export const stations: {
     taxi: [17, 42],
     bus: [],
     underground: [],
-
     black: [17, 42],
   },
   31: {
     taxi: [18, 43, 44],
     bus: [],
     underground: [],
-
     black: [18, 43, 44],
   },
   32: {
     taxi: [19, 33, 44, 45],
     bus: [],
     underground: [],
-
     black: [19, 33, 44, 45],
   },
   33: {
     taxi: [20, 21, 32, 46],
     bus: [],
     underground: [],
-
     black: [20, 21, 32, 46],
   },
   34: {
     taxi: [10, 22, 47, 48],
     bus: [22, 46, 63],
     underground: [],
-
     black: [
       10,
       22,
@@ -303,49 +269,42 @@ export const stations: {
     taxi: [22, 36, 48, 65],
     bus: [],
     underground: [],
-
     black: [22, 36, 48, 65],
   },
   36: {
     taxi: [35, 37, 49],
     bus: [],
     underground: [],
-
     black: [35, 37, 49],
   },
   37: {
     taxi: [23, 24, 36, 50],
     bus: [],
     underground: [],
-
     black: [23, 24, 36, 50],
   },
   38: {
     taxi: [24, 50, 51],
     bus: [],
     underground: [],
-
     black: [24, 50, 51],
   },
   39: {
     taxi: [25, 26, 51, 52],
     bus: [],
     underground: [],
-
     black: [25, 26, 51, 52],
   },
   40: {
     taxi: [27, 41, 52, 53],
     bus: [],
     underground: [],
-
     black: [27, 41, 52, 53],
   },
   41: {
     taxi: [40, 54, 29, 28],
     bus: [15, 29, 52, 87],
     underground: [],
-
     black: [
       40,
       54,
@@ -361,7 +320,6 @@ export const stations: {
     taxi: [29, 30, 56, 72],
     bus: [7, 29, 72],
     underground: [],
-
     black: [
       29,
       30,
@@ -376,28 +334,24 @@ export const stations: {
     taxi: [18, 31, 57],
     bus: [],
     underground: [],
-
     black: [18, 31, 57],
   },
   44: {
     taxi: [31, 32, 58],
     bus: [],
     underground: [],
-
     black: [31, 32, 58],
   },
   45: {
     taxi: [32, 46, 58, 59, 60],
     bus: [],
     underground: [],
-
     black: [32, 46, 58, 59, 60],
   },
   46: {
     taxi: [33, 45, 47, 61],
     bus: [1, 34, 58, 78],
     underground: [1, 13, 74, 79],
-
     black: [
       33,
       45,
@@ -417,42 +371,36 @@ export const stations: {
     taxi: [46, 34, 62],
     bus: [],
     underground: [],
-
     black: [46, 34, 62],
   },
   48: {
     taxi: [34, 35, 62, 63],
     bus: [],
     underground: [],
-
     black: [34, 35, 62, 63],
   },
   49: {
     taxi: [36, 50, 66],
     bus: [],
     underground: [],
-
     black: [36, 50, 66],
   },
   50: {
     taxi: [37, 38, 49],
     bus: [],
     underground: [],
-
     black: [37, 38, 49],
   },
   51: {
     taxi: [38, 39, 52, 67, 68],
     bus: [],
     underground: [],
-
     black: [38, 39, 52, 67, 68],
   },
   52: {
     taxi: [39, 40, 51, 69],
     bus: [13, 41, 67, 86],
     underground: [],
-
     black: [
       39,
       40,
@@ -468,42 +416,36 @@ export const stations: {
     taxi: [40, 54, 69],
     bus: [],
     underground: [],
-
     black: [40, 54, 69],
   },
   54: {
     taxi: [41, 53, 55, 70],
     bus: [],
     underground: [],
-
     black: [41, 53, 55, 70],
   },
   55: {
     taxi: [54, 71],
     bus: [29, 89],
     underground: [],
-
     black: [54, 71, 29, 89],
   },
   56: {
     taxi: [42, 91],
     bus: [],
     underground: [],
-
     black: [42, 91],
   },
   57: {
     taxi: [43, 58, 73],
     bus: [],
     underground: [],
-
     black: [43, 58, 73],
   },
   58: {
     taxi: [44, 45, 57, 59, 75, 74],
     bus: [1, 46, 74, 77],
     underground: [],
-
     black: [
       44,
       45,
@@ -521,35 +463,30 @@ export const stations: {
     taxi: [45, 58, 75, 76],
     bus: [],
     underground: [],
-
     black: [45, 58, 75, 76],
   },
   60: {
     taxi: [45, 61, 76],
     bus: [],
     underground: [],
-
     black: [45, 61, 76],
   },
   61: {
     taxi: [46, 60, 62, 76, 78],
     bus: [],
     underground: [],
-
     black: [46, 60, 62, 76, 78],
   },
   62: {
     taxi: [47, 48, 61, 79],
     bus: [],
     underground: [],
-
     black: [47, 48, 61, 79],
   },
   63: {
     taxi: [48, 64, 79, 80],
     bus: [34, 65, 79, 100],
     underground: [],
-
     black: [
       48,
       64,
@@ -565,14 +502,12 @@ export const stations: {
     taxi: [63, 65, 81],
     bus: [],
     underground: [],
-
     black: [63, 65, 81],
   },
   65: {
     taxi: [35, 64, 82],
     bus: [22, 67, 63, 82],
     underground: [],
-
     black: [
       35,
       64,
@@ -587,14 +522,12 @@ export const stations: {
     taxi: [49, 67, 82],
     bus: [],
     underground: [],
-
     black: [49, 67, 82],
   },
   67: {
     taxi: [51, 66, 68, 84],
     bus: [23, 52, 65, 82, 102],
     underground: [13, 79, 89, 111],
-
     black: [
       51,
       66,
@@ -615,35 +548,30 @@ export const stations: {
     taxi: [51, 67, 69, 85],
     bus: [],
     underground: [],
-
     black: [51, 67, 69, 85],
   },
   69: {
     taxi: [52, 53, 68, 86],
     bus: [],
     underground: [],
-
     black: [52, 53, 68, 86],
   },
   70: {
     taxi: [54, 71, 87],
     bus: [],
     underground: [],
-
     black: [54, 71, 87],
   },
   71: {
     taxi: [55, 70, 72, 89],
     bus: [],
     underground: [],
-
     black: [55, 70, 72, 89],
   },
   72: {
     taxi: [42, 71, 90, 91],
     bus: [42, 105, 107],
     underground: [],
-
     black: [
       42,
       71,
@@ -658,14 +586,12 @@ export const stations: {
     taxi: [57, 74, 92],
     bus: [],
     underground: [],
-
     black: [57, 74, 92],
   },
   74: {
     taxi: [58, 73, 75, 92],
     bus: [58, 94],
     underground: [46],
-
     black: [
       58,
       73,
@@ -680,28 +606,24 @@ export const stations: {
     taxi: [58, 59, 74, 94],
     bus: [],
     underground: [],
-
     black: [58, 59, 74, 94],
   },
   76: {
     taxi: [59, 60, 61, 77],
     bus: [],
     underground: [],
-
     black: [59, 60, 61, 77],
   },
   77: {
     taxi: [76, 78, 95, 96],
     bus: [],
     underground: [],
-
     black: [76, 78, 95, 96],
   },
   78: {
     taxi: [61, 77, 79, 97],
     bus: [46, 58, 79],
     underground: [],
-
     black: [
       61,
       77,
@@ -716,7 +638,6 @@ export const stations: {
     taxi: [62, 63, 78, 98],
     bus: [63, 78],
     underground: [46, 67, 93, 111],
-
     black: [
       62,
       63,
@@ -734,21 +655,18 @@ export const stations: {
     taxi: [63, 99, 100],
     bus: [],
     underground: [],
-
     black: [63, 99, 100],
   },
   81: {
     taxi: [64, 82, 100],
     bus: [],
     underground: [],
-
     black: [64, 82, 100],
   },
   82: {
     taxi: [65, 66, 81, 101],
     bus: [65, 67, 100, 140],
     underground: [],
-
     black: [
       65,
       66,
@@ -764,28 +682,24 @@ export const stations: {
     taxi: [101, 102],
     bus: [],
     underground: [],
-
     black: [101, 102],
   },
   84: {
     taxi: [67, 85],
     bus: [],
     underground: [],
-
     black: [67, 85],
   },
   85: {
     taxi: [68, 84, 103],
     bus: [],
     underground: [],
-
     black: [68, 84, 103],
   },
   86: {
     taxi: [69, 103, 104],
     bus: [52, 87, 102, 116],
     underground: [],
-
     black: [
       69,
       103,
@@ -800,21 +714,18 @@ export const stations: {
     taxi: [70, 88],
     bus: [41, 86, 105],
     underground: [],
-
     black: [70, 88, 41, 86, 105],
   },
   88: {
     taxi: [87, 89, 117],
     bus: [],
     underground: [],
-
     black: [87, 89, 117],
   },
   89: {
     taxi: [71, 88, 105],
     bus: [55, 105],
     underground: [13, 67, 140, 159],
-
     black: [
       71,
       88,
@@ -831,77 +742,66 @@ export const stations: {
     taxi: [72, 91, 105],
     bus: [],
     underground: [],
-
     black: [72, 91, 105],
   },
   91: {
     taxi: [56, 72, 90, 105, 107],
     bus: [],
     underground: [],
-
     black: [56, 72, 90, 105, 107],
   },
   92: {
     taxi: [73, 74, 93],
     bus: [],
     underground: [],
-
     black: [73, 74, 93],
   },
   93: {
     taxi: [92, 94],
     bus: [94],
     underground: [79],
-
     black: [92, 94, 94, 79],
   },
   94: {
     taxi: [93, 75, 95],
     bus: [74, 78, 93],
     underground: [],
-
     black: [93, 75, 95, 74, 78, 93],
   },
   95: {
     taxi: [94, 77, 122],
     bus: [],
     underground: [],
-
     black: [94, 77, 122],
   },
   96: {
     taxi: [77, 97, 109],
     bus: [],
     underground: [],
-
     black: [77, 97, 109],
   },
   97: {
     taxi: [96, 78, 98, 109],
     bus: [],
     underground: [],
-
     black: [96, 78, 98, 109],
   },
   98: {
     taxi: [97, 79, 99, 110],
     bus: [],
     underground: [],
-
     black: [97, 79, 99, 110],
   },
   99: {
     taxi: [98, 80, 110],
     bus: [],
     underground: [],
-
     black: [98, 80, 110],
   },
   100: {
     taxi: [80, 81, 101, 112, 113],
     bus: [63, 111, 82],
     underground: [],
-
     black: [
       80,
       81,
@@ -917,35 +817,30 @@ export const stations: {
     taxi: [100, 82, 114, 83],
     bus: [],
     underground: [],
-
     black: [100, 82, 114, 83],
   },
   102: {
     taxi: [83, 115, 103],
     bus: [67, 127, 86],
     underground: [],
-
     black: [83, 115, 103, 67, 127, 86],
   },
   103: {
     taxi: [102, 85, 86],
     bus: [],
     underground: [],
-
     black: [102, 85, 86],
   },
   104: {
     taxi: [86, 116],
     bus: [],
     underground: [],
-
     black: [86, 116],
   },
   105: {
     taxi: [89, 90, 91, 106, 118],
     bus: [87, 89, 72, 107, 118],
     underground: [],
-
     black: [
       89,
       90,
@@ -963,35 +858,30 @@ export const stations: {
     taxi: [105, 107],
     bus: [],
     underground: [],
-
     black: [105, 107],
   },
   107: {
     taxi: [91, 106, 119],
     bus: [105, 72, 161],
     underground: [],
-
     black: [91, 106, 119, 105, 72, 161],
   },
   109: {
     taxi: [96, 97, 110, 124],
     bus: [],
     underground: [],
-
     black: [96, 97, 110, 124],
   },
   110: {
     taxi: [98, 99, 109, 111],
     bus: [],
     underground: [],
-
     black: [98, 99, 109, 111],
   },
   111: {
     taxi: [124, 110, 112],
     bus: [124, 100],
     underground: [79, 67, 163, 153],
-
     black: [
       124,
       110,
@@ -1008,35 +898,30 @@ export const stations: {
     taxi: [111, 125, 100],
     bus: [],
     underground: [],
-
     black: [111, 125, 100],
   },
   113: {
     taxi: [125, 100, 114],
     bus: [],
     underground: [],
-
     black: [125, 100, 114],
   },
   114: {
     taxi: [101, 113, 115, 126, 132, 131],
     bus: [],
     underground: [],
-
     black: [101, 113, 115, 126, 132, 131],
   },
   115: {
     taxi: [114, 102, 127],
     bus: [],
     underground: [],
-
     black: [114, 102, 127, 118, 157],
   },
   116: {
     taxi: [104, 117, 128, 127],
     bus: [86, 118, 127, 128],
     underground: [],
-
     black: [
       104,
       117,
@@ -1052,14 +937,12 @@ export const stations: {
     taxi: [88, 116, 118, 129],
     bus: [],
     underground: [],
-
     black: [88, 116, 118, 129],
   },
   118: {
     taxi: [105, 117, 119],
     bus: [105, 116, 135],
     underground: [],
-
     black: [
       105,
       117,
@@ -1074,35 +957,30 @@ export const stations: {
     taxi: [118, 107, 136],
     bus: [],
     underground: [],
-
     black: [118, 107, 136],
   },
   120: {
     taxi: [121, 144],
     bus: [],
     underground: [],
-
     black: [121, 144],
   },
   121: {
     taxi: [120, 122, 145],
     bus: [],
     underground: [],
-
     black: [120, 122, 145],
   },
   122: {
     taxi: [95, 121, 123, 146],
     bus: [123, 144],
     underground: [],
-
     black: [95, 121, 123, 146, 123, 144],
   },
   123: {
     taxi: [122, 124, 137, 148, 149],
     bus: [122, 124, 144, 165],
     underground: [],
-
     black: [
       122,
       124,
@@ -1119,7 +997,6 @@ export const stations: {
     taxi: [109, 111, 123, 130, 138],
     bus: [111, 123, 153],
     underground: [],
-
     black: [
       109,
       111,
@@ -1135,21 +1012,18 @@ export const stations: {
     taxi: [112, 113, 131],
     bus: [],
     underground: [],
-
     black: [112, 113, 131],
   },
   126: {
     taxi: [114, 127],
     bus: [],
     underground: [],
-
     black: [114, 127],
   },
   127: {
     taxi: [115, 116, 126, 133, 134],
     bus: [102, 116, 133],
     underground: [],
-
     black: [
       115,
       116,
@@ -1165,56 +1039,48 @@ export const stations: {
     taxi: [116, 129, 134, 142],
     bus: [116, 142],
     underground: [],
-
     black: [116, 129, 134, 142, 116, 142],
   },
   129: {
     taxi: [117, 128, 135, 142, 143],
     bus: [],
     underground: [],
-
     black: [117, 128, 135, 142, 143],
   },
   130: {
     taxi: [124, 131, 139],
     bus: [],
     underground: [],
-
     black: [124, 131, 139],
   },
   131: {
     taxi: [114, 125, 130],
     bus: [],
     underground: [],
-
     black: [114, 125, 130],
   },
   132: {
     taxi: [114, 140],
     bus: [],
     underground: [],
-
     black: [114, 140],
   },
   133: {
     taxi: [127, 140, 141],
     bus: [127, 140, 157],
     underground: [],
-
     black: [127, 140, 141, 127, 140, 157],
   },
   134: {
     taxi: [127, 128, 141, 142],
     bus: [],
     underground: [],
-
     black: [127, 128, 141, 142],
   },
   135: {
     taxi: [129, 136, 143, 161],
     bus: [118, 159, 161],
     underground: [],
-
     black: [
       129,
       136,
@@ -1229,35 +1095,30 @@ export const stations: {
     taxi: [119, 135, 162],
     bus: [],
     underground: [],
-
     black: [119, 135, 162],
   },
   137: {
     taxi: [123, 147],
     bus: [],
     underground: [],
-
     black: [123, 147],
   },
   138: {
     taxi: [124, 150, 152],
     bus: [],
     underground: [],
-
     black: [124, 150, 152],
   },
   139: {
     taxi: [130, 140, 153, 154],
     bus: [],
     underground: [],
-
     black: [130, 140, 153, 154],
   },
   140: {
     taxi: [132, 133, 139, 154, 156],
     bus: [82, 133, 154, 156],
     underground: [89, 153, 159],
-
     black: [
       132,
       133,
@@ -1277,7 +1138,6 @@ export const stations: {
     taxi: [133, 134, 142, 158],
     bus: [],
     underground: [],
-
     black: [133, 134, 142, 158],
   },
   142: {
@@ -1292,7 +1152,6 @@ export const stations: {
     ],
     bus: [128, 157, 159],
     underground: [],
-
     black: [
       128,
       129,
@@ -1310,77 +1169,66 @@ export const stations: {
     taxi: [129, 135, 142, 159, 160],
     bus: [],
     underground: [],
-
     black: [129, 135, 142, 159, 160],
   },
   144: {
     taxi: [120, 145, 177],
     bus: [122, 123, 163],
     underground: [],
-
     black: [120, 145, 177, 122, 123, 163],
   },
   145: {
     taxi: [121, 144, 146],
     bus: [],
     underground: [],
-
     black: [121, 144, 146],
   },
   146: {
     taxi: [122, 145, 147, 163],
     bus: [],
     underground: [],
-
     black: [122, 145, 147, 163],
   },
   147: {
     taxi: [137, 146, 164],
     bus: [],
     underground: [],
-
     black: [137, 146, 164],
   },
   148: {
     taxi: [123, 149, 164],
     bus: [],
     underground: [],
-
     black: [123, 149, 164],
   },
   149: {
     taxi: [123, 148, 150, 165],
     bus: [],
     underground: [],
-
     black: [123, 148, 150, 165],
   },
   150: {
     taxi: [138, 149, 151],
     bus: [],
     underground: [],
-
     black: [138, 149, 151],
   },
   151: {
     taxi: [150, 152, 165, 166],
     bus: [],
     underground: [],
-
     black: [150, 152, 165, 166],
   },
   152: {
     taxi: [138, 151, 153],
     bus: [],
     underground: [],
-
     black: [138, 151, 153],
   },
   153: {
     taxi: [139, 152, 154, 166, 167],
     bus: [124, 154, 180, 184],
     underground: [111, 140, 163, 185],
-
     black: [
       139,
       152,
@@ -1401,7 +1249,6 @@ export const stations: {
     taxi: [139, 140, 153, 155],
     bus: [140, 153, 156],
     underground: [],
-
     black: [
       139,
       140,
@@ -1416,14 +1263,12 @@ export const stations: {
     taxi: [154, 156, 167, 168],
     bus: [],
     underground: [],
-
     black: [154, 156, 167, 168],
   },
   156: {
     taxi: [140, 155, 157, 169],
     bus: [140, 154, 157, 184],
     underground: [],
-
     black: [
       140,
       155,
@@ -1439,7 +1284,6 @@ export const stations: {
     taxi: [156, 158, 170],
     bus: [133, 142, 156, 185],
     underground: [],
-
     black: [
       156,
       158,
@@ -1456,14 +1300,12 @@ export const stations: {
     taxi: [141, 142, 157, 171],
     bus: [],
     underground: [],
-
     black: [141, 142, 157, 171],
   },
   159: {
     taxi: [142, 143, 160, 172, 188],
     bus: [142, 135, 161, 187, 199],
     underground: [89, 140, 185],
-
     black: [
       142,
       143,
@@ -1484,14 +1326,12 @@ export const stations: {
     taxi: [143, 159, 161, 173],
     bus: [],
     underground: [],
-
     black: [143, 159, 161, 173],
   },
   161: {
     taxi: [135, 160, 174],
     bus: [107, 135, 159, 199],
     underground: [],
-
     black: [
       135,
       160,
@@ -1506,14 +1346,12 @@ export const stations: {
     taxi: [136, 175],
     bus: [],
     underground: [],
-
     black: [136, 175],
   },
   163: {
     taxi: [146, 177],
     bus: [144, 176, 191],
     underground: [111, 153],
-
     black: [
       146,
       177,
@@ -1528,14 +1366,12 @@ export const stations: {
     taxi: [147, 148, 178, 179],
     bus: [],
     underground: [],
-
     black: [147, 148, 178, 179],
   },
   165: {
     taxi: [149, 151, 179, 180],
     bus: [123, 180, 191],
     underground: [],
-
     black: [
       149,
       151,
@@ -1550,105 +1386,90 @@ export const stations: {
     taxi: [151, 153, 181, 183],
     bus: [],
     underground: [],
-
     black: [151, 153, 181, 183],
   },
   167: {
     taxi: [153, 155, 168, 183],
     bus: [],
     underground: [],
-
     black: [153, 155, 168, 183],
   },
   168: {
     taxi: [155, 167, 184],
     bus: [],
     underground: [],
-
     black: [155, 167, 184],
   },
   169: {
     taxi: [156, 184],
     bus: [],
     underground: [],
-
     black: [156, 184],
   },
   170: {
     taxi: [157, 171, 185],
     bus: [],
     underground: [],
-
     black: [157, 171, 185],
   },
   171: {
     taxi: [158, 170, 172, 186, 198],
     bus: [],
     underground: [],
-
     black: [158, 170, 172, 186, 198],
   },
   172: {
     taxi: [159, 171, 187],
     bus: [],
     underground: [],
-
     black: [159, 171, 187],
   },
   173: {
     taxi: [160, 174, 188, 200],
     bus: [],
     underground: [],
-
     black: [160, 174, 188, 200],
   },
   174: {
     taxi: [161, 173, 175],
     bus: [],
     underground: [],
-
     black: [161, 173, 175],
   },
   175: {
     taxi: [162, 174, 200],
     bus: [],
     underground: [],
-
     black: [162, 174, 200],
   },
   176: {
     taxi: [177, 189],
     bus: [163, 190],
     underground: [],
-
     black: [177, 189, 163, 190],
   },
   177: {
     taxi: [144, 163, 176],
     bus: [],
     underground: [],
-
     black: [144, 163, 176],
   },
   178: {
     taxi: [164, 189, 191],
     bus: [],
     underground: [],
-
     black: [164, 189, 191],
   },
   179: {
     taxi: [164, 165, 191],
     bus: [],
     underground: [],
-
     black: [164, 165, 191],
   },
   180: {
     taxi: [165, 181, 193],
     bus: [153, 165, 184, 190],
     underground: [],
-
     black: [
       165,
       181,
@@ -1663,28 +1484,24 @@ export const stations: {
     taxi: [166, 180, 182, 193],
     bus: [],
     underground: [],
-
     black: [166, 180, 182, 193],
   },
   182: {
     taxi: [181, 183, 195],
     bus: [],
     underground: [],
-
     black: [181, 183, 195],
   },
   183: {
     taxi: [166, 167, 182, 196],
     bus: [],
     underground: [],
-
     black: [166, 167, 182, 196],
   },
   184: {
     taxi: [168, 169, 196, 197, 185],
     bus: [153, 156, 180, 185],
     underground: [],
-
     black: [
       168,
       169,
@@ -1701,7 +1518,6 @@ export const stations: {
     taxi: [170, 184, 186],
     bus: [157, 184, 187],
     underground: [153, 159],
-
     black: [
       170,
       184,
@@ -1717,42 +1533,36 @@ export const stations: {
     taxi: [171, 185, 198],
     bus: [],
     underground: [],
-
     black: [171, 185, 198],
   },
   187: {
     taxi: [172, 188, 198],
     bus: [159, 185],
     underground: [],
-
     black: [172, 188, 198, 159, 185],
   },
   188: {
     taxi: [159, 173, 187, 199],
     bus: [],
     underground: [],
-
     black: [159, 173, 187, 199],
   },
   189: {
     taxi: [176, 178, 190],
     bus: [],
     underground: [],
-
     black: [176, 178, 190],
   },
   190: {
     taxi: [189, 191, 192],
     bus: [176, 191, 180],
     underground: [],
-
     black: [189, 191, 192, 176, 191, 180],
   },
   191: {
     taxi: [178, 179, 190, 192],
     bus: [163, 165, 190],
     underground: [],
-
     black: [
       178,
       179,
@@ -1767,63 +1577,54 @@ export const stations: {
     taxi: [191, 190, 194],
     bus: [],
     underground: [],
-
     black: [191, 190, 194],
   },
   193: {
     taxi: [180, 181, 194],
     bus: [],
     underground: [],
-
     black: [180, 181, 194],
   },
   194: {
     taxi: [192, 193, 195],
     bus: [],
     underground: [],
-
     black: [192, 193, 195, 157],
   },
   195: {
     taxi: [182, 194, 197],
     bus: [],
     underground: [],
-
     black: [182, 194, 197],
   },
   196: {
     taxi: [183, 184, 197],
     bus: [],
     underground: [],
-
     black: [183, 184, 197],
   },
   197: {
     taxi: [184, 195, 196],
     bus: [],
     underground: [],
-
     black: [184, 195, 196],
   },
   198: {
     taxi: [171, 186, 187, 199],
     bus: [],
     underground: [],
-
     black: [171, 186, 187, 199],
   },
   199: {
     taxi: [188, 198, 200],
     bus: [159, 161],
     underground: [],
-
     black: [188, 198, 200, 159, 161],
   },
   200: {
     taxi: [173, 175, 199],
     bus: [],
     underground: [],
-
     black: [173, 175, 199],
   },
 };

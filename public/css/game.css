@@ -38,7 +38,7 @@ body {
   background-color: bisque;
 }
 
-#inventory-container {
+.inventory-container {
   position: absolute;
   display: none;
   gap: 8px;
