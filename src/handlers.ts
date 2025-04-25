@@ -5,6 +5,7 @@ import { LobbyManager } from "./models/lobbyManager.ts";
 import { GameManager } from "./models/gameManager.ts";
 import { Room } from "./models/room.ts";
 import { Game } from "./models/game.ts";
+import { Player } from "./models/types/gameStatus.ts";
 
 export const handleLeaveLobby = (context: Context) => {
   const playerId = context.get("playerId");
@@ -56,12 +57,6 @@ export const handleLogin = async (context: Context) => {
   return context.redirect("/");
 };
 
-export interface Player {
-  name: string;
-  id: string;
-  color: string;
-  position: number;
-}
 export const handleRoomJoin = (context: Context) => {
   const roomId = context.get("roomId");
   const id = context.get("playerId");

@@ -1,3 +1,10 @@
+export interface Player {
+  name: string;
+  id: string;
+  color: string;
+  position: number;
+}
+
 export interface GameOverDetails {
   detective: string;
   color: string;
