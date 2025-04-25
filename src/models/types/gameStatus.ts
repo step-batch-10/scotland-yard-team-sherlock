@@ -30,10 +30,12 @@ export interface MrxTicketsStatus {
   underground: number;
   black: number;
 }
-export interface DetectiveTicketsStatus {
+
+export interface TicketsStatus {
   bus: number;
   taxi: number;
   underground: number;
+  black?: number;
 }
 
 export interface Cards {
@@ -46,7 +48,7 @@ export interface MrxStatus {
   position?: number;
   color: string;
   isMrx: true;
-  inventory: { tickets: MrxTicketsStatus; cards: Cards };
+  inventory: { tickets: TicketsStatus; cards: Cards };
 }
 export interface DetectiveStatus {
   id: string;
@@ -54,7 +56,7 @@ export interface DetectiveStatus {
   position: number;
   color: string;
   isMrx: false;
-  inventory: { tickets: DetectiveTicketsStatus };
+  inventory: { tickets: TicketsStatus };
 }
 export interface MrXMoveStatus {
   ticket: string;

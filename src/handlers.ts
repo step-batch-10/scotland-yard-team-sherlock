@@ -118,9 +118,9 @@ export const handleMove = async (context: Context) => {
   const playerId = getCookie(context, "playerId");
   const gameId: string = context.get("gameId");
   const game = gameManager.getGame(gameId);
-  const { stationNumber } = await context.req.json();
+  const moveData = await context.req.json();
 
-  const { status, message } = game!.move(playerId!, stationNumber);
+  const { status, message } = game!.move(playerId!, moveData);
 
   context.status(status ? 200 : 403);
   return context.json({ message });

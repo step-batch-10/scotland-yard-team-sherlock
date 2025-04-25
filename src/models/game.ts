@@ -7,6 +7,8 @@ import {
   WinDetails,
 } from "./types/gameStatus.ts";
 import { MrxMove } from "./types/setupModel.ts";
+import { stations } from "../../data/stations.ts";
+type Ticket = "bus" | "taxi" | "black" | "underground" | "black";
 
 interface GameMoveResponse {
   status: boolean;
@@ -18,6 +20,11 @@ export interface Player {
   id: string;
   color: string;
   position: number;
+}
+
+interface MoveData {
+  to: number;
+  ticket: Ticket;
 }
 
 export class Game {
@@ -39,18 +46,18 @@ export class Game {
     return this.#players[this.#currentPlayerIndex].id === playerId;
   }
 
-  #isPlaceOccupied(stationNumber: number) {
-    return this.#players.some(({ position }) => stationNumber === position);
+  #isPlaceOccupied(station: number) {
+    return this.#players.some(({ position }) => station === position);
   }
 
   #isMrX(playerId: string): boolean {
     return this.#players[0].id === playerId;
   }
 
-  #isMrXCaught(stationNumber: number) {
+  #isMrXCaught(station: number) {
     const mrXPosition = this.#players[0].position;
 
-    return mrXPosition === stationNumber;
+    return mrXPosition === station;
   }
 
   #isRevealTurn(round: number) {
@@ -91,27 +98,68 @@ export class Game {
     };
   }
 
-  #isStationBlockedForDetective(stationNumber: number) {
-    return this.#isPlaceOccupied(stationNumber) &&
-      !this.#isMrXCaught(stationNumber);
-  }
-
-  #playerMovedToSameLocation(playerId: string, stationNumber: number) {
-    return this.#players[this.#indexOf(playerId)].position === stationNumber;
+  #isStationBlockedForDetective(station: number) {
+    return this.#isPlaceOccupied(station) &&
+      !this.#isMrXCaught(station);
   }
 
   #isTurnFinished() {
     return this.#mrxMoves.length === 24;
   }
 
-  move(playerId: string, stationNumber: number): GameMoveResponse {
+  #updateCurrentPlayerIndex() {
+    this.#currentPlayerIndex = (this.#currentPlayerIndex + 1) %
+      this.#players.length;
+  }
+
+  #updateto(station: number) {
+    this.#players[this.#currentPlayerIndex].position = station;
+  }
+
+  #isStationReachable(ticket: Ticket, from: number, to: number): boolean {
+    return stations[from][ticket].includes(to);
+  }
+
+  #isValidMove(from: number, { to, ticket }: MoveData): boolean {
+    const { tickets } = this.#players[this.#currentPlayerIndex].inventory;
+    const isValidTicket = (ticket in tickets) && tickets[ticket]! > 0;
+
+    return isValidTicket && this.#isStationReachable(ticket, from, to);
+  }
+
+  move(playerId: string, moveData: MoveData): GameMoveResponse {
+    const playerPosition = this.#players[this.#indexOf(playerId)].position;
+
+    if (!this.#isValidMove(playerPosition, moveData)) {
+      return { status: false, message: "Invalid move" };
+    }
+
+    return this.#move(playerId, moveData);
+  }
+
+  #updateTickets(playerId: string, ticket: Ticket) {
+    const isMrX = this.#isMrX(playerId);
+    const mrXtickets = this.#players[0].inventory.tickets;
+
+    if (!isMrX) {
+      const { tickets } = this.#players[this.#indexOf(playerId)].inventory;
+      tickets[ticket] = tickets[ticket]! - 1;
+      mrXtickets[ticket] = mrXtickets[ticket]! + 1;
+      return;
+    }
+
+    mrXtickets[ticket] = mrXtickets[ticket]! - 1;
+    return;
+  }
+
+  #move(playerId: string, { to, ticket }: MoveData): GameMoveResponse {
     const isMrx = this.#isMrX(playerId);
 
     if (!this.#isPlayerTurn(playerId)) {
       return { status: false, message: "Not Your Move ..!" };
     }
 
-    if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: stationNumber });
+    if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: to });
 
     if (this.#isTurnFinished()) {
       this.#win = {
@@ -122,34 +170,29 @@ export class Game {
       };
     }
 
-    if (this.#playerMovedToSameLocation(playerId, stationNumber)) {
-      return {
-        status: false,
-        message: "You should move to another station..!",
-      };
-    }
-
-    if (this.#isMrXCaught(stationNumber)) {
+    if (this.#isMrXCaught(to)) {
       const playerInfo = this.#players[this.#indexOf(playerId)];
 
       this.#win = {
         winner: "Detective",
         color: playerInfo.color,
-        stationNumber,
+        stationNumber: to,
         name: playerInfo.name,
         message: "detective won",
       };
     }
 
-    if (this.#isStationBlockedForDetective(stationNumber)) {
+    if (this.#isStationBlockedForDetective(to)) {
       return { status: false, message: "Station already occupied ..!" };
     }
 
-    this.#players[this.#currentPlayerIndex].position = stationNumber;
-    this.#currentPlayerIndex = (this.#currentPlayerIndex + 1) %
-      this.#players.length;
+    this.#updateTickets(playerId, ticket);
+    this.#updateto(to);
+    this.#updateCurrentPlayerIndex();
 
-    return { status: true, message: `Moved to ${stationNumber}` };
+    if (isMrx) this.#mrxMoves.push({ ticket: "taxi", position: to });
+
+    return { status: true, message: `Moved to ${to}` };
   }
 
   get players() {

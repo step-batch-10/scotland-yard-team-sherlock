@@ -1,111 +1,212 @@
-import { assertEquals } from "assert/equals";
 import { describe, it } from "testing/bdd";
+import { assertEquals } from "assert";
 import { Game } from "../../src/models/game.ts";
 import { Players } from "../../src/models/gameManager.ts";
 
-export const mrxInventory = () => {
-  return {
-    tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
-    cards: { doubleMove: 2 },
-  };
-};
-
-export const detectiveInventory = () => {
-  return {
-    tickets: { bus: 8, taxi: 10, underground: 4 },
-  };
-};
-
-export const getPlayers = (): Players => {
-  return [
+const initGameSetup = (index: number): Players => {
+  const states = [
     {
-      name: "a",
-      id: "1",
-      color: "black",
-      position: 1,
-      isMrx: true,
-      inventory: mrxInventory(),
+      desc: "all have zero bus tickets",
+      data: [
+        {
+          name: "aaa",
+          id: "111",
+          color: "black",
+          isMrx: true,
+          position: 1,
+          inventory: {
+            tickets: { bus: 0, taxi: 4, underground: 3, black: 5 },
+            cards: { doubleMove: 2 },
+          },
+        },
+        {
+          name: "bbb",
+          id: "222",
+          color: "#63a4ff",
+          position: 2,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "ccc",
+          id: "333",
+          color: "#ffb347",
+          position: 10,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "ddd",
+          id: "444",
+          color: "red",
+          position: 4,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "eee",
+          id: "555",
+          color: "blue",
+          position: 5,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "fff",
+          id: "666",
+          color: "violet",
+          position: 6,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+      ],
     },
     {
-      name: "b",
-      id: "2",
-      color: "#63a4ff",
-      position: 2,
-      isMrx: false,
-      inventory: detectiveInventory(),
-    },
-    {
-      name: "c",
-      id: "3",
-      color: "#ffb347",
-      position: 3,
-      isMrx: false,
-      inventory: detectiveInventory(),
-    },
-    {
-      name: "d",
-      id: "4",
-      color: "red",
-      position: 4,
-      isMrx: false,
-      inventory: detectiveInventory(),
-    },
-    {
-      name: "e",
-      id: "5",
-      color: "blue",
-      position: 5,
-      isMrx: false,
-      inventory: detectiveInventory(),
-    },
-    {
-      name: "f",
-      id: "6",
-      color: "violet",
-      position: 6,
-      isMrx: false,
-      inventory: detectiveInventory(),
+      desc: "start pos is 1 to 6",
+      data: [
+        {
+          name: "aaa",
+          id: "111",
+          color: "black",
+          isMrx: true,
+          position: 1,
+          inventory: {
+            tickets: { bus: 0, taxi: 4, underground: 3, black: 5 },
+            cards: { doubleMove: 2 },
+          },
+        },
+        {
+          name: "bbb",
+          id: "222",
+          color: "#63a4ff",
+          position: 2,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "ccc",
+          id: "333",
+          color: "#ffb347",
+          position: 3,
+          isMrx: false,
+          inventory: { tickets: { bus: 10, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "ddd",
+          id: "444",
+          color: "red",
+          position: 4,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "eee",
+          id: "555",
+          color: "blue",
+          position: 5,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+        {
+          name: "fff",
+          id: "666",
+          color: "violet",
+          position: 6,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+        },
+      ],
     },
   ];
+
+  return states[index].data as Players;
 };
 
-describe("Game class", () => {
-  it("Should return move player position", () => {
-    const players = getPlayers();
-    const game: Game = new Game(players);
-    const result = game.move("1", 7);
-    const expected = { status: true, message: "Moved to 7" };
+describe("Game Test", () => {
+  it("should return invalid move if ticket count is zero", () => {
+    const game = new Game(initGameSetup(0));
+    const { status, message } = game.move("111", { to: 9, ticket: "bus" });
 
-    assertEquals(result, expected);
+    assertEquals(status, false);
+    assertEquals(message, "Invalid move");
   });
 
-  it("Should say not your move", () => {
-    const players = getPlayers();
-    const game: Game = new Game(players);
-    const result = game.move("2", 7);
-    const expected = { status: false, message: "Not Your Move ..!" };
+  it("should return invalid move if station is not reachable", () => {
+    const game = new Game(initGameSetup(0));
+    const { status, message } = game.move("111", { to: 10, ticket: "taxi" });
 
-    assertEquals(result, expected);
+    assertEquals(status, false);
+    assertEquals(message, "Invalid move");
   });
 
-  it("Should Invalid move since it is occupied", () => {
-    const players = getPlayers();
-    const game: Game = new Game(players);
-    const result = game.move("1", 2);
-    const expected = { status: false, message: "Station already occupied ..!" };
+  it("should return not your move if it is not your turn", () => {
+    const game = new Game(initGameSetup(0));
+    const { status, message } = game.move("222", { to: 10, ticket: "taxi" });
 
-    assertEquals(result, expected);
+    assertEquals(status, false);
+    assertEquals(message, "Not Your Move ..!");
   });
 
-  it("Should Invalid move since player is trying to move to same station", () => {
-    const players = getPlayers();
-    const game: Game = new Game(players);
-    const result = game.move("1", 1);
-    const expected = {
-      status: false,
-      message: "You should move to another station..!",
-    };
+  it("should return moved to some station when move is valid", () => {
+    const game = new Game(initGameSetup(0));
+    const { status, message } = game.move("111", { ticket: "black", to: 46 });
 
-    assertEquals(result, expected);
+    assertEquals(status, true);
+    assertEquals(message, "Moved to 46");
+  });
+
+  it("should return station already occupied when detective move over another detective", () => {
+    const game = new Game(initGameSetup(0));
+    game.move("111", { ticket: "black", to: 46 });
+
+    const { status, message } = game.move("222", { to: 10, ticket: "taxi" });
+
+    assertEquals(status, false);
+    assertEquals(message, "Station already occupied ..!");
+  });
+
+  it("should reduce the detective ticket count and increase mrx ticket count if it is a valid detective move", () => {
+    const game = new Game(initGameSetup(0));
+    game.move("111", { ticket: "black", to: 46 });
+    game.move("222", { to: 20, ticket: "taxi" });
+
+    const gameStatus = game.gameStatus("222");
+
+    assertEquals(gameStatus.players[1].inventory.tickets.taxi, 9);
+    assertEquals(gameStatus.players[0].inventory.tickets.taxi, 5);
+  });
+
+  it("should reduce mrx ticket count if it is a valid move", () => {
+    const game = new Game(initGameSetup(0));
+    game.move("111", { ticket: "black", to: 46 });
+
+    const gameStatus = game.gameStatus("111");
+
+    assertEquals(gameStatus.players[0].inventory.tickets.black, 4);
+  });
+
+  it("should give the game over details when detective step over mrx", () => {
+    const game = new Game(initGameSetup(1));
+
+    const m1 = game.move("111", { ticket: "black", to: 46 });
+    const m2 = game.move("222", { ticket: "taxi", to: 20 });
+    const m3 = game.move("333", { ticket: "bus", to: 23 });
+    const m4 = game.move("444", { ticket: "taxi", to: 3 });
+    const m5 = game.move("555", { ticket: "taxi", to: 15 });
+    const m6 = game.move("666", { ticket: "taxi", to: 7 });
+
+    const m11 = game.move("111", { ticket: "black", to: 13 });
+    const m22 = game.move("222", { ticket: "taxi", to: 2 });
+    game.move("333", { ticket: "taxi", to: 13 });
+
+    assertEquals(m1.status, true);
+    assertEquals(m2.status, true);
+    assertEquals(m3.status, true);
+    assertEquals(m4.status, true);
+    assertEquals(m5.status, true);
+    assertEquals(m6.status, true);
+
+    assertEquals(m11.status, true);
+    assertEquals(m22.status, true);
   });
 });

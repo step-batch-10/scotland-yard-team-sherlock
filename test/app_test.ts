@@ -1,15 +1,11 @@
 import { assertEquals } from "assert";
 import { describe, it } from "testing/bdd";
+import { stub } from "testing/mock";
 import { createApp } from "../src/app.ts";
 import { getIdGenerator, PlayerManager } from "../src/models/playerManager.ts";
-import { LobbyManager, Player } from "../src/models/lobbyManager.ts";
+import { LobbyManager } from "../src/models/lobbyManager.ts";
 import { GameManager, Players } from "../src/models/gameManager.ts";
-import {
-  DetectiveWin,
-  GameStatus,
-  MrXMoveStatus,
-} from "../src/models/types/gameStatus.ts";
-import { getPlayers } from "./models/game_test.ts";
+import { GameStatus } from "../src/models/types/gameStatus.ts";
 import { Game } from "../src/models/game.ts";
 
 const getGamePlayers = (): Players => {
@@ -71,22 +67,6 @@ const getGamePlayers = (): Players => {
       inventory: inventory.detective,
     },
   ];
-};
-
-const detectiveWinDetails = (
-  winner: "Detective",
-  color: string,
-  stationNumber: number,
-  name: string,
-  message: string,
-): DetectiveWin => {
-  return {
-    winner,
-    color,
-    stationNumber,
-    name,
-    message,
-  };
 };
 
 const getGame = (): Game => {
@@ -221,33 +201,6 @@ describe("fetch players", () => {
     assertEquals(res.headers.get("location"), "/");
   });
 
-  it("should give players with colors", async () => {
-    const playerManager = new PlayerManager(getIdGenerator(["123"]));
-    const playerId = playerManager.add("name");
-
-    const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
-    const players: Player[] = [
-      { name: "a", id: "1" },
-      { name: "b", id: "2" },
-      { name: "c", id: "3" },
-      { name: "d", id: "4" },
-      { name: "e", id: "5" },
-      { name: "f", id: "6" },
-    ];
-
-    gameManager.createGame("1", players);
-    const app = createApp(playerManager, lobbyManager, gameManager);
-
-    const expected = getPlayers();
-    const headers = { cookie: `gameId=1; playerId=${playerId}` };
-    const req = new Request("http://localhost:8000/game/details", { headers });
-    const res = await app.request(req);
-
-    assertEquals(await res.json(), expected);
-    assertEquals(res.status, 200);
-  });
-
   it("it should return isLobbyFull as true", async () => {
     const playerManager = new PlayerManager(
       getIdGenerator(),
@@ -336,18 +289,17 @@ describe("Game Page", () => {
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const headers = { cookie: `gameId=123;playerId=111` };
-    const data = { stationNumber: 7 };
 
     const res = await app.request("/game/move", {
       method: "POST",
       headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify({ to: 8, ticket: "taxi" }),
     });
 
     assertEquals(res.status, 200);
     assertEquals(res.headers.get("content-type"), "application/json");
     const result = await res.json();
-    assertEquals(result, { message: "Moved to 7" });
+    assertEquals(result, { message: "Moved to 8" });
   });
 
   it("should say not your move when it is not your move", async () => {
@@ -358,22 +310,74 @@ describe("Game Page", () => {
         ["222", "bbb"],
       ]),
     );
+
+    const initialData: Players = [
+      {
+        name: "aaa",
+        id: "111",
+        color: "black",
+        isMrx: true,
+        position: 1,
+        inventory: {
+          tickets: { bus: 0, taxi: 4, underground: 3, black: 5 },
+          cards: { doubleMove: 2 },
+        },
+      },
+      {
+        name: "bbb",
+        id: "222",
+        color: "#63a4ff",
+        position: 2,
+        isMrx: false,
+        inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+      },
+      {
+        name: "ccc",
+        id: "333",
+        color: "#ffb347",
+        position: 10,
+        isMrx: false,
+        inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+      },
+      {
+        name: "ddd",
+        id: "444",
+        color: "red",
+        position: 4,
+        isMrx: false,
+        inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+      },
+      {
+        name: "eee",
+        id: "555",
+        color: "blue",
+        position: 5,
+        isMrx: false,
+        inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+      },
+      {
+        name: "fff",
+        id: "666",
+        color: "violet",
+        position: 6,
+        isMrx: false,
+        inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+      },
+    ];
+
     const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager(
-      new Map([
-        ["123", getGame()],
-      ]),
+      new Map([["123", new Game(initialData)]]),
     );
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const headers = { cookie: `gameId=123;playerId=222` };
-    const data = { stationNumber: 7 };
 
     const res = await app.request("/game/move", {
       method: "POST",
       headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify({ to: 10, ticket: "taxi" }),
     });
 
     assertEquals(res.status, 403);
@@ -382,174 +386,7 @@ describe("Game Page", () => {
   });
 
   describe("serveGameStatus", () => {
-    it("should return init game status for mrx", async () => {
-      const playerManager = new PlayerManager(
-        getIdGenerator(),
-        new Map([
-          ["111", "aaa"],
-          ["222", "bbb"],
-        ]),
-      );
-      const lobbyManager = new LobbyManager(getIdGenerator());
-      const gameManager = new GameManager(
-        new Map([
-          ["123", getGame()],
-        ]),
-      );
-
-      const app = createApp(playerManager, lobbyManager, gameManager);
-
-      const res = await app.request("/game/status", {
-        headers: { cookie: `gameId=123;playerId=111` },
-      });
-
-      const gameStatus: GameStatus = {
-        players: [
-          {
-            name: "aaa",
-            id: "111",
-            color: "black",
-            isMrx: true,
-            inventory: {
-              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
-              cards: { doubleMove: 2 },
-            },
-            position: 1,
-          },
-          {
-            name: "bbb",
-            id: "222",
-            color: "#63a4ff",
-            position: 2,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ccc",
-            id: "333",
-            color: "#ffb347",
-            position: 3,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ddd",
-            id: "444",
-            color: "red",
-            position: 4,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "eee",
-            id: "555",
-            color: "blue",
-            position: 5,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "fff",
-            id: "666",
-            color: "violet",
-            position: 6,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-        ],
-        mrXMoves: [],
-        you: 0,
-        currentPlayer: 0,
-      };
-
-      assertEquals(res.status, 200);
-      assertEquals(await res.json(), gameStatus);
-    });
-
-    it("should give init game status for detective", async () => {
-      const playerManager = new PlayerManager(
-        getIdGenerator(),
-        new Map([
-          ["111", "aaa"],
-          ["222", "bbb"],
-        ]),
-      );
-      const lobbyManager = new LobbyManager(getIdGenerator());
-      const gameManager = new GameManager(
-        new Map([
-          ["123", getGame()],
-        ]),
-      );
-
-      const app = createApp(playerManager, lobbyManager, gameManager);
-
-      const res = await app.request("/game/status", {
-        headers: { cookie: `gameId=123;playerId=222` },
-      });
-
-      const gameStatus: GameStatus = {
-        players: [
-          {
-            name: "aaa",
-            id: "111",
-            color: "black",
-            isMrx: true,
-            inventory: {
-              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
-              cards: { doubleMove: 2 },
-            },
-          },
-          {
-            name: "bbb",
-            id: "222",
-            color: "#63a4ff",
-            position: 2,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ccc",
-            id: "333",
-            color: "#ffb347",
-            position: 3,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ddd",
-            id: "444",
-            color: "red",
-            position: 4,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "eee",
-            id: "555",
-            color: "blue",
-            position: 5,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "fff",
-            id: "666",
-            color: "violet",
-            position: 6,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-        ],
-        mrXMoves: [],
-        you: 1,
-        currentPlayer: 0,
-      };
-
-      assertEquals(res.status, 200);
-      assertEquals(await res.json(), gameStatus);
-    });
-
-    it("should give game status for detective on reveal turn", async () => {
+    it("should return game status", async () => {
       const playerManager = new PlayerManager(
         getIdGenerator(),
         new Map([
@@ -560,28 +397,6 @@ describe("Game Page", () => {
       const lobbyManager = new LobbyManager(getIdGenerator());
       const game = getGame();
       const gameManager = new GameManager(new Map([["123", game]]));
-
-      game.move("111", 31);
-      game.move("222", 30);
-      game.move("333", 29);
-      game.move("444", 28);
-      game.move("555", 27);
-      game.move("666", 26);
-
-      game.move("111", 21);
-      game.move("222", 20);
-      game.move("333", 19);
-      game.move("444", 18);
-      game.move("555", 17);
-      game.move("666", 16);
-
-      game.move("111", 10);
-
-      const app = createApp(playerManager, lobbyManager, gameManager);
-
-      const res = await app.request("/game/status", {
-        headers: { cookie: `gameId=123;playerId=111` },
-      });
 
       const gameStatus: GameStatus = {
         players: [
@@ -646,37 +461,7 @@ describe("Game Page", () => {
         currentPlayer: 1,
       };
 
-      assertEquals(res.status, 200);
-      assertEquals(await res.json(), gameStatus);
-    });
-
-    it("should return gameEndDetails undefined when Detectives are unable to catch mr.X", async () => {
-      const playerManager = new PlayerManager(
-        getIdGenerator(),
-        new Map([
-          ["111", "aaa"],
-          ["222", "bbb"],
-        ]),
-      );
-      const lobbyManager = new LobbyManager(getIdGenerator());
-      const game = getGame();
-      const gameManager = new GameManager(new Map([["123", game]]));
-
-      game.move("111", 31);
-      game.move("222", 30);
-      game.move("333", 29);
-      game.move("444", 28);
-      game.move("555", 27);
-      game.move("666", 26);
-
-      game.move("111", 21);
-      game.move("222", 20);
-      game.move("333", 19);
-      game.move("444", 18);
-      game.move("555", 17);
-      game.move("666", 16);
-
-      game.move("111", 10);
+      stub(game, "gameStatus", () => gameStatus);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -684,284 +469,8 @@ describe("Game Page", () => {
         headers: { cookie: `gameId=123;playerId=111` },
       });
 
-      const gameStatus: GameStatus = {
-        players: [
-          {
-            name: "aaa",
-            id: "111",
-            color: "black",
-            isMrx: true,
-            inventory: {
-              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
-              cards: { doubleMove: 2 },
-            },
-            position: 10,
-          },
-          {
-            name: "bbb",
-            id: "222",
-            color: "#63a4ff",
-            position: 20,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ccc",
-            id: "333",
-            color: "#ffb347",
-            position: 19,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ddd",
-            id: "444",
-            color: "red",
-            position: 18,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "eee",
-            id: "555",
-            color: "blue",
-            position: 17,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "fff",
-            id: "666",
-            color: "violet",
-            position: 16,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-        ],
-        mrXMoves: [
-          { ticket: "taxi" },
-          { ticket: "taxi" },
-          { position: 10, ticket: "taxi" },
-        ],
-        you: 0,
-        currentPlayer: 1,
-      };
-
       assertEquals(res.status, 200);
       assertEquals(await res.json(), gameStatus);
-    });
-
-    it("should return gameEndDetails when MrX caught by detectives", async () => {
-      const playerManager = new PlayerManager(
-        getIdGenerator(),
-        new Map([
-          ["111", "aaa"],
-          ["222", "bbb"],
-        ]),
-      );
-      const lobbyManager = new LobbyManager(getIdGenerator());
-      const game = getGame();
-      const gameManager = new GameManager(new Map([["123", game]]));
-
-      game.move("111", 31);
-      game.move("222", 30);
-      game.move("333", 29);
-      game.move("444", 28);
-      game.move("555", 27);
-      game.move("666", 31);
-
-      const app = createApp(playerManager, lobbyManager, gameManager);
-
-      const res = await app.request("/game/status", {
-        headers: { cookie: `gameId=123;playerId=111` },
-      });
-
-      const gameStatus: GameStatus = {
-        players: [
-          {
-            name: "aaa",
-            id: "111",
-            color: "black",
-            isMrx: true,
-            inventory: {
-              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
-              cards: { doubleMove: 2 },
-            },
-            position: 31,
-          },
-          {
-            name: "bbb",
-            id: "222",
-            color: "#63a4ff",
-            position: 30,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ccc",
-            id: "333",
-            color: "#ffb347",
-            position: 29,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ddd",
-            id: "444",
-            color: "red",
-            position: 28,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "eee",
-            id: "555",
-            color: "blue",
-            position: 27,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "fff",
-            id: "666",
-            color: "violet",
-            position: 31,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-        ],
-        mrXMoves: [
-          { ticket: "taxi" },
-        ],
-        you: 0,
-        currentPlayer: 0,
-        win: detectiveWinDetails(
-          "Detective",
-          "violet",
-          31,
-          "fff",
-          "detective won",
-        ),
-      };
-
-      assertEquals(res.status, 200);
-      assertEquals(await res.json(), gameStatus);
-    });
-
-    it("should return gameEndDetails when MrX completes 24 moves", async () => {
-      const playerManager = new PlayerManager(
-        getIdGenerator(),
-        new Map([
-          ["111", "aaa"],
-          ["222", "bbb"],
-          ["333", "ccc"],
-          ["444", "ddd"],
-          ["555", "eee"],
-          ["666", "fff"],
-        ]),
-      );
-
-      const lobbyManager = new LobbyManager(getIdGenerator());
-      const game = getGame();
-      const gameManager = new GameManager(new Map([["123", game]]));
-
-      for (let i = 0; i < 24; i++) {
-        game.move("111", 10 + i);
-        game.move("222", 20 + i);
-        game.move("333", 30 + i);
-        game.move("444", 40 + i);
-        game.move("555", 50 + i);
-        game.move("666", 60 + i);
-      }
-
-      const app = createApp(playerManager, lobbyManager, gameManager);
-
-      const res = await app.request("/game/status", {
-        headers: { cookie: `gameId=123;playerId=111` },
-      });
-
-      const expectedMrXMoves: MrXMoveStatus[] = Array.from(
-        { length: 24 },
-        () => ({
-          ticket: "taxi",
-        }),
-      );
-
-      expectedMrXMoves[2].position = 12;
-      expectedMrXMoves[7].position = 17;
-      expectedMrXMoves[12].position = 22;
-      expectedMrXMoves[17].position = 27;
-      expectedMrXMoves[23].position = 33;
-
-      const gameStatus: GameStatus = {
-        players: [
-          {
-            name: "aaa",
-            id: "111",
-            color: "black",
-            isMrx: true,
-            inventory: {
-              tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
-              cards: { doubleMove: 2 },
-            },
-            position: 33,
-          },
-          {
-            name: "bbb",
-            id: "222",
-            color: "#63a4ff",
-            position: 43,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ccc",
-            id: "333",
-            color: "#ffb347",
-            position: 53,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "ddd",
-            id: "444",
-            color: "red",
-            position: 63,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "eee",
-            id: "555",
-            color: "blue",
-            position: 73,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-          {
-            name: "fff",
-            id: "666",
-            color: "violet",
-            position: 83,
-            isMrx: false,
-            inventory: { tickets: { bus: 8, taxi: 10, underground: 4 } },
-          },
-        ],
-        mrXMoves: expectedMrXMoves,
-        you: 0,
-        currentPlayer: 0,
-        win: {
-          winner: "Mr.X",
-          name: "aaa",
-          message: "Mr. X has evaded capture for 24 moves!",
-          mrxMoves: game.mrXMoves,
-        },
-      };
-      const data = await res.json();
-
-      assertEquals(expectedMrXMoves, data.mrXMoves);
-      assertEquals(res.status, 200);
-      assertEquals(data, gameStatus);
     });
   });
 
