@@ -227,7 +227,6 @@ describe("Game Test", () => {
     game.move("222", { to: 20, ticket: "taxi" });
 
     const gameStatus = game.gameStatus("222");
-    console.log(game.gameStatus("333"));
 
     assertEquals(gameStatus.players[1].inventory.tickets.taxi, 9);
     assertEquals(gameStatus.players[2].inventory.tickets.taxi, 10);
