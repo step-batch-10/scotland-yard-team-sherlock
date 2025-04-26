@@ -244,6 +244,7 @@ const main = async () => {
       gameStatus.you,
       gameStatus.currentPlayer,
       gameStatus.stations,
+      gameStatus.players[gameStatus.you].inventory.cards,
     );
 
     if (gameStatus.win) {
@@ -268,6 +269,7 @@ globalThis.onload = main;
 
 class StationState {
   #map = document.getElementById("map").contentDocument;
+  #isDoubleUsed = false;
   #stations;
 
   #getPossibleStations() {
@@ -306,7 +308,7 @@ class StationState {
   async #sendMoveReq(to, ticket) {
     const response = await fetch("/game/move", {
       method: "POST",
-      body: JSON.stringify({ to, ticket }),
+      body: JSON.stringify({ to, ticket, isDoubleUsed: this.#isDoubleUsed }),
     });
 
     return response;
@@ -359,12 +361,35 @@ class StationState {
     });
   }
 
-  #createTicketInfoContainer(station, possibleStations) {
+  #onDoubleButtonClick(doubleButton) {
+    this.#isDoubleUsed = !this.#isDoubleUsed;
+    if (this.#isDoubleUsed) doubleButton.classList.add("double-used");
+    else doubleButton.classList.remove("double-used");
+  }
+
+  #addDoubleButton(ticketContainer) {
+    const doubleButton = document.createElement("button");
+    doubleButton.innerText = "2X";
+    doubleButton.classList.add(
+      "double-button",
+      this.#isDoubleUsed ? "double-used" : "not-used",
+    );
+
+    doubleButton.onclick = () => this.#onDoubleButtonClick(doubleButton);
+
+    ticketContainer.appendChild(doubleButton);
+  }
+
+  #createTicketInfoContainer(station, possibleStations, doubleCards) {
     const ticketInfoContainer = document.createElement("div");
     ticketInfoContainer.classList.add("ticket-info-container");
     ticketInfoContainer.id = `ticket-info-container-${station}`;
 
     this.#addTransportModes(station, possibleStations, ticketInfoContainer);
+
+    if (doubleCards && doubleCards.doubleMove > 0) {
+      this.#addDoubleButton(ticketInfoContainer);
+    }
 
     ticketInfoContainer.appendChild(
       this.#ticketInfoContainerCloseButton(station),
@@ -373,11 +398,12 @@ class StationState {
     return ticketInfoContainer;
   }
 
-  #showTicketInfo(station) {
+  #showTicketInfo(station, doubleCards) {
     const possibleStations = this.#getPossibleModes(station);
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
+      doubleCards,
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);
@@ -391,10 +417,10 @@ class StationState {
     document.body.appendChild(ticketInfoContainer);
   }
 
-  #addStationClickListener(stations) {
+  #addStationClickListener(stations, doubleCards) {
     stations.forEach((station) => {
       const stationElement = this.#map.querySelector(`#station-${station}`);
-      stationElement.onclick = () => this.#showTicketInfo(station);
+      stationElement.onclick = () => this.#showTicketInfo(station, doubleCards);
     });
   }
 
@@ -404,20 +430,25 @@ class StationState {
     });
   }
 
-  #renderStationPointers(stations, isYourTurn) {
+  #renderStationPointers(stations, isYourTurn, doubleCards) {
     if (isYourTurn) {
       stations.forEach((station) => {
         const stationElement = this.#map.querySelector(`#circle-${station}`);
         stationElement.setAttribute("stroke", "black");
       });
 
-      this.#addStationClickListener(stations);
+      this.#addStationClickListener(stations, doubleCards);
     }
   }
 
-  updateState(you, current, stations) {
+  updateState(you, current, stations, doubleCards) {
     this.#resetStationPointers();
     this.#stations = stations;
-    this.#renderStationPointers(this.#getPossibleStations(), current === you);
+
+    this.#renderStationPointers(
+      this.#getPossibleStations(),
+      current === you,
+      doubleCards,
+    );
   }
 }
