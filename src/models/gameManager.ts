@@ -8,7 +8,7 @@ export type Players = [
   Detective,
   Detective,
   Detective,
-  Detective
+  Detective,
 ];
 
 export class GameManager {
@@ -23,7 +23,7 @@ export class GameManager {
 
   constructor(
     games: Map<string, Game> = new Map(),
-    playerToGame: Map<string, string> = new Map()
+    playerToGame: Map<string, string> = new Map(),
   ) {
     this.#games = games;
     this.#playerToGame = playerToGame;
@@ -53,7 +53,7 @@ export class GameManager {
           isMrx: false,
           inventory,
         };
-      }
+      },
     );
 
     return [mrXDetails, ...detectivesDetails] as Players;
