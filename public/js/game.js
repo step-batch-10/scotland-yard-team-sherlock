@@ -385,29 +385,27 @@ class StationState {
     return closeButton;
   }
 
-  #createTicketInfoContainer(station, possibleStations, isYourTurn) {
-    const ticketInfoContainer = document.createElement("div");
-    ticketInfoContainer.classList.add("ticket-info-container");
-    ticketInfoContainer.id = `ticket-info-container-${station}`;
-
+  #addTransportMethods(station, possibleStations, ticketInfoContainer) {
     possibleStations.forEach((transport) => {
       const transportElement = document.createElement("div");
       transportElement.classList.add("ticket-info-element");
       transportElement.innerText = transport;
 
       transportElement.onclick = () => {
-        if (!isYourTurn) {
-          this.#showToast("It's not your turn", "red");
-          this.#closeTicketInfoContainer(station);
-          return;
-        }
-
         this.#makeMove(station, transport);
         this.#closeTicketInfoContainer(station);
       };
 
       ticketInfoContainer.appendChild(transportElement);
     });
+  }
+
+  #createTicketInfoContainer(station, possibleStations) {
+    const ticketInfoContainer = document.createElement("div");
+    ticketInfoContainer.classList.add("ticket-info-container");
+    ticketInfoContainer.id = `ticket-info-container-${station}`;
+
+    this.#addTransportMethods(station, possibleStations, ticketInfoContainer);
 
     ticketInfoContainer.appendChild(
       this.#ticketInfoContainerCloseButton(station),
@@ -416,12 +414,11 @@ class StationState {
     return ticketInfoContainer;
   }
 
-  #showTicketInfo(station, isYourTurn) {
+  #showTicketInfo(station) {
     const possibleStations = this.#getPossibleModes(station);
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
-      isYourTurn,
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);
@@ -435,10 +432,10 @@ class StationState {
     document.body.appendChild(ticketInfoContainer);
   }
 
-  #addStationClickListener(stations, isYourTurn) {
+  #addStationClickListener(stations) {
     stations.forEach((station) => {
       const stationElement = this.#map.querySelector(`#station-${station}`);
-      stationElement.onclick = () => this.#showTicketInfo(station, isYourTurn);
+      stationElement.onclick = () => this.#showTicketInfo(station);
     });
   }
 
@@ -449,19 +446,19 @@ class StationState {
   }
 
   #renderStationPointers(stations, isYourTurn) {
-    stations.forEach((station) => {
-      const stationElement = this.#map.querySelector(`#circle-${station}`);
-      stationElement.setAttribute("stroke", "white");
-    });
+    if (isYourTurn) {
+      stations.forEach((station) => {
+        const stationElement = this.#map.querySelector(`#circle-${station}`);
+        stationElement.setAttribute("stroke", "white");
+      });
 
-    this.#addStationClickListener(stations, isYourTurn);
+      this.#addStationClickListener(stations);
+    }
   }
 
   updateState(you, current, stations) {
     this.#resetStationPointers();
-
     this.#stations = stations;
-
     this.#renderStationPointers(this.#getPossibleStations(), current === you);
   }
 }
