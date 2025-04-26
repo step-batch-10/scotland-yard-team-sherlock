@@ -15,7 +15,7 @@ body {
 
 .map-container {
   border: 1px solid black;
-  background-color: rgb(152, 148, 148);
+  background-color: rgb(255, 249, 249);
   border-radius: 20px;
   position: relative;
 }

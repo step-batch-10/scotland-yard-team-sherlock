@@ -63,7 +63,7 @@ export class LobbyManager {
   }
 
   hostRoom(player: Player): { room: Room; roomId: string } {
-    const room = new Room(6, true);
+    const room = new Room(3, true);
     room.add(player);
     const roomId = this.#generateId();
     this.#rooms.set(roomId, room);
