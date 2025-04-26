@@ -343,4 +343,13 @@ describe("Game Test", () => {
     assertEquals(move.status, false);
     assertEquals(move.message, "You can't use double move card again");
   });
+
+  it("Should return all possible staion form a current station if a specific ticket is present", () => {
+    const game = new Game(initGameSetup(2));
+    game.move("222", { ticket: "taxi", to: 7 });
+
+    const gameStatus = game.gameStatus("222");
+
+    assertEquals(gameStatus.stations, { taxi: [3, 10, 22] });
+  });
 });

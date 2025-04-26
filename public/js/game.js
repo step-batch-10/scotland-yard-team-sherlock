@@ -243,7 +243,7 @@ const main = async () => {
     myState.updateState(
       gameStatus.you,
       gameStatus.currentPlayer,
-      gameStatus.stations
+      gameStatus.stations,
     );
 
     if (gameStatus.win) {
@@ -288,7 +288,7 @@ class StationState {
         }
         return availableModes;
       },
-      []
+      [],
     );
   }
 
@@ -326,7 +326,7 @@ class StationState {
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`
+      `#ticket-info-container-${station}`,
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -364,7 +364,7 @@ class StationState {
     this.#addTransportMethods(station, possibleStations, ticketInfoContainer);
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station)
+      this.#ticketInfoContainerCloseButton(station),
     );
 
     return ticketInfoContainer;
@@ -374,7 +374,7 @@ class StationState {
     const possibleStations = this.#getPossibleModes(station);
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
-      possibleStations
+      possibleStations,
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);

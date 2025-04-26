@@ -5,6 +5,7 @@ import {
   GameStatus,
   GameStatusPlayers,
   MrxStatus,
+  TicketsStatus,
   WinDetails,
 } from "./types/gameStatus.ts";
 import { MrxMove } from "./types/setupModel.ts";
@@ -77,17 +78,18 @@ export class Game {
     return this.#players.findIndex(({ id }) => id === playerId);
   }
 
-  #getPossibleStations(position: number) {
+  #getPossibleStations(player: MrxStatus | DetectiveStatus) {
+    const tickets: TicketsStatus = player.inventory.tickets;
+    const position = player.position!;
     const adjacentStations = stations[position];
-    const possibleStations: { [vehicle: string]: number[] } = {};
 
-    for (const [vehicle, station] of Object.entries(adjacentStations)) {
-      if (station.length > 0) {
-        possibleStations[vehicle] = station;
-      }
-    }
+    const possibleStations = Object
+      .entries(adjacentStations)
+      .filter(([vehicle, stations]) =>
+        stations.length > 0 && tickets[vehicle as Ticket]! > 0
+      );
 
-    return possibleStations;
+    return Object.fromEntries(possibleStations);
   }
 
   gameStatus(playerId: string): GameStatus {
@@ -107,7 +109,7 @@ export class Game {
       currentPlayer: this.#currentPlayerIndex,
       win: this.#win,
       stations: this.#getPossibleStations(
-        this.#players[this.#indexOf(playerId)].position,
+        this.#players[this.#indexOf(playerId)],
       ),
     };
   }
