@@ -123,4 +123,12 @@ describe("Game Manager", () => {
 
     assert(gameManager.hasGame(gameId));
   });
+
+  it("should remove the player from playerToGame map", () => {
+    const gameManager = new GameManager(new Map(), new Map([["1", "123"]]));
+    assertEquals(gameManager.getGameId("1"), "123");
+
+    gameManager.removePlayerGameId("1");
+    assertEquals(gameManager.getGameId("1"), undefined);
+  });
 });
