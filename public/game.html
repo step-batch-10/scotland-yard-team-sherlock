@@ -34,6 +34,16 @@
         </span>
         <h1 class="gameEndHeading">✽ Game Over ✽</h1>
         <div id="result-panel"></div>
+
+        <div id="game-actions">
+          <form action="/game/leave" method="post">
+            <button type="submit">Leave</button>
+          </form>
+
+          <form action="/game/playAgain" method="post">
+            <button type="submit">Play Again</button>
+          </form>
+        </div>
       </div>
     </div>
     <div class="details">
