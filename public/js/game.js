@@ -317,9 +317,9 @@ class StationState {
   #getPossibleStations() {
     return [
       ...new Set([
-        ...this.#stations.taxi,
-        ...this.#stations.bus,
-        ...this.#stations.underground,
+        ...(this.#stations.taxi ?? []),
+        ...(this.#stations.bus ?? []),
+        ...(this.#stations.underground ?? []),
       ]),
     ];
   }
