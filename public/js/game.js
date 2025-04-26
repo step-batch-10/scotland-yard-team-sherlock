@@ -141,7 +141,6 @@ const renderDetectives = (map, detectives) => {
 
 const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
   const [mrx, ...detectives] = players;
-
   resetPointers(map);
   resetCurrentPlayerPointer(map);
   document.querySelectorAll(".inventory-container").forEach((e) => e.remove());
@@ -156,48 +155,6 @@ const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
     pointer.setAttribute("stroke", "aqua");
   }
 };
-
-// const showToast = (message, color) => {
-//   Toastify({
-//     text: message,
-//     duration: 3000,
-//     gravity: "top",
-//     position: "right",
-//     backgroundColor: color,
-//     stopOnFocus: true,
-//   }).showToast();
-// };
-
-// const sendMoveReq = async (stationNumber) => {
-//   const response = await fetch("/game/move", {
-//     method: "POST",
-//     body: JSON.stringify({ to: stationNumber, ticket: "taxi" }),
-//   });
-
-//   return response;
-// };
-
-// const makeMove = async (stationNumber) => {
-//   const resp = await sendMoveReq(stationNumber);
-
-//   const { message } = await resp.json();
-
-//   if (resp.status === 403) {
-//     return showToast(message, "red");
-//   }
-
-//   showToast(message, "blue");
-// };
-
-// const addStationClicks = (map) => {
-//   const stations = map.querySelectorAll(".station");
-//   for (const station of stations) {
-//     station.onclick = async () => {
-//       const stationNumber = parseInt(station.id.split("-")[1]);
-//       await makeMove(stationNumber);
-//     };
-//   }
-// };
 
 const hidePopUp = () => {
   const popup = document.getElementById("popup");
@@ -276,7 +233,6 @@ const main = async () => {
   const poll = poller();
 
   setMapZoomable(map);
-  // addStationClicks(map);
 
   const myState = new StationState();
 
@@ -287,7 +243,7 @@ const main = async () => {
     myState.updateState(
       gameStatus.you,
       gameStatus.currentPlayer,
-      gameStatus.stations,
+      gameStatus.stations
     );
 
     if (gameStatus.win) {
@@ -332,7 +288,7 @@ class StationState {
         }
         return availableModes;
       },
-      [],
+      []
     );
   }
 
@@ -370,7 +326,7 @@ class StationState {
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`,
+      `#ticket-info-container-${station}`
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -408,7 +364,7 @@ class StationState {
     this.#addTransportMethods(station, possibleStations, ticketInfoContainer);
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station),
+      this.#ticketInfoContainerCloseButton(station)
     );
 
     return ticketInfoContainer;
@@ -418,7 +374,7 @@ class StationState {
     const possibleStations = this.#getPossibleModes(station);
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
-      possibleStations,
+      possibleStations
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);

@@ -39,7 +39,6 @@ const renderPlayerRoles = (playersInfo) => {
 
   playersInfo.forEach((playerInfo) => {
     const playerContainer = addToWaitingBoard(playerInfo);
-    // playerContainer.classList.add("player-container");
     waitingBoard?.append(playerContainer);
   });
   document.querySelectorAll("figure").forEach((fig) => {
@@ -141,15 +140,15 @@ const copyRoomId = () => {
   }, 1500);
 };
 
-const addClickListner = (selector, handler) => {
+const addClickListener = (selector, handler) => {
   const button = document.querySelector(selector);
   button.addEventListener("click", handler);
 };
 
 const main = () => {
   renderPlayers();
-  addClickListner("#leave-btn", leaveLobby);
-  addClickListner("#copy-btn", copyRoomId);
+  addClickListener("#leave-btn", leaveLobby);
+  addClickListener("#copy-btn", copyRoomId);
 };
 
 globalThis.onload = main;
