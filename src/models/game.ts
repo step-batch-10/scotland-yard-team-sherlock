@@ -40,9 +40,6 @@ export class Game {
     this.#players = players;
   }
 
-  get mrXMoves() {
-    return this.#mrxMoves;
-  }
   get currentPlayer() {
     return this.#currentPlayerIndex;
   }

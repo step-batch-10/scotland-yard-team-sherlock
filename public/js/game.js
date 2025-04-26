@@ -45,7 +45,7 @@ const createColorTemplate = (color) => {
   return playerColor;
 };
 
-const renderCurrentPlayerInfo = ({name, color}, isYourTurn) => {
+const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
   const panel = document.getElementById("info-panel");
   panel.textContent = "";
   const playerName = createNameTemplate(name, isYourTurn);
@@ -106,7 +106,7 @@ const renderInventoryPanel = (inventory, container) => {
   addHoverListener(container, container);
 };
 
-const addInventory = (inventoryContainer, {tickets, cards}) => {
+const addInventory = (inventoryContainer, { tickets, cards }) => {
   inventoryContainer.textContent = "";
   renderInventoryPanel(tickets, inventoryContainer);
   if (cards) renderInventoryPanel(cards, inventoryContainer);
@@ -125,7 +125,7 @@ const renderInventory = (position, inventory) => {
   addHoverListener(pointer, inventoryContainer);
 };
 
-const renderMrx = (map, {position, color, inventory}) => {
+const renderMrx = (map, { position, color, inventory }) => {
   if (position) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
@@ -133,13 +133,13 @@ const renderMrx = (map, {position, color, inventory}) => {
 };
 
 const renderDetectives = (map, detectives) => {
-  for (const {color, position, inventory} of detectives) {
+  for (const { color, position, inventory } of detectives) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
   }
 };
 
-const renderPlayerPositions = (map, {players, currentPlayer, you}) => {
+const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
   const [mrx, ...detectives] = players;
 
   resetPointers(map);
@@ -287,7 +287,7 @@ const main = async () => {
     myState.updateState(
       gameStatus.you,
       gameStatus.currentPlayer,
-      gameStatus.stations
+      gameStatus.stations,
     );
 
     if (gameStatus.win) {
@@ -332,7 +332,7 @@ class StationState {
         }
         return availableModes;
       },
-      []
+      [],
     );
   }
 
@@ -350,7 +350,7 @@ class StationState {
   async #sendMoveReq(to, ticket) {
     const response = await fetch("/game/move", {
       method: "POST",
-      body: JSON.stringify({to, ticket}),
+      body: JSON.stringify({ to, ticket }),
     });
 
     return response;
@@ -359,7 +359,7 @@ class StationState {
   async #makeMove(to, ticket) {
     const resp = await this.#sendMoveReq(to, ticket);
 
-    const {message} = await resp.json();
+    const { message } = await resp.json();
 
     if (resp.status === 403) {
       return this.#showToast(message, "red");
@@ -370,7 +370,7 @@ class StationState {
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`
+      `#ticket-info-container-${station}`,
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -410,7 +410,7 @@ class StationState {
     });
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station)
+      this.#ticketInfoContainerCloseButton(station),
     );
 
     return ticketInfoContainer;
@@ -421,7 +421,7 @@ class StationState {
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
-      isYourTurn
+      isYourTurn,
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);

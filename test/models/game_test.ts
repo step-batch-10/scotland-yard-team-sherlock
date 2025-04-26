@@ -81,7 +81,7 @@ const initGameSetup = (index: number): Players => {
           color: "#63a4ff",
           position: 2,
           isMrx: false,
-          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+          inventory: { tickets: { bus: 10, taxi: 24, underground: 4 } },
         },
         {
           name: "ccc",
@@ -89,7 +89,7 @@ const initGameSetup = (index: number): Players => {
           color: "#ffb347",
           position: 3,
           isMrx: false,
-          inventory: { tickets: { bus: 10, taxi: 10, underground: 4 } },
+          inventory: { tickets: { bus: 10, taxi: 24, underground: 4 } },
         },
         {
           name: "ddd",
@@ -97,7 +97,7 @@ const initGameSetup = (index: number): Players => {
           color: "red",
           position: 4,
           isMrx: false,
-          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+          inventory: { tickets: { bus: 10, taxi: 24, underground: 4 } },
         },
         {
           name: "eee",
@@ -105,7 +105,7 @@ const initGameSetup = (index: number): Players => {
           color: "blue",
           position: 5,
           isMrx: false,
-          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+          inventory: { tickets: { bus: 10, taxi: 24, underground: 4 } },
         },
         {
           name: "fff",
@@ -113,7 +113,7 @@ const initGameSetup = (index: number): Players => {
           color: "violet",
           position: 6,
           isMrx: false,
-          inventory: { tickets: { bus: 0, taxi: 10, underground: 4 } },
+          inventory: { tickets: { bus: 10, taxi: 24, underground: 4 } },
         },
       ],
     },
@@ -232,6 +232,45 @@ describe("Game Test", () => {
     assertEquals(gameStatus.players[0].inventory.tickets.taxi, 5);
   });
 
+  it("should declare Mr. X as winner if 24 turns are completed and he is not caught", () => {
+    const game = new Game(initGameSetup(1));
+
+    type Ticket = "taxi" | "bus" | "underground" | "black";
+    type Move = { ticket: Ticket; to: number };
+    type PlayerId = string;
+
+    const moves1: [PlayerId, Move][] = [
+      ["111", { ticket: "taxi", to: 8 }],
+      ["222", { ticket: "taxi", to: 20 }],
+      ["333", { ticket: "taxi", to: 12 }],
+      ["444", { ticket: "taxi", to: 13 }],
+      ["555", { ticket: "taxi", to: 16 }],
+      ["666", { ticket: "taxi", to: 29 }],
+    ];
+
+    const moves2: [PlayerId, Move][] = [
+      ["111", { ticket: "taxi", to: 1 }],
+      ["222", { ticket: "taxi", to: 2 }],
+      ["333", { ticket: "taxi", to: 3 }],
+      ["444", { ticket: "taxi", to: 4 }],
+      ["555", { ticket: "taxi", to: 5 }],
+      ["666", { ticket: "taxi", to: 6 }],
+    ];
+
+    for (let i = 0; i < 12; i++) {
+      for (const [id, move] of moves1) {
+        game.move(id, move);
+      }
+      for (const [id, move] of moves2) {
+        game.move(id, move);
+      }
+    }
+
+    const status = game.gameStatus("111");
+    assertEquals(status.win?.winner, "Mr.X");
+    assertEquals(status.win?.name, "aaa");
+    assertEquals(status.win?.message, "Mr. X has evaded capture for 24 moves!");
+  });
   it("should reduce mrx ticket count if it is a valid move", () => {
     const game = new Game(initGameSetup(0));
     game.move("111", { ticket: "black", to: 46 });

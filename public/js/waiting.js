@@ -23,7 +23,7 @@ const addCaption = (playerContainer, name, isMrx) => {
   playerContainer?.append(figcaption);
 };
 
-const addToWaitingBoard = ({name, isMrx, color}) => {
+const addToWaitingBoard = ({ name, isMrx, color }) => {
   const playerContainer = document.createElement("div");
   playerContainer.classList.add("player-container");
   const badge = createBadge(color);
@@ -106,7 +106,7 @@ const renderPlayerInfo = async () => {
 };
 
 const sendLeaveLobbyReq = async () => {
-  return await fetch("/lobby/room/leave", {method: "POST"});
+  return await fetch("/lobby/room/leave", { method: "POST" });
 };
 
 const leaveLobby = async () => {
@@ -122,7 +122,7 @@ const fetchRoomStatus = async () => {
 const renderPlayers = () => {
   setTimeout(async () => {
     const response = await fetchRoomStatus();
-    const {players, isLobbyFull} = await response.json();
+    const { players, isLobbyFull } = await response.json();
     if (isLobbyFull) return await renderPlayerInfo(players);
 
     renderPlayerNames(players);
