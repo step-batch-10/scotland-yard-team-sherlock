@@ -135,3 +135,27 @@ export const handleHostGame = (context: Context) => {
   setCookie(context, "roomId", roomId);
   return context.redirect("/waiting.html");
 };
+
+export const handleLeaveGame = (context: Context) => {
+  const playerId = context.get("playerId");
+  const playerManager: PlayerManager = context.get("playerManager");
+  const gameManager: GameManager = context.get("gameManager");
+
+  playerManager.delete(playerId);
+  gameManager.removePlayerGameId(playerId);
+
+  deleteCookie(context, "playerId");
+  deleteCookie(context, "gameId");
+
+  return context.redirect("/login.html", 302);
+};
+
+export const handlePlayAgain = (context: Context) => {
+  const playerId = context.get("playerId");
+  const gameManager: GameManager = context.get("gameManager");
+
+  gameManager.removePlayerGameId(playerId);
+  deleteCookie(context, "gameId");
+
+  return context.redirect("/waiting.html", 302);
+};

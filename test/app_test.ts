@@ -583,3 +583,49 @@ describe("Game initial Details", () => {
     assertEquals(res.status, 200);
   });
 });
+
+describe("Leave game", () => {
+  it("Should redirected to the login page when player will clicked on leave button", async () => {
+    const playerManager: PlayerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([["111", "aaa"]]),
+    );
+    const lobbyManager: LobbyManager = new LobbyManager(getIdGenerator());
+    const game = getGame();
+    const gameManager = new GameManager(new Map([["123", game]]));
+    const app = createApp(playerManager, lobbyManager, gameManager);
+
+    const response = await app.request("/game/leave", {
+      method: "POST",
+      headers: {
+        cookie: "playerId=111; gameId=123",
+      },
+    });
+
+    assertEquals(response.status, 302);
+    assertEquals(response.headers.get("location"), "/login.html");
+  });
+});
+
+describe("Leave game", () => {
+  it("Should redirected to the waiting page when player will clicked on playagain button", async () => {
+    const playerManager: PlayerManager = new PlayerManager(
+      getIdGenerator(),
+      new Map([["111", "aaa"]]),
+    );
+    const lobbyManager: LobbyManager = new LobbyManager(getIdGenerator());
+    const game = getGame();
+    const gameManager = new GameManager(new Map([["123", game]]));
+    const app = createApp(playerManager, lobbyManager, gameManager);
+
+    const response = await app.request("/game/playAgain", {
+      method: "POST",
+      headers: {
+        cookie: "playerId=111; gameId=123",
+      },
+    });
+
+    assertEquals(response.status, 302);
+    assertEquals(response.headers.get("location"), "/waiting.html");
+  });
+});

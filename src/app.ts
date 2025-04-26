@@ -3,10 +3,12 @@ import { serveStatic } from "hono/deno";
 import { logger } from "hono/logger";
 import {
   handleHostGame,
+  handleLeaveGame,
   handleLeaveLobby,
   handleLogin,
   handleLogout,
   handleMove,
+  handlePlayAgain,
   handleQuickJoin,
   handleRoomJoin,
   serveGameInitialDetails,
@@ -56,6 +58,8 @@ const createGameRoutes = () => {
   app.get("/details", serveGameInitialDetails);
   app.post("/move", handleMove);
   app.get("/status", serveGameStatus);
+  app.post("/leave", handleLeaveGame);
+  app.post("/playAgain", handlePlayAgain);
 
   return app;
 };
