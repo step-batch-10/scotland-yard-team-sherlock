@@ -2,14 +2,45 @@
   position: absolute;
   padding: 10px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: ghostwhite;
   gap: 10px;
   display: flex;
+  border: 1px solid black;
 }
 
 .ticket-info-container .ticket-info-element {
-  background-color: violet;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  font-family: sans-serif;
+  border: 1px solid black;
+}
+
+.transport-taxi {
+  background-color: yellow;
+}
+
+.transport-bus {
+  background-color: green;
+  color: white;
+}
+
+.transport-black {
+  background-color: black;
+  color: white;
+}
+
+.transport-underground {
+  background-color: red;
+  color: white;
+}
+
+.ticket-info-container button {
+  border: none;
+  background-color: crimson;
+  border-radius: 50%;
+  padding: 0 9px;
+  color: white;
+  cursor: pointer;
+  border: 1px solid black;
 }

@@ -341,10 +341,13 @@ class StationState {
     return closeButton;
   }
 
-  #addTransportMethods(station, possibleStations, ticketInfoContainer) {
+  #addTransportModes(station, possibleStations, ticketInfoContainer) {
     possibleStations.forEach((transport) => {
       const transportElement = document.createElement("div");
-      transportElement.classList.add("ticket-info-element");
+      transportElement.classList.add(
+        `ticket-info-element`,
+        `transport-${transport}`,
+      );
       transportElement.innerText = transport;
 
       transportElement.onclick = () => {
@@ -361,7 +364,7 @@ class StationState {
     ticketInfoContainer.classList.add("ticket-info-container");
     ticketInfoContainer.id = `ticket-info-container-${station}`;
 
-    this.#addTransportMethods(station, possibleStations, ticketInfoContainer);
+    this.#addTransportModes(station, possibleStations, ticketInfoContainer);
 
     ticketInfoContainer.appendChild(
       this.#ticketInfoContainerCloseButton(station),
