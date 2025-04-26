@@ -1,6 +1,7 @@
 import { Players } from "./gameManager.ts";
 import {
   DetectiveStatus,
+  GameMoveResponse,
   GameStatus,
   GameStatusPlayers,
   MrxStatus,
@@ -10,11 +11,6 @@ import { MrxMove } from "./types/setupModel.ts";
 import { stations } from "../../data/stations.ts";
 type Ticket = "bus" | "taxi" | "black" | "underground" | "black";
 
-interface GameMoveResponse {
-  status: boolean;
-  message?: string;
-}
-
 export interface Player {
   name: string;
   id: string;
@@ -22,7 +18,7 @@ export interface Player {
   position: number;
 }
 
-interface MoveData {
+export interface MoveData {
   to: number;
   ticket: Ticket;
   isDoubleUsed?: boolean;
@@ -82,8 +78,16 @@ export class Game {
   }
 
   #getPossibleStations(position: number) {
-    // filter out things before giving
-    return stations[position];
+    const adjacentStations = stations[position];
+    const possibleStations: { [vehicle: string]: number[] } = {};
+
+    for (const [vehicle, station] of Object.entries(adjacentStations)) {
+      if (station.length > 0) {
+        possibleStations[vehicle] = station;
+      }
+    }
+
+    return possibleStations;
   }
 
   gameStatus(playerId: string): GameStatus {

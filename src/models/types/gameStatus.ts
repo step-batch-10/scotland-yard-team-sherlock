@@ -1,5 +1,10 @@
 import { MrxMove } from "./setupModel.ts";
 
+export interface GameMoveResponse {
+  status: boolean;
+  message?: string;
+}
+
 export interface MrXWon {
   winner: "Mr.X";
   name: string;
