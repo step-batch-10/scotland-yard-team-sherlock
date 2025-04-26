@@ -46,7 +46,7 @@ export class Game {
   }
 
   #isPlaceOccupied(station: number) {
-    return this.#players.some(({ position }) => station === position);
+    return this.#players.slice(1).some(({ position }) => station === position);
   }
 
   #isMrX(playerId: string): boolean {
