@@ -43,7 +43,7 @@ export class GameManager {
     const detectivesDetails = detectives.map(
       ({ name, id }, index): Detective => {
         const color = colors[index];
-        const inventory = this.#detectiveInventory;
+        const inventory = { tickets: { ...this.#detectiveInventory.tickets } };
 
         return {
           name,
