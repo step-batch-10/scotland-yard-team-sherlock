@@ -408,7 +408,7 @@ class StationState {
     if (isYourTurn) {
       stations.forEach((station) => {
         const stationElement = this.#map.querySelector(`#circle-${station}`);
-        stationElement.setAttribute("stroke", "white");
+        stationElement.setAttribute("stroke", "black");
       });
 
       this.#addStationClickListener(stations);
