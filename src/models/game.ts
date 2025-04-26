@@ -139,11 +139,9 @@ export class Game {
   }
 
   #isValidDoubleMove({ isDoubleUsed }: MoveData) {
+    if (!isDoubleUsed && !this.#wasDoubleUsed) return true;
     if (isDoubleUsed && this.#wasDoubleUsed) return false;
-    if (isDoubleUsed && !this.#wasDoubleUsed) {
-      this.#wasDoubleUsed = true;
-      return true;
-    }
+    this.#wasDoubleUsed = !this.#wasDoubleUsed;
     return true;
   }
 
@@ -161,12 +159,14 @@ export class Game {
     if (!this.#isPlayerTurn(playerId)) {
       return { status: false, message: "Not Your Move ..!" };
     }
+
     if (!this.#isValidDoubleMove(moveData)) {
       return {
         status: false,
         message: "You can't use double move card again",
       };
     }
+
     if (!this.#isValidMove(playerPosition, moveData)) {
       return { status: false, message: "Invalid move" };
     }
@@ -178,7 +178,10 @@ export class Game {
     return this.#move(playerId, moveData);
   }
 
-  #updateTickets(playerId: string, ticket: Ticket) {
+  #updateTickets(
+    playerId: string,
+    ticket: Ticket,
+  ) {
     const isMrX = this.#isMrX(playerId);
     const mrXTickets = this.#players[0].inventory.tickets;
 
