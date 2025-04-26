@@ -2,7 +2,6 @@ import { Context, Hono, Next } from "hono";
 import { serveStatic } from "hono/deno";
 import { logger } from "hono/logger";
 import {
-  assignRoles,
   handleHostGame,
   handleLeaveLobby,
   handleLogin,
@@ -10,6 +9,7 @@ import {
   handleMove,
   handleQuickJoin,
   handleRoomJoin,
+  serveGameInitialDetails,
   serveGameStatus,
   serveIndex,
   serveRoomStatus,
@@ -53,7 +53,7 @@ const createGameRoutes = () => {
 
   app.use(ensureValidPlayer, ensureValidGameId);
 
-  app.get("/details", assignRoles);
+  app.get("/details", serveGameInitialDetails);
   app.post("/move", handleMove);
   app.get("/status", serveGameStatus);
 

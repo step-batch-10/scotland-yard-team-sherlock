@@ -17,7 +17,7 @@ export const handleLeaveLobby = (context: Context) => {
   return context.text("/");
 };
 
-export const assignRoles = (context: Context) => {
+export const serveGameInitialDetails = (context: Context) => {
   const game: Game = context.get("game");
   const players: Player[] = game.players;
 

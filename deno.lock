@@ -8,7 +8,8 @@
     "jsr:@std/path@^1.0.8": "1.0.8",
     "jsr:@std/testing@*": "1.0.11",
     "jsr:@std/testing@^1.0.11": "1.0.11",
-    "npm:hono@^4.7.6": "4.7.6"
+    "npm:hono@^4.7.6": "4.7.6",
+    "npm:sinon@20": "20.0.0"
   },
   "jsr": {
     "@std/assert@1.0.12": {
@@ -44,15 +45,67 @@
     }
   },
   "npm": {
+    "@sinonjs/commons@3.0.1": {
+      "integrity": "sha512-K3mCHKQ9sVh8o1C9cxkwxaOmXoAMlDxC1mYyHrjqOWEcBjYr76t96zL2zlj5dUGZ3HSw240X1qgH3Mjf1yJWpQ==",
+      "dependencies": [
+        "type-detect@4.0.8"
+      ]
+    },
+    "@sinonjs/fake-timers@13.0.5": {
+      "integrity": "sha512-36/hTbH2uaWuGVERyC6da9YwGWnzUZXuPro/F2LfsdOsLnCojz/iSH8MxUt/FD2S5XBSVPhmArFUXcpCQ2Hkiw==",
+      "dependencies": [
+        "@sinonjs/commons"
+      ]
+    },
+    "@sinonjs/samsam@8.0.2": {
+      "integrity": "sha512-v46t/fwnhejRSFTGqbpn9u+LQ9xJDse10gNnPgAcxgdoCDMXj/G2asWAC/8Qs+BAZDicX+MNZouXT1A7c83kVw==",
+      "dependencies": [
+        "@sinonjs/commons",
+        "lodash.get",
+        "type-detect@4.1.0"
+      ]
+    },
+    "diff@7.0.0": {
+      "integrity": "sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw=="
+    },
+    "has-flag@4.0.0": {
+      "integrity": "sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ=="
+    },
     "hono@4.7.6": {
       "integrity": "sha512-564rVzELU+9BRqqx5k8sT2NFwGD3I3Vifdb6P7CmM6FiarOSY+fDC+6B+k9wcCb86ReoayteZP2ki0cRLN1jbw=="
+    },
+    "lodash.get@4.4.2": {
+      "integrity": "sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ=="
+    },
+    "sinon@20.0.0": {
+      "integrity": "sha512-+FXOAbdnj94AQIxH0w1v8gzNxkawVvNqE3jUzRLptR71Oykeu2RrQXXl/VQjKay+Qnh73fDt/oDfMo6xMeDQbQ==",
+      "dependencies": [
+        "@sinonjs/commons",
+        "@sinonjs/fake-timers",
+        "@sinonjs/samsam",
+        "diff",
+        "supports-color"
+      ]
+    },
+    "supports-color@7.2.0": {
+      "integrity": "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==",
+      "dependencies": [
+        "has-flag"
+      ]
+    },
+    "type-detect@4.0.8": {
+      "integrity": "sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g=="
+    },
+    "type-detect@4.1.0": {
+      "integrity": "sha512-Acylog8/luQ8L7il+geoSxhEkazvkslg7PSNKOX59mbB9cOveP5aq9h74Y7YU8yDpJwetzQQrfIwtf4Wp4LKcw=="
     }
   },
   "workspace": {
     "dependencies": [
       "jsr:@std/assert@^1.0.12",
       "jsr:@std/testing@^1.0.11",
-      "npm:hono@^4.7.6"
+      "npm:hono@^4.7.6",
+      "npm:sinon@20"
     ]
   }
 }
