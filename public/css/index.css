@@ -289,10 +289,6 @@ h3 {
   background-color: black;
 }
 
-/* .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 25;
-} */
-
 #logout-btn {
   position: absolute;
   top: 0;
@@ -328,7 +324,10 @@ h3 {
 #quick-play-form button {
   display: flex;
   justify-content: center;
-  gap: 2px;
-  width: 300px;
-  border-radius: 10px;
+  align-items: center;
+  gap: 0.2em;
+  width: 30em;
+  border-radius: 0.6em;
+  width: 20em;
+  height: 3em;
 }
