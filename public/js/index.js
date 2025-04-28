@@ -1,23 +1,60 @@
+const initMusic = () => {
+  const music = new Audio("/assets/sherlocks_theme.mp3");
+  music.loop = true;
+
+  return music;
+};
+
+const playOnce = (music, musicToggle) => {
+  if (musicToggle.checked) music.play();
+  document.removeEventListener("click", playOnce);
+};
+
+const enableMusic = (music) => {
+  const musicToggle = document.getElementById("musicToggle");
+
+  document.addEventListener("click", () => playOnce(music, musicToggle));
+
+  musicToggle.addEventListener("change", () => {
+    if (musicToggle.checked) {
+      music.play();
+      return;
+    }
+    music.pause();
+  });
+};
+
 const showPopUp = () => {
   const aboutBtn = document.getElementById("aboutBtn");
+  const settingBtn = document.getElementById("settingBtn");
   const popup = document.getElementById("popup");
+  const settingPopup = document.getElementById("settingPopup");
 
   aboutBtn.addEventListener("click", () => {
     popup.style.display = "flex";
+  });
+
+  settingBtn.addEventListener("click", () => {
+    settingPopup.style.display = "flex";
   });
 };
 
 const hidePopUp = () => {
   const popup = document.getElementById("popup");
   const closeBtn = document.querySelector(".close");
+  const settingPopup = document.getElementById("settingPopup");
 
   closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
+    settingPopup.style.display = "none";
   });
 
   globalThis.addEventListener("click", (event) => {
     if (event.target === popup) {
       popup.style.display = "none";
+    }
+    if (event.target === settingPopup) {
+      settingPopup.style.display = "none";
     }
   });
 };
@@ -67,9 +104,11 @@ const handleJoinButton = () => {
 };
 
 const main = () => {
+  const music = initMusic();
   showPopUp();
   hidePopUp();
   handleJoinButton();
+  enableMusic(music);
 };
 
 globalThis.onload = main;
