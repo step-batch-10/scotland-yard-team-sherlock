@@ -7,6 +7,25 @@
 	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
 	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
 	<namedview id="namedview1" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" />
+	<!-- current player animation -->
+	<style>
+		.current-player {
+		animation: bounce 1s ease infinite;
+		}
+		
+		@keyframes bounce {
+		0% {
+		transform: translate(3.5px, -40px);
+		}
+		50% {
+		transform: translate(3.5px, -60px);
+		}
+		100% {
+		transform: translate(3.5px, -40px);
+		}
+		}
+	</style>
+	<!-- current player animation -->
 	<defs id="defs1">
 		<perspective id="perspective6" />
 	</defs>

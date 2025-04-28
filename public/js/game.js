@@ -26,9 +26,10 @@ const resetPointers = (map) => {
 };
 
 const resetCurrentPlayerPointer = (map) => {
-  const circles = map.querySelectorAll(".pointer");
-  for (const circle of circles) {
-    circle.setAttribute("stroke", "none");
+  const pointers = map.querySelectorAll(".pointer");
+  for (const pointer of pointers) {
+    pointer.setAttribute("stroke", "none");
+    pointer.classList.remove("current-player");
   }
 };
 
@@ -152,7 +153,7 @@ const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
   const currentPlayerPosition = players[currentPlayer].position;
   if (currentPlayerPosition) {
     const pointer = map.getElementById(`pointer-${currentPlayerPosition}`);
-    pointer.setAttribute("stroke", "aqua");
+    pointer.classList.add("current-player");
   }
 };
 
@@ -228,6 +229,10 @@ const setMapZoomable = (map) => {
   });
 };
 
+const renderThisPlayerPoineter = (map, position) => {
+  map.getElementById(`pointer-${position}`).setAttribute("stroke", "aqua");
+};
+
 const main = async () => {
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
@@ -259,6 +264,8 @@ const main = async () => {
     }
 
     renderPlayerPositions(map, gameStatus);
+
+    renderThisPlayerPoineter(map, gameStatus.players[gameStatus.you].position);
     await poll.delay();
   }
 
