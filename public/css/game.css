@@ -60,10 +60,11 @@ body {
   position: absolute;
   display: none;
   gap: 8px;
-  background-color: whitesmoke;
+  background-color: #cdccbc;
   padding: 8px;
   border-radius: 8px;
   pointer-events: all;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 #ticket-panel {
@@ -75,6 +76,7 @@ body {
 #inventory-panel {
   display: none;
   gap: 6px;
+  padding: 5px;
   border: 1px solid grey;
 }
 

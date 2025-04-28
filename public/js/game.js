@@ -72,7 +72,7 @@ const createColorTemplate = (color) => {
   return playerColor;
 };
 
-const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
+const renderCurrentPlayerInfo = ({name, color}, isYourTurn) => {
   const panel = document.getElementById("info-panel");
   panel.textContent = "";
   const playerName = createNameTemplate(name, isYourTurn);
@@ -133,7 +133,7 @@ const renderInventoryPanel = (inventory, container) => {
   addHoverListener(container, container);
 };
 
-const addInventory = (inventoryContainer, { tickets, cards }) => {
+const addInventory = (inventoryContainer, {tickets, cards}) => {
   inventoryContainer.textContent = "";
   renderInventoryPanel(tickets, inventoryContainer);
   if (cards) renderInventoryPanel(cards, inventoryContainer);
@@ -152,7 +152,7 @@ const renderInventory = (position, inventory) => {
   addHoverListener(pointer, inventoryContainer);
 };
 
-const renderMrx = (map, { position, color, inventory }) => {
+const renderMrx = (map, {position, color, inventory}) => {
   if (position) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
@@ -160,13 +160,13 @@ const renderMrx = (map, { position, color, inventory }) => {
 };
 
 const renderDetectives = (map, detectives) => {
-  for (const { color, position, inventory } of detectives) {
+  for (const {color, position, inventory} of detectives) {
     renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
   }
 };
 
-const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
+const renderPlayerPositions = (map, {players, currentPlayer, you}) => {
   const [mrx, ...detectives] = players;
   resetPointers(map);
   resetCurrentPlayerPointer(map);
@@ -201,7 +201,7 @@ const hidePopUp = () => {
 
   closeSetting.addEventListener(
     "click",
-    () => (settingPopup.style.display = "none"),
+    () => (settingPopup.style.display = "none")
   );
 
   globalThis.addEventListener("click", (event) => {
@@ -252,7 +252,7 @@ const renderMrXWin = (winDetails) => {
 
   const logContainer = createElement("div", "win-log");
 
-  for (const { ticket, position } of winDetails.mrxMoves) {
+  for (const {ticket, position} of winDetails.mrxMoves) {
     const ticketDiv = createElement("div", "log-entries");
     ticketDiv.classList.add(ticket);
     const pTag = document.createElement("p");
@@ -313,7 +313,7 @@ const main = async () => {
       gameStatus.you,
       gameStatus.currentPlayer,
       gameStatus.stations,
-      gameStatus.players[gameStatus.you].inventory.cards,
+      gameStatus.players[gameStatus.you].inventory.cards
     );
 
     if (gameStatus.win) {
@@ -359,7 +359,7 @@ class StationState {
         }
         return availableModes;
       },
-      [],
+      []
     );
   }
 
@@ -368,7 +368,7 @@ class StationState {
       text: message,
       duration: 3000,
       gravity: "top",
-      position: "right",
+      position: "center",
       backgroundColor: color,
       stopOnFocus: true,
     }).showToast();
@@ -377,7 +377,7 @@ class StationState {
   async #sendMoveReq(to, ticket) {
     const response = await fetch("/game/move", {
       method: "POST",
-      body: JSON.stringify({ to, ticket, isDoubleUsed: this.#isDoubleUsed }),
+      body: JSON.stringify({to, ticket, isDoubleUsed: this.#isDoubleUsed}),
     });
 
     return response;
@@ -386,18 +386,18 @@ class StationState {
   async #makeMove(to, ticket) {
     const resp = await this.#sendMoveReq(to, ticket);
 
-    const { message } = await resp.json();
+    const {message} = await resp.json();
 
     if (resp.status === 403) {
-      return this.#showToast(message, "red");
+      return this.#showToast(message, "#EB6649");
     }
 
-    this.#showToast(message, "blue");
+    this.#showToast(message, "#63a4ff");
   }
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`,
+      `#ticket-info-container-${station}`
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -417,7 +417,7 @@ class StationState {
       const transportElement = document.createElement("img");
       transportElement.classList.add(
         `ticket-info-element`,
-        `transport-${transport}`,
+        `transport-${transport}`
       );
       transportElement.setAttribute("src", `/assets/ticket-${transport}.png`);
 
@@ -459,7 +459,7 @@ class StationState {
     }
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station),
+      this.#ticketInfoContainerCloseButton(station)
     );
 
     return ticketInfoContainer;
@@ -470,7 +470,7 @@ class StationState {
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
-      doubleCards,
+      doubleCards
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);
@@ -523,6 +523,6 @@ class StationState {
     this.#renderStationPointers(current === you, doubleCards);
 
     const googleMapBg = this.#map.querySelector("#google-map-bg");
-    googleMapBg.style.display = curent === you ? "inline" : "none";
+    googleMapBg.style.display = current === you ? "inline" : "none";
   }
 }

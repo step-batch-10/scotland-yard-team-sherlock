@@ -34,9 +34,10 @@ main {
 }
 
 .login-box h1 {
-  color: #323232;
-  font-size: 4rem;
+  color: #2c3026;
+  font-size: 4.4rem;
   margin-bottom: 2rem;
+  text-shadow: 2px 3px 5px #667575;
   text-align: center;
 }
 
@@ -53,6 +54,7 @@ input {
   margin-bottom: 0.6rem;
   border-radius: 0.2em;
   /* height: 4rem; */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   background-color: #e2e2e2;
   font-family: serif;
 }
@@ -64,10 +66,10 @@ input::placeholder {
 
 button {
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
   border: none;
-  color: white;
+  color: #e6e2d9;
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 0.8rem;
@@ -76,5 +78,5 @@ button {
 }
 
 button:hover {
-  background-color: #12293a;
+  background-color: rgb(197, 97, 31);
 }
