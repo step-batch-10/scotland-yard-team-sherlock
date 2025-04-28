@@ -268,7 +268,7 @@ const main = async () => {
       gameStatus.you,
       gameStatus.currentPlayer,
       gameStatus.stations,
-      gameStatus.players[gameStatus.you].inventory.cards
+      gameStatus.players[gameStatus.you].inventory.cards,
     );
 
     if (gameStatus.win) {
@@ -316,7 +316,7 @@ class StationState {
         }
         return availableModes;
       },
-      []
+      [],
     );
   }
 
@@ -354,7 +354,7 @@ class StationState {
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`
+      `#ticket-info-container-${station}`,
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -374,7 +374,7 @@ class StationState {
       const transportElement = document.createElement("img");
       transportElement.classList.add(
         `ticket-info-element`,
-        `transport-${transport}`
+        `transport-${transport}`,
       );
       transportElement.setAttribute("src", `/assets/ticket-${transport}.png`);
 
@@ -416,7 +416,7 @@ class StationState {
     }
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station)
+      this.#ticketInfoContainerCloseButton(station),
     );
 
     return ticketInfoContainer;
@@ -427,7 +427,7 @@ class StationState {
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
-      doubleCards
+      doubleCards,
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);
@@ -478,5 +478,8 @@ class StationState {
     this.#stations = stations;
 
     this.#renderStationPointers(current === you, doubleCards);
+
+    const googleMapBg = this.#map.querySelector("#google-map-bg");
+    googleMapBg.style.display = curent === you ? "inline" : "none";
   }
 }
