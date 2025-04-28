@@ -6,17 +6,17 @@
   gap: 10px;
   display: flex;
   border: 1px solid black;
+  align-items: center;
 }
 
 .ticket-info-container .ticket-info-element {
-  padding: 5px;
   border-radius: 5px;
   cursor: pointer;
   font-family: sans-serif;
   border: 1px solid black;
 }
 
-.transport-taxi {
+/* .transport-taxi {
   background-color: yellow;
 }
 
@@ -33,7 +33,7 @@
 .transport-underground {
   background-color: red;
   color: white;
-}
+} */
 
 .ticket-info-container .ticket-info-close-button {
   border: none;
@@ -43,6 +43,8 @@
   color: white;
   cursor: pointer;
   border: 1px solid black;
+  aspect-ratio: 1;
+  height: 30px;
 }
 
 .double-button {
@@ -50,8 +52,15 @@
   padding: 0 8px;
   border-radius: 5px;
   background-color: orange;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .double-used {
   border: 4px solid black;
+}
+
+.ticket-info-element {
+  width: 50px;
+  background-color: ghostwhite;
 }

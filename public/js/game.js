@@ -173,11 +173,23 @@ const hidePopUp = () => {
 const displayMrXLog = (mrXMoves) => {
   mrXMoves.forEach((entry, index) => {
     const ticketDiv = document.getElementById(`${index + 1}`);
-    const pTag = ticketDiv.querySelector("p");
-    pTag.textContent = entry.position ? entry.position : entry.ticket;
+    ticketDiv.innerHTML = "";
 
-    pTag.classList.add("reveal-station");
-    ticketDiv.classList.add(entry.ticket);
+    if (entry.position) {
+      const revealedSlot = document.createElement("p");
+      revealedSlot.textContent = entry.position;
+
+      revealedSlot.classList.add("reveal-station");
+      ticketDiv.append(revealedSlot);
+      ticketDiv.classList.add(entry.ticket);
+      return;
+    }
+
+    const ticketImage = document.createElement("img");
+    ticketImage.setAttribute("src", `/assets/ticket-${entry.ticket}.png`);
+    ticketImage.classList.add("ticket-slot");
+
+    ticketDiv.append(ticketImage);
   });
 };
 
@@ -236,7 +248,7 @@ const setMapZoomable = (map) => {
   });
 };
 
-const renderThisPlayerPoineter = (map, position) => {
+const renderThisPlayerPointer = (map, position) => {
   map.getElementById(`pointer-${position}`).setAttribute("stroke", "aqua");
 };
 
@@ -256,7 +268,7 @@ const main = async () => {
       gameStatus.you,
       gameStatus.currentPlayer,
       gameStatus.stations,
-      gameStatus.players[gameStatus.you].inventory.cards,
+      gameStatus.players[gameStatus.you].inventory.cards
     );
 
     if (gameStatus.win) {
@@ -272,7 +284,7 @@ const main = async () => {
 
     renderPlayerPositions(map, gameStatus);
 
-    renderThisPlayerPoineter(map, gameStatus.players[gameStatus.you].position);
+    renderThisPlayerPointer(map, gameStatus.players[gameStatus.you].position);
     await poll.delay();
   }
 
@@ -304,7 +316,7 @@ class StationState {
         }
         return availableModes;
       },
-      [],
+      []
     );
   }
 
@@ -342,7 +354,7 @@ class StationState {
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`,
+      `#ticket-info-container-${station}`
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -359,12 +371,12 @@ class StationState {
 
   #addTransportModes(station, possibleStations, ticketInfoContainer) {
     possibleStations.forEach((transport) => {
-      const transportElement = document.createElement("div");
+      const transportElement = document.createElement("img");
       transportElement.classList.add(
         `ticket-info-element`,
-        `transport-${transport}`,
+        `transport-${transport}`
       );
-      transportElement.innerText = transport;
+      transportElement.setAttribute("src", `/assets/ticket-${transport}.png`);
 
       transportElement.onclick = () => {
         this.#makeMove(station, transport);
@@ -404,7 +416,7 @@ class StationState {
     }
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station),
+      this.#ticketInfoContainerCloseButton(station)
     );
 
     return ticketInfoContainer;
@@ -415,7 +427,7 @@ class StationState {
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
-      doubleCards,
+      doubleCards
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);

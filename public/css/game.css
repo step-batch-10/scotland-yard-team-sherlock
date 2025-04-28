@@ -60,7 +60,7 @@ body {
   position: absolute;
   display: none;
   gap: 8px;
-  background-color: rgb(229, 217, 194);
+  background-color: whitesmoke;
   padding: 8px;
   border-radius: 8px;
   pointer-events: all;
@@ -238,7 +238,7 @@ body {
 
 .ticket-slot {
   background-color: rgba(0, 0, 0, 0.6);
-  width: 100px;
+  width: 80px;
   height: 100%;
   flex: 0 0 auto;
   border-radius: 8px;
@@ -250,22 +250,24 @@ body {
 
 .taxi {
   /* background-image: url("/assets/taxi.png"); */
-  background-color: rgba(237, 237, 69, 0.8);
+  background-color: rgb(254, 207, 38);
 }
 
 .bus {
   /* background-image: url("/assets/bus.png"); */
-  background-color: rgba(18, 179, 18, 0.6);
+  background-color: rgb(136, 242, 86);
 }
 
 .underground {
   /* background-image: url("/assets/metro.png"); */
   font-size: 0.9em;
-  background-color: rgba(197, 85, 106, 0.6);
+  background-color: rgb(214, 56, 33);
+  color: whitesmoke;
 }
 
 .black {
-  background-color: #486577;
+  background-color: #000000;
+  color: whitesmoke;
 }
 
 .reveal-station {
