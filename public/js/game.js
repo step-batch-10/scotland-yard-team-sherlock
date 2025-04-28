@@ -1,3 +1,29 @@
+const initMusic = () => {
+  const music = new Audio("/assets/sherlocks_theme.mp3");
+  music.loop = true;
+
+  return music;
+};
+
+const playOnce = (music, musicToggle) => {
+  if (musicToggle.checked) music.play();
+  document.removeEventListener("click", playOnce);
+};
+
+const enableMusic = (music) => {
+  const musicToggle = document.getElementById("musicToggle");
+
+  document.addEventListener("click", () => playOnce(music, musicToggle));
+
+  musicToggle.addEventListener("change", () => {
+    if (musicToggle.checked) {
+      music.play();
+      return;
+    }
+    music.pause();
+  });
+};
+
 const poller = () => {
   let isOver = false;
 
@@ -157,16 +183,31 @@ const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
   }
 };
 
+const showPopup = () => {
+  const settingBtn = document.getElementById("settingBtn");
+  const settingPopup = document.getElementById("settingPopup");
+
+  settingBtn.addEventListener("click", () => {
+    settingPopup.style.display = "flex";
+  });
+};
+
 const hidePopUp = () => {
   const popup = document.getElementById("popup");
-  const closeBtn = document.querySelector(".close");
-
+  const closeBtn = document.getElementById("game-end");
+  const closeSetting = document.getElementById("close-setting");
+  const settingPopup = document.getElementById("settingPopup");
   closeBtn.addEventListener("click", () => (popup.style.display = "none"));
 
+  closeSetting.addEventListener(
+    "click",
+    () => (settingPopup.style.display = "none"),
+  );
+
   globalThis.addEventListener("click", (event) => {
-    if (event.target === popup) {
-      popup.style.display = "none";
-    }
+    if (event.target === popup) popup.style.display = "none";
+
+    if (event.target === settingPopup) settingPopup.style.display = "none";
   });
 };
 
@@ -249,10 +290,14 @@ const setMapZoomable = (map) => {
 };
 
 const renderThisPlayerPointer = (map, position) => {
-  map.getElementById(`pointer-${position}`).setAttribute("stroke", "aqua");
+  map.getElementById(`pointer-${position}`).setAttribute("stroke", "#CCE3DE");
 };
 
 const main = async () => {
+  const music = initMusic();
+  enableMusic(music);
+  showPopup();
+  hidePopUp();
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
 
@@ -287,8 +332,6 @@ const main = async () => {
     renderThisPlayerPointer(map, gameStatus.players[gameStatus.you].position);
     await poll.delay();
   }
-
-  hidePopUp();
 };
 
 globalThis.onload = main;

@@ -12,6 +12,10 @@
     />
     <link
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <link
+      rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
@@ -23,6 +27,28 @@
     <title>Game</title>
   </head>
   <body>
+    <button id="settingBtn" class="material-symbols-outlined settings">
+      settings
+    </button>
+    <div id="settingPopup" class="popup">
+      <div class="setting-popup-content">
+        <span>
+          <button class="close material-symbols-outlined" id="close-setting">
+            close
+          </button>
+        </span>
+
+        <h1 class="settingHeading">Settings</h1>
+        <p>Here are some settings you can adjust!!</p>
+        <div class="music">
+          <span class="label-text">Music</span>
+          <label class="switch">
+            <input type="checkbox" id="musicToggle" checked />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
     <div class="map-container">
       <object data="/assets/map.svg" type="image/svg+xml" id="map"></object>
     </div>
@@ -30,7 +56,9 @@
     <div class="popup" id="popup">
       <div class="popup-content">
         <span>
-          <button class="close material-symbols-outlined">close</button>
+          <button class="close material-symbols-outlined" id="game-end">
+            close
+          </button>
         </span>
         <h1 class="gameEndHeading">✽ Game Over ✽</h1>
         <div id="result-panel"></div>
@@ -68,6 +96,7 @@
         <div id="23" class="ticket-slot"></div>
         <div id="24" class="ticket-slot"></div>
       </div>
+      <div class="player-details" id="details"></div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"
