@@ -92,12 +92,12 @@ const showTimer = () => {
 };
 
 const getPlayerWithRole = async () => {
-  return await fetch("/game/details");
+  const res = await fetch("/game/details");
+  return await res.json();
 };
 
 const renderPlayerInfo = async () => {
-  const res = await getPlayerWithRole();
-  const roles = await res.json();
+  const roles = await getPlayerWithRole();
 
   removeLeaveButton();
   renderPlayerRoles(roles);

@@ -138,13 +138,11 @@ export class Game {
     return stations[from][ticket].includes(to);
   }
 
-  #isValidDoubleMove(playerId: string, { isDoubleUsed }: MoveData) {
+  #isValidDoubleMove({ isDoubleUsed }: MoveData) {
     if (!isDoubleUsed && !this.#wasDoubleUsed) return true;
     if (isDoubleUsed && this.#wasDoubleUsed) return false;
-    this.#wasDoubleUsed = !this.#wasDoubleUsed;
-    const inventory = (this.#players[this.#indexOf(playerId)] as Mrx).inventory;
-    inventory.cards.doubleMove = inventory.cards.doubleMove - 1;
 
+    this.#wasDoubleUsed = !this.#wasDoubleUsed;
     return true;
   }
 
@@ -163,7 +161,7 @@ export class Game {
       return { status: false, message: "Not Your Move ..!" };
     }
 
-    if (!this.#isValidDoubleMove(playerId, moveData)) {
+    if (!this.#isValidDoubleMove(moveData)) {
       return {
         status: false,
         message: "You can't use double move card again",
@@ -184,6 +182,7 @@ export class Game {
   #updateTickets(
     playerId: string,
     ticket: Ticket,
+    isDoubleUsed: boolean | undefined,
   ) {
     const isMrX = this.#isMrX(playerId);
     const mrXTickets = this.#players[0].inventory.tickets;
@@ -194,7 +193,11 @@ export class Game {
       mrXTickets[ticket] = mrXTickets[ticket]! + 1;
       return;
     }
-
+    if (isDoubleUsed) {
+      const inventory =
+        (this.#players[this.#indexOf(playerId)] as Mrx).inventory;
+      inventory.cards.doubleMove = inventory.cards.doubleMove - 1;
+    }
     mrXTickets[ticket] = mrXTickets[ticket]! - 1;
     return;
   }
@@ -239,7 +242,7 @@ export class Game {
       };
     }
 
-    this.#updateTickets(playerId, ticket);
+    this.#updateTickets(playerId, ticket, isDoubleUsed);
     this.#updateTo(to);
     this.#updateCurrentPlayerIndex(isDoubleUsed);
 
