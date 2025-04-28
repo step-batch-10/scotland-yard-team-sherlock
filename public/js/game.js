@@ -377,10 +377,7 @@ class StationState {
   #addDoubleButton(ticketContainer) {
     const doubleButton = document.createElement("button");
     doubleButton.innerText = "2X";
-    doubleButton.classList.add(
-      "double-button",
-      this.#isDoubleUsed ? "double-used" : "not-used",
-    );
+    doubleButton.classList.add("double-button");
 
     doubleButton.onclick = () => this.#onDoubleButtonClick(doubleButton);
 
@@ -394,6 +391,7 @@ class StationState {
 
     this.#addTransportModes(station, possibleStations, ticketInfoContainer);
 
+    this.#isDoubleUsed = false;
     if (doubleCards && doubleCards.doubleMove > 0) {
       this.#addDoubleButton(ticketInfoContainer);
     }
