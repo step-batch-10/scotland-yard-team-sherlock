@@ -24,6 +24,23 @@
 		transform: translate(3.5px, -40px);
 		}
 		}
+		
+		.circle {
+		animation: rotate 4s linear infinite;
+		transform-origin: 18px 24px;
+		}
+		
+		@keyframes rotate {
+		0% {
+		transform: rotate(0deg);
+		}
+		50% {
+		transform: rotate(180deg);
+		}
+		100% {
+		transform: rotate(360deg);
+		}
+		}
 	</style>
 	<!-- current player animation -->
 	<defs id="defs1">
@@ -95,12 +112,12 @@
 		<path style="opacity:0.896907;fill:#87b7e2;fill-opacity:1;stroke:#000000;stroke-miterlimit:4.7;stroke-opacity:0.351351;paint-order:markers fill stroke" d="m 331.98484,284.8672 -8.64544,-7.34862 c 38.47041,-6.01275 62.96881,-22.08536 72.62169,-48.84673 l 7.78089,7.34862 c -11.81145,25.36223 -31.30022,42.0147 -71.75714,48.84673 z" id="path58" />
 		<path style="opacity:0.896907;fill:#87b7e2;fill-opacity:0.898039;stroke:#000000;stroke-miterlimit:4.7;stroke-opacity:0.351351;paint-order:markers fill stroke" d="m 317.51015,823.59676 6.1397,-25.43589 c 83.00959,32.19974 148.28546,-5.04763 224.53756,35.96109 -1.86649,5.40466 -6.38437,14.62703 -4.67139,18.19221 2.5892,5.38884 -11.42936,4.30382 -16.37901,9.87499 -88.1397,-23.0817 -159.14395,-4.00843 -209.62686,-38.5924 z" id="path65" />
 	</g>
-	<rect style="display:none;fill:#1b2536;fill-opacity:1;stroke:#28416e;stroke-width:0;stroke-dasharray:none;stroke-opacity:1" id="google-map-bg" width="2200" height="1500" x="-0.0020306148" y="0.0039116144" ry="0" />
+	<rect style="display:inline;fill:#1b2536;fill-opacity:1;stroke:#28416e;stroke-width:0;stroke-dasharray:none;stroke-opacity:1" id="google-map-bg" width="2200" height="1500" x="-0.0020306148" y="0.0039116144" ry="0" />
 	<g id="paths" style="display:inline" transform="translate(-17.41699,-17.419276)">
 		<g id="waterway">
-			<path d="m 1319.7968,686.5419 c 164.9461,19.59329 159.1815,8.84387 221.2255,-2.68553 118.9432,-22.10277 251.9638,31.09639 310.663,91.13573" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" id="waterway-115-118" />
-			<path d="m 1308.2271,683.70926 c -7.7043,17.627 -15.9923,59.49889 -20.0567,66.20707 -37.9863,62.6956 -36.1938,103.15111 -43.241,145.36131 -11.176,66.94012 -20.4378,130.69196 33.0228,196.25236" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" id="waterway-115-157" />
-			<path d="m 755.22711,1339.1157 c 188.44844,76.78 306.45539,38.0191 391.86939,-49.5395 49.8355,-51.0868 37.3875,-116.3351 129.3339,-193.8471" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" id="waterway-157-194" />
+			<path d="m 1319.7968,686.5419 c 164.9461,19.59329 159.1815,8.84387 221.2255,-2.68553 118.9432,-22.10277 251.9638,31.09639 310.663,91.13573" style="fill:none;fill-rule:evenodd;stroke:#bbbbbb;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" id="waterway-115-118" />
+			<path d="m 1308.2271,683.70926 c -7.7043,17.627 -15.9923,59.49889 -20.0567,66.20707 -37.9863,62.6956 -36.1938,103.15111 -43.241,145.36131 -11.176,66.94012 -20.4378,130.69196 33.0228,196.25236" style="fill:none;fill-rule:evenodd;stroke:#bbbbbb;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" id="waterway-115-157" />
+			<path d="m 755.22711,1339.1157 c 188.44844,76.78 306.45539,38.0191 391.86939,-49.5395 49.8355,-51.0868 37.3875,-116.3351 129.3339,-193.8471" style="fill:none;fill-rule:evenodd;stroke:#bbbbbb;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" id="waterway-157-194" />
 		</g>
 		<g id="undergrund">
 			<path style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:12, 4;stroke-dashoffset:14.4;stroke-opacity:1" d="m 301.05034,97.085291 71.22899,88.162229 c 39.79763,37.86422 79.86784,75.59216 121.80122,112.3885 32.51456,28.27659 79.60058,60.3422 89.0077,91.08949" id="underground-001-46" />
@@ -570,7 +587,7 @@
 		<!-- station 1 start -->
 		<g id="station-1" transform="translate(284.36081,76.649541)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-1" class="pointer" stroke-width="5" />
-			<circle id="circle-1" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-1" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-1" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-1" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-1" ry="6" x="0" />
@@ -584,7 +601,7 @@
 		<!-- station 2 start -->
 		<g id="station-2" transform="translate(667.31074,55.106716)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-2" class="pointer" stroke-width="5" />
-			<circle id="circle-2" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-2" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-2" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-2" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-2" ry="6" x="0" />
@@ -598,7 +615,7 @@
 		<!-- station 3 start -->
 		<g id="station-3" transform="translate(910.19787,61.117161)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-3" class="pointer" stroke-width="5" />
-			<circle id="circle-3" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-3" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-3" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-3" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-3" ry="6" x="0" />
@@ -612,7 +629,7 @@
 		<!-- station 4 start -->
 		<g id="station-4" transform="translate(1058.2214,52.722896)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-4" class="pointer" stroke-width="5" />
-			<circle id="circle-4" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-4" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-4" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-4" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-4" ry="6" x="0" />
@@ -626,7 +643,7 @@
 		<!-- station 5 start -->
 		<g id="station-5" transform="translate(1649.6639,65.071379)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-5" class="pointer" stroke-width="5" />
-			<circle id="circle-5" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-5" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-5" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-5" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-5" ry="6" x="0" />
@@ -640,7 +657,7 @@
 		<!-- station 6 start -->
 		<g id="station-6" transform="translate(1833.8364,64.333223)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-6" class="pointer" stroke-width="5" />
-			<circle id="circle-6" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-6" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-6" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-6" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-6" ry="6" x="0" />
@@ -654,7 +671,7 @@
 		<!-- station 7 start -->
 		<g id="station-7" transform="translate(2021.131,71.605289)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-7" class="pointer" stroke-width="5" />
-			<circle id="circle-7" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-7" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-7" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-7" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-7" ry="6" x="0" />
@@ -668,7 +685,7 @@
 		<!-- station 8 start -->
 		<g id="station-8" transform="translate(208.60762,148.84765)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-8" class="pointer" stroke-width="5" />
-			<circle id="circle-8" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-8" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-8" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-8" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-8" ry="6" x="0" />
@@ -682,7 +699,7 @@
 		<!-- station 9 start -->
 		<g id="station-9" transform="translate(358.67052,156.66245)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-9" class="pointer" stroke-width="5" />
-			<circle id="circle-9" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-9" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-9" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-9" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-9" ry="6" x="0" />
@@ -696,7 +713,7 @@
 		<!-- station 10 start -->
 		<g id="station-10" transform="translate(791.9554,152.47472)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-10" class="pointer" stroke-width="5" />
-			<circle id="circle-10" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-10" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-10" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-10" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-10" ry="6" x="0" />
@@ -710,7 +727,7 @@
 		<!-- station 11 start -->
 		<g id="station-11" transform="translate(903.82219,172.15173)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-11" class="pointer" stroke-width="5" />
-			<circle id="circle-11" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-11" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-11" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-11" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-11" ry="6" x="0" />
@@ -724,7 +741,7 @@
 		<!-- station 12 start -->
 		<g id="station-12" transform="translate(995.6468,158.48517)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-12" class="pointer" stroke-width="5" />
-			<circle id="circle-12" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-12" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-12" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-12" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-12" ry="6" x="0" />
@@ -738,7 +755,7 @@
 		<!-- station 13 start -->
 		<g id="station-13" transform="translate(1164.0025,147.9594)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-13" class="pointer" stroke-width="5" />
-			<circle id="circle-13" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-13" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-13" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-13" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-13" ry="6" x="0" />
@@ -752,7 +769,7 @@
 		<!-- station 14 start -->
 		<g id="station-14" transform="translate(1336.8548,117.73783)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-14" class="pointer" stroke-width="5" />
-			<circle id="circle-14" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-14" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-14" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-14" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-14" ry="6" x="0" />
@@ -766,7 +783,7 @@
 		<!-- station 15 start -->
 		<g id="station-15" transform="translate(1515.2504,103.72486)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-15" class="pointer" stroke-width="5" />
-			<circle id="circle-15" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-15" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-15" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-15" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-15" ry="6" x="0" />
@@ -780,7 +797,7 @@
 		<!-- station 16 start -->
 		<g id="station-16" transform="translate(1685.7,157.67174)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-16" class="pointer" stroke-width="5" />
-			<circle id="circle-16" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-16" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-16" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-16" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-16" ry="6" x="0" />
@@ -794,7 +811,7 @@
 		<!-- station 17 start -->
 		<g id="station-17" transform="translate(2007.6681,206.09401)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-17" class="pointer" stroke-width="5" />
-			<circle id="circle-17" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-17" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-17" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-17" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-17" ry="6" x="0" />
@@ -808,7 +825,7 @@
 		<!-- station 18 start -->
 		<g id="station-18" transform="translate(119.65463,211.54336)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-18" class="pointer" stroke-width="5" />
-			<circle id="circle-18" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-18" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-18" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-18" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-18" ry="6" x="0" />
@@ -822,7 +839,7 @@
 		<!-- station 19 start -->
 		<g id="station-19" transform="translate(259.8262,227.14553)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-19" class="pointer" stroke-width="5" />
-			<circle id="circle-19" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-19" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-19" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-19" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-19" ry="6" x="0" />
@@ -836,7 +853,7 @@
 		<!-- station 20 start -->
 		<g id="station-20" transform="translate(442.93307,194.03549)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-20" class="pointer" stroke-width="5" />
-			<circle id="circle-20" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-20" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-20" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-20" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-20" ry="6" x="0" />
@@ -850,7 +867,7 @@
 		<!-- station 21 start -->
 		<g id="station-21" transform="translate(622.10453,258.62874)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-21" class="pointer" stroke-width="5" />
-			<circle id="circle-21" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-21" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-21" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-21" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-21" ry="6" x="0" />
@@ -864,7 +881,7 @@
 		<!-- station 22 start -->
 		<g id="station-22" transform="translate(911.2448,285.98067)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-22" class="pointer" stroke-width="5" />
-			<circle id="circle-22" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-22" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-22" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-22" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-22" ry="6" x="0" />
@@ -878,7 +895,7 @@
 		<!-- station 23 start -->
 		<g id="station-23" transform="translate(1050.4071,223.92947)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-23" class="pointer" stroke-width="5" />
-			<circle id="circle-23" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-23" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-23" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-23" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-23" ry="6" x="0" />
@@ -892,7 +909,7 @@
 		<!-- station 24 start -->
 		<g id="station-24" transform="translate(1270.7253,224.72408)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-24" class="pointer" stroke-width="5" />
-			<circle id="circle-24" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-24" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-24" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-24" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-24" ry="6" x="0" />
@@ -906,7 +923,7 @@
 		<!-- station 25 start -->
 		<g id="station-25" transform="translate(1363.4309,247.70011)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-25" class="pointer" stroke-width="5" />
-			<circle id="circle-25" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-25" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-25" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-25" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-25" ry="6" x="0" />
@@ -920,7 +937,7 @@
 		<!-- station 26 start -->
 		<g id="station-26" transform="translate(1505.9375,153.6987)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-26" class="pointer" stroke-width="5" />
-			<circle id="circle-26" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-26" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-26" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-26" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-26" ry="6" x="0" />
@@ -934,7 +951,7 @@
 		<!-- station 27 start -->
 		<g id="station-27" transform="translate(1531.1956,228.91181)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-27" class="pointer" stroke-width="5" />
-			<circle id="circle-27" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-27" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-27" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-27" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-27" ry="6" x="0" />
@@ -948,7 +965,7 @@
 		<!-- station 28 start -->
 		<g id="station-28" transform="translate(1596.0258,200.49413)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-28" class="pointer" stroke-width="5" />
-			<circle id="circle-28" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-28" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-28" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-28" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-28" ry="6" x="0" />
@@ -962,7 +979,7 @@
 		<!-- station 29 start -->
 		<g id="station-29" transform="translate(1836.6009,244.74749)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-29" class="pointer" stroke-width="5" />
-			<circle id="circle-29" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-29" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-29" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-29" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-29" ry="6" x="0" />
@@ -976,7 +993,7 @@
 		<!-- station 30 start -->
 		<g id="station-30" transform="translate(2071.1426,230.44456)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-30" class="pointer" stroke-width="5" />
-			<circle id="circle-30" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-30" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-30" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-30" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-30" ry="6" x="0" />
@@ -990,7 +1007,7 @@
 		<!-- station 31 start -->
 		<g id="station-31" transform="translate(177.20932,270.2767)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-31" class="pointer" stroke-width="5" />
-			<circle id="circle-31" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-31" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-31" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-31" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-31" ry="6" x="0" />
@@ -1004,7 +1021,7 @@
 		<!-- station 32 start -->
 		<g id="station-32" transform="translate(380.10609,315.17413)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-32" class="pointer" stroke-width="5" />
-			<circle id="circle-32" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-32" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-32" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-32" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-32" ry="6" x="0" />
@@ -1018,7 +1035,7 @@
 		<!-- station 33 start -->
 		<g id="station-33" transform="translate(541.87147,295.51594)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-33" class="pointer" stroke-width="5" />
-			<circle id="circle-33" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-33" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-33" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-33" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-33" ry="6" x="0" />
@@ -1032,7 +1049,7 @@
 		<!-- station 34 start -->
 		<g id="station-34" transform="translate(802.84639,320.25054)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-34" class="pointer" stroke-width="5" />
-			<circle id="circle-34" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-34" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-34" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-34" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-34" ry="6" x="0" />
@@ -1046,7 +1063,7 @@
 		<!-- station 35 start -->
 		<g id="station-35" transform="translate(957.44919,358.16587)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-35" class="pointer" stroke-width="5" />
-			<circle id="circle-35" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-35" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-35" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-35" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-35" ry="6" x="0" />
@@ -1060,7 +1077,7 @@
 		<!-- station 36 start -->
 		<g id="station-36" transform="translate(1017.1033,368.40175)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-36" class="pointer" stroke-width="5" />
-			<circle id="circle-36" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-36" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-36" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-36" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-36" ry="6" x="0" />
@@ -1074,7 +1091,7 @@
 		<!-- station 37 start -->
 		<g id="station-37" transform="translate(1117.4782,288.36448)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-37" class="pointer" stroke-width="5" />
-			<circle id="circle-37" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-37" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-37" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-37" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-37" ry="6" x="0" />
@@ -1088,7 +1105,7 @@
 		<!-- station 38 start -->
 		<g id="station-38" transform="translate(1319.0376,297.92692)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-38" class="pointer" stroke-width="5" />
-			<circle id="circle-38" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-38" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-38" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-38" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-38" ry="6" x="0" />
@@ -1102,7 +1119,7 @@
 		<!-- station 39 start -->
 		<g id="station-39" transform="translate(1410.7874,278.97974)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-39" class="pointer" stroke-width="5" />
-			<circle id="circle-39" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-39" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-39" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-39" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-39" ry="6" x="0" />
@@ -1116,7 +1133,7 @@
 		<!-- station 40 start -->
 		<g id="station-40" transform="translate(1567.1918,336.10156)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-40" class="pointer" stroke-width="5" />
-			<circle id="circle-40" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-40" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-40" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-40" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-40" ry="6" x="0" />
@@ -1130,7 +1147,7 @@
 		<!-- station 41 start -->
 		<g id="station-41" transform="translate(1633.8557,314.2008)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-41" class="pointer" stroke-width="5" />
-			<circle id="circle-41" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-41" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-41" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-41" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-41" ry="6" x="0" />
@@ -1144,7 +1161,7 @@
 		<!-- station 42 start -->
 		<g id="station-42" transform="translate(2014.2147,315.71681)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-42" class="pointer" stroke-width="5" />
-			<circle id="circle-42" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-42" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-42" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-42" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-42" ry="6" x="0" />
@@ -1158,7 +1175,7 @@
 		<!-- station 43 start -->
 		<g id="station-43" transform="translate(81.77694,340.39456)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-43" class="pointer" stroke-width="5" />
-			<circle id="circle-43" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-43" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-43" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-43" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-43" ry="6" x="0" />
@@ -1172,7 +1189,7 @@
 		<!-- station 44 start -->
 		<g id="station-44" transform="translate(293.49736,377.71115)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-44" class="pointer" stroke-width="5" />
-			<circle id="circle-44" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-44" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-44" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-44" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-44" ry="6" x="0" />
@@ -1186,7 +1203,7 @@
 		<!-- station 45 start -->
 		<g id="station-45" transform="translate(436.36152,405.0819)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-45" class="pointer" stroke-width="5" />
-			<circle id="circle-45" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-45" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-45" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-45" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-45" ry="6" x="0" />
@@ -1200,7 +1217,7 @@
 		<!-- station 46 start -->
 		<g id="station-46" transform="translate(567.40067,369.19628)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-46" class="pointer" stroke-width="5" />
-			<circle id="circle-46" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-46" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-46" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-46" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-46" ry="6" x="0" />
@@ -1214,7 +1231,7 @@
 		<!-- station 47 start -->
 		<g id="station-47" transform="translate(671.22732,348.74349)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-47" class="pointer" stroke-width="5" />
-			<circle id="circle-47" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-47" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-47" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-47" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-47" ry="6" x="0" />
@@ -1228,7 +1245,7 @@
 		<!-- station 48 start -->
 		<g id="station-48" transform="translate(835.4706,412.86973)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-48" class="pointer" stroke-width="5" />
-			<circle id="circle-48" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-48" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-48" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-48" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-48" ry="6" x="0" />
@@ -1242,7 +1259,7 @@
 		<!-- station 49 start -->
 		<g id="station-49" transform="translate(1068.1525,420.52171)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-49" class="pointer" stroke-width="5" />
-			<circle id="circle-49" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-49" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-49" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-49" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-49" ry="6" x="0" />
@@ -1256,7 +1273,7 @@
 		<!-- station 50 start -->
 		<g id="station-50" transform="translate(1164.9531,360.99307)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-50" class="pointer" stroke-width="5" />
-			<circle id="circle-50" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-50" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-50" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-50" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-50" ry="6" x="0" />
@@ -1270,7 +1287,7 @@
 		<!-- station 51 start -->
 		<g id="station-51" transform="translate(1365.941,371.73373)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-51" class="pointer" stroke-width="5" />
-			<circle id="circle-51" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-51" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-51" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-51" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-51" ry="6" x="0" />
@@ -1284,7 +1301,7 @@
 		<!-- station 52 start -->
 		<g id="station-52" transform="translate(1469.4275,345.78135)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-52" class="pointer" stroke-width="5" />
-			<circle id="circle-52" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-52" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-52" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-52" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-52" ry="6" x="0" />
@@ -1298,7 +1315,7 @@
 		<!-- station 53 start -->
 		<g id="station-53" transform="translate(1587.2511,407.12518)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-53" class="pointer" stroke-width="5" />
-			<circle id="circle-53" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-53" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-53" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-53" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-53" ry="6" x="0" />
@@ -1312,7 +1329,7 @@
 		<!-- station 54 start -->
 		<g id="station-54" transform="translate(1662.6182,387.1171)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-54" class="pointer" stroke-width="5" />
-			<circle id="circle-54" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-54" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-54" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-54" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-54" ry="6" x="0" />
@@ -1326,7 +1343,7 @@
 		<!-- station 55 start -->
 		<g id="station-55" transform="translate(1841.5984,384.78726)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-55" class="pointer" stroke-width="5" />
-			<circle id="circle-55" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-55" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-55" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-55" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-55" ry="6" x="0" />
@@ -1340,7 +1357,7 @@
 		<!-- station 56 start -->
 		<g id="station-56" transform="translate(2080.0904,400.89838)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-56" class="pointer" stroke-width="5" />
-			<circle id="circle-56" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-56" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-56" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-56" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-56" ry="6" x="0" />
@@ -1354,7 +1371,7 @@
 		<!-- station 57 start -->
 		<g id="station-57" transform="translate(146.96893,410.31655)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-57" class="pointer" stroke-width="5" />
-			<circle id="circle-57" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-57" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-57" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-57" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-57" ry="6" x="0" />
@@ -1368,7 +1385,7 @@
 		<!-- station 58 start -->
 		<g id="station-58" transform="translate(351.36081,432.39619)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-58" class="pointer" stroke-width="5" />
-			<circle id="circle-58" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-58" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-58" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-58" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-58" ry="6" x="0" />
@@ -1382,7 +1399,7 @@
 		<!-- station 59 start -->
 		<g id="station-59" transform="translate(394.76313,476.05081)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-59" class="pointer" stroke-width="5" />
-			<circle id="circle-59" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-59" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-59" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-59" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-59" ry="6" x="0" />
@@ -1396,7 +1413,7 @@
 		<!-- station 60 start -->
 		<g id="station-60" transform="translate(472.16417,466.37611)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-60" class="pointer" stroke-width="5" />
-			<circle id="circle-60" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-60" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-60" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-60" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-60" ry="6" x="0" />
@@ -1410,7 +1427,7 @@
 		<!-- station 61 start -->
 		<g id="station-61" transform="translate(605.3237,483.59402)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-61" class="pointer" stroke-width="5" />
-			<circle id="circle-61" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-61" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-61" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-61" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-61" ry="6" x="0" />
@@ -1424,7 +1441,7 @@
 		<!-- station 62 start -->
 		<g id="station-62" transform="translate(676.8272,462.26365)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-62" class="pointer" stroke-width="5" />
-			<circle id="circle-62" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-62" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-62" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-62" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-62" ry="6" x="0" />
@@ -1438,7 +1455,7 @@
 		<!-- station 63 start -->
 		<g id="station-63" transform="translate(850.83897,541.37557)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-63" class="pointer" stroke-width="5" />
-			<circle id="circle-63" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-63" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-63" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-63" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-63" ry="6" x="0" />
@@ -1452,7 +1469,7 @@
 		<!-- station 64 start -->
 		<g id="station-64" transform="translate(955.53541,524.71671)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-64" class="pointer" stroke-width="5" />
-			<circle id="circle-64" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-64" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-64" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-64" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-64" ry="6" x="0" />
@@ -1466,7 +1483,7 @@
 		<!-- station 65 start -->
 		<g id="station-65" transform="translate(1065.1656,504.83218)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-65" class="pointer" stroke-width="5" />
-			<circle id="circle-65" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-65" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-65" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-65" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-65" ry="6" x="0" />
@@ -1480,7 +1497,7 @@
 		<!-- station 66 start -->
 		<g id="station-66" transform="translate(1130.3707,489.28411)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-66" class="pointer" stroke-width="5" />
-			<circle id="circle-66" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-66" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-66" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-66" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-66" ry="6" x="0" />
@@ -1494,7 +1511,7 @@
 		<!-- station 67 start -->
 		<g id="station-67" transform="translate(1244.4263,474.60293)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-67" class="pointer" stroke-width="5" />
-			<circle id="circle-67" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-67" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-67" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-67" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-67" ry="6" x="0" />
@@ -1508,7 +1525,7 @@
 		<!-- station 68 start -->
 		<g id="station-68" transform="translate(1385.541,446.14595)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-68" class="pointer" stroke-width="5" />
-			<circle id="circle-68" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-68" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-68" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-68" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-68" ry="6" x="0" />
@@ -1522,7 +1539,7 @@
 		<!-- station 69 start -->
 		<g id="station-69" transform="translate(1515.3207,438.91152)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-69" class="pointer" stroke-width="5" />
-			<circle id="circle-69" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-69" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-69" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-69" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-69" ry="6" x="0" />
@@ -1536,7 +1553,7 @@
 		<!-- station 70 start -->
 		<g id="station-70" transform="translate(1675.6973,464.1792)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-70" class="pointer" stroke-width="5" />
-			<circle id="circle-70" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-70" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-70" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-70" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-70" ry="6" x="0" />
@@ -1550,7 +1567,7 @@
 		<!-- station 71 start -->
 		<g id="station-71" transform="translate(1817.4015,462.64571)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-71" class="pointer" stroke-width="5" />
-			<circle id="circle-71" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-71" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-71" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-71" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-71" ry="6" x="0" />
@@ -1564,7 +1581,7 @@
 		<!-- station 72 start -->
 		<g id="station-72" transform="translate(1967.9879,472.59863)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-72" class="pointer" stroke-width="5" />
-			<circle id="circle-72" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-72" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-72" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-72" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-72" ry="6" x="0" />
@@ -1578,7 +1595,7 @@
 		<!-- station 73 start -->
 		<g id="station-73" transform="translate(145.39853,481.76361)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-73" class="pointer" stroke-width="5" />
-			<circle id="circle-73" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-73" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-73" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-73" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-73" ry="6" x="0" />
@@ -1592,7 +1609,7 @@
 		<!-- station 74 start -->
 		<g id="station-74" transform="translate(217.74197,557.50017)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-74" class="pointer" stroke-width="5" />
-			<circle id="circle-74" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-74" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-74" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-74" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-74" ry="6" x="0" />
@@ -1606,7 +1623,7 @@
 		<!-- station 75 start -->
 		<g id="station-75" transform="translate(317.99844,533.25139)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-75" class="pointer" stroke-width="5" />
-			<circle id="circle-75" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-75" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-75" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-75" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-75" ry="6" x="0" />
@@ -1620,7 +1637,7 @@
 		<!-- station 76 start -->
 		<g id="station-76" transform="translate(447.66307,528.28788)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-76" class="pointer" stroke-width="5" />
-			<circle id="circle-76" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-76" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-76" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-76" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-76" ry="6" x="0" />
@@ -1634,7 +1651,7 @@
 		<!-- station 77 start -->
 		<g id="station-77" transform="translate(533.35318,586.2078)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-77" class="pointer" stroke-width="5" />
-			<circle id="circle-77" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-77" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-77" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-77" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-77" ry="6" x="0" />
@@ -1648,7 +1665,7 @@
 		<!-- station 78 start -->
 		<g id="station-78" transform="translate(634.11431,575.33563)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-78" class="pointer" stroke-width="5" />
-			<circle id="circle-78" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-78" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-78" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-78" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-78" ry="6" x="0" />
@@ -1662,7 +1679,7 @@
 		<!-- station 79 start -->
 		<g id="station-79" transform="translate(709.16146,561.65026)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-79" class="pointer" stroke-width="5" />
-			<circle id="circle-79" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-79" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-79" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-79" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-79" ry="6" x="0" />
@@ -1676,7 +1693,7 @@
 		<!-- station 80 start -->
 		<g id="station-80" transform="translate(882.3033,592.89019)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-80" class="pointer" stroke-width="5" />
-			<circle id="circle-80" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-80" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-80" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-80" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-80" ry="6" x="0" />
@@ -1690,7 +1707,7 @@
 		<!-- station 81 start -->
 		<g id="station-81" transform="translate(1025.7001,614.8509)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-81" class="pointer" stroke-width="5" />
-			<circle id="circle-81" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-81" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-81" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-81" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-81" ry="6" x="0" />
@@ -1704,7 +1721,7 @@
 		<!-- station 82 start -->
 		<g id="station-82" transform="translate(1077.9682,581.97712)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-82" class="pointer" stroke-width="5" />
-			<circle id="circle-82" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-82" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-82" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-82" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-82" ry="6" x="0" />
@@ -1718,7 +1735,7 @@
 		<!-- station 83 start -->
 		<g id="station-83" transform="translate(1219.6724,565.91713)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-83" class="pointer" stroke-width="5" />
-			<circle id="circle-83" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-83" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-83" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-83" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-83" ry="6" x="0" />
@@ -1732,7 +1749,7 @@
 		<!-- station 84 start -->
 		<g id="station-84" transform="translate(1311.7493,526.63682)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-84" class="pointer" stroke-width="5" />
-			<circle id="circle-84" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-84" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-84" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-84" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-84" ry="6" x="0" />
@@ -1746,7 +1763,7 @@
 		<!-- station 85 start -->
 		<g id="station-85" transform="translate(1394.9441,500.96692)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-85" class="pointer" stroke-width="5" />
-			<circle id="circle-85" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-85" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-85" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-85" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-85" ry="6" x="0" />
@@ -1760,7 +1777,7 @@
 		<!-- station 86 start -->
 		<g id="station-86" transform="translate(1537.2564,549.03524)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-86" class="pointer" stroke-width="5" />
-			<circle id="circle-86" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-86" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-86" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-86" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-86" ry="6" x="0" />
@@ -1774,7 +1791,7 @@
 		<!-- station 87 start -->
 		<g id="station-87" transform="translate(1687.0452,580.82968)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-87" class="pointer" stroke-width="5" />
-			<circle id="circle-87" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-87" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-87" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-87" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-87" ry="6" x="0" />
@@ -1788,7 +1805,7 @@
 		<!-- station 88 start -->
 		<g id="station-88" transform="translate(1751.4828,596.1619)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-88" class="pointer" stroke-width="5" />
-			<circle id="circle-88" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-88" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-88" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-88" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-88" ry="6" x="0" />
@@ -1802,7 +1819,7 @@
 		<!-- station 89 start -->
 		<g id="station-89" transform="translate(1806.5151,553.72046)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-89" class="pointer" stroke-width="5" />
-			<circle id="circle-89" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-89" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-89" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-89" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-89" ry="6" x="0" />
@@ -1816,7 +1833,7 @@
 		<!-- station 90 start -->
 		<g id="station-90" transform="translate(1913.0929,552.74387)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-90" class="pointer" stroke-width="5" />
-			<circle id="circle-90" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-90" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-90" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-90" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-90" ry="6" x="0" />
@@ -1830,7 +1847,7 @@
 		<!-- station 91 start -->
 		<g id="station-91" transform="translate(2058.8999,553.88323)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-91" class="pointer" stroke-width="5" />
-			<circle id="circle-91" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-91" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-91" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-91" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-91" ry="6" x="0" />
@@ -1844,7 +1861,7 @@
 		<!-- station 92 start -->
 		<g id="station-92" transform="translate(88.563171,616.85876)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-92" class="pointer" stroke-width="5" />
-			<circle id="circle-92" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-92" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-92" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-92" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-92" ry="6" x="0" />
@@ -1858,7 +1875,7 @@
 		<!-- station 93 start -->
 		<g id="station-93" transform="translate(98.294327,670.91854)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-93" class="pointer" stroke-width="5" />
-			<circle id="circle-93" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-93" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-93" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-93" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-93" ry="6" x="0" />
@@ -1872,7 +1889,7 @@
 		<!-- station 94 start -->
 		<g id="station-94" transform="translate(228.65948,647.07264)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-94" class="pointer" stroke-width="5" />
-			<circle id="circle-94" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-94" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-94" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-94" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-94" ry="6" x="0" />
@@ -1886,7 +1903,7 @@
 		<!-- station 95 start -->
 		<g id="station-95" transform="translate(288.53383,639.26599)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-95" class="pointer" stroke-width="5" />
-			<circle id="circle-95" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-95" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-95" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-95" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-95" ry="6" x="0" />
@@ -1900,7 +1917,7 @@
 		<!-- station 96 start -->
 		<g id="station-96" transform="translate(597.21261,680.62853)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-96" class="pointer" stroke-width="5" />
-			<circle id="circle-96" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-96" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-96" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-96" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-96" ry="6" x="0" />
@@ -1914,7 +1931,7 @@
 		<!-- station 97 start -->
 		<g id="station-97" transform="translate(662.43165,660.61813)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-97" class="pointer" stroke-width="5" />
-			<circle id="circle-97" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-97" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-97" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-97" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-97" ry="6" x="0" />
@@ -1928,7 +1945,7 @@
 		<!-- station 98 start -->
 		<g id="station-98" transform="translate(749.74486,635.68255)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-98" class="pointer" stroke-width="5" />
-			<circle id="circle-98" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-98" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-98" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-98" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-98" ry="6" x="0" />
@@ -1942,7 +1959,7 @@
 		<!-- station 99 start -->
 		<g id="station-99" transform="translate(832.78412,645.50156)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-99" class="pointer" stroke-width="5" />
-			<circle id="circle-99" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-99" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-99" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-99" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-99" ry="6" x="0" />
@@ -1956,7 +1973,7 @@
 		<!-- station 100 start -->
 		<g id="station-100" transform="translate(975.9505,683.07282)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-100" class="pointer" stroke-width="5" />
-			<circle id="circle-100" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-100" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-100" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-100" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-100" ry="6" x="0" />
@@ -1970,7 +1987,7 @@
 		<!-- station 101 start -->
 		<g id="station-101" transform="translate(1121.2316,632.83799)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-101" class="pointer" stroke-width="5" />
-			<circle id="circle-101" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-101" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-101" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-101" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-101" ry="6" x="0" />
@@ -1984,7 +2001,7 @@
 		<!-- station 102 start -->
 		<g id="station-102" transform="translate(1300.8629,567.95637)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-102" class="pointer" stroke-width="5" />
-			<circle id="circle-102" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-102" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-102" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-102" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-102" ry="6" x="0" />
@@ -1998,7 +2015,7 @@
 		<!-- station 103 start -->
 		<g id="station-103" transform="translate(1417.3507,557.65237)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-103" class="pointer" stroke-width="5" />
-			<circle id="circle-103" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-103" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-103" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-103" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-103" ry="6" x="0" />
@@ -2012,7 +2029,7 @@
 		<!-- station 104 start -->
 		<g id="station-104" transform="translate(1540.357,611.66499)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-104" class="pointer" stroke-width="5" />
-			<circle id="circle-104" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-104" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-104" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-104" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-104" ry="6" x="0" />
@@ -2026,7 +2043,7 @@
 		<!-- station 105 start -->
 		<g id="station-105" transform="translate(1867.5427,634.0029)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-105" class="pointer" stroke-width="5" />
-			<circle id="circle-105" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-105" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-105" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-105" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-105" ry="6" x="0" />
@@ -2040,7 +2057,7 @@
 		<!-- station 106 start -->
 		<g id="station-106" transform="translate(1997.5373,654.4831)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-106" class="pointer" stroke-width="5" />
-			<circle id="circle-106" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-106" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-106" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-106" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-106" ry="6" x="0" />
@@ -2054,7 +2071,7 @@
 		<!-- station 107 start -->
 		<g id="station-107" transform="translate(2089.812,655.09111)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-107" class="pointer" stroke-width="5" />
-			<circle id="circle-107" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-107" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-107" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-107" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-107" ry="6" x="0" />
@@ -2070,7 +2087,7 @@
 		<!-- station 109 start -->
 		<g id="station-109" transform="translate(697.41483,771.82042)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-109" class="pointer" stroke-width="5" />
-			<circle id="circle-109" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-109" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-109" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-109" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-109" ry="6" x="0" />
@@ -2084,7 +2101,7 @@
 		<!-- station 110 start -->
 		<g id="station-110" transform="translate(795.86834,685.98309)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-110" class="pointer" stroke-width="5" />
-			<circle id="circle-110" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-110" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-110" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-110" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-110" ry="6" x="0" />
@@ -2098,7 +2115,7 @@
 		<!-- station 111 start -->
 		<g id="station-111" transform="translate(857.02336,754.96596)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-111" class="pointer" stroke-width="5" />
-			<circle id="circle-111" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-111" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-111" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-111" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-111" ry="6" x="0" />
@@ -2112,7 +2129,7 @@
 		<!-- station 112 start -->
 		<g id="station-112" transform="translate(892.96399,729.95724)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-112" class="pointer" stroke-width="5" />
-			<circle id="circle-112" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-112" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-112" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-112" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-112" ry="6" x="0" />
@@ -2126,7 +2143,7 @@
 		<!-- station 113 start -->
 		<g id="station-113" transform="translate(1037.2231,729.74541)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-113" class="pointer" stroke-width="5" />
-			<circle id="circle-113" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-113" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-113" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-113" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-113" ry="6" x="0" />
@@ -2140,7 +2157,7 @@
 		<!-- station 114 start -->
 		<g id="station-114" transform="translate(1139.0133,702.72227)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-114" class="pointer" stroke-width="5" />
-			<circle id="circle-114" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-114" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-114" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-114" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-114" ry="6" x="0" />
@@ -2154,7 +2171,7 @@
 		<!-- station 115 start -->
 		<g id="station-115" transform="translate(1295.15,659.03922)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-115" class="pointer" stroke-width="5" />
-			<circle id="circle-115" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-115" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-115" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-115" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-115" ry="6" x="0" />
@@ -2168,7 +2185,7 @@
 		<!-- station 116 start -->
 		<g id="station-116" transform="translate(1541.4912,738.13563)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-116" class="pointer" stroke-width="5" />
-			<circle id="circle-116" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-116" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-116" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-116" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-116" ry="6" x="0" />
@@ -2182,7 +2199,7 @@
 		<!-- station 117 start -->
 		<g id="station-117" transform="translate(1706.6056,793.76815)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-117" class="pointer" stroke-width="5" />
-			<circle id="circle-117" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-117" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-117" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-117" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-117" ry="6" x="0" />
@@ -2196,7 +2213,7 @@
 		<!-- station 118 start -->
 		<g id="station-118" transform="translate(1834.0175,761.59241)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-118" class="pointer" stroke-width="5" />
-			<circle id="circle-118" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-118" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-118" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-118" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-118" ry="6" x="0" />
@@ -2210,7 +2227,7 @@
 		<!-- station 119 start -->
 		<g id="station-119" transform="translate(2044.7096,856.67277)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-119" class="pointer" stroke-width="5" />
-			<circle id="circle-119" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-119" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-119" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-119" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-119" ry="6" x="0" />
@@ -2224,7 +2241,7 @@
 		<!-- station 120 start -->
 		<g id="station-120" transform="translate(90.876728,909.50468)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-120" class="pointer" stroke-width="5" />
-			<circle id="circle-120" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-120" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-120" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-120" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-120" ry="6" x="0" />
@@ -2238,7 +2255,7 @@
 		<!-- station 121 start -->
 		<g id="station-121" transform="translate(160.62473,910.00394)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-121" class="pointer" stroke-width="5" />
-			<circle id="circle-121" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-121" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-121" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-121" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-121" ry="6" x="0" />
@@ -2252,7 +2269,7 @@
 		<!-- station 122 start -->
 		<g id="station-122" transform="translate(265.05856,904.5235)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-122" class="pointer" stroke-width="5" />
-			<circle id="circle-122" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-122" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-122" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-122" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-122" ry="6" x="0" />
@@ -2266,7 +2283,7 @@
 		<!-- station 123 start -->
 		<g id="station-123" transform="translate(524.18157,897.74494)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-123" class="pointer" stroke-width="5" />
-			<circle id="circle-123" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-123" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-123" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-123" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-123" ry="6" x="0" />
@@ -2280,7 +2297,7 @@
 		<!-- station 124 start -->
 		<g id="station-124" transform="translate(675.68247,872.20968)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-124" class="pointer" stroke-width="5" />
-			<circle id="circle-124" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-124" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-124" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-124" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-124" ry="6" x="0" />
@@ -2294,7 +2311,7 @@
 		<!-- station 125 start -->
 		<g id="station-125" transform="translate(936.50113,790.15324)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-125" class="pointer" stroke-width="5" />
-			<circle id="circle-125" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-125" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-125" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-125" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-125" ry="6" x="0" />
@@ -2308,7 +2325,7 @@
 		<!-- station 126 start -->
 		<g id="station-126" transform="translate(1215.4069,752.13574)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-126" class="pointer" stroke-width="5" />
-			<circle id="circle-126" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-126" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-126" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-126" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-126" ry="6" x="0" />
@@ -2322,7 +2339,7 @@
 		<!-- station 127 start -->
 		<g id="station-127" transform="translate(1399.2104,791.65205)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-127" class="pointer" stroke-width="5" />
-			<circle id="circle-127" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-127" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-127" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-127" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-127" ry="6" x="0" />
@@ -2336,7 +2353,7 @@
 		<!-- station 128 start -->
 		<g id="station-128" transform="translate(1543.1492,823.83029)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-128" class="pointer" stroke-width="5" />
-			<circle id="circle-128" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-128" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-128" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-128" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-128" ry="6" x="0" />
@@ -2350,7 +2367,7 @@
 		<!-- station 129 start -->
 		<g id="station-129" transform="translate(1691.8496,841.56695)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-129" class="pointer" stroke-width="5" />
-			<circle id="circle-129" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-129" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-129" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-129" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-129" ry="6" x="0" />
@@ -2364,7 +2381,7 @@
 		<!-- station 130 start -->
 		<g id="station-130" transform="translate(901.96932,877.45032)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-130" class="pointer" stroke-width="5" />
-			<circle id="circle-130" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-130" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-130" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-130" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-130" ry="6" x="0" />
@@ -2378,7 +2395,7 @@
 		<!-- station 131 start -->
 		<g id="station-131" transform="translate(973.70425,831.81656)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-131" class="pointer" stroke-width="5" />
-			<circle id="circle-131" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-131" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-131" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-131" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-131" ry="6" x="0" />
@@ -2392,7 +2409,7 @@
 		<!-- station 132 start -->
 		<g id="station-132" transform="translate(1135.0106,824.58701)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-132" class="pointer" stroke-width="5" />
-			<circle id="circle-132" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-132" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-132" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-132" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-132" ry="6" x="0" />
@@ -2406,7 +2423,7 @@
 		<!-- station 133 start -->
 		<g id="station-133" transform="translate(1321.9438,899.87398)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-133" class="pointer" stroke-width="5" />
-			<circle id="circle-133" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-133" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-133" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-133" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-133" ry="6" x="0" />
@@ -2420,7 +2437,7 @@
 		<!-- station 134 start -->
 		<g id="station-134" transform="translate(1455.0777,861.1067)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-134" class="pointer" stroke-width="5" />
-			<circle id="circle-134" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-134" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-134" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-134" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-134" ry="6" x="0" />
@@ -2434,7 +2451,7 @@
 		<!-- station 135 start -->
 		<g id="station-135" transform="translate(1755.2305,888.40776)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-135" class="pointer" stroke-width="5" />
-			<circle id="circle-135" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-135" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-135" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-135" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-135" ry="6" x="0" />
@@ -2448,7 +2465,7 @@
 		<!-- station 136 start -->
 		<g id="station-136" transform="translate(1999.7974,973.84563)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-136" class="pointer" stroke-width="5" />
-			<circle id="circle-136" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-136" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-136" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-136" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-136" ry="6" x="0" />
@@ -2462,7 +2479,7 @@
 		<!-- station 137 start -->
 		<g id="station-137" transform="translate(437.90673,977.31322)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-137" class="pointer" stroke-width="5" />
-			<circle id="circle-137" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-137" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-137" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-137" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-137" ry="6" x="0" />
@@ -2476,7 +2493,7 @@
 		<!-- station 138 start -->
 		<g id="station-138" transform="translate(723.06767,925.21632)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-138" class="pointer" stroke-width="5" />
-			<circle id="circle-138" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-138" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-138" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-138" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-138" ry="6" x="0" />
@@ -2490,7 +2507,7 @@
 		<!-- station 139 start -->
 		<g id="station-139" transform="translate(889.66945,929.67314)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-139" class="pointer" stroke-width="5" />
-			<circle id="circle-139" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-139" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-139" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-139" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-139" ry="6" x="0" />
@@ -2504,7 +2521,7 @@
 		<!-- station 140 start -->
 		<g id="station-140" transform="translate(1133.5178,914.8808)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-140" class="pointer" stroke-width="5" />
-			<circle id="circle-140" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-140" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-140" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-140" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-140" ry="6" x="0" />
@@ -2518,7 +2535,7 @@
 		<!-- station 141 start -->
 		<g id="station-141" transform="translate(1372.1965,927.44956)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-141" class="pointer" stroke-width="5" />
-			<circle id="circle-141" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-141" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-141" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-141" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-141" ry="6" x="0" />
@@ -2532,7 +2549,7 @@
 		<!-- station 142 start -->
 		<g id="station-142" transform="translate(1539.0197,955.45399)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-142" class="pointer" stroke-width="5" />
-			<circle id="circle-142" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-142" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-142" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-142" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-142" ry="6" x="0" />
@@ -2546,7 +2563,7 @@
 		<!-- station 143 start -->
 		<g id="station-143" transform="translate(1692.9818,941.37164)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-143" class="pointer" stroke-width="5" />
-			<circle id="circle-143" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-143" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-143" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-143" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-143" ry="6" x="0" />
@@ -2560,7 +2577,7 @@
 		<!-- station 144 start -->
 		<g id="station-144" transform="translate(109.34587,1067.7349)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-144" class="pointer" stroke-width="5" />
-			<circle id="circle-144" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-144" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-144" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-144" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-144" ry="6" x="0" />
@@ -2574,7 +2591,7 @@
 		<!-- station 145 start -->
 		<g id="station-145" transform="translate(186.7884,1061.8281)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-145" class="pointer" stroke-width="5" />
-			<circle id="circle-145" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-145" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-145" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-145" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-145" ry="6" x="0" />
@@ -2588,7 +2605,7 @@
 		<!-- station 146 start -->
 		<g id="station-146" transform="translate(288.74892,1056.3477)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-146" class="pointer" stroke-width="5" />
-			<circle id="circle-146" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-146" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-146" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-146" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-146" ry="6" x="0" />
@@ -2602,7 +2619,7 @@
 		<!-- station 147 start -->
 		<g id="station-147" transform="translate(365.03544,1037.7997)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-147" class="pointer" stroke-width="5" />
-			<circle id="circle-147" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-147" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-147" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-147" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-147" ry="6" x="0" />
@@ -2616,7 +2633,7 @@
 		<!-- station 148 start -->
 		<g id="station-148" transform="translate(468.34784,1023.5225)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-148" class="pointer" stroke-width="5" />
-			<circle id="circle-148" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-148" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-148" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-148" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-148" ry="6" x="0" />
@@ -2630,7 +2647,7 @@
 		<!-- station 149 start -->
 		<g id="station-149" transform="translate(556.69749,1014.2957)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-149" class="pointer" stroke-width="5" />
-			<circle id="circle-149" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-149" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-149" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-149" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-149" ry="6" x="0" />
@@ -2644,7 +2661,7 @@
 		<!-- station 150 start -->
 		<g id="station-150" transform="translate(658.22211,985.80757)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-150" class="pointer" stroke-width="5" />
-			<circle id="circle-150" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-150" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-150" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-150" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-150" ry="6" x="0" />
@@ -2658,7 +2675,7 @@
 		<!-- station 151 start -->
 		<g id="station-151" transform="translate(708.10957,1026.9549)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-151" class="pointer" stroke-width="5" />
-			<circle id="circle-151" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-151" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-151" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-151" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-151" ry="6" x="0" />
@@ -2672,7 +2689,7 @@
 		<!-- station 152 start -->
 		<g id="station-152" transform="translate(773.95608,982.3814)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-152" class="pointer" stroke-width="5" />
-			<circle id="circle-152" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-152" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-152" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-152" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-152" ry="6" x="0" />
@@ -2686,7 +2703,7 @@
 		<!-- station 153 start -->
 		<g id="station-153" transform="translate(816.39647,1033.7422)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-153" class="pointer" stroke-width="5" />
-			<circle id="circle-153" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-153" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-153" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-153" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-153" ry="6" x="0" />
@@ -2700,7 +2717,7 @@
 		<!-- station 154 start -->
 		<g id="station-154" transform="translate(987.38824,995.84691)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-154" class="pointer" stroke-width="5" />
-			<circle id="circle-154" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-154" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-154" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-154" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-154" ry="6" x="0" />
@@ -2714,7 +2731,7 @@
 		<!-- station 155 start -->
 		<g id="station-155" transform="translate(1046.6376,1060.8386)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-155" class="pointer" stroke-width="5" />
-			<circle id="circle-155" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-155" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-155" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-155" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-155" ry="6" x="0" />
@@ -2728,7 +2745,7 @@
 		<!-- station 156 start -->
 		<g id="station-156" transform="translate(1164.8595,1061.9471)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-156" class="pointer" stroke-width="5" />
-			<circle id="circle-156" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-156" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-156" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-156" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-156" ry="6" x="0" />
@@ -2742,7 +2759,7 @@
 		<!-- station 157 start -->
 		<g id="station-157" transform="translate(1262.05,1069.5878)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-157" class="pointer" stroke-width="5" />
-			<circle id="circle-157" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-157" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-157" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-157" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-157" ry="6" x="0" />
@@ -2756,7 +2773,7 @@
 		<!-- station 158 start -->
 		<g id="station-158" transform="translate(1428.1579,1011.6958)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-158" class="pointer" stroke-width="5" />
-			<circle id="circle-158" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-158" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-158" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-158" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-158" ry="6" x="0" />
@@ -2770,7 +2787,7 @@
 		<!-- station 159 start -->
 		<g id="station-159" transform="translate(1640.5833,1044.8673)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-159" class="pointer" stroke-width="5" />
-			<circle id="circle-159" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-159" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-159" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-159" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-159" ry="6" x="0" />
@@ -2784,7 +2801,7 @@
 		<!-- station 160 start -->
 		<g id="station-160" transform="translate(1763.3178,1066.6793)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-160" class="pointer" stroke-width="5" />
-			<circle id="circle-160" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-160" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-160" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-160" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-160" ry="6" x="0" />
@@ -2798,7 +2815,7 @@
 		<!-- station 161 start -->
 		<g id="station-161" transform="translate(1899.8745,1055.5144)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-161" class="pointer" stroke-width="5" />
-			<circle id="circle-161" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-161" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-161" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-161" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-161" ry="6" x="0" />
@@ -2812,7 +2829,7 @@
 		<!-- station 162 start -->
 		<g id="station-162" transform="translate(2092.2735,1054.2115)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-162" class="pointer" stroke-width="5" />
-			<circle id="circle-162" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-162" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-162" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-162" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-162" ry="6" x="0" />
@@ -2826,7 +2843,7 @@
 		<!-- station 163 start -->
 		<g id="station-163" transform="translate(276.16733,1105.4662)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-163" class="pointer" stroke-width="5" />
-			<circle id="circle-163" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-163" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-163" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-163" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-163" ry="6" x="0" />
@@ -2840,7 +2857,7 @@
 		<!-- station 164 start -->
 		<g id="station-164" transform="translate(382.57902,1106.123)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-164" class="pointer" stroke-width="5" />
-			<circle id="circle-164" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-164" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-164" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-164" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-164" ry="6" x="0" />
@@ -2854,7 +2871,7 @@
 		<!-- station 165 start -->
 		<g id="station-165" transform="translate(582.23379,1133.4564)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-165" class="pointer" stroke-width="5" />
-			<circle id="circle-165" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-165" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-165" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-165" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-165" ry="6" x="0" />
@@ -2868,7 +2885,7 @@
 		<!-- station 166 start -->
 		<g id="station-166" transform="translate(786.25596,1089.3445)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-166" class="pointer" stroke-width="5" />
-			<circle id="circle-166" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-166" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-166" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-166" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-166" ry="6" x="0" />
@@ -2882,7 +2899,7 @@
 		<!-- station 167 start -->
 		<g id="station-167" transform="translate(944.84671,1119.23)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-167" class="pointer" stroke-width="5" />
-			<circle id="circle-167" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-167" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-167" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-167" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-167" ry="6" x="0" />
@@ -2896,7 +2913,7 @@
 		<!-- station 168 start -->
 		<g id="station-168" transform="translate(1002.7804,1152.8502)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-168" class="pointer" stroke-width="5" />
-			<circle id="circle-168" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-168" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-168" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-168" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-168" ry="6" x="0" />
@@ -2910,7 +2927,7 @@
 		<!-- station 169 start -->
 		<g id="station-169" transform="translate(1166.7097,1134.6586)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-169" class="pointer" stroke-width="5" />
-			<circle id="circle-169" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-169" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-169" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-169" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-169" ry="6" x="0" />
@@ -2924,7 +2941,7 @@
 		<!-- station 170 start -->
 		<g id="station-170" transform="translate(1248.1915,1143.9537)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-170" class="pointer" stroke-width="5" />
-			<circle id="circle-170" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-170" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-170" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-170" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-170" ry="6" x="0" />
@@ -2938,7 +2955,7 @@
 		<!-- station 171 start -->
 		<g id="station-171" transform="translate(1435.7305,1210.2554)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-171" class="pointer" stroke-width="5" />
-			<circle id="circle-171" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-171" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-171" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-171" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-171" ry="6" x="0" />
@@ -2952,7 +2969,7 @@
 		<!-- station 172 start -->
 		<g id="station-172" transform="translate(1586.8479,1137.9833)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-172" class="pointer" stroke-width="5" />
-			<circle id="circle-172" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-172" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-172" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-172" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-172" ry="6" x="0" />
@@ -2966,7 +2983,7 @@
 		<!-- station 173 start -->
 		<g id="station-173" transform="translate(1800.8876,1196.2607)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-173" class="pointer" stroke-width="5" />
-			<circle id="circle-173" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-173" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-173" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-173" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-173" ry="6" x="0" />
@@ -2980,7 +2997,7 @@
 		<!-- station 174 start -->
 		<g id="station-174" transform="translate(1982.4965,1153.9468)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-174" class="pointer" stroke-width="5" />
-			<circle id="circle-174" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-174" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-174" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-174" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-174" ry="6" x="0" />
@@ -2994,7 +3011,7 @@
 		<!-- station 175 start -->
 		<g id="station-175" transform="translate(2082.5347,1214.9863)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-175" class="pointer" stroke-width="5" />
-			<circle id="circle-175" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-175" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-175" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-175" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-175" ry="6" x="0" />
@@ -3008,7 +3025,7 @@
 		<!-- station 176 start -->
 		<g id="station-176" transform="translate(81.020072,1198.6183)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-176" class="pointer" stroke-width="5" />
-			<circle id="circle-176" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-176" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-176" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-176" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-176" ry="6" x="0" />
@@ -3022,7 +3039,7 @@
 		<!-- station 177 start -->
 		<g id="station-177" transform="translate(167.65291,1176.8503)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-177" class="pointer" stroke-width="5" />
-			<circle id="circle-177" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-177" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-177" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-177" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-177" ry="6" x="0" />
@@ -3036,7 +3053,7 @@
 		<!-- station 178 start -->
 		<g id="station-178" transform="translate(321.36943,1165.2021)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-178" class="pointer" stroke-width="5" />
-			<circle id="circle-178" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-178" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-178" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-178" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-178" ry="6" x="0" />
@@ -3050,7 +3067,7 @@
 		<!-- station 179 start -->
 		<g id="station-179" transform="translate(504.36055,1183.913)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-179" class="pointer" stroke-width="5" />
-			<circle id="circle-179" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-179" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-179" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-179" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-179" ry="6" x="0" />
@@ -3064,7 +3081,7 @@
 		<!-- station 180 start -->
 		<g id="station-180" transform="translate(616.94978,1201.0399)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-180" class="pointer" stroke-width="5" />
-			<circle id="circle-180" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-180" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-180" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-180" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-180" ry="6" x="0" />
@@ -3078,7 +3095,7 @@
 		<!-- station 181 start -->
 		<g id="station-181" transform="translate(731.3575,1177.0828)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-181" class="pointer" stroke-width="5" />
-			<circle id="circle-181" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-181" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-181" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-181" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-181" ry="6" x="0" />
@@ -3092,7 +3109,7 @@
 		<!-- station 182 start -->
 		<g id="station-182" transform="translate(790.02406,1188.8564)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-182" class="pointer" stroke-width="5" />
-			<circle id="circle-182" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-182" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-182" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-182" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-182" ry="6" x="0" />
@@ -3106,7 +3123,7 @@
 		<!-- station 183 start -->
 		<g id="station-183" transform="translate(900.46361,1144.1214)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-183" class="pointer" stroke-width="5" />
-			<circle id="circle-183" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-183" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-183" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-183" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-183" ry="6" x="0" />
@@ -3120,7 +3137,7 @@
 		<!-- station 184 start -->
 		<g id="station-184" transform="translate(1084.4163,1211.2034)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-184" class="pointer" stroke-width="5" />
-			<circle id="circle-184" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-184" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-184" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-184" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-184" ry="6" x="0" />
@@ -3134,7 +3151,7 @@
 		<!-- station 185 start -->
 		<g id="station-185" transform="translate(1215.7317,1285.6914)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-185" class="pointer" stroke-width="5" />
-			<circle id="circle-185" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-185" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-185" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-185" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ff0000" id="middle-185" ry="6" x="0" />
@@ -3148,7 +3165,7 @@
 		<!-- station 186 start -->
 		<g id="station-186" transform="translate(1344.8155,1263.8906)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-186" class="pointer" stroke-width="5" />
-			<circle id="circle-186" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-186" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-186" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-186" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-186" ry="6" x="0" />
@@ -3162,7 +3179,7 @@
 		<!-- station 187 start -->
 		<g id="station-187" transform="translate(1536.3041,1223.7901)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-187" class="pointer" stroke-width="5" />
-			<circle id="circle-187" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-187" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-187" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-187" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-187" ry="6" x="0" />
@@ -3176,7 +3193,7 @@
 		<!-- station 188 start -->
 		<g id="station-188" transform="translate(1724.1661,1228.6519)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-188" class="pointer" stroke-width="5" />
-			<circle id="circle-188" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-188" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-188" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-188" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-188" ry="6" x="0" />
@@ -3190,7 +3207,7 @@
 		<!-- station 189 start -->
 		<g id="station-189" transform="translate(168.96061,1307.1443)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-189" class="pointer" stroke-width="5" />
-			<circle id="circle-189" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-189" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-189" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-189" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-189" ry="6" x="0" />
@@ -3204,7 +3221,7 @@
 		<!-- station 190 start -->
 		<g id="station-190" transform="translate(264.72059,1352.1247)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-190" class="pointer" stroke-width="5" />
-			<circle id="circle-190" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-190" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-190" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-190" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-190" ry="6" x="0" />
@@ -3218,7 +3235,7 @@
 		<!-- station 191 start -->
 		<g id="station-191" transform="translate(386.30626,1264.8332)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-191" class="pointer" stroke-width="5" />
-			<circle id="circle-191" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-191" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-191" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-191" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-191" ry="6" x="0" />
@@ -3232,7 +3249,7 @@
 		<!-- station 192 start -->
 		<g id="station-192" transform="translate(414.02727,1378.5284)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-192" class="pointer" stroke-width="5" />
-			<circle id="circle-192" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-192" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-192" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-192" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-192" ry="6" x="0" />
@@ -3246,7 +3263,7 @@
 		<!-- station 193 start -->
 		<g id="station-193" transform="translate(700.78352,1271.3769)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-193" class="pointer" stroke-width="5" />
-			<circle id="circle-193" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-193" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-193" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-193" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-193" ry="6" x="0" />
@@ -3260,7 +3277,7 @@
 		<!-- station 194 start -->
 		<g id="station-194" transform="translate(732.06172,1311.7804)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-194" class="pointer" stroke-width="5" />
-			<circle id="circle-194" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-194" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-194" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-194" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-194" ry="6" x="0" />
@@ -3274,7 +3291,7 @@
 		<!-- station 195 start -->
 		<g id="station-195" transform="translate(818.80839,1306.3525)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-195" class="pointer" stroke-width="5" />
-			<circle id="circle-195" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-195" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-195" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-195" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-195" ry="6" x="0" />
@@ -3288,7 +3305,7 @@
 		<!-- station 196 start -->
 		<g id="station-196" transform="translate(943.4323,1241.0026)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-196" class="pointer" stroke-width="5" />
-			<circle id="circle-196" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-196" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-196" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-196" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-196" ry="6" x="0" />
@@ -3302,7 +3319,7 @@
 		<!-- station 197 start -->
 		<g id="station-197" transform="translate(962.40817,1315.0495)" class="station">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-197" class="pointer" stroke-width="5" />
-			<circle id="circle-197" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-197" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-197" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-197" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-197" ry="6" x="0" />
@@ -3316,7 +3333,7 @@
 		<!-- station 198 start -->
 		<g id="station-198" transform="translate(1425.9789,1380.4349)" class="station" style="display:inline">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-198" class="pointer" stroke-width="5" />
-			<circle id="circle-198" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-198" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-198" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-198" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-198" ry="6" x="0" />
@@ -3330,7 +3347,7 @@
 		<!-- station 199 start -->
 		<g id="station-199" transform="translate(1744.9154,1376.9906)" class="station" style="display:inline">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-199" class="pointer" stroke-width="5" />
-			<circle id="circle-199" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-199" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#008000" stroke="#000000" id="top-199" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-199" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-199" ry="6" x="0" />
@@ -3344,7 +3361,7 @@
 		<!-- station 200 start -->
 		<g id="station-200" transform="translate(1864.9485,1349.5928)" class="station" style="display:inline">
 			<path transform="translate(3.5,-40)" d="m 0,0 c 0,-7.2 7.2,-14.4 14.4,-14.4 7.2,0 14.4,7.2 14.4,14.4 0,21.6 -7.2,28.8 -14.4,50.4 C 7.2,28.8 0,21.6 0,0 0,0 0,0 0,0" fill="none" id="pointer-200" class="pointer" stroke-width="5" />
-			<circle id="circle-200" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" />
+			<circle id="circle-200" cx="18" cy="24" r="30" fill="none" stroke="none" stroke-width="5" class="circle" stroke-dasharray="10,9" />
 			<path d="m 8,16 c 0,-7 4,-9 9,-9 5,0 9,2 9,9" fill="#ffff00" stroke="#000000" id="top-200" />
 			<path d="m 26,32 c 0,7 -4,9 -9,9 -5,0 -9,-2 -9,-9" fill="#ffff00" stroke="#000000" id="bottom-200" />
 			<rect height="18" width="35" y="15" stroke="#000000" fill="#ffff00" id="middle-200" ry="6" x="0" />

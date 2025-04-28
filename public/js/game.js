@@ -448,7 +448,7 @@ class StationState {
       const possibleStations = this.#getPossibleStations();
       possibleStations.forEach((station) => {
         const stationElement = this.#map.querySelector(`#circle-${station}`);
-        stationElement.setAttribute("stroke", "black");
+        stationElement.setAttribute("stroke", "white");
       });
 
       this.#addStationClickListener(possibleStations, doubleCards);
