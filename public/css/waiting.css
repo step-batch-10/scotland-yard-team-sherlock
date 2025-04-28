@@ -8,7 +8,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url("../assets/login-background.png");
+  background-image: url("/assets/waiting-bg.png");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -45,20 +45,21 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(4px);
 }
 
 h1 {
   color: white;
-  font-size: 36px;
+  font-size: 60px;
   margin-bottom: 30px;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
 }
 
 #waiting-board {
   display: grid;
   gap: 30px;
   grid-template-columns: repeat(3, 1fr);
-  background-color: #ffffff33;
+  background-color: #0000008b;
   backdrop-filter: blur(5px);
   padding: 30px;
   border-radius: 16px;
@@ -128,7 +129,8 @@ button {
 }
 
 @keyframes blinkBorder {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -170,4 +172,8 @@ figcaption {
   color: white;
   font-size: 1.2em;
   margin-top: 1.3em;
+}
+
+footer {
+  backdrop-filter: blur(4px);
 }

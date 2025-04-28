@@ -1,6 +1,6 @@
 const createImage = () => {
   const img = document.createElement("img");
-  img.setAttribute("src", "./assets/badgeImg.png");
+  img.setAttribute("src", "./assets/badge.png");
   img.alt = "badge";
 
   return img;
