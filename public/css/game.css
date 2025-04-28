@@ -272,19 +272,7 @@ body {
   font-weight: bold;
 }
 
-#game-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding: 0 20px;
-}
-
-#game-actions form {
-  margin: 0;
-}
-
-#game-actions button {
+#quit-btn {
   background-color: #4caf50;
   color: white;
   padding: 10px 20px;
@@ -296,6 +284,6 @@ body {
   min-width: 120px;
 }
 
-#game-actions button:hover {
+#quit-btn:hover {
   background-color: #45a049;
 }
