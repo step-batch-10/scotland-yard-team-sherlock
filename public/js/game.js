@@ -448,6 +448,7 @@ class StationState {
         ...(this.#stations.taxi ?? []),
         ...(this.#stations.bus ?? []),
         ...(this.#stations.underground ?? []),
+        ...(this.#stations.black ?? []),
       ]),
     ];
   }
