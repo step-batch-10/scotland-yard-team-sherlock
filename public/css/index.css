@@ -13,7 +13,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url("/assets/login-background.png");
+  background-image: url("/assets/background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -22,10 +22,12 @@ body {
 header {
   text-align: center;
   padding: 30px;
-  color: white;
+  color: rgb(255 255 255);
   font-size: 100px;
   font-weight: 700;
-  font-family: cursive;
+  font-family: sans-serif;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
 }
 
 main {
@@ -33,24 +35,26 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(3px);
 }
 
 .home-actions {
   width: 80%;
   max-width: 400px;
-  background-color: #ffffff33;
-  backdrop-filter: blur(5px);
+  background-color: rgba(240, 230, 210, 0.85);
+  backdrop-filter: blur(4px);
   padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   border-radius: 10px;
   margin-bottom: 200px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
 h1 {
   text-align: center;
-  color: white;
+  color: #323232;
 }
 
 form {
@@ -75,8 +79,8 @@ button {
   font-size: 1.15rem;
   font-weight: 800;
   color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  border: none;
+  background-color: rgba(226, 119, 46);
+  border: 1px solid black;
 }
 
 .popup {
