@@ -1,14 +1,14 @@
 import { Players } from "./gameManager.ts";
 import {
-  DetectiveStatus,
+  Detective,
   GameMoveResponse,
   GameStatus,
   GameStatusPlayers,
-  MrxStatus,
-  TicketsStatus,
+  Mrx,
+  MrXMoveStatus,
+  Tickets,
   WinDetails,
-} from "./types/gameStatus.ts";
-import { MrxMove } from "./types/setupModel.ts";
+} from "./gameDefinitions.ts";
 import { stations } from "../../data/stations.ts";
 type Ticket = "bus" | "taxi" | "black" | "underground" | "black";
 
@@ -27,7 +27,7 @@ export interface MoveData {
 
 export class Game {
   #players: Players;
-  #mrxMoves: MrxMove[] = [];
+  #mrxMoves: MrXMoveStatus[] = [];
   #mrxRevealPositions = [3, 8, 13, 18, 24];
   #currentPlayerIndex: number = 0;
   #win?: WinDetails;
@@ -67,7 +67,7 @@ export class Game {
     const isMrx = this.#isMrX(playerId);
 
     const isRevealTurn = this.#isRevealTurn(this.#mrxMoves.length);
-    const mrxStatus: MrxStatus = {
+    const mrxStatus: Mrx = {
       ...this.#players[0],
       position: isMrx || isRevealTurn ? this.#players[0].position : undefined,
     };
@@ -78,8 +78,8 @@ export class Game {
     return this.#players.findIndex(({ id }) => id === playerId);
   }
 
-  #getPossibleStations(player: MrxStatus | DetectiveStatus) {
-    const tickets: TicketsStatus = player.inventory.tickets;
+  #getPossibleStations(player: Mrx | Detective) {
+    const tickets: Tickets = player.inventory.tickets;
     const position = player.position!;
     const adjacentStations = stations[position];
 
@@ -94,7 +94,7 @@ export class Game {
 
   gameStatus(playerId: string): GameStatus {
     const mrxStatus = this.#mrXStatus(playerId);
-    const detectives = this.#players.slice(1, 6) as DetectiveStatus[];
+    const detectives = this.#players.slice(1, 6) as Detective[];
 
     return {
       players: [mrxStatus, ...detectives] as GameStatusPlayers,
@@ -138,10 +138,13 @@ export class Game {
     return stations[from][ticket].includes(to);
   }
 
-  #isValidDoubleMove({ isDoubleUsed }: MoveData) {
+  #isValidDoubleMove(playerId: string, { isDoubleUsed }: MoveData) {
     if (!isDoubleUsed && !this.#wasDoubleUsed) return true;
     if (isDoubleUsed && this.#wasDoubleUsed) return false;
     this.#wasDoubleUsed = !this.#wasDoubleUsed;
+    const inventory = (this.#players[this.#indexOf(playerId)] as Mrx).inventory;
+    inventory.cards.doubleMove = inventory.cards.doubleMove - 1;
+
     return true;
   }
 
@@ -154,13 +157,13 @@ export class Game {
   }
 
   move(playerId: string, moveData: MoveData): GameMoveResponse {
-    const playerPosition = this.#players[this.#indexOf(playerId)].position;
+    const playerPosition = this.#players[this.#indexOf(playerId)].position!;
 
     if (!this.#isPlayerTurn(playerId)) {
       return { status: false, message: "Not Your Move ..!" };
     }
 
-    if (!this.#isValidDoubleMove(moveData)) {
+    if (!this.#isValidDoubleMove(playerId, moveData)) {
       return {
         status: false,
         message: "You can't use double move card again",
@@ -209,7 +212,7 @@ export class Game {
   #isMrXBlocked(): boolean {
     const [mrXLocation, ...allDetectiveLocations] = this.#players.map((
       { position },
-    ) => position);
+    ) => position!);
     const mrXPossLoc = stations[mrXLocation];
     const mrXPossibleStations = Object.values(mrXPossLoc).flat();
 

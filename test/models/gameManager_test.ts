@@ -1,5 +1,5 @@
 import { assert, assertEquals, assertFalse } from "assert";
-import { GameManager } from "../../src/models/gameManager.ts";
+import { GameManager, Players } from "../../src/models/gameManager.ts";
 import { describe, it } from "jsr:@std/testing/bdd";
 import { Game } from "../../src/models/game.ts";
 
@@ -89,7 +89,7 @@ describe("Game Manager", () => {
     const game = gameManager.getGame(gameId);
 
     assertEquals(gameId, "123");
-    assertEquals(game!.players, playerDetails);
+    assertEquals(game!.players, playerDetails as Players);
   });
 
   it("should return undefined if no game exists with given gameId", () => {

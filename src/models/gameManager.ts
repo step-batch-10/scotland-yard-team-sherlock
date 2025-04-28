@@ -1,9 +1,9 @@
 import { Game } from "./game.ts";
 import { Player } from "./lobbyManager.ts";
-import { Detective, MrX } from "./types/setupModel.ts";
+import { Detective, Mrx } from "./gameDefinitions.ts";
 
 export type Players = [
-  MrX,
+  Mrx,
   Detective,
   Detective,
   Detective,
@@ -32,11 +32,11 @@ export class GameManager {
   #gameSetup(players: Player[]): Players {
     const colors = ["#63a4ff", "#ffb347", "red", "blue", "violet"];
     const [mrx, ...detectives] = players;
-    const mrXDetails: MrX = {
+    const mrXDetails: Mrx = {
       ...mrx,
       color: "black",
       isMrx: true,
-      inventory: this.#MrxInventory,
+      inventory: { ...this.#MrxInventory },
       position: 1,
     };
 

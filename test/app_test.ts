@@ -6,7 +6,7 @@ import { createApp } from "../src/app.ts";
 import { getIdGenerator, PlayerManager } from "../src/models/playerManager.ts";
 import { LobbyManager } from "../src/models/lobbyManager.ts";
 import { GameManager, Players } from "../src/models/gameManager.ts";
-import { GameStatus } from "../src/models/types/gameStatus.ts";
+import { GameStatus } from "../src/models/gameDefinitions.ts";
 import { Game } from "../src/models/game.ts";
 
 const getGamePlayers = (): Players => {

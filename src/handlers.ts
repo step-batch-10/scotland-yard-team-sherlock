@@ -5,7 +5,7 @@ import { LobbyManager } from "./models/lobbyManager.ts";
 import { GameManager } from "./models/gameManager.ts";
 import { Room } from "./models/room.ts";
 import { Game } from "./models/game.ts";
-import { Player } from "./models/types/gameStatus.ts";
+import { Players } from "./models/gameManager.ts";
 
 export const handleLeaveLobby = (context: Context) => {
   const playerId = context.get("playerId");
@@ -19,7 +19,7 @@ export const handleLeaveLobby = (context: Context) => {
 
 export const serveGameInitialDetails = (context: Context) => {
   const game: Game = context.get("game");
-  const players: Player[] = game.players;
+  const players: Players = game.players;
 
   return context.json(players);
 };
