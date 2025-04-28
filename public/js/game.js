@@ -430,25 +430,29 @@ class StationState {
     });
   }
 
-  #renderStationPointers(stations, isYourTurn, doubleCards) {
+  #resetStationListeners() {
+    this.#map.querySelectorAll(".station").forEach((station) => {
+      station.onclick = () => {};
+    });
+  }
+
+  #renderStationPointers(isYourTurn, doubleCards) {
     if (isYourTurn) {
-      stations.forEach((station) => {
+      const possibleStations = this.#getPossibleStations();
+      possibleStations.forEach((station) => {
         const stationElement = this.#map.querySelector(`#circle-${station}`);
         stationElement.setAttribute("stroke", "black");
       });
 
-      this.#addStationClickListener(stations, doubleCards);
+      this.#addStationClickListener(possibleStations, doubleCards);
     }
   }
 
   updateState(you, current, stations, doubleCards) {
     this.#resetStationPointers();
+    this.#resetStationListeners();
     this.#stations = stations;
 
-    this.#renderStationPointers(
-      this.#getPossibleStations(),
-      current === you,
-      doubleCards,
-    );
+    this.#renderStationPointers(current === you, doubleCards);
   }
 }
