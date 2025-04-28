@@ -97,9 +97,32 @@
         <div id="24" class="ticket-slot"></div>
       </div>
       <div class="player-details" id="details"></div>
+      <div class="player-list-container-wrap">
+        <div class="player-list-toggle">></div>
+        <div class="players-list-container"></div>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"
     ></script>
+
+    <template id="player-tile-template">
+      <div class="detective-tile player-tile">
+        <div class="detective-position player-position">10</div>
+        <div class="detective-name player-tile-name">Player</div>
+        <div class="taxi-ticket-tile ticket-tile">2</div>
+        <div class="bus-ticket-tile ticket-tile">12</div>
+        <div class="underground-ticket-tile ticket-tile">5</div>
+      </div>
+      <div class="mrx-tile player-tile">
+        <div class="last-seen player-position">10</div>
+        <div class="mrx-name player-tile-name">Player</div>
+        <div class="double-ticket-tile ticket-tile">2</div>
+        <div class="black-ticket-tile ticket-tile">5</div>
+        <div class="taxi-ticket-tile ticket-tile">2</div>
+        <div class="bus-ticket-tile ticket-tile">12</div>
+        <div class="underground-ticket-tile ticket-tile">5</div>
+      </div>
+    </template>
   </body>
 </html>

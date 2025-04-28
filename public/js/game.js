@@ -293,6 +293,100 @@ const renderThisPlayerPointer = (map, position) => {
   map.getElementById(`pointer-${position}`).setAttribute("stroke", "#CCE3DE");
 };
 
+// -----------------------------------------------------------------------
+
+class PlayersListState {
+  #isOpen = false;
+
+  constructor() {
+    const toggleButton = document.querySelector(".player-list-toggle");
+    toggleButton.addEventListener("click", () => {
+      this.#isOpen = !this.#isOpen;
+      this.#handleToggle();
+    });
+  }
+
+  #handleToggle() {
+    const tiles = document.querySelectorAll(".player-tile");
+    tiles.forEach((tile) => {
+      tile.classList.remove("visible", "invisible");
+      tile.classList.add(this.#isOpen ? "visible" : "invisible");
+    });
+  }
+
+  #getMrxTile(tileTemplate, { name, position, inventory }, you, currentPlayer) {
+    const mrxTile = tileTemplate.querySelector(".mrx-tile").cloneNode(true);
+    mrxTile.classList.add(you === 0 ? "your-tile" : "not-your-tile");
+    mrxTile.classList.add(this.#isOpen ? "visible" : "invisible");
+    mrxTile.classList.add(currentPlayer === 0 ? "current-player-tile" : "k");
+
+    mrxTile.querySelector(".player-position").textContent = position ?? "??";
+    mrxTile.querySelector(".player-tile-name").textContent = name;
+
+    const { taxi, bus, underground, black } = inventory.tickets;
+    mrxTile.querySelector(".taxi-ticket-tile").textContent = taxi;
+    mrxTile.querySelector(".bus-ticket-tile").textContent = bus;
+    mrxTile.querySelector(".underground-ticket-tile").textContent = underground;
+    mrxTile.querySelector(".black-ticket-tile").textContent = black;
+
+    mrxTile.querySelector(".double-ticket-tile").textContent =
+      inventory.cards.doubleMove;
+
+    return mrxTile;
+  }
+
+  #getDetectiveTile(tileTemplate, detective, isYour, isCurrentPlayer) {
+    const { name, position, inventory } = detective;
+    const detectiveTile = tileTemplate.querySelector(".detective-tile")
+      .cloneNode(
+        true,
+      );
+    detectiveTile.classList.add(isYour ? "your-tile" : "not-your-tile");
+    detectiveTile.classList.add(this.#isOpen ? "visible" : "invisible");
+    detectiveTile.classList.add(isCurrentPlayer ? "current-player-tile" : "k");
+
+    detectiveTile.querySelector(".player-position").textContent = position;
+    detectiveTile.querySelector(".player-tile-name").textContent = name;
+
+    const { taxi, bus, underground } = inventory.tickets;
+    detectiveTile.querySelector(".taxi-ticket-tile").textContent = taxi;
+    detectiveTile.querySelector(".bus-ticket-tile").textContent = bus;
+    detectiveTile.querySelector(".underground-ticket-tile").textContent =
+      underground;
+
+    return detectiveTile;
+  }
+
+  updatePlayerListState(players, you, currentPlayer) {
+    const [mrx, ...detectives] = players;
+
+    const playersList = document.querySelector(".players-list-container");
+    playersList.innerHTML = "";
+
+    const tilesTemplate = document.getElementById("player-tile-template");
+
+    const mrxTile = this.#getMrxTile(
+      tilesTemplate.content,
+      mrx,
+      you,
+      currentPlayer,
+    );
+    playersList.append(mrxTile);
+
+    detectives.forEach((detective, index) => {
+      const detectiveTile = this.#getDetectiveTile(
+        tilesTemplate.content,
+        detective,
+        you === index + 1,
+        currentPlayer === index + 1,
+      );
+      playersList.append(detectiveTile);
+    });
+
+    this.#handleToggle();
+  }
+}
+
 const main = async () => {
   const music = initMusic();
   enableMusic(music);
@@ -304,6 +398,7 @@ const main = async () => {
   setMapZoomable(map);
 
   const myState = new StationState();
+  const playersListState = new PlayersListState();
 
   while (poll.shouldPoll) {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
@@ -328,6 +423,12 @@ const main = async () => {
     }
 
     renderPlayerPositions(map, gameStatus);
+
+    playersListState.updatePlayerListState(
+      gameStatus.players,
+      gameStatus.you,
+      gameStatus.currentPlayer,
+    );
 
     renderThisPlayerPointer(map, gameStatus.players[gameStatus.you].position);
     await poll.delay();
