@@ -176,16 +176,17 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .win-log {
+  padding: 8px;
   display: flex;
-  width: 30vh;
+  max-width: 100%;
+  width: 400px;
   flex-wrap: wrap;
-  gap: 2%;
+  justify-content: space-around;
+  gap: 1%;
 }
-.log-entries {
-  /* background-color: rgb(27, 27, 24); */
-  border: 1px solid black;
-}
+
 #game-result {
   display: flex;
   padding: 10px;
@@ -286,4 +287,13 @@ body {
 
 #quit-btn:hover {
   background-color: #45a049;
+}
+
+.log-entries {
+  width: 2.6em;
+  border-radius: 50px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

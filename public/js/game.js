@@ -181,6 +181,13 @@ const displayMrXLog = (mrXMoves) => {
   });
 };
 
+const createElement = (tag, className) => {
+  const ele = document.createElement(tag);
+  ele.className = className;
+
+  return ele;
+};
+
 const renderMrXWin = (winDetails) => {
   const result = document.getElementById("result-panel");
   const h2 = document.createElement("h2");
@@ -190,18 +197,18 @@ const renderMrXWin = (winDetails) => {
   name.className = "player-name";
   name.textContent = `Name : ${winDetails.name}`;
 
-  // const logContainer = createElement("div", "win-log");
-  // for (let i = 1; i <= 24; i++) {
-  //   const ticketDiv = createElement("div", "log-entries");
-  //   ticketDiv.id = i.toString();
-  //   const pTag = document.createElement("p");
-  //   pTag.textContent = "33";
-  //   ticketDiv.appendChild(pTag);
+  const logContainer = createElement("div", "win-log");
 
-  //   logContainer.appendChild(ticketDiv);
-  // }
+  for (const { ticket, position } of winDetails.mrxMoves) {
+    const ticketDiv = createElement("div", "log-entries");
+    ticketDiv.classList.add(ticket);
+    const pTag = document.createElement("p");
+    pTag.textContent = position;
+    ticketDiv.appendChild(pTag);
+    logContainer.appendChild(ticketDiv);
+  }
 
-  result.append(h2, name);
+  result.append(logContainer, h2, name);
 };
 
 const renderDetectiveWin = (winDetails) => {
