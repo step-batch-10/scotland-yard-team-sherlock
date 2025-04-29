@@ -85,7 +85,8 @@ button {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-form button:hover, button:hover {
+form button:hover,
+button:hover {
   background-color: rgb(183, 92, 31);
   transform: scale(1.05);
 }
@@ -287,10 +288,6 @@ h3 {
   top: 10px;
   right: 10px;
   background-color: transparent !important;
-}
-
-#join-popup-wrap button {
-  background-color: black;
 }
 
 #logout-btn {
