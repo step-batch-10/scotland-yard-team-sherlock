@@ -298,7 +298,7 @@ class PlayersListState {
     mrxTile.classList.add(currentPlayer === 0 ? "current-player-tile" : "k");
 
     mrxTile.querySelector(".player-position").textContent = position ?? "??";
-    mrxTile.querySelector(".player-position").classList.add("black");
+    mrxTile.querySelector(".player-position").style.backgroundColor = "black";
 
     mrxTile.querySelector(".player-tile-name").textContent = name;
 
