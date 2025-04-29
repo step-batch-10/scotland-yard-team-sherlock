@@ -26,21 +26,6 @@ body {
   border-radius: 50%;
 }
 
-#info-panel {
-  padding: 22px 20px;
-  margin: 10px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  display: flex;
-  gap: 10px;
-  height: 90%;
-  align-items: center;
-  background-color: bisque;
-  animation: blink 1s infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
 #info-panel:hover {
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -53,9 +38,6 @@ body {
   transition: transform 0.3s;
 }
 
-#info-panel:hover #color-box {
-  transform: rotate(10deg) scale(1.1);
-}
 .inventory-container {
   position: absolute;
   display: none;
@@ -251,26 +233,31 @@ body {
 
 .taxi {
   /* background-image: url("/assets/taxi.png"); */
-  background-color: rgb(254, 207, 38);
+  background-color: #ffd700;
   color: black;
 }
 
 .bus {
   /* background-image: url("/assets/bus.png"); */
-  background-color: rgb(136, 242, 86);
-  color: black;
+  background-color: #2e8b57;
+  color: white;
 }
 
 .underground {
   /* background-image: url("/assets/metro.png"); */
   font-size: 0.9em;
-  background-color: rgb(214, 56, 33);
-  color: whitesmoke;
+  background-color: #ee4444;
+  color: white;
 }
 
 .black {
   background-color: #000000;
-  color: whitesmoke;
+  color: white;
+}
+
+.double {
+  background-color: orange;
+  color: black;
 }
 
 .reveal-station {
@@ -422,7 +409,6 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(26px);
 }
-/* ------------------------------------------------------------------------- */
 
 .player-list-container-wrap {
   position: absolute;
@@ -458,12 +444,10 @@ input:checked + .slider:before {
   align-items: center;
   gap: 5px;
   padding: 10px;
-  border: 1px solid black;
   border-radius: 5px;
 }
 
 .player-position {
-  border: 5px solid #ffffff;
   display: grid;
   place-items: center;
   min-width: 50px;
@@ -477,7 +461,7 @@ input:checked + .slider:before {
 }
 
 .current-player-tile .player-position {
-  border: 5px solid #00ff00;
+  box-shadow: 2px 2px 6px 2px #028000;
 }
 
 .visible {
@@ -490,7 +474,7 @@ input:checked + .slider:before {
 
 .your-tile {
   display: flex;
-  box-shadow: 0px 0px 6px 2px #000000;
+  box-shadow: 0px 1px 6px 0px #000;
 }
 
 .player-tile .player-tile-name {
@@ -507,27 +491,4 @@ input:checked + .slider:before {
   border-radius: 5px;
   font-family: sans-serif;
   font-weight: 700;
-}
-
-.taxi-ticket-tile {
-  background-color: yellow;
-}
-
-.bus-ticket-tile {
-  background-color: green;
-  color: white;
-}
-
-.underground-ticket-tile {
-  background-color: red;
-  color: white;
-}
-
-.black-ticket-tile {
-  background-color: black;
-  color: white;
-}
-
-.double-ticket-tile {
-  background-color: orange;
 }

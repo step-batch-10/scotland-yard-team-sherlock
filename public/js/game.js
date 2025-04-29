@@ -59,27 +59,6 @@ const resetCurrentPlayerPointer = (map) => {
   }
 };
 
-const createNameTemplate = (name, isYourTurn) => {
-  const playerName = document.createElement("h1");
-  playerName.textContent = isYourTurn ? `You -` : `${name} -`;
-  return playerName;
-};
-
-const createColorTemplate = (color) => {
-  const playerColor = document.createElement("div");
-  playerColor.id = "color-box";
-  playerColor.style.backgroundColor = color;
-  return playerColor;
-};
-
-const renderCurrentPlayerInfo = ({ name, color }, isYourTurn) => {
-  const panel = document.getElementById("info-panel");
-  panel.textContent = "";
-  const playerName = createNameTemplate(name, isYourTurn);
-  const playerColor = createColorTemplate(color);
-  panel.append(playerName, playerColor);
-};
-
 const createInventoryContainer = () => {
   const div = document.createElement("div");
   div.className = "inventory-container";
@@ -166,15 +145,14 @@ const renderDetectives = (map, detectives) => {
   }
 };
 
-const renderPlayerPositions = (map, { players, currentPlayer, you }) => {
+const renderPlayerPositions = (map, { players, currentPlayer }) => {
   const [mrx, ...detectives] = players;
   resetPointers(map);
   resetCurrentPlayerPointer(map);
+
   document.querySelectorAll(".inventory-container").forEach((e) => e.remove());
   renderMrx(map, mrx);
   renderDetectives(map, detectives);
-
-  renderCurrentPlayerInfo(players[currentPlayer], you === currentPlayer);
 
   const currentPlayerPosition = players[currentPlayer].position;
   if (currentPlayerPosition) {
@@ -325,13 +303,12 @@ class PlayersListState {
     mrxTile.querySelector(".player-tile-name").textContent = name;
 
     const { taxi, bus, underground, black } = inventory.tickets;
-    mrxTile.querySelector(".taxi-ticket-tile").textContent = taxi;
-    mrxTile.querySelector(".bus-ticket-tile").textContent = bus;
-    mrxTile.querySelector(".underground-ticket-tile").textContent = underground;
-    mrxTile.querySelector(".black-ticket-tile").textContent = black;
+    mrxTile.querySelector(".taxi").textContent = taxi;
+    mrxTile.querySelector(".bus").textContent = bus;
+    mrxTile.querySelector(".underground").textContent = underground;
+    mrxTile.querySelector(".black").textContent = black;
 
-    mrxTile.querySelector(".double-ticket-tile").textContent =
-      inventory.cards.doubleMove;
+    mrxTile.querySelector(".double").textContent = inventory.cards.doubleMove;
 
     return mrxTile;
   }
@@ -353,10 +330,9 @@ class PlayersListState {
     detectiveTile.querySelector(".player-tile-name").textContent = name;
 
     const { taxi, bus, underground } = inventory.tickets;
-    detectiveTile.querySelector(".taxi-ticket-tile").textContent = taxi;
-    detectiveTile.querySelector(".bus-ticket-tile").textContent = bus;
-    detectiveTile.querySelector(".underground-ticket-tile").textContent =
-      underground;
+    detectiveTile.querySelector(".taxi").textContent = taxi;
+    detectiveTile.querySelector(".bus").textContent = bus;
+    detectiveTile.querySelector(".underground").textContent = underground;
 
     return detectiveTile;
   }
