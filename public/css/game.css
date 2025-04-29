@@ -513,6 +513,10 @@ input:checked + .slider:before {
   background-color: #cdccbc;
   top: 200px;
   right: 10px;
+  flex-direction: column;
   position: absolute;
   width: min-content;
+}
+.player-details h2 {
+  text-align: center;
 }
