@@ -338,10 +338,9 @@ class PlayersListState {
 
   #getDetectiveTile(tileTemplate, detective, isYour, isCurrentPlayer) {
     const { name, position, inventory, color } = detective;
-    const detectiveTile = tileTemplate.querySelector(".detective-tile")
-      .cloneNode(
-        true,
-      );
+    const detectiveTile = tileTemplate
+      .querySelector(".detective-tile")
+      .cloneNode(true);
     detectiveTile.classList.add(isYour ? "your-tile" : "not-your-tile");
     detectiveTile.classList.add(this.#isOpen ? "visible" : "invisible");
 
@@ -448,14 +447,7 @@ class StationState {
   #stations;
 
   #getPossibleStations() {
-    return [
-      ...new Set([
-        ...(this.#stations.taxi ?? []),
-        ...(this.#stations.bus ?? []),
-        ...(this.#stations.underground ?? []),
-        ...(this.#stations.black ?? []),
-      ]),
-    ];
+    return [...new Set(Objects.values(this.#stations).flat())];
   }
 
   #getPossibleModes(stationNumber) {
