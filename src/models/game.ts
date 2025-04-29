@@ -110,7 +110,10 @@ export class Game {
       mrXMoves: this.#mrxMoves.map(
         ({ ticket, position }, index) => {
           const isRevealTurn = this.#isRevealTurn(index + 1);
-          return { ticket, position: isRevealTurn ? position : undefined };
+          return {
+            ticket,
+            position: isRevealTurn || this.#win ? position : undefined,
+          };
         },
       ),
 
