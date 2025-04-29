@@ -35,7 +35,7 @@ export class LobbyManager {
 
   #createRoom(player: Player): { room: Room; roomId: string } {
     const roomId = this.#generateId();
-    const room = new Room(2);
+    const room = new Room(6);
 
     this.#rooms.set(roomId, room);
 
@@ -63,7 +63,7 @@ export class LobbyManager {
   }
 
   hostRoom(player: Player): { room: Room; roomId: string } {
-    const room = new Room(2, true);
+    const room = new Room(6, true);
     room.add(player);
     const roomId = this.#generateId();
     this.#rooms.set(roomId, room);
