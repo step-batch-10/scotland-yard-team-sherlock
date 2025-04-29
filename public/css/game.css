@@ -185,8 +185,7 @@ body {
   max-width: 100%;
   width: 400px;
   flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 1%;
+  flex-grow: 1;
 }
 
 #game-result {
@@ -253,11 +252,13 @@ body {
 .taxi {
   /* background-image: url("/assets/taxi.png"); */
   background-color: rgb(254, 207, 38);
+  color: black;
 }
 
 .bus {
   /* background-image: url("/assets/bus.png"); */
   background-color: rgb(136, 242, 86);
+  color: black;
 }
 
 .underground {

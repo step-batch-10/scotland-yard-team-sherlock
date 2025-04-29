@@ -254,6 +254,7 @@ const renderMrXWin = (winDetails) => {
 
   for (const { ticket, position } of winDetails.mrxMoves) {
     const ticketDiv = createElement("div", "log-entries");
+
     ticketDiv.classList.add(ticket);
     const pTag = document.createElement("p");
     pTag.textContent = position;
