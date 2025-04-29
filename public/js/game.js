@@ -423,14 +423,7 @@ class StationState {
   #stations;
 
   #getPossibleStations() {
-    return [
-      ...new Set([
-        ...(this.#stations.taxi ?? []),
-        ...(this.#stations.bus ?? []),
-        ...(this.#stations.underground ?? []),
-        ...(this.#stations.black ?? []),
-      ]),
-    ];
+    return [...new Set(Object.values(this.#stations))];
   }
 
   #getPossibleModes(stationNumber) {
