@@ -194,10 +194,8 @@ const showPopup = () => {
 
 const hidePopUp = () => {
   const popup = document.getElementById("popup");
-  const closeBtn = document.getElementById("game-end");
   const closeSetting = document.getElementById("close-setting");
   const settingPopup = document.getElementById("settingPopup");
-  closeBtn.addEventListener("click", () => (popup.style.display = "none"));
 
   closeSetting.addEventListener(
     "click",
