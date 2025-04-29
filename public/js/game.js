@@ -174,6 +174,16 @@ const hidePopUp = () => {
   const popup = document.getElementById("popup");
   const closeSetting = document.getElementById("close-setting");
   const settingPopup = document.getElementById("settingPopup");
+  const closeDetails = document.getElementById("close-details");
+  const detailsPopup = document.getElementById("details");
+  const closeLog = document.getElementById("close-log");
+  const mrXlog = document.getElementById("log");
+  closeLog.addEventListener("click", () => (mrXlog.style.display = "none"));
+
+  closeDetails.addEventListener(
+    "click",
+    () => (detailsPopup.style.display = "none"),
+  );
 
   closeSetting.addEventListener(
     "click",
@@ -343,11 +353,11 @@ const updatePlayerListState = (players, you, currentPlayer) => {
 };
 
 const displayLog = () => {
-  const travelLog = document.getElementById("travel-log");
-  if (travelLog.style.display === "grid") {
+  const travelLog = document.getElementById("log");
+  if (travelLog.style.display === "flex") {
     travelLog.style.display = "none";
   } else {
-    travelLog.style.display = "grid";
+    travelLog.style.display = "flex";
   }
   makeDraggable(travelLog);
 };
