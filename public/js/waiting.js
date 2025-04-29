@@ -1,8 +1,8 @@
 const createImage = (isMrx) => {
   const img = document.createElement("img");
   isMrx
-    ? img.setAttribute("src", "./assets/mrX_bedge.png")
-    : img.setAttribute("src", "./assets/badge.png");
+    ? img.setAttribute("src", "./assets/mrX_badge.png")
+    : img.setAttribute("src", "./assets/detective_badge.png");
   img.alt = "badge";
 
   return img;

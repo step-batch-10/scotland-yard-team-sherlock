@@ -35,7 +35,7 @@ export class LobbyManager {
 
   #createRoom(player: Player): { room: Room; roomId: string } {
     const roomId = this.#generateId();
-    const room = new Room(6);
+    const room = new Room(2);
 
     this.#rooms.set(roomId, room);
 
