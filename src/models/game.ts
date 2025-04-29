@@ -89,7 +89,16 @@ export class Game {
         stations.length > 0 && tickets[vehicle as Ticket]! > 0
       );
 
-    return Object.fromEntries(possibleStations);
+    const allDetectiveLocations = this.#players.slice(1, 6).map((
+      { position },
+    ) => position);
+
+    const filtered = possibleStations.map(([mode, numbers]) => [
+      mode,
+      numbers.filter((position) => !allDetectiveLocations.includes(position)),
+    ]);
+
+    return Object.fromEntries(filtered);
   }
 
   gameStatus(playerId: string): GameStatus {

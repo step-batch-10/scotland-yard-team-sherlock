@@ -350,6 +350,6 @@ describe("Game Test", () => {
 
     const gameStatus = game.gameStatus("222");
 
-    assertEquals(gameStatus.stations, { taxi: [3, 10, 22] });
+    assertEquals(gameStatus.stations, { taxi: [10, 22] });
   });
 });
