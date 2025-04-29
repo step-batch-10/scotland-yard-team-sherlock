@@ -177,7 +177,7 @@ const hidePopUp = () => {
 
   closeSetting.addEventListener(
     "click",
-    () => (settingPopup.style.display = "none"),
+    () => (settingPopup.style.display = "none")
   );
 
   globalThis.addEventListener("click", (event) => {
@@ -349,7 +349,7 @@ class PlayersListState {
       tilesTemplate.content,
       mrx,
       you,
-      currentPlayer,
+      currentPlayer
     );
     playersList.append(mrxTile);
 
@@ -358,7 +358,7 @@ class PlayersListState {
         tilesTemplate.content,
         detective,
         you === index + 1,
-        currentPlayer === index + 1,
+        currentPlayer === index + 1
       );
       playersList.append(detectiveTile);
     });
@@ -388,7 +388,7 @@ const main = async () => {
       gameStatus.you,
       gameStatus.currentPlayer,
       gameStatus.stations,
-      gameStatus.players[gameStatus.you].inventory.cards,
+      gameStatus.players[gameStatus.you].inventory.cards
     );
 
     if (gameStatus.win) {
@@ -407,7 +407,7 @@ const main = async () => {
     playersListState.updatePlayerListState(
       gameStatus.players,
       gameStatus.you,
-      gameStatus.currentPlayer,
+      gameStatus.currentPlayer
     );
 
     renderThisPlayerPointer(map, gameStatus.players[gameStatus.you].position);
@@ -423,7 +423,14 @@ class StationState {
   #stations;
 
   #getPossibleStations() {
-    return [...new Set(Objects.values(this.#stations).flat())];
+    return [
+      ...new Set([
+        ...(this.#stations.taxi ?? []),
+        ...(this.#stations.bus ?? []),
+        ...(this.#stations.underground ?? []),
+        ...(this.#stations.black ?? []),
+      ]),
+    ];
   }
 
   #getPossibleModes(stationNumber) {
@@ -434,7 +441,7 @@ class StationState {
         }
         return availableModes;
       },
-      [],
+      []
     );
   }
 
@@ -472,7 +479,7 @@ class StationState {
 
   #closeTicketInfoContainer(station) {
     const ticketInfoContainer = document.querySelector(
-      `#ticket-info-container-${station}`,
+      `#ticket-info-container-${station}`
     );
     if (ticketInfoContainer) ticketInfoContainer.remove();
   }
@@ -492,7 +499,7 @@ class StationState {
       const transportElement = document.createElement("img");
       transportElement.classList.add(
         `ticket-info-element`,
-        `transport-${transport}`,
+        `transport-${transport}`
       );
       transportElement.setAttribute("src", `/assets/ticket-${transport}.png`);
 
@@ -534,7 +541,7 @@ class StationState {
     }
 
     ticketInfoContainer.appendChild(
-      this.#ticketInfoContainerCloseButton(station),
+      this.#ticketInfoContainerCloseButton(station)
     );
 
     return ticketInfoContainer;
@@ -545,7 +552,7 @@ class StationState {
     const ticketInfoContainer = this.#createTicketInfoContainer(
       station,
       possibleStations,
-      doubleCards,
+      doubleCards
     );
 
     const clickedStation = this.#map.querySelector(`#station-${station}`);
