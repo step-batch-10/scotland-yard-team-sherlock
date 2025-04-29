@@ -423,7 +423,7 @@ class StationState {
   #stations;
 
   #getPossibleStations() {
-    return [...new Set(Object.values(this.#stations))];
+    return [...new Set(Object.values(this.#stations).flat())];
   }
 
   #getPossibleModes(stationNumber) {
