@@ -1,14 +1,16 @@
-const createImage = () => {
+const createImage = (isMrx) => {
   const img = document.createElement("img");
-  img.setAttribute("src", "./assets/badge.png");
+  isMrx
+    ? img.setAttribute("src", "./assets/mrX_bedge.png")
+    : img.setAttribute("src", "./assets/badge.png");
   img.alt = "badge";
 
   return img;
 };
 
-const createBadge = (color) => {
+const createBadge = (color, isMrx) => {
   const badge = document.createElement("figure");
-  const img = createImage();
+  const img = createImage(isMrx);
   img.style.border = `6px solid ${color}`;
   badge?.append(img);
 
@@ -26,7 +28,7 @@ const addCaption = (playerContainer, name, isMrx) => {
 const addToWaitingBoard = ({ name, isMrx, color }) => {
   const playerContainer = document.createElement("div");
   playerContainer.classList.add("player-container");
-  const badge = createBadge(color);
+  const badge = createBadge(color, isMrx);
   addCaption(badge, name, isMrx);
   playerContainer?.append(badge);
 
