@@ -10,10 +10,11 @@ export type Players = [
   Detective,
   Detective,
 ];
-
+export type Shuffler = (name: number[]) => number[];
 export class GameManager {
   #games: Map<string, Game>;
   #playerToGame: Map<string, string>;
+  #startingPositions: number[];
 
   #MrxInventory = {
     tickets: { bus: 3, taxi: 4, underground: 3, black: 5 },
@@ -22,11 +23,14 @@ export class GameManager {
   #detectiveInventory = { tickets: { bus: 8, taxi: 10, underground: 4 } };
 
   constructor(
+    shuffler: Shuffler,
+    startingPositions: number[],
     games: Map<string, Game> = new Map(),
     playerToGame: Map<string, string> = new Map(),
   ) {
     this.#games = games;
     this.#playerToGame = playerToGame;
+    this.#startingPositions = shuffler(startingPositions);
   }
 
   #gameSetup(players: Player[]): Players {
@@ -37,7 +41,7 @@ export class GameManager {
       color: "black",
       isMrx: true,
       inventory: { ...this.#MrxInventory },
-      position: 1,
+      position: this.#startingPositions[0],
     };
 
     const detectivesDetails = detectives.map(
@@ -49,7 +53,7 @@ export class GameManager {
           name,
           id,
           color,
-          position: index + 2,
+          position: this.#startingPositions[index + 1],
           isMrx: false,
           inventory,
         };

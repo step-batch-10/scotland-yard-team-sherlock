@@ -12,7 +12,7 @@ export const createAppWithPlayers = (loggedInUser: string) => {
     new Map([["111", loggedInUser]]),
   );
   const lobbyManager = new LobbyManager(getIdGenerator());
-  const gameManager = new GameManager();
+  const gameManager = new GameManager(() => [], []);
 
   const app = createApp(
     playerManager,
@@ -60,7 +60,7 @@ describe("login", () => {
   it("should add new player to playerManager and redirect to home", async () => {
     const playerManager = new PlayerManager(getIdGenerator());
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     const app = createApp(
       playerManager,

@@ -81,7 +81,7 @@ describe("Static page", () => {
       new Map([["111", "Name"]]),
     );
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -103,7 +103,7 @@ describe("Quick Join", () => {
     );
 
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     lobbyManager.assignRoom({ id: "123", name: "Asma" });
 
@@ -143,12 +143,12 @@ describe("Quick Join", () => {
     lobbyManager.assignRoom({ id: "333", name: "Janes3" });
     lobbyManager.assignRoom({ id: "444", name: "Janes4" });
     lobbyManager.assignRoom({ id: "555", name: "Janes5" });
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const res = await app.request("http://localhost:8000/lobby/quick-play", {
-      headers: { "cookie": ` playerId=666` },
+      headers: { cookie: ` playerId=666` },
       method: "POST",
     });
     res.text();
@@ -166,7 +166,7 @@ describe("fetch players", () => {
     );
     const lobbyManager = new LobbyManager(getIdGenerator());
     const roomId = lobbyManager.assignRoom({ id: "111", name: "James" }).roomId;
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -189,7 +189,7 @@ describe("fetch players", () => {
     );
 
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -205,17 +205,15 @@ describe("fetch players", () => {
   it("it should return isLobbyFull as true", async () => {
     const playerManager = new PlayerManager(
       getIdGenerator(),
-      new Map([
-        ["123", "a"],
-      ]),
+      new Map([["123", "a"]]),
     );
 
     const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager(
+      () => [],
+      [],
       new Map(),
-      new Map([
-        ["123", "111"],
-      ]),
+      new Map([["123", "111"]]),
     );
 
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -236,7 +234,7 @@ describe("logout", () => {
     const playerManager = new PlayerManager(getIdGenerator());
     const playerId = playerManager.add("abc");
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
     const req = await app.request("/auth/logout", {
       headers: { cookie: `playerId=${playerId}` },
@@ -253,11 +251,13 @@ describe("leave lobby", () => {
     const playerId = playerManager.add("abc");
     const lobbyManager = new LobbyManager(getIdGenerator());
 
-    const roomId =
-      lobbyManager.assignRoom({ id: playerId, name: "abc" }).roomId;
+    const roomId = lobbyManager.assignRoom({
+      id: playerId,
+      name: "abc",
+    }).roomId;
     lobbyManager.assignRoom({ id: "2", name: "anc" });
     lobbyManager.assignRoom({ id: "3", name: "anc2" });
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
     const req = new Request("http://localhost:8000/lobby/room/leave", {
       method: "POST",
@@ -276,15 +276,14 @@ describe("Game move", () => {
   it("Should change position", async () => {
     const playerManager = new PlayerManager(
       getIdGenerator(),
-      new Map([
-        ["111", "aaa"],
-      ]),
+      new Map([["111", "aaa"]]),
     );
     const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager(
-      new Map([
-        ["123", getGame()],
-      ]),
+      () => [],
+      [],
+      new Map([["123", getGame()]]),
+      new Map(),
     );
 
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -368,7 +367,10 @@ describe("Game move", () => {
 
     const lobbyManager = new LobbyManager(getIdGenerator());
     const gameManager = new GameManager(
+      () => [],
+      [],
       new Map([["123", new Game(initialData)]]),
+      new Map(),
     );
 
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -393,9 +395,11 @@ describe("Join user", () => {
     const playerId1 = playerManager.add("john");
     const playerId2 = playerManager.add("james");
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const roomId =
-      lobbyManager.assignRoom({ id: playerId1, name: "john" }).roomId;
-    const gameManager = new GameManager();
+    const roomId = lobbyManager.assignRoom({
+      id: playerId1,
+      name: "john",
+    }).roomId;
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const fd = new FormData();
@@ -415,14 +419,16 @@ describe("Join user", () => {
     const playerId1 = playerManager.add("john");
     const playerId2 = playerManager.add("james");
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const roomId =
-      lobbyManager.assignRoom({ id: playerId1, name: "john" }).roomId;
+    const roomId = lobbyManager.assignRoom({
+      id: playerId1,
+      name: "john",
+    }).roomId;
     lobbyManager.assignRoom({ name: "mrxId", id: "1" });
     lobbyManager.assignRoom({ name: "d1", id: "5" });
     lobbyManager.assignRoom({ name: "d2", id: "2" });
     lobbyManager.assignRoom({ name: "d3", id: "3" });
 
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const fd = new FormData();
@@ -446,7 +452,7 @@ describe("Host Game", () => {
     );
 
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -473,7 +479,12 @@ describe("serveGameStatus", () => {
     );
     const lobbyManager = new LobbyManager(getIdGenerator());
     const game = getGame();
-    const gameManager = new GameManager(new Map([["123", game]]));
+    const gameManager = new GameManager(
+      () => [],
+      [],
+      new Map([["123", game]]),
+      new Map(),
+    );
 
     const gameStatus: GameStatus = {
       players: [
@@ -572,7 +583,12 @@ describe("Game initial Details", () => {
     );
     const lobbyManager: LobbyManager = new LobbyManager(getIdGenerator());
     const game = getGame();
-    const gameManager = new GameManager(new Map([["123", game]]));
+    const gameManager = new GameManager(
+      () => [],
+      [],
+      new Map([["123", game]]),
+      new Map(),
+    );
     sinon.stub(game, "players").get(() => getGamePlayers());
 
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -592,7 +608,12 @@ describe("Leave game", () => {
     );
     const lobbyManager: LobbyManager = new LobbyManager(getIdGenerator());
     const game = getGame();
-    const gameManager = new GameManager(new Map([["123", game]]));
+    const gameManager = new GameManager(
+      () => [],
+      [],
+      new Map([["123", game]]),
+      new Map(),
+    );
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const response = await app.request("/game/quit", {

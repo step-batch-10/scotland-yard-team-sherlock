@@ -9,7 +9,7 @@ describe("validations", () => {
   it("Should return to login page. If gameId and playerId cookie is not available.", async () => {
     const playerManager = new PlayerManager(getIdGenerator());
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const response = await app.request("/game/status");
@@ -23,7 +23,7 @@ describe("validations", () => {
     const playerId = playerManager.add("NAME");
     const lobbyManager = new LobbyManager(getIdGenerator());
     const roomId = lobbyManager.assignRoom({ id: playerId, name: "NAME" });
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const headers = { cookie: ` playerId=${playerId}; roomId=${roomId}` };
@@ -37,7 +37,7 @@ describe("validations", () => {
     const playerManager = new PlayerManager(getIdGenerator());
     const playerId = playerManager.add("abc");
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const roomId: string =
       lobbyManager.assignRoom({ id: playerId, name: "James" }).roomId;
     const app = createApp(playerManager, lobbyManager, gameManager);
@@ -56,7 +56,7 @@ describe("validations", () => {
     const playerId = playerManager.add("Name");
 
     const lobbyManager = new LobbyManager(getIdGenerator());
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
 
     lobbyManager.assignRoom({ id: "1", name: "Name" });
     lobbyManager.assignRoom({ id: "2", name: "James2" });
@@ -80,7 +80,7 @@ describe("validations", () => {
     const lobbyManager = new LobbyManager(getIdGenerator());
     const roomId = lobbyManager.assignRoom({ id: playerId, name: "Name" });
 
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const response = await app.request("/lobby/quick-play", {
@@ -97,7 +97,7 @@ describe("validations", () => {
 
     const lobbyManager = new LobbyManager(getIdGenerator());
 
-    const gameManager = new GameManager();
+    const gameManager = new GameManager(() => [], []);
     const app = createApp(playerManager, lobbyManager, gameManager);
 
     const fd = new FormData();
@@ -120,7 +120,7 @@ describe("validations", () => {
       const lobbyManager = new LobbyManager(getIdGenerator());
       lobbyManager.assignRoom({ name: "Name", id: playerId });
 
-      const gameManager = new GameManager();
+      const gameManager = new GameManager(() => [], []);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -139,7 +139,7 @@ describe("validations", () => {
       const lobbyManager = new LobbyManager(getIdGenerator());
       lobbyManager.assignRoom({ name: "Name", id: playerId });
 
-      const gameManager = new GameManager();
+      const gameManager = new GameManager(() => [], []);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -161,7 +161,7 @@ describe("validations", () => {
         id: playerId,
       });
 
-      const gameManager = new GameManager();
+      const gameManager = new GameManager(() => [], []);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -184,7 +184,7 @@ describe("validations", () => {
       lobbyManager.assignRoom({ name: "Name5", id: "5" });
       lobbyManager.assignRoom({ name: "Name6", id: "6" });
 
-      const gameManager = new GameManager();
+      const gameManager = new GameManager(() => [], []);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 
@@ -201,7 +201,7 @@ describe("validations", () => {
         new Map([["111", "Name"]]),
       );
       const lobbyManager = new LobbyManager(getIdGenerator());
-      const gameManager = new GameManager();
+      const gameManager = new GameManager(() => [], []);
 
       const app = createApp(playerManager, lobbyManager, gameManager);
 

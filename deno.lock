@@ -9,6 +9,8 @@
     "jsr:@std/testing@*": "1.0.11",
     "jsr:@std/testing@^1.0.11": "1.0.11",
     "npm:hono@^4.7.6": "4.7.6",
+    "npm:lodash@*": "4.17.21",
+    "npm:lodash@^4.17.21": "4.17.21",
     "npm:sinon@20": "20.0.0"
   },
   "jsr": {
@@ -77,6 +79,9 @@
     "lodash.get@4.4.2": {
       "integrity": "sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ=="
     },
+    "lodash@4.17.21": {
+      "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
+    },
     "sinon@20.0.0": {
       "integrity": "sha512-+FXOAbdnj94AQIxH0w1v8gzNxkawVvNqE3jUzRLptR71Oykeu2RrQXXl/VQjKay+Qnh73fDt/oDfMo6xMeDQbQ==",
       "dependencies": [
@@ -105,6 +110,7 @@
       "jsr:@std/assert@^1.0.12",
       "jsr:@std/testing@^1.0.11",
       "npm:hono@^4.7.6",
+      "npm:lodash@^4.17.21",
       "npm:sinon@20"
     ]
   }
