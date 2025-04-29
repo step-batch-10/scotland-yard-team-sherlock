@@ -318,6 +318,7 @@ class PlayersListState {
     const detectiveTile = tileTemplate
       .querySelector(".detective-tile")
       .cloneNode(true);
+
     detectiveTile.classList.add(isYour ? "your-tile" : "not-your-tile");
     detectiveTile.classList.add(this.#isOpen ? "visible" : "invisible");
 
@@ -328,7 +329,6 @@ class PlayersListState {
       color;
 
     detectiveTile.querySelector(".player-tile-name").textContent = name;
-
     const { taxi, bus, underground } = inventory.tickets;
     detectiveTile.querySelector(".taxi").textContent = taxi;
     detectiveTile.querySelector(".bus").textContent = bus;
@@ -366,12 +366,51 @@ class PlayersListState {
     this.#handleToggle();
   }
 }
+const displayLog = () => {
+  const travelLog = document.getElementById("travel-log");
+  if (travelLog.style.display === "grid") {
+    travelLog.style.display = "none";
+  } else {
+    travelLog.style.display = "grid";
+  }
+};
+
+const makeDraggable = (el) => {
+  let isDragging = false;
+  let offsetX, offsetY;
+
+  el.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    offsetX = e.clientX - el.getBoundingClientRect().left;
+    offsetY = e.clientY - el.getBoundingClientRect().top;
+    document.body.style.userSelect = "none";
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+      el.style.left = `${e.clientX - offsetX}px`;
+      el.style.top = `${e.clientY - offsetY}px`;
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+    document.body.style.userSelect = "auto";
+  });
+};
 
 const main = async () => {
   const music = initMusic();
   enableMusic(music);
   showPopup();
   hidePopUp();
+
+  const logDetails = document.getElementById("log-btn");
+  logDetails.addEventListener("click", displayLog);
+
+  const travelLog = document.getElementById("travel-log");
+  makeDraggable(travelLog);
+
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
 
