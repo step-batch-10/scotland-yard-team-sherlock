@@ -2,7 +2,7 @@ import { createApp } from "./src/app.ts";
 import { GameManager } from "./src/models/gameManager.ts";
 import { LobbyManager } from "./src/models/lobbyManager.ts";
 import { getIdGenerator, PlayerManager } from "./src/models/playerManager.ts";
-import * as _ from "lodash";
+import _ from "lodash";
 
 const main = () => {
   const startingPositions = [
