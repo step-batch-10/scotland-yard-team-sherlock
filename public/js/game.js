@@ -270,102 +270,78 @@ const renderThisPlayerPointer = (map, position) => {
   map.getElementById(`pointer-${position}`).setAttribute("stroke", "#CCE3DE");
 };
 
-// -----------------------------------------------------------------------
+const getMrxTile = (
+  tileTemplate,
+  { name, position, inventory },
+  you,
+  currentPlayer,
+) => {
+  const mrxTile = tileTemplate.querySelector(".mrx-tile").cloneNode(true);
 
-class PlayersListState {
-  #isOpen = false;
+  mrxTile.classList.add(you === 0 ? "your-tile" : "not-your-tile");
+  if (currentPlayer === 0) mrxTile.classList.add("current-player-tile");
 
-  constructor() {
-    const toggleButton = document.querySelector(".player-list-toggle");
-    toggleButton.addEventListener("click", () => {
-      this.#isOpen = !this.#isOpen;
-      this.#handleToggle();
-    });
-  }
+  mrxTile.querySelector(".player-position").textContent = position ?? "??";
+  mrxTile.querySelector(".player-position").style.backgroundColor = "black";
 
-  #handleToggle() {
-    const tiles = document.querySelectorAll(".player-tile");
-    tiles.forEach((tile) => {
-      tile.classList.remove("visible", "invisible");
-      tile.classList.add(this.#isOpen ? "visible" : "invisible");
-    });
-  }
+  mrxTile.querySelector(".player-tile-name").textContent = name;
 
-  #getMrxTile(tileTemplate, { name, position, inventory }, you, currentPlayer) {
-    const mrxTile = tileTemplate.querySelector(".mrx-tile").cloneNode(true);
-    mrxTile.classList.add(you === 0 ? "your-tile" : "not-your-tile");
-    mrxTile.classList.add(this.#isOpen ? "visible" : "invisible");
-    mrxTile.classList.add(currentPlayer === 0 ? "current-player-tile" : "k");
+  const { taxi, bus, underground, black } = inventory.tickets;
+  mrxTile.querySelector(".taxi").textContent = taxi;
+  mrxTile.querySelector(".bus").textContent = bus;
+  mrxTile.querySelector(".underground").textContent = underground;
+  mrxTile.querySelector(".black").textContent = black;
 
-    mrxTile.querySelector(".player-position").textContent = position ?? "??";
-    mrxTile.querySelector(".player-position").style.backgroundColor = "black";
+  mrxTile.querySelector(".double").textContent = inventory.cards.doubleMove;
 
-    mrxTile.querySelector(".player-tile-name").textContent = name;
+  return mrxTile;
+};
 
-    const { taxi, bus, underground, black } = inventory.tickets;
-    mrxTile.querySelector(".taxi").textContent = taxi;
-    mrxTile.querySelector(".bus").textContent = bus;
-    mrxTile.querySelector(".underground").textContent = underground;
-    mrxTile.querySelector(".black").textContent = black;
+const getDetectiveTile = (tileTemplate, detective, isYour, isCurrentPlayer) => {
+  const { name, position, inventory, color } = detective;
+  const detectiveTile = tileTemplate
+    .querySelector(".detective-tile")
+    .cloneNode(true);
 
-    mrxTile.querySelector(".double").textContent = inventory.cards.doubleMove;
+  detectiveTile.classList.add(isYour ? "your-tile" : "not-your-tile");
+  if (isCurrentPlayer) detectiveTile.classList.add("current-player-tile");
 
-    return mrxTile;
-  }
+  detectiveTile.querySelector(".player-position").textContent = position;
+  detectiveTile.querySelector(".player-position").style.backgroundColor = color;
 
-  #getDetectiveTile(tileTemplate, detective, isYour, isCurrentPlayer) {
-    const { name, position, inventory, color } = detective;
-    const detectiveTile = tileTemplate
-      .querySelector(".detective-tile")
-      .cloneNode(true);
+  detectiveTile.querySelector(".player-tile-name").textContent = name;
 
-    detectiveTile.classList.add(isYour ? "your-tile" : "not-your-tile");
-    detectiveTile.classList.add(this.#isOpen ? "visible" : "invisible");
+  const { taxi, bus, underground } = inventory.tickets;
+  detectiveTile.querySelector(".taxi").textContent = taxi;
+  detectiveTile.querySelector(".bus").textContent = bus;
+  detectiveTile.querySelector(".underground").textContent = underground;
 
-    if (isCurrentPlayer) detectiveTile.classList.add("current-player-tile");
+  return detectiveTile;
+};
 
-    detectiveTile.querySelector(".player-position").textContent = position;
-    detectiveTile.querySelector(".player-position").style.backgroundColor =
-      color;
+const updatePlayerListState = (players, you, currentPlayer) => {
+  const [mrx, ...detectives] = players;
 
-    detectiveTile.querySelector(".player-tile-name").textContent = name;
-    const { taxi, bus, underground } = inventory.tickets;
-    detectiveTile.querySelector(".taxi").textContent = taxi;
-    detectiveTile.querySelector(".bus").textContent = bus;
-    detectiveTile.querySelector(".underground").textContent = underground;
+  const playersList = document.querySelector(".players-list-container");
+  playersList.innerHTML = "";
 
-    return detectiveTile;
-  }
+  const tilesTemplate = document.getElementById("player-tile-template");
 
-  updatePlayerListState(players, you, currentPlayer) {
-    const [mrx, ...detectives] = players;
+  const mrxTile = getMrxTile(tilesTemplate.content, mrx, you, currentPlayer);
 
-    const playersList = document.querySelector(".players-list-container");
-    playersList.innerHTML = "";
+  playersList.append(mrxTile);
 
-    const tilesTemplate = document.getElementById("player-tile-template");
-
-    const mrxTile = this.#getMrxTile(
+  detectives.forEach((detective, index) => {
+    const detectiveTile = getDetectiveTile(
       tilesTemplate.content,
-      mrx,
-      you,
-      currentPlayer,
+      detective,
+      you === index + 1,
+      currentPlayer === index + 1,
     );
-    playersList.append(mrxTile);
+    playersList.append(detectiveTile);
+  });
+};
 
-    detectives.forEach((detective, index) => {
-      const detectiveTile = this.#getDetectiveTile(
-        tilesTemplate.content,
-        detective,
-        you === index + 1,
-        currentPlayer === index + 1,
-      );
-      playersList.append(detectiveTile);
-    });
-
-    this.#handleToggle();
-  }
-}
 const displayLog = () => {
   const travelLog = document.getElementById("travel-log");
   if (travelLog.style.display === "grid") {
@@ -373,6 +349,7 @@ const displayLog = () => {
   } else {
     travelLog.style.display = "grid";
   }
+  makeDraggable(travelLog);
 };
 
 const makeDraggable = (el) => {
@@ -399,25 +376,37 @@ const makeDraggable = (el) => {
   });
 };
 
-const main = async () => {
+const displayAllPlayers = () => {
+  const playerDetails = document.getElementById("details");
+  if (playerDetails.style.display === "flex") {
+    playerDetails.style.display = "none";
+  } else {
+    playerDetails.style.display = "flex";
+  }
+  makeDraggable(playerDetails);
+};
+
+const displayPopups = () => {
   const music = initMusic();
   enableMusic(music);
   showPopup();
   hidePopUp();
 
-  const logDetails = document.getElementById("log-btn");
-  logDetails.addEventListener("click", displayLog);
+  const logDetailsBtn = document.getElementById("log-btn");
+  logDetailsBtn.addEventListener("click", displayLog);
 
-  const travelLog = document.getElementById("travel-log");
-  makeDraggable(travelLog);
+  const playerDetailsBtn = document.getElementById("all-players");
+  playerDetailsBtn.addEventListener("click", displayAllPlayers);
+};
 
+const main = async () => {
+  displayPopups();
   const map = document.querySelector("object").contentDocument;
   const poll = poller();
 
   setMapZoomable(map);
 
   const myState = new StationState();
-  const playersListState = new PlayersListState();
 
   while (poll.shouldPoll) {
     const gameStatus = await fetch("/game/status").then((res) => res.json());
@@ -443,7 +432,7 @@ const main = async () => {
 
     renderPlayerPositions(map, gameStatus);
 
-    playersListState.updatePlayerListState(
+    updatePlayerListState(
       gameStatus.players,
       gameStatus.you,
       gameStatus.currentPlayer,

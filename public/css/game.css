@@ -15,9 +15,16 @@ body {
 
 .map-container {
   border: 1px solid black;
-  background-color: rgb(255, 249, 249);
+  background-color: antiquewhite;
   border-radius: 20px;
   position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.map-container object {
+  height: 100%;
+  width: 100%;
 }
 
 #color-box {
@@ -200,7 +207,7 @@ body {
   z-index: 99;
   position: fixed;
   background-color: bisque;
-  width: 25vw;
+  width: 350px;
   height: 50vh;
   padding: 2vh 2vw;
   box-sizing: border-box;
@@ -217,20 +224,15 @@ body {
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 5px;
   display: flex;
-  height: 5vh;
+  height: 40px;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1.8vh;
+  font-size: 1.8em;
   font-weight: bold;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
-}
-
-.ticket-slot:hover {
-  transform: scale(1.05);
-  background-color: rgba(0, 0, 0, 0.85);
-  cursor: pointer;
+  width: 80px;
 }
 
 .displayLog {
@@ -315,6 +317,7 @@ body {
   color: white;
   aspect-ratio: 1;
   padding: 12px;
+  border: 0;
   background-color: rgba(12, 50, 77, 0.85);
   border-radius: 50%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -452,10 +455,9 @@ input:checked + .slider:before {
 }
 
 .players-list-container {
-  align-self: flex-end;
   display: flex;
-  gap: 5px;
   flex-direction: column;
+  gap: 5px;
 }
 
 .player-tile {
@@ -483,14 +485,6 @@ input:checked + .slider:before {
   box-shadow: 2px 2px 6px 2px #028000;
 }
 
-.visible {
-  display: flex;
-}
-
-.invisible {
-  display: none;
-}
-
 .your-tile {
   display: flex;
   box-shadow: 0px 1px 6px 0px #000;
@@ -510,4 +504,16 @@ input:checked + .slider:before {
   border-radius: 5px;
   font-family: sans-serif;
   font-weight: 700;
+}
+
+.player-details {
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 99;
+  background-color: #cdccbc;
+  top: 200px;
+  right: 10px;
+  position: absolute;
+  width: min-content;
 }
