@@ -173,6 +173,62 @@ const initGameSetup = (index: number): Players => {
         },
       ],
     },
+    {
+      desc: "All detectives block setup",
+      data: [
+        {
+          name: "aaa",
+          id: "111",
+          color: "black",
+          isMrx: true,
+          position: 10,
+          inventory: {
+            tickets: { bus: 0, taxi: 3, underground: 3, black: 5 },
+            cards: { doubleMove: 2 },
+          },
+        },
+        {
+          name: "bbb",
+          id: "222",
+          color: "#63a4ff",
+          position: 3,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 1, underground: 4 } },
+        },
+        {
+          name: "ccc",
+          id: "333",
+          color: "#ffb347",
+          position: 7,
+          isMrx: false,
+          inventory: { tickets: { bus: 10, taxi: 1, underground: 4 } },
+        },
+        {
+          name: "ddd",
+          id: "444",
+          color: "red",
+          position: 1,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 1, underground: 4 } },
+        },
+        {
+          name: "eee",
+          id: "555",
+          color: "blue",
+          position: 2,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 1, underground: 4 } },
+        },
+        {
+          name: "fff",
+          id: "666",
+          color: "violet",
+          position: 5,
+          isMrx: false,
+          inventory: { tickets: { bus: 0, taxi: 1, underground: 4 } },
+        },
+      ],
+    },
   ];
 
   return states[index].data as Players;
@@ -351,5 +407,23 @@ describe("Game Test", () => {
     const gameStatus = game.gameStatus("222");
 
     assertEquals(gameStatus.stations, { taxi: [10, 22] });
+  });
+
+  it("Should game over details when all Detectives blocked", () => {
+    const game = new Game(initGameSetup(3));
+    game.move("111", { ticket: "taxi", to: 34 });
+    game.move("222", { ticket: "taxi", to: 4 });
+    game.move("333", { ticket: "taxi", to: 6 });
+    game.move("444", { ticket: "taxi", to: 8 });
+    game.move("555", { ticket: "taxi", to: 10 });
+    game.move("666", { ticket: "taxi", to: 16 });
+    game.move("111", { ticket: "taxi", to: 48 });
+
+    const gameStatus = game.gameStatus("111");
+    const win = gameStatus.win;
+
+    assertEquals(win?.message, "All Detectives blocked. Mr.X win!");
+    assertEquals(win?.winner, "Mr.X");
+    assertEquals(win?.name, "aaa");
   });
 });

@@ -132,11 +132,34 @@ export class Game {
     return this.#mrxMoves.length === 24;
   }
 
-  #updateCurrentPlayerIndex(isDoubleUsed: boolean | undefined) {
-    if (!isDoubleUsed) {
-      this.#currentPlayerIndex = (this.#currentPlayerIndex + 1) %
-        this.#players.length;
+  #updateCurrentPlayerIndex(isDoubleUsed?: boolean) {
+    if (isDoubleUsed) return;
+
+    const totalPlayers = this.#players.length;
+    let nextIndex = this.#currentPlayerIndex;
+
+    for (
+      let detectiveIndex = 1;
+      detectiveIndex < totalPlayers;
+      detectiveIndex++
+    ) {
+      nextIndex = (nextIndex + 1) % totalPlayers;
+      const possibleStations = this.#getPossibleStations(
+        this.#players[nextIndex],
+      );
+
+      if (Object.keys(possibleStations).length > 0) {
+        this.#currentPlayerIndex = nextIndex;
+        return;
+      }
     }
+
+    this.#win = {
+      winner: "Mr.X",
+      name: this.#players[0].name,
+      message: "All Detectives blocked. Mr.X win!",
+      mrxMoves: this.#mrxMoves,
+    };
   }
 
   #updateTo(station: number) {
