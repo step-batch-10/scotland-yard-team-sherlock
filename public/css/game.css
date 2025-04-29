@@ -104,14 +104,13 @@ body {
   border-radius: 12px;
   width: 90%;
   max-width: 600px;
-  padding: 40px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   max-height: 90vh;
   overflow: hidden;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-  justify-content: center;
-  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+
   justify-content: center;
   text-align: center;
 }
@@ -125,21 +124,20 @@ body {
   font-size: 0.95rem;
 }
 
-.winner-data {
-  color: white;
-  margin-top: 20px;
-}
-#result-panel {
+.result-panel {
   display: flex;
+  flex-direction: column;
+  padding: 2em;
   align-items: center;
   justify-content: center;
   color: white;
-  flex-direction: column;
   gap: 1em;
 }
+
 .player-name {
   font-size: 1.4em;
-  padding: 8px;
+  padding: 18px;
+  border-radius: 16px;
 }
 .closeBox {
   color: maroon;
@@ -182,11 +180,6 @@ body {
   justify-content: center;
   color: whitesmoke;
   justify-content: center;
-}
-
-.station-info {
-  color: whitesmoke;
-  padding-right: 10%;
 }
 
 .log {
@@ -272,20 +265,23 @@ body {
   font-weight: bold;
 }
 
-#quit-btn {
-  background-color: #4caf50;
+.quit-btn {
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 10px 20px;
+  padding: 12px;
+  position: absolute;
+  top: 4px;
+  right: 10px;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  min-width: 120px;
+  aspect-ratio: 1;
+  margin-top: 10px;
 }
 
-#quit-btn:hover {
-  background-color: #45a049;
+.quit-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .log-entries {
@@ -298,7 +294,7 @@ body {
 }
 
 .top-right {
-  z-index: 99;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -519,4 +515,46 @@ input:checked + .slider:before {
 }
 .player-details h2 {
   text-align: center;
+}
+
+.log-toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.log-toggle-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.log-toggle-button[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.log-toggle-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.log-toggle-button .eye {
+  margin-right: 8px;
 }

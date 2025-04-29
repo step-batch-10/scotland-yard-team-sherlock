@@ -227,15 +227,105 @@ const createElement = (tag, className) => {
   return ele;
 };
 
-const renderMrXWin = (winDetails) => {
-  const result = document.getElementById("result-panel");
+const startConfettiBurst = () => {
+  const duration = 30 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 7,
+      angle: 60,
+      spread: 100,
+      origin: { x: 0, y: Math.random() * 0.8 },
+    });
+
+    confetti({
+      particleCount: 7,
+      angle: 120,
+      spread: 100,
+      origin: { x: 1, y: Math.random() * 0.8 },
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+};
+
+const startAshFall = () => {
+  const duration = 30 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 3,
+      angle: 90,
+      spread: 10,
+      origin: { x: Math.random(), y: 0 },
+      gravity: 2,
+      ticks: 200,
+      scalar: 0.8,
+      colors: ["#666666", "#999999", "#bbbbbb"],
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+};
+
+const createEyeIcons = () => {
+  const eye = `<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" 
+      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/></svg>`;
+
+  const eyeOff =
+    `<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" 
+      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a20.77 20.77 0 0 1 5.61-6.37"/>
+      <path d="M1 1l22 22"/></svg>`;
+
+  return { eye, eyeOff };
+};
+
+const createToggleButton = (logContainer, resultPanel) => {
+  const { eye, eyeOff } = createEyeIcons();
+  const toggleBtn = document.createElement("button");
+  let isVisible = false;
+
+  toggleBtn.className = "log-toggle-button";
+  toggleBtn.innerHTML = `${eye} View Mr. X's Moves`;
+
+  toggleBtn.addEventListener("click", () => {
+    if (isVisible) {
+      logContainer.remove();
+      toggleBtn.innerHTML = `${eye} View Mr. X's Moves`;
+    } else {
+      resultPanel.append(logContainer);
+      toggleBtn.innerHTML = `${eyeOff} Hide Mr. X's Moves`;
+    }
+    isVisible = !isVisible;
+  });
+
+  return toggleBtn;
+};
+
+const showResultPopup = ({ message, logContainer = null }) => {
+  const result = document.querySelector(".result-panel");
   const h2 = document.createElement("h2");
   h2.className = "winner-data";
-  h2.textContent = `Winner : ${winDetails.winner}!!🥳`;
-  const name = document.createElement("span");
-  name.className = "player-name";
-  name.textContent = `Name : ${winDetails.name}`;
+  h2.textContent = message;
 
+  result.append(h2);
+
+  if (logContainer) {
+    const toggleBtn = createToggleButton(logContainer, result);
+    result.append(toggleBtn);
+  }
+};
+
+const createMrLog = (winDetails) => {
   const logContainer = createElement("div", "win-log");
 
   for (const { ticket, position } of winDetails.mrxMoves) {
@@ -248,22 +338,58 @@ const renderMrXWin = (winDetails) => {
     logContainer.appendChild(ticketDiv);
   }
 
-  result.append(logContainer, h2, name);
+  return logContainer;
 };
 
-const renderDetectiveWin = (winDetails) => {
-  const result = document.getElementById("result-panel");
-  const h2 = document.createElement("h2");
-  h2.className = "winner-data";
-  h2.textContent = `Winner : ${winDetails.winner}!!🥳`;
-  const name = document.createElement("span");
-  name.classList.add("player-name");
-  name.textContent = `Caught By : ${winDetails.name}`;
-  name.style.backgroundColor = winDetails.color;
-  const stationInfo = document.createElement("h3");
-  stationInfo.textContent = `At Station number - ${winDetails.stationNumber}`;
-  stationInfo.classList.add("station-info");
-  result.append(h2, name, stationInfo);
+const showMrXVictoryPopup = () => {
+  showResultPopup({
+    message:
+      "You did it, Mr. X! You've escaped the Detectives' grasp once again!",
+  });
+};
+
+const showDetectiveLoosePopup = (logContainer) => {
+  showResultPopup({
+    message:
+      "Better luck next time, Detectives. Mr. X slipped through your fingers today.",
+    logContainer,
+  });
+};
+
+const showDetectiveWinPopup = () => {
+  showResultPopup({
+    message:
+      "Well done, Detectives! You've tracked down Mr. X and brought him to justice!",
+  });
+};
+
+const showMrXLoosePopup = (stationNumber) => {
+  showResultPopup({
+    message:
+      `Game over, Mr. X. The Detectives have outsmarted you at station ${stationNumber}`,
+  });
+};
+
+const renderMrXWin = (winDetails, isMrX) => {
+  const logContainer = createMrLog(winDetails);
+
+  if (isMrX) {
+    showMrXVictoryPopup();
+    startConfettiBurst();
+    return;
+  }
+  showDetectiveLoosePopup(logContainer);
+  startAshFall();
+};
+
+const renderDetectiveWin = ({ stationNumber }, isMrX) => {
+  if (isMrX) {
+    showMrXLoosePopup(stationNumber);
+    startAshFall();
+    return;
+  }
+  showDetectiveWinPopup();
+  startConfettiBurst();
 };
 
 const setMapZoomable = (map) => {
@@ -410,6 +536,8 @@ const displayPopups = () => {
   playerDetailsBtn.addEventListener("click", displayAllPlayers);
 };
 
+const isReqFromMrX = (index) => index === 0;
+
 const main = async () => {
   displayPopups();
   const map = document.querySelector("object").contentDocument;
@@ -433,9 +561,12 @@ const main = async () => {
     if (gameStatus.win) {
       const gameEndPopup = document.getElementById("popup");
       gameEndPopup.style.display = "flex";
+
+      const isMrX = isReqFromMrX(gameStatus.you);
+
       gameStatus.win.winner === "Mr.X"
-        ? renderMrXWin(gameStatus.win)
-        : renderDetectiveWin(gameStatus.win);
+        ? renderMrXWin(gameStatus.win, isMrX)
+        : renderDetectiveWin(gameStatus.win, isMrX);
 
       document.getElementById("overlay").style.display = "block";
       poll.stop();

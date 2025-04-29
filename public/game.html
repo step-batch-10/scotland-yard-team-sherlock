@@ -19,6 +19,11 @@
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"
+    ></script>
+
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/toastify-js"
@@ -63,11 +68,18 @@
     <div id="overlay"></div>
     <div class="popup" id="popup">
       <div class="popup-content">
-        <h1 class="gameEndHeading">✽ Game Over ✽</h1>
-        <div id="result-panel"></div>
+        <h1 class="gameEndHeading">Game Over</h1>
+
+        <div class="result-panel"></div>
 
         <form action="/game/quit" method="post">
-          <button type="submit" id="quit-btn">Quit</button>
+          <button
+            type="submit"
+            id="quit-btn"
+            class="quit-btn material-symbols-outlined"
+          >
+            exit_to_app
+          </button>
         </form>
       </div>
     </div>
