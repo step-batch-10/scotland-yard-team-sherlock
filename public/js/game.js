@@ -322,6 +322,8 @@ class PlayersListState {
     mrxTile.classList.add(currentPlayer === 0 ? "current-player-tile" : "k");
 
     mrxTile.querySelector(".player-position").textContent = position ?? "??";
+    mrxTile.querySelector(".player-position").classList.add("black");
+
     mrxTile.querySelector(".player-tile-name").textContent = name;
 
     const { taxi, bus, underground, black } = inventory.tickets;
@@ -337,16 +339,20 @@ class PlayersListState {
   }
 
   #getDetectiveTile(tileTemplate, detective, isYour, isCurrentPlayer) {
-    const { name, position, inventory } = detective;
+    const { name, position, inventory, color } = detective;
     const detectiveTile = tileTemplate.querySelector(".detective-tile")
       .cloneNode(
         true,
       );
     detectiveTile.classList.add(isYour ? "your-tile" : "not-your-tile");
     detectiveTile.classList.add(this.#isOpen ? "visible" : "invisible");
-    detectiveTile.classList.add(isCurrentPlayer ? "current-player-tile" : "k");
+
+    if (isCurrentPlayer) detectiveTile.classList.add("current-player-tile");
 
     detectiveTile.querySelector(".player-position").textContent = position;
+    detectiveTile.querySelector(".player-position").style.backgroundColor =
+      color;
+
     detectiveTile.querySelector(".player-tile-name").textContent = name;
 
     const { taxi, bus, underground } = inventory.tickets;

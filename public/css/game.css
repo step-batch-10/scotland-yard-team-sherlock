@@ -466,7 +466,7 @@ input:checked + .slider:before {
   border: 5px solid #ffffff;
   display: grid;
   place-items: center;
-  min-width: 20px;
+  min-width: 50px;
   color: white;
   font-weight: 900;
   border-radius: 50%;
