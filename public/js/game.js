@@ -273,6 +273,7 @@ const setMapZoomable = (map) => {
     controlIconsEnabled: true,
     fit: true,
     center: true,
+    minZoom: 1,
   });
 };
 
