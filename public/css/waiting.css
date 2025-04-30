@@ -93,6 +93,7 @@ button {
 
 #room {
   display: flex;
+  /* position: fixed; */
 }
 
 .copy-icon {

@@ -135,11 +135,18 @@ const copyRoomId = () => {
   const roomId = document.getElementById("room-id").innerText;
   navigator.clipboard.writeText(roomId);
 
-  const tooltip = document.getElementById("copy-tooltip");
-  tooltip.style.display = "inline";
-  setTimeout(() => {
-    tooltip.style.display = "none";
-  }, 1500);
+  Toastify({
+    text: "Id Copied",
+    duration: 3000,
+    gravity: "top",
+    position: "center",
+    backgroundColor: "rgba(240, 230, 210, 0.75)",
+    stopOnFocus: true,
+    style: {
+      color: "black",
+      fontWeight: "bold",
+    },
+  }).showToast();
 };
 
 const addClickListener = (selector, handler) => {
