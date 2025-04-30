@@ -142,13 +142,6 @@ const displayMrXLog = (mrXMoves) => {
   });
 };
 
-const createElement = (tag, className) => {
-  const ele = document.createElement(tag);
-  ele.className = className;
-
-  return ele;
-};
-
 const startConfettiBurst = () => {
   const duration = 30 * 1000;
   const end = Date.now() + duration;
@@ -233,33 +226,16 @@ const createToggleButton = () => {
   return toggleBtn;
 };
 
-const showResultPopup = ({ message, logContainer = null }) => {
+const showResultPopup = ({ message }) => {
   const result = document.querySelector(".result-panel");
   const h2 = document.createElement("h2");
+  const toggleBtn = createToggleButton();
+
   h2.className = "winner-data";
   h2.textContent = message;
   result.append(h2);
 
-  if (logContainer) {
-    const toggleBtn = createToggleButton(logContainer, result);
-    result.append(toggleBtn);
-  }
-};
-
-const createMrLog = (winDetails) => {
-  const logContainer = createElement("div", "win-log");
-
-  for (const { ticket, position } of winDetails.mrxMoves) {
-    const ticketDiv = createElement("div", "log-entries");
-
-    ticketDiv.classList.add(ticket);
-    const pTag = document.createElement("p");
-    pTag.textContent = position;
-    ticketDiv.appendChild(pTag);
-    logContainer.appendChild(ticketDiv);
-  }
-
-  return logContainer;
+  result.append(toggleBtn);
 };
 
 const showMrXVictoryPopup = () => {
@@ -269,11 +245,10 @@ const showMrXVictoryPopup = () => {
   });
 };
 
-const showDetectiveLoosePopup = (logContainer) => {
+const showDetectiveLoosePopup = () => {
   showResultPopup({
     message:
       "Better luck next time, Detectives. Mr. X slipped through your fingers today.",
-    logContainer,
   });
 };
 
@@ -291,15 +266,13 @@ const showMrXLoosePopup = (stationNumber) => {
   });
 };
 
-const renderMrXWin = (winDetails, isMrX) => {
-  const logContainer = createMrLog(winDetails);
-
+const renderMrXWin = (_, isMrX) => {
   if (isMrX) {
     showMrXVictoryPopup();
     startConfettiBurst();
     return;
   }
-  showDetectiveLoosePopup(logContainer);
+  showDetectiveLoosePopup();
   startAshFall();
 };
 
