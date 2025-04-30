@@ -235,20 +235,16 @@ body {
   align-items: center;
 }
 .taxi {
-  /* background-image: url("/assets/taxi.png"); */
   background-color: #ffd700;
   color: black;
 }
 
 .bus {
-  /* background-image: url("/assets/bus.png"); */
   background-color: #2e8b57;
   color: white;
 }
 
 .underground {
-  /* background-image: url("/assets/metro.png"); */
-  font-size: 0.9em;
   background-color: #ee4444;
   color: white;
 }
