@@ -16,10 +16,6 @@
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
-    <!-- <header>
-      Scotland Yard
-    </header> -->
-
     <div class="top-right">
       <button id="aboutBtn" class="material-symbols-outlined icon-info iconBtn">
         info
@@ -214,14 +210,15 @@
         </div>
       </div>
       <div id="join-popup-wrap">
+        <button
+          type="button"
+          class="close material-symbols-outlined icon-close"
+          id="join-form-close-button"
+        >
+          close
+        </button>
+        <h1>Join a game</h1>
         <form id="join-form">
-          <button
-            type="button"
-            class="close material-symbols-outlined icon-close"
-            id="join-form-close-button"
-          >
-            close
-          </button>
           <input
             type="text"
             placeholder="Enter Room Id"

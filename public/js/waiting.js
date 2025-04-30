@@ -136,7 +136,7 @@ const copyRoomId = () => {
   navigator.clipboard.writeText(roomId);
 
   Toastify({
-    text: "Id Copied",
+    text: "Room Id Copied!",
     duration: 3000,
     gravity: "top",
     position: "center",
