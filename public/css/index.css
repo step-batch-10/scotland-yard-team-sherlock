@@ -20,17 +20,6 @@ body {
   justify-content: center;
 }
 
-/* header {
-  text-align: center;
-  padding: 30px;
-  color: rgb(255 255 255);
-  font-size: 100px;
-  font-weight: 700;
-  font-family: sans-serif;
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(3px);
-} */
-
 main {
   height: 100%;
   display: flex;
@@ -57,17 +46,6 @@ main {
   font-size: 3em;
   color: #323232;
 }
-
-/* form {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-}
-
-form input {
-  padding: 10px 15px;
-  font-size: 1.12rem;
-} */
 
 form input:focus {
   outline: none;

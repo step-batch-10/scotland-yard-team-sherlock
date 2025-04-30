@@ -93,11 +93,9 @@ button {
 
 #room {
   display: flex;
-  /* position: fixed; */
 }
 
 .copy-icon {
-  /* color: #323232; */
   width: 20px;
   height: 20px;
   filter: invert(50%);

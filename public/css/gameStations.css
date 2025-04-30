@@ -16,25 +16,6 @@
   aspect-ratio: 2;
 }
 
-/* .transport-taxi {
-  background-color: yellow;
-}
-
-.transport-bus {
-  background-color: green;
-  color: white;
-}
-
-.transport-black {
-  background-color: black;
-  color: white;
-}
-
-.transport-underground {
-  background-color: red;
-  color: white;
-} */
-
 .ticket-info-container .ticket-info-close-button {
   border: none;
   background-color: crimson;
