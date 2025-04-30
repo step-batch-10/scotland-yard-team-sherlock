@@ -211,7 +211,7 @@ const createEyeIcons = () => {
   return { eye, eyeOff };
 };
 
-const createToggleButton = (logContainer, resultPanel) => {
+const createToggleButton = () => {
   const { eye, eyeOff } = createEyeIcons();
   const toggleBtn = document.createElement("button");
   let isVisible = false;
@@ -221,10 +221,10 @@ const createToggleButton = (logContainer, resultPanel) => {
 
   toggleBtn.addEventListener("click", () => {
     if (isVisible) {
-      logContainer.remove();
+      displayLog();
       toggleBtn.innerHTML = `${eye} View Mr. X's Moves`;
     } else {
-      resultPanel.append(logContainer);
+      displayLog();
       toggleBtn.innerHTML = `${eyeOff} Hide Mr. X's Moves`;
     }
     isVisible = !isVisible;
@@ -238,7 +238,6 @@ const showResultPopup = ({ message, logContainer = null }) => {
   const h2 = document.createElement("h2");
   h2.className = "winner-data";
   h2.textContent = message;
-
   result.append(h2);
 
   if (logContainer) {
