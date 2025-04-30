@@ -37,7 +37,7 @@ describe("Game Manager", () => {
     {
       name: "b",
       id: "2",
-      color: "#63a4ff",
+      color: "#ee4444",
       position: 1,
       isMrx: false,
       inventory: inventory.detective,
@@ -45,7 +45,7 @@ describe("Game Manager", () => {
     {
       name: "c",
       id: "3",
-      color: "#ffb347",
+      color: "#2e8b57",
       position: 2,
       isMrx: false,
       inventory: inventory.detective,
@@ -53,7 +53,7 @@ describe("Game Manager", () => {
     {
       name: "d",
       id: "4",
-      color: "red",
+      color: "#1e90ff",
       position: 3,
       isMrx: false,
       inventory: inventory.detective,
@@ -61,7 +61,7 @@ describe("Game Manager", () => {
     {
       name: "e",
       id: "5",
-      color: "blue",
+      color: "#9370db",
       position: 4,
       isMrx: false,
       inventory: inventory.detective,
@@ -69,7 +69,7 @@ describe("Game Manager", () => {
     {
       name: "f",
       id: "6",
-      color: "violet",
+      color: "#ffa300",
       position: 5,
       isMrx: false,
       inventory: inventory.detective,

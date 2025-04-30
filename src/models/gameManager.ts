@@ -34,7 +34,7 @@ export class GameManager {
   }
 
   #gameSetup(players: Player[]): Players {
-    const colors = ["#63a4ff", "#ffb347", "red", "blue", "violet"];
+    const colors = ["#ee4444", "#2e8b57", "#1e90ff", "#9370db", "#ffa300"];
     const [mrx, ...detectives] = players;
     const mrXDetails: Mrx = {
       ...mrx,
