@@ -96,7 +96,6 @@ const showPopup = () => {
 };
 
 const hidePopUp = () => {
-  const popup = document.getElementById("popup");
   const closeSetting = document.getElementById("close-setting");
   const settingPopup = document.getElementById("settingPopup");
   const closeDetails = document.getElementById("close-details");
@@ -116,8 +115,6 @@ const hidePopUp = () => {
   );
 
   globalThis.addEventListener("click", (event) => {
-    if (event.target === popup) popup.style.display = "none";
-
     if (event.target === settingPopup) settingPopup.style.display = "none";
   });
 };
@@ -484,7 +481,7 @@ const main = async () => {
     );
 
     if (gameStatus.win) {
-      const gameEndPopup = document.getElementById("popup");
+      const gameEndPopup = document.getElementById("game-end-popup");
       gameEndPopup.style.display = "flex";
 
       const isMrX = isReqFromMrX(gameStatus.you);

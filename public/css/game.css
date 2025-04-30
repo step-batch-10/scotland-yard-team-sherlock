@@ -96,6 +96,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 1;
+  backdrop-filter: blur(5px);
 }
 
 .popup-content {
@@ -509,12 +510,14 @@ input:checked + .slider:before {
   background-color: #cdccbc;
   top: 200px;
   right: 10px;
+  cursor: grab;
   flex-direction: column;
   position: absolute;
   width: min-content;
 }
 .player-details h2 {
   text-align: center;
+  padding-bottom: 14px;
 }
 
 .log-toggle-button {
