@@ -40,7 +40,10 @@ export class GameManager {
       ...mrx,
       color: "black",
       isMrx: true,
-      inventory: { ...this.#MrxInventory },
+      inventory: {
+        tickets: { ...this.#MrxInventory.tickets },
+        cards: { ...this.#MrxInventory.cards },
+      },
       position: this.#startingPositions[0],
     };
 
