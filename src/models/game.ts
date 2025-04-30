@@ -132,7 +132,7 @@ export class Game {
   }
 
   #isTurnFinished() {
-    return this.#mrxMoves.length === 24;
+    return this.#mrxMoves.length === 8;
   }
 
   #updateCurrentPlayerIndex(isDoubleUsed?: boolean) {
