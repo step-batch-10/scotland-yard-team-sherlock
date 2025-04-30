@@ -59,88 +59,14 @@ const resetCurrentPlayerPointer = (map) => {
   }
 };
 
-const createInventoryContainer = () => {
-  const div = document.createElement("div");
-  div.className = "inventory-container";
-  return div;
-};
-
-const positionInventoryContainer = (container, coord) => {
-  container.style.top = `${coord.top - 40}px`;
-  container.style.left = `${coord.left}px`;
-};
-
-const toggleDisplay = (el, show) => {
-  el.style.display = show ? "flex" : "none";
-};
-
-const addHoverListener = (triggerEl, targetEl) => {
-  triggerEl.addEventListener("mouseover", () => toggleDisplay(targetEl, true));
-  triggerEl.addEventListener("mouseout", () => toggleDisplay(targetEl, false));
-};
-
-const createContainer = (content) => {
-  const container = document.createElement("p");
-  container.style.textAlign = "center";
-  container.textContent = content;
-  return container;
-};
-
-const createTicketPanel = (ticket, count) => {
-  const panel = document.createElement("div");
-  panel.id = "ticket-panel";
-
-  const ticketContainer = createContainer(ticket);
-  const countContainer = createContainer(count);
-
-  panel.append(ticketContainer, countContainer);
-  return panel;
-};
-
-const renderInventoryPanel = (inventory, container) => {
-  const inventoryPanel = document.createElement("div");
-  inventoryPanel.id = "inventory-panel";
-  inventoryPanel.style.display = "flex";
-
-  for (const [ticket, count] of Object.entries(inventory)) {
-    if (!count) continue;
-    const panel = createTicketPanel(ticket, count);
-    inventoryPanel.append(panel);
-  }
-
-  container.append(inventoryPanel);
-  addHoverListener(container, container);
-};
-
-const addInventory = (inventoryContainer, { tickets, cards }) => {
-  inventoryContainer.textContent = "";
-  renderInventoryPanel(tickets, inventoryContainer);
-  if (cards) renderInventoryPanel(cards, inventoryContainer);
-};
-
-const renderInventory = (position, inventory) => {
-  const map = document.getElementById("map").contentDocument;
-  const pointer = map.getElementById(`pointer-${position}`);
-  const coord = pointer.getBoundingClientRect();
-  const inventoryContainer = createInventoryContainer();
-
-  addInventory(inventoryContainer, inventory);
-  positionInventoryContainer(inventoryContainer, coord);
-
-  document.querySelector(".map-container").append(inventoryContainer);
-  addHoverListener(pointer, inventoryContainer);
-};
-
-const renderMrx = (map, { position, color, inventory }) => {
+const renderMrx = (map, { position, color }) => {
   if (position) {
-    renderInventory(position, inventory);
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
   }
 };
 
 const renderDetectives = (map, detectives) => {
-  for (const { color, position, inventory } of detectives) {
-    renderInventory(position, inventory);
+  for (const { color, position } of detectives) {
     map.getElementById(`pointer-${position}`).setAttribute("fill", color);
   }
 };
@@ -150,7 +76,6 @@ const renderPlayerPositions = (map, { players, currentPlayer }) => {
   resetPointers(map);
   resetCurrentPlayerPointer(map);
 
-  document.querySelectorAll(".inventory-container").forEach((e) => e.remove());
   renderMrx(map, mrx);
   renderDetectives(map, detectives);
 
