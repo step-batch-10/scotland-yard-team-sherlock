@@ -66,7 +66,7 @@ h1 {
   backdrop-filter: blur(10px);
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 10px 0px 12px 7px rgba(0, 0, 0, 0.3);
 }
 
 main div img {
@@ -157,8 +157,9 @@ figure {
 }
 
 figure img {
-  height: 140px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
+  aspect-ratio: 1;
 }
 
 figure:hover {
